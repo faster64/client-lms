@@ -14,7 +14,7 @@
     background-color: var(--white);
     box-shadow: var(--shadow) 0px 3px 10px;
     transition: all 0.3s;
-    z-index: 2222;
+    z-index: var(--notification-hook);
     cursor: pointer;
 
     .vertical {

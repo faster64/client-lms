@@ -2,7 +2,7 @@
   position: absolute;
   inset: 0;
   background-color: rgba($color: #000, $alpha: 0.1);
-  z-index: 1001;
+  z-index: var(--loading-index);
 
   .text-loading-content {
     width: 160px;

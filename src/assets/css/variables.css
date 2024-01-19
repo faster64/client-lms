@@ -19,6 +19,14 @@
 
   /* spacing  */
   --side-distance: 300px;
+
+  /* z-index */
+  --header-index: 990;
+  --mat-progress-bar: 1000;
+  --loading-index: 1001;
+  --message-box: 2000;
+  --notification-hook: 2222;
+  --mat-progress-bar-max: 9999;
 }
 
 @media screen and (max-width: 1600px) {
@@ -52,6 +60,14 @@
 @media screen and (max-width: 992px) {
   :root {
     --side-distance: 50px;
+    --size: 12px;
+  }
+}
+
+
+@media screen and (max-width: 576px) {
+  :root {
+    --side-distance: 16px;
     --size: 12px;
   }
 }
