@@ -1,37 +1,21 @@
-@import url("~/src/assets/css/var-other.css");
-
 #app {
   position: relative;
-  width: 100vw;
-  height: calc(var(--vh, 1vh) * 100);
-  max-width: 100vw;
-  max-height: 100vh;
-  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+  overflow: auto;
 
-  .app-content {
-    position: absolute;
+  .app-header {
+    position: sticky;
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
-    height: 100%;
-    background-color: var(--white);
-    overflow: auto;
+    height: 120px;
   }
 
-  &.resolved {
-    .app-header {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: var(--top);
-    }
-
-    .app-content {
-      top: var(--top);
-      height: calc(100% - var(--top));
-    }
+  .app-content {
+    width: 100%;
+    max-width: 100%;
+    height: 3000px;
   }
 }
 

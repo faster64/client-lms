@@ -45,7 +45,7 @@
 
     &.success {
         .icon {
-            background-image: url(./assets/img/common/success.png);
+            background-image: url(../img/common/success.png);
         }
 
         .vertical {
@@ -55,7 +55,7 @@
 
     &.warning {
         .icon {
-            background-image: url(./assets/img/common/warning.png);
+            background-image: url(../img/common/warning.png);
         }
 
         .vertical {
@@ -65,7 +65,7 @@
 
     &.danger {
         .icon {
-            background-image: url(./assets/img/common/danger.png);
+            background-image: url(../img/common/danger.png);
         }
 
         .vertical {
@@ -75,7 +75,7 @@
 
     &.in-progress {
         .icon {
-            background-image: url(./assets/img/common/spinner-1s-200px.svg);
+            background-image: url(../img/common/spinner-1s-200px.svg);
         }
 
         .vertical {

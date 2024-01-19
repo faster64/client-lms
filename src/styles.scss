@@ -1,9 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
-@import url(/src/assets/css/variables.css);
-@import url(/src/assets/css/scroll.css);
-@import url(/src/assets/css/keyframes.css);
-@import url(/src/assets/css/notification.css);
-@import url(/src/assets/css/dialog.css);
+@import url("~/src/assets/css/variables.css");
+@import url("~/src/assets/css/scroll.css");
+@import url("~/src/assets/css/keyframes.css");
+@import url("~/src/assets/css/notification.css");
+@import url("~/src/assets/css/dialog.css");
 
 html,
 body {
@@ -63,4 +63,28 @@ button {
   /* Internet Explorer/Edge */
   user-select: none;
   /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+  transition: all 1s;
+  overflow-y: auto;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--scroll);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--scroll-thumb);
+  border-radius: 2px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scroll-thumb-hover);
 }

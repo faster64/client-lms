@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from 'src/environments/environment';
-import { PaginationRequest } from '../../../models/base/pagination-request';
-import { ServiceResult } from '../../../models/base/service-result';
 import { CommonConstant } from '../../constants/common.constant';
 import { LocalStorageKey } from '../../constants/localstorage.key';
-import { LocalHelper } from '../../helpers/local.helper';
+import { PaginationRequest } from '../../../models/base/pagination-request';
+import { ServiceResult } from '../../../models/base/service-result';
 import { HttpOption, HttpService } from './http.service';
+import { LocalHelper } from '../../helpers/local.helper';
 
 @Injectable({
   providedIn: 'root'
@@ -60,9 +60,15 @@ export class BaseService {
   }
 
   paging(paginationRequest: PaginationRequest, customizeUrl = ""): Observable<ServiceResult> {
+    let orderBy = '';
+    if (paginationRequest.sorts && paginationRequest.sorts.length) {
+      const sort = paginationRequest.sorts[0];
+      orderBy = sort.fieldName + '_' + (sort.sortAscending ? 'asc' : 'desc');
+    }
+
     const url = customizeUrl ?
-      customizeUrl :
-      `${this.getUrl()}/paging?page=${paginationRequest.number}&size=${paginationRequest.size}&query=${paginationRequest.query}&${CommonConstant.ALLOW_NOTICE_WITH_SNACKBAR_DANGER}`;
+                customizeUrl :
+                `${this.getUrl()}/paging?page=${paginationRequest.pageIndex}&size=${paginationRequest.pageSize}&orderBy=${orderBy}&query=${paginationRequest.query}&${CommonConstant.ALLOW_NOTICE_WITH_SNACKBAR_DANGER}`;
     return this.http.get<ServiceResult>(url, this._baseOptions);
   }
 
