@@ -1,7 +1,7 @@
 :host::ng-deep .base-button {
     transition: all 0.3s;
     &:hover {
-        opacity: 0.8;
+        // opacity: 0.8;
     }
     button {
         width: 100%;
@@ -18,7 +18,8 @@
         }
     }
     .mat-mdc-button-base.mat-primary {
-        background-color: #0f83ff;
+        // background-color: #0f83ff;
+        background-color: var(--main-color);
     }
     .mat-mdc-button-base.mat-success {
         background-color: #28a745;

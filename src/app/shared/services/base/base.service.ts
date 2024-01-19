@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from 'src/environments/environment';
 import { CommonConstant } from '../../constants/common.constant';
-import { LocalStorageKey } from '../../constants/localstorage.key';
+import { LocalStorageKey } from '../../constants/localstorage-key.constant';
 import { PaginationRequest } from '../../../models/base/pagination-request';
 import { ServiceResult } from '../../../models/base/service-result';
 import { HttpOption, HttpService } from './http.service';

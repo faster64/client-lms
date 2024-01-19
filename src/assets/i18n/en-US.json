@@ -1,4 +1,7 @@
 {
+  "errors": {
+    "not_permission": "Not permission!"
+  },
   "header": {
     "navs": {
       "home": "Home",
@@ -20,5 +23,22 @@
     "my_courses": "My courses",
     "contact": "Contact",
     "social_network_media": "Social network media"
+  },
+  "contact": {
+    "title": "Leave contact information",
+    "sub_title": "Answer all your questions & concerns!",
+    "full_name": "Full name",
+    "phone": "Phone",
+    "email": "Email",
+    "class": "Class",
+    "address": "Address",
+    "content": "Content",
+    "placeholder_full_name": "Enter full name",
+    "placeholder_phone": "Enter phone number",
+    "placeholder_email": "Enter  email",
+    "placeholder_class": "Select class",
+    "placeholder_address": "Enter address",
+    "placeholder_content": "Enter content",
+    "send": "Send"
   }
 }

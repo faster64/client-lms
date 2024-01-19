@@ -1,4 +1,7 @@
 {
+  "errors": {
+    "not_permission": "Bạn không có quyền thực hiện!"
+  },
   "header": {
     "navs":{
       "home": "Trang chủ",
@@ -20,5 +23,22 @@
     "my_courses": "Khóa học của tôi",
     "contact": "Liên hệ",
     "social_network_media": "Truyền thông mạng xã hội"
+  },
+  "contact": {
+    "title": "Để lại thông tin liên hệ",
+    "sub_title": "Giải đáp tất cả những câu hỏi & thắc mắc của bạn gặp phải!",
+    "full_name": "Họ và tên",
+    "phone": "Số điện thoại",
+    "email": "Email",
+    "class": "Lớp",
+    "address": "Địa chỉ",
+    "content": "Nội dung",
+    "placeholder_full_name": "Nhập họ và tên",
+    "placeholder_phone": "Nhập số điện thoại",
+    "placeholder_email": "Nhập email",
+    "placeholder_class": "Chọn lớp",
+    "placeholder_address": "Nhập địa chỉ",
+    "placeholder_content": "Nhập nội dung",
+    "send": "Gửi thông tin"
   }
 }

@@ -1,7 +1,7 @@
 import { Directive, Injector } from "@angular/core";
-import { LocalStorageKey } from "../constants/localstorage.key";
+import { LocalStorageKey } from "../constants/localstorage-key.constant";
 import { StringHelper } from "../helpers/string.helper";
-import { TranslationService } from "../services/base/translation.service";
+import { TranslationService } from "../services/translation/translation.service";
 import { Utility } from "../utility/utility";
 import { BaseComponent } from "./base-component";
 

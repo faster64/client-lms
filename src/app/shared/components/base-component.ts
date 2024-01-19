@@ -8,13 +8,13 @@ import { Event } from "../constants/event";
 import { DeviceType } from "../enumerations/device.enum";
 import { ActionExponent } from "../enumerations/permission.enum";
 import { TrackingService } from "../services/base/tracking.service";
-import { TranslationService } from "../services/base/translation.service";
+import { TranslationService } from "../services/translation/translation.service";
 import { Utility } from "../utility/utility";
 import { SharedService } from "../services/base/shared.service";
 import { AuthService } from "../services/auth/auth.service";
 import { AuthResolveConstant } from "../constants/auth-resolve.constant";
 import { StringHelper } from "../helpers/string.helper";
-import { LocalStorageKey } from "../constants/localstorage.key";
+import { LocalStorageKey } from "../constants/localstorage-key.constant";
 import { Routing } from "../constants/routing.constant";
 
 @Directive()

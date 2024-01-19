@@ -15,7 +15,7 @@ import { CommonConstant } from '../constants/common.constant';
 import { AuthStatus } from '../enumerations/auth-status.enum';
 import { StringHelper } from '../helpers/string.helper';
 import { AuthService } from '../services/auth/auth.service';
-import { TranslationService } from '../services/base/translation.service';
+import { TranslationService } from '../services/translation/translation.service';
 import { SessionStorageKey } from '../constants/sessionstorage.key';
 import { SharedService } from '../services/base/shared.service';
 

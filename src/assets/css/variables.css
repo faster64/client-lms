@@ -8,11 +8,14 @@
   --greyish: #ebebeb;
   --white: #fff;
   --main-color: #305FE8;
+  --yellow-color: #EDC95E;
   --footer-bg: #1D2939;
 
   /* font-size */
   --size: 16px;
   --title-size: 20px;
+  --contact-title-size: 40px;
+  --contact-sub-title-size: 21px;
 
   /* spacing  */
   --side-distance: 300px;
@@ -23,6 +26,8 @@
     --side-distance: 120px;
     --size: 15px;
     --title-size: 18px;
+    --contact-title-size: 32px;
+    --contact-sub-title-size: 18px;
   }
 }
 
@@ -39,6 +44,8 @@
     --side-distance: 80px;
     --size: 13px;
     --title-size: 15px;
+    --contact-title-size: 24px;
+    --contact-sub-title-size: 15px;
   }
 }
 

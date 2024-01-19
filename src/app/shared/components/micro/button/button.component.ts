@@ -1,10 +1,10 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
-import { SnackBarParameter } from 'src/app/models/snackbar.param';
 import { ButtonColor, ButtonType, IconButtonType } from 'src/app/shared/constants/button.constant';
-import { ActionExponent } from 'src/app/shared/enumerations/permission.enum';
-import { TranslationService } from 'src/app/shared/services/base/translation.service';
+import { ActionExponent } from 'src/app/shared/enums/exponent.enum';
+import { TranslationService } from 'src/app/shared/services/translation/translation.service';
+import { SnackBar } from 'src/app/shared/snackbar/snackbar.component';
+import { SnackBarParameter } from 'src/app/shared/snackbar/snackbar.param';
 import { AuthUtility } from 'src/app/shared/utility/auth-utility';
-import { SnackBar } from '../../element/snackbar/snackbar.component';
 
 @Component({
   selector: 'base-button',
@@ -169,7 +169,7 @@ export class BaseButton implements OnInit, AfterViewInit, OnDestroy {
    */
   notPermissionNotify() {
     const snackBarParameter = new SnackBarParameter();
-    snackBarParameter.message = TranslationService.VALUES['ERROR']['NOT_PERMISSION'];
+    snackBarParameter.message = TranslationService.VALUES['errors']['not_permission'];
     snackBarParameter.duration = 2000;
 
     SnackBar.warning(snackBarParameter);
