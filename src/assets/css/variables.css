@@ -1,12 +1,50 @@
 :root {
-    --vh: 1vh;
-    --scroll: #f1f1f1;
-    --scroll-thumb: rgb(189, 189, 189);
-    --scroll-thumb-hover: rgb(156, 156, 156);
-    --shadow: rgba(0, 0, 0, 0.15);
-    --grey: #ddd;
-    --greyish: #ebebeb;
-    --white: #fff;
-    --top: 80px;
-    --left: 0px;
+  --vh: 1vh;
+  --scroll: #f1f1f1;
+  --scroll-thumb: rgb(189, 189, 189);
+  --scroll-thumb-hover: rgb(156, 156, 156);
+  --shadow: rgba(0, 0, 0, 0.15);
+  --grey: #ddd;
+  --greyish: #ebebeb;
+  --white: #fff;
+  --main-color: #305FE8;
+  --footer-bg: #1D2939;
+
+  /* font-size */
+  --size: 16px;
+  --title-size: 20px;
+
+  /* spacing  */
+  --side-distance: 300px;
+}
+
+@media screen and (max-width: 1600px) {
+  :root {
+    --side-distance: 120px;
+    --size: 15px;
+    --title-size: 18px;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  :root {
+    --side-distance: 100px;
+    --size: 14px;
+    --title-size: 16px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  :root {
+    --side-distance: 80px;
+    --size: 13px;
+    --title-size: 15px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  :root {
+    --side-distance: 50px;
+    --size: 12px;
+  }
 }

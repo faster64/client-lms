@@ -1,0 +1,24 @@
+{
+  "header": {
+    "navs":{
+      "home": "Trang chủ",
+      "contact": "Liên hệ",
+      "guide": "Hướng dẫn sử dụng",
+      "my_courses": "Khóa học của tôi"
+    },
+    "features": {
+      "cart": "Giỏ hàng",
+      "search": "Tìm kiếm",
+      "login": "Đăng nhập",
+      "register": "Đăng ký"
+    }
+  },
+  "footer": {
+    "phone": "Số điện thoại",
+    "about_we": "Về chúng tôi",
+    "intro": "Giới thiệu",
+    "my_courses": "Khóa học của tôi",
+    "contact": "Liên hệ",
+    "social_network_media": "Truyền thông mạng xã hội"
+  }
+}

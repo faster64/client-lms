@@ -1,0 +1,24 @@
+{
+  "header": {
+    "navs": {
+      "home": "Home",
+      "contact": "Contact",
+      "guide": "Guide",
+      "my_courses": "My courses"
+    },
+    "features": {
+      "cart": "Cart",
+      "search": "Search",
+      "login": "Login",
+      "register": "Register"
+    }
+  },
+  "footer": {
+    "phone": "Phone",
+    "about_we": "About",
+    "intro": "Introduction",
+    "my_courses": "My courses",
+    "contact": "Contact",
+    "social_network_media": "Social network media"
+  }
+}

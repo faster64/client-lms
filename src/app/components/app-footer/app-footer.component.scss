@@ -1,0 +1,109 @@
+.app-footer-cmp {
+  display: flex;
+  height: 100%;
+  padding: 56px var(--side-distance);
+  background-color: var(--footer-bg);
+  .common-info {
+    margin-right: 100px;
+    .logo {
+      width: 93px;
+      height: 48px;
+      margin-bottom: 24px;
+      flex-shrink: 0;
+      background-image: url(~/src/assets/img/logo.png);
+      cursor: pointer;
+    }
+    .info-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+      .icon {
+        width: 24px;
+        height: 24px;
+        margin-right: 8px;
+      }
+      .text {
+        width: calc(100% - 32px);
+        color: var(--white);
+        font-size: var(--size);
+        font-style: normal;
+        font-weight: 400;
+        line-height: 28px;
+      }
+
+      &.address {
+        .icon {
+          background-image: url(~/src/assets/img/footer/address.png);
+        }
+      }
+      &.phone {
+        .icon {
+          background-image: url(~/src/assets/img/footer/phone.png);
+        }
+      }
+      &.email {
+        .icon {
+          background-image: url(~/src/assets/img/footer/email.png);
+        }
+      }
+    }
+  }
+
+  .about-we,
+  .social {
+    margin-top: 72px;
+    .title {
+      margin-bottom: 24px;
+      color: var(--white);
+      font-size: var(--title-size);
+      font-weight: 600;
+    }
+  }
+
+  .about-we {
+    margin-right: 100px;
+    .about-item {
+      margin-bottom: 16px;
+      color: var(--white);
+      font-size: var(--size);
+      font-weight: 400;
+      line-height: 28px;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .social {
+    .icon {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+
+      &.youtube {
+        margin-right: 24px;
+        background-image: url(~/src/assets/img/footer/youtube.png);
+      }
+      &.facebook {
+        background-image: url(~/src/assets/img/footer/facebook.png);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .app-footer-cmp {
+    flex-wrap: wrap;
+    padding: 16px var(--side-distance);
+    .block {
+      flex-basis: 100%;
+    }
+
+    .about-we, .social {
+      margin-top: 24px;
+    }
+  }
+}

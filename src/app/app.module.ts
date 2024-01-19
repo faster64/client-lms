@@ -16,6 +16,7 @@ import { MessageBoxModule } from './shared/message-box/message-box.module';
 import { SnackbarModule } from './shared/snackbar/snackbar.module';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { AppHeaderModule } from './components/app-header/app-header.module';
+import { AppFooterModule } from './components/app-footer/app-footer.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -41,7 +42,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatProgressBarModule,
     SnackbarModule,
     MessageBoxModule,
-    AppHeaderModule
+    AppHeaderModule,
+    AppFooterModule
   ],
   providers: [
     // {

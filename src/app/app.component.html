@@ -1,11 +1,14 @@
 <div id="app" #app>
-  <mat-progress-bar mode="determinate" [value]="progress" *ngIf="progress > 0"></mat-progress-bar>
+  <!-- <mat-progress-bar mode="determinate" [value]="progress" *ngIf="progress > 0"></mat-progress-bar> -->
 
   <div class="app-header">
     <app-header></app-header>
   </div>
   <div #appContent class="app-content">
     <router-outlet></router-outlet>
+  </div>
+  <div class="app-footer">
+    <app-footer></app-footer>
   </div>
 </div>
 

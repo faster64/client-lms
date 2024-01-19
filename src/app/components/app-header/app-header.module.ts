@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppHeaderComponent } from './app-header.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -9,7 +10,8 @@ import { AppHeaderComponent } from './app-header.component';
     AppHeaderComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    TranslateModule
   ],
   exports: [AppHeaderComponent]
 })

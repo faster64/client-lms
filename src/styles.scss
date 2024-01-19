@@ -12,7 +12,6 @@ body {
 
 body {
   margin: 0;
-  font-family: monospace, Roboto, "Helvetica Neue", sans-serif;
 }
 
 * {
@@ -20,6 +19,7 @@ body {
   padding: 0;
   box-sizing: border-box !important;
   font-size: 13px;
+  font-family: Montserrat, monospace, Roboto, "Helvetica Neue", sans-serif;
 }
 
 button {
@@ -65,26 +65,3 @@ button {
   /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 }
 
-/* width */
-::-webkit-scrollbar {
-  width: 7px;
-  height: 7px;
-  transition: all 1s;
-  overflow-y: auto;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: var(--scroll);
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: var(--scroll-thumb);
-  border-radius: 2px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: var(--scroll-thumb-hover);
-}

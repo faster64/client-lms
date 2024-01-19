@@ -1,1 +1,48 @@
-<div class="app-header-cmp"></div>
+<div class="app-header-cmp">
+  <div class="bg-line"></div>
+  <div class="nav-line">
+    <div class="nav-left">
+      <div class="logo"></div>
+
+      <div class="nav-item" [ngClass]="selectedIndex == 0 ? 'selected' : ''">
+        <div class="text">{{'header.navs.home' | translate}}</div>
+        <div class="under-line"></div>
+      </div>
+      <div class="nav-item" [ngClass]="selectedIndex == 1 ? 'selected' : ''">
+        <div class="text">{{'header.navs.contact' | translate}}</div>
+        <div class="under-line"></div>
+      </div>
+      <div class="nav-item" [ngClass]="selectedIndex == 2 ? 'selected' : ''">
+        <div class="text">{{'header.navs.guide' | translate}}</div>
+        <div class="under-line"></div>
+      </div>
+      <div class="nav-item" [ngClass]="selectedIndex == 3 ? 'selected' : ''">
+        <div class="text">{{'header.navs.my_courses' | translate}}</div>
+        <div class="under-line"></div>
+      </div>
+    </div>
+    <div class="nav-right unauthenticated" *ngIf="false">
+      <div class="cart"></div>
+      <div class="wrap">
+        <div class="search"></div>
+        <div class="seperate-line"></div>
+        <div class="login">
+          {{'header.features.login' | translate}}
+        </div>
+        <div class="slash">/</div>
+        <div class="register">
+          {{'header.features.register' | translate}}
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-right authenticated">
+      <div class="search"></div>
+      <div class="cart"></div>
+
+      <div class="avatar"></div>
+      <div class="name over-3-dots">Nguyễn Phong</div>
+      <div class="more-dropdown"></div>
+    </div>
+  </div>
+</div>
