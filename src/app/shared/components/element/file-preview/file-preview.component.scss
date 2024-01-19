@@ -1,0 +1,35 @@
+::ng-deep .file-preview-cmp {
+    height: 100%;
+    padding: 16px;
+
+    .content {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        word-wrap: break-word;
+
+        .progess-spinner-loading {
+            position: absolute !important;
+        }
+
+        img,
+        video {
+            width: 100% !important;
+            height: 100% !important;
+        }
+    }
+
+    .error {
+        width: 100%;
+        height: 100%;
+        word-wrap: break-word;
+        color: var(--danger);
+    }
+
+    .not-support {
+        width: 100%;
+        height: 100%;
+        font-size: 16px;
+        font-weight: 500;
+    }
+}

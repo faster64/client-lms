@@ -1,0 +1,19 @@
+.not-connected {
+    height: 100%;
+
+    .block {
+        margin-bottom: 48px;
+
+        .icon {
+            width: 96px;
+            height: 96px;
+            margin: 0 auto 16px auto;
+            background-image: url(~/src/assets/img/common/maintaince.png);
+        }
+
+        .message {
+            font-size: 20px;
+            color: #333;
+        }
+    }
+}

@@ -1,0 +1,19 @@
+<div id="app" #app [ngClass]="[
+    SharedService.DeviceType == DeviceType.Desktop ? 'desktop' : 'mobile',
+    AuthService.AuthResolveState == AuthResolveConstant.RESOLVED ? 'resolved' : '']">
+  <mat-progress-bar mode="determinate" [value]="progressValue" *ngIf="inProgress"></mat-progress-bar>
+
+  <div class="app-header" *ngIf="AuthService.AuthResolveState == AuthResolveConstant.RESOLVED">
+    <header-v1></header-v1>
+  </div>
+  <div #appContent class="app-content" (click)="appClick($event)">
+    <router-outlet></router-outlet>
+    <app-resolver-mark *ngIf="false && isResolving"></app-resolver-mark>
+    <!-- <progess-spinner-loading ></progess-spinner-loading> -->
+  </div>
+</div>
+
+<snackbar></snackbar>
+<message-box></message-box>
+
+<div id="calculator"></div>

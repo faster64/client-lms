@@ -1,0 +1,116 @@
+::ng-deep .folder-picker {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 200px;
+  border: 1px dashed rgb(45, 45, 202);
+  overflow: hidden;
+
+  input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    z-index: 100;
+  }
+
+  .placeholder-wrapper {
+    .item {
+      display: block;
+      text-align: center;
+      &:first-child {
+        margin-bottom: 8px;
+      }
+    }
+  }
+
+  .preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    z-index: 101;
+    .file-item {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      padding: 4px;
+      margin: 4px;
+      border-radius: 6px;
+      background-color: #ddd;
+      img,
+      video {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+      }
+      span {
+        text-align: center;
+        overflow: hidden;
+      }
+
+      .remove {
+        position: absolute;
+        top: 2px;
+        right: 2px;
+        width: 16px;
+        height: 16px;
+        background-image: url(~/src/assets/img/common/close.png);
+        cursor: pointer;
+      }
+    }
+
+    cdk-virtual-scroll-viewport {
+      width: 100%;
+      height: 100%;
+      scroll-behavior: smooth;
+    }
+
+    .cdk-virtual-scroll-content-wrapper {
+      display: flex;
+      flex-direction: row;
+      top: 50%;
+      padding: 0 16px;
+      transform: translateY(-50%) !important;
+    }
+  }
+
+  .reset {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 4px 8px;
+    background-color: #ddd;
+    font-weight: 500;
+    z-index: 102;
+    cursor: pointer;
+  }
+}
+
+::ng-deep noti-box {
+  .over-file-size {
+    .item {
+      display: block;
+      margin-bottom: 4px;
+      .title {
+        display: inline-block;
+        width: 100px;
+      }
+    }
+    .error {
+      margin-bottom: 12px;
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--danger);
+      text-align: center;
+    }
+  }
+}
+
+
+::ng-deep .cdk-overlay-container {
+  z-index: 2000 !important;
+}

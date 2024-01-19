@@ -1,0 +1,13 @@
+.icon-cmp {
+    height: 100%;
+
+    .testt {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        margin: 8px;
+        background-image: url(~/src/assets/img/icons_v2.svg);
+        background-repeat: no-repeat;
+        // background-size: contain;
+    }
+}

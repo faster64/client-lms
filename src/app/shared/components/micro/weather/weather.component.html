@@ -1,0 +1,11 @@
+<div class="weather-cmp">
+  <div class="wrapper" *ngIf="!isLoading && weatherModel && weatherModel.location">
+    <span class="item location">{{weatherModel.location.name}},</span>
+    <span class="item temp" [ngClass]="weatherModel.tempC < 20 ? 'cold' : weatherModel.tempC < 25 ? 'cool' : 'hot'">
+      <span>{{weatherModel.tempC}}°C</span> cảm giác như <span>{{weatherModel.feelLikesTempC}}°C</span>
+    </span>
+    <span class="item last-updated">Cập nhật: {{lastUpdated | TimePipe}}</span>
+  </div>
+
+  <skeleton-loading *ngIf="isLoading"></skeleton-loading>
+</div>
