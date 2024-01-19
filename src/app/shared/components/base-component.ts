@@ -2,20 +2,13 @@ import { Directive, Injector, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Subject } from "rxjs";
 import { PaginationRequest } from "../../models/base/pagination-request";
-import { Tracking } from "../../models/core/tracking";
 import { ButtonColor, ButtonType, IconButtonType } from "../constants/button.constant";
-import { Event } from "../constants/event";
+import { Routing } from "../constants/routing.constant";
 import { DeviceType } from "../enumerations/device.enum";
 import { ActionExponent } from "../enumerations/permission.enum";
-import { TrackingService } from "../services/base/tracking.service";
-import { TranslationService } from "../services/base/translation.service";
-import { Utility } from "../utility/utility";
 import { SharedService } from "../services/base/shared.service";
-import { AuthService } from "../services/auth/auth.service";
-import { AuthResolveConstant } from "../constants/auth-resolve.constant";
-import { StringHelper } from "../helpers/string.helper";
-import { LocalStorageKey } from "../constants/localstorage.key";
-import { Routing } from "../constants/routing.constant";
+import { TrackingService } from "../services/base/tracking.service";
+import { Utility } from "../utility/utility";
 
 @Directive()
 export class BaseComponent implements OnInit, OnDestroy {
@@ -55,16 +48,6 @@ export class BaseComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.initServices();
     this.initData();
-    // this.tracking();
-
-    if (AuthService.AuthResolveState == AuthResolveConstant.UNKNOWN) {
-      AuthService.AuthResolveState = AuthResolveConstant.RESOLVED;
-    }
-
-    setTimeout(() => {
-      const key = this.activatedRoute.snapshot.data['key'];
-      Utility.changeTitle(TranslationService.VALUES['ROUTER'][key] || "Microsoft");
-    }, 100);
   }
 
   // unsubscribe khi destroy
@@ -85,37 +68,4 @@ export class BaseComponent implements OnInit, OnDestroy {
     this.sharedService = this.injector.get(SharedService);
     this.activatedRoute = this.injector.get(ActivatedRoute);
   }
-
-  tracking(event?: Tracking, callback?: Function) {
-    clearTimeout(this.timerId);
-
-    this.trackingService.events.push(event || this.commonTrackingEvent(Event.CHANGE_PAGE));
-    this.timerId = setTimeout(() => {
-      this.trackingService.distinctEvents();
-      for (let i = 0; i < this.trackingService.events.length; i++) {
-        const event = this.trackingService.tracking(this.trackingService.events[i]);
-
-        event.subscribe(_ => {
-          if (callback) {
-            callback(_);
-          }
-        });
-      }
-      this.trackingService.events = [];
-    }, 256);
-  }
-
-  protected commonTrackingEvent(eventId: string) {
-    const event = new Tracking();
-    event.eventId = eventId;
-    event.origin = window.location.origin;
-    event.previousScreen = this.sharedService.previousScreen;
-    event.currentScreen = this.sharedService.lastVisitedScreen;
-    event.screenWidth = window.outerWidth;
-    event.screenHeight = window.outerHeight;
-    event.screenInnerWidth = window.innerWidth;
-    event.screenInnerHeight = window.innerHeight;
-    event.language = window.navigator.language;
-    return event;
-  };
 }

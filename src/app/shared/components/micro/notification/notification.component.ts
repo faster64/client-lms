@@ -83,7 +83,7 @@ export class NotificationComponent extends BaseComponent {
     }
 
     this.isLoadingNotification = true;
-    this.paginationRequest.pageSize = 32;
+    this.paginationRequest.size = 32;
     this.notificationService.getNotificationPaging(this.paginationRequest, this.navbarOn)
       .pipe(takeUntil(this._onDestroySub))
       .subscribe(resp => {

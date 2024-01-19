@@ -5,11 +5,9 @@ import { takeUntil } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { SnackBarParameter } from './models/snackbar.param';
 import { SnackBar } from './shared/components/element/snackbar/snackbar.component';
-import { AuthResolveConstant } from './shared/constants/auth-resolve.constant';
 import { Routing } from './shared/constants/routing.constant';
 import { AuthStatus } from './shared/enumerations/auth-status.enum';
 import { DeviceType } from './shared/enumerations/device.enum';
-import { AuthService } from './shared/services/auth/auth.service';
 import { BehaviorService } from './shared/services/base/behavior.service';
 import { HubConnectionService } from './shared/services/base/hub-connection.service';
 import { SharedService } from './shared/services/base/shared.service';
@@ -17,8 +15,8 @@ import { TransferDataService } from './shared/services/base/transfer-data.servic
 import { TranslationService } from './shared/services/base/translation.service';
 import { NotificationService } from './shared/services/notification/notification.service';
 import { TinyEditorService } from './shared/services/tiny-editor/tiny-editor.service';
-import { UserService } from './shared/services/user/user.serivce';
 import { Utility } from './shared/utility/utility';
+import { AuthService } from './shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -34,8 +32,6 @@ export class AppComponent implements OnInit, OnDestroy {
   AuthStatus = AuthStatus;
 
   DeviceType = DeviceType;
-
-  AuthResolveConstant = AuthResolveConstant;
 
   inProgress = false;
 
@@ -66,7 +62,6 @@ export class AppComponent implements OnInit, OnDestroy {
     public translationService: TranslationService,
     public transferService: TransferDataService,
     public activatedRoute: ActivatedRoute,
-    public userService: UserService,
     public tinyEditorService: TinyEditorService,
     public hubService: HubConnectionService,
     public notificationService: NotificationService,

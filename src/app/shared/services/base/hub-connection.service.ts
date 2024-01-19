@@ -1,18 +1,17 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as signalR from '@microsoft/signalr';
 import { HubConnection, HubConnectionBuilder, HubConnectionState } from '@microsoft/signalr';
-import { Observable, from, of, throwError } from 'rxjs';
-import { catchError, switchMap } from 'rxjs/operators';
+import { Observable, catchError, from, of, switchMap, throwError } from 'rxjs';
 import { SnackBarParameter } from 'src/app/models/snackbar.param';
 import { SocketMessage } from 'src/app/models/socket/socket-message';
 import { environment } from 'src/environments/environment';
+import { SnackBar } from '../../components/element/snackbar/snackbar.component';
 import { DeviceType } from '../../enumerations/device.enum';
 import { SocketType } from '../../enumerations/socket-type.enum';
-import { AuthService } from '../auth/auth.service';
 import { SharedService } from './shared.service';
 import { TransferDataService } from './transfer-data.service';
-import { SnackBar } from '../../components/element/snackbar/snackbar.component';
+import { AuthService } from '../auth/auth.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'

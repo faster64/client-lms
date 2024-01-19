@@ -34,8 +34,8 @@ export class NotificationService extends BaseService {
   }
 
   getNotificationPaging(paginationRequest: PaginationRequest, type = "") {
-    const page = paginationRequest.pageIndex;
-    const size = paginationRequest.pageSize;
+    const page = paginationRequest.number;
+    const size = paginationRequest.size;
 
     const url = `${this.getUrl()}/list?page=${page}&size=${size}&type=${type}&${CommonConstant.ALLOW_NOTICE_WITH_SNACKBAR_DANGER}`;
     return this.http.get<ServiceResult>(url, this._baseOptions);

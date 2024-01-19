@@ -1,10 +1,9 @@
 import { ErrorHandler, Injectable, NgZone } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import { Message } from 'src/app/models/message';
-import { SharedService } from '../services/base/shared.service';
-import { DeviceType } from '../enumerations/device.enum';
+import { environment } from 'src/environments/environment';
 import { MessageBox } from '../components/element/message-box/message-box.component';
-import { SnackBar } from '../components/element/snackbar/snackbar.component';
+import { DeviceType } from '../enumerations/device.enum';
+import { SharedService } from '../services/base/shared.service';
 
 @Injectable()
 export class GlobalErrorHandler implements ErrorHandler {
@@ -27,8 +26,8 @@ export class GlobalErrorHandler implements ErrorHandler {
         });
       }
       try {
-        if (error.includes('ChunkLoadError')) {
-          MessageBox.information(new Message(this, {content: 'Đã có phiên bản mới, tải lại trang để tiếp tục sử dụng'}, () => window.location.reload()));
+        if ((error + '').includes('ChunkLoadError')) {
+          MessageBox.information(new Message(this, { content: 'Đã có phiên bản mới, tải lại trang để tiếp tục sử dụng' }, () => window.location.reload()));
         }
       } catch (e) {
         console.err('resolve failed: ', e);

@@ -1,7 +1,6 @@
 import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { MatDialogRef } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -58,25 +57,25 @@ export function HttpLoaderFactory(http: HttpClient) {
       useClass: RequestHandlingInterceptor,
       multi: true
     },
-    {
-      provide: 'SocialAuthServiceConfig',
-      useValue: {
-        autoLogin: false,
-        providers: [
-          {
-            id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider(environment.google_client_id)
-          },
-          {
-            id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider(environment.facebook_client_id)
-          }
-        ],
-        onError: (err) => {
-          console.err("error:", err);
-        }
-      } as SocialAuthServiceConfig,
-    },
+    // {
+    //   provide: 'SocialAuthServiceConfig',
+    //   useValue: {
+    //     autoLogin: false,
+    //     providers: [
+    //       {
+    //         id: GoogleLoginProvider.PROVIDER_ID,
+    //         provider: new GoogleLoginProvider(environment.google_client_id)
+    //       },
+    //       {
+    //         id: FacebookLoginProvider.PROVIDER_ID,
+    //         provider: new FacebookLoginProvider(environment.facebook_client_id)
+    //       }
+    //     ],
+    //     onError: (err) => {
+    //       console.err("error:", err);
+    //     }
+    //   } as SocialAuthServiceConfig,
+    // },
   ],
   bootstrap: [AppComponent]
 })

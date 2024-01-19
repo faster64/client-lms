@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HubConnectionState } from '@microsoft/signalr';
 import { DeviceType } from '../../enumerations/device.enum';
-import { HttpService } from './http.service';
 import { HubConnectionService } from './hub-connection.service';
 import { TransferDataService } from './transfer-data.service';
-import { UserService } from '../user/user.serivce';
 
 
 @Injectable({
@@ -55,8 +53,6 @@ export class SharedService {
   }
 
   constructor(
-    private httpService: HttpService,
-    private userService: UserService,
     private transferService: TransferDataService,
     private hubService: HubConnectionService
   ) {

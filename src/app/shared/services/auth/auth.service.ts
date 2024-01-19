@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { of, throwError } from 'rxjs';
-import { catchError, finalize } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 import { CreateAccount } from 'src/app/models/auth/requests/create-account';
 import { SnackBarParameter } from 'src/app/models/snackbar.param';
 import { CommonConstant } from 'src/app/shared/constants/common.constant';
@@ -15,19 +15,16 @@ import { AuthResponse } from '../../../models/auth/responses/auth-response';
 import { PaginationRequest } from '../../../models/base/pagination-request';
 import { ServiceResult } from '../../../models/base/service-result';
 import { SnackBar } from '../../components/element/snackbar/snackbar.component';
-import { AuthResolveConstant } from '../../constants/auth-resolve.constant';
 import { LocalStorageKey } from '../../constants/localstorage.key';
+import { Routing } from '../../constants/routing.constant';
 import { SessionStorageKey } from '../../constants/sessionstorage.key';
 import { AuthStatus } from '../../enumerations/auth-status.enum';
 import { LocalHelper } from '../../helpers/local.helper';
-import { Routing } from '../../constants/routing.constant';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
-  public static AuthResolveState = AuthResolveConstant.UNKNOWN;
 
   private clearListSession = [
     SessionStorageKey.SIDEBAR_INDEX,
@@ -182,7 +179,6 @@ export class AuthService {
     localStorage.removeItem('auth');
     this.clearListSession.forEach(item => sessionStorage.removeItem(`${environment.organization}_${item}`));
     this.clearListLocal.forEach(item => localStorage.removeItem(item));
-    AuthService.AuthResolveState = AuthResolveConstant.UNKNOWN;
     window.location.href = `/${Routing.SIGN_IN.path}`;
     SnackBar.close();
   }
@@ -205,8 +201,8 @@ export class AuthService {
   }
 
   getSignInLoggingPaging(paginationRequest: PaginationRequest) {
-    const page = paginationRequest.pageIndex;
-    const size = paginationRequest.pageSize;
+    const page = paginationRequest.number;
+    const size = paginationRequest.size;
 
     const url = `${this.getUrl()}/history-paging?page=${page}&size=${size}`;
     return this.httpService.get<ServiceResult>(url);
