@@ -11,7 +11,7 @@ export class SnackBarParameter {
     callback: Function = undefined,
   ) {
     this.sender = sender;
-  this.message = message;
+    this.message = message;
     this.duration = duration;
     this.callback = callback;
   }

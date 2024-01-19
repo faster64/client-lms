@@ -1,0 +1,10 @@
+.slide-dialog {
+    display: flex;
+    flex-direction: column;
+    transform: translateY(-100%);
+}
+
+.slide-dialog.in {
+    transform: translateY(50px);
+    transition: transform 0.3s ease-out;
+}

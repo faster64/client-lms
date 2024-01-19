@@ -1,0 +1,12 @@
+:root {
+    --vh: 1vh;
+    --scroll: #f1f1f1;
+    --scroll-thumb: rgb(189, 189, 189);
+    --scroll-thumb-hover: rgb(156, 156, 156);
+    --shadow: rgba(0, 0, 0, 0.15);
+    --grey: #ddd;
+    --greyish: #ebebeb;
+    --white: #fff;
+    --top: 80px;
+    --left: 0px;
+}

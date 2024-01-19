@@ -1,5 +1,4 @@
 /* width */
-
 ::-webkit-scrollbar {
     width: 7px;
     height: 7px;
@@ -7,24 +6,18 @@
     overflow-y: auto;
 }
 
-
 /* Track */
-
 ::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: var(--scroll);
 }
 
-
 /* Handle */
-
 ::-webkit-scrollbar-thumb {
-    background: rgb(189, 189, 189);
+    background: var(--scroll-thumb);
     border-radius: 2px;
 }
 
-
 /* Handle on hover */
-
 ::-webkit-scrollbar-thumb:hover {
-    background: rgb(156, 156, 156);
+    background: var(--scroll-thumb-hover);
 }

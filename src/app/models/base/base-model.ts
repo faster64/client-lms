@@ -5,12 +5,11 @@ export class BaseModel {
   public createdDate: Date = new Date();
 
   public lastModifiedDate?: Date = null;
-
-  constructor(obj?: object) {
-    if(obj) {
-      setTimeout( () => {
-        Object.assign(this, obj);
-      }, 0);
-    }
-  }
+  // constructor(obj?: object) {
+  //   if(obj) {
+  //     setTimeout( () => {
+  //       Object.assign(this, obj);
+  //     }, 0);
+  //   }
+  // }
 }
