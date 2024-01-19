@@ -104,6 +104,13 @@
 
     .about-we, .social {
       margin-top: 24px;
+      .title {
+        margin-bottom: 8px;
+      }
+    }
+
+    .about-item, .info-item {
+      margin-bottom: 4px !important;
     }
   }
 }

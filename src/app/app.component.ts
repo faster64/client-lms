@@ -3,6 +3,9 @@ import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { TransferDataService } from './shared/services/base/transfer-data.service';
+import { AuthService } from './shared/services/auth/auth.service';
+import { isFakeMousedownFromScreenReader } from '@angular/cdk/a11y';
+import { AuthStatus } from './shared/enums/auth-status.enum';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +20,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   lostConnection = false;
 
+  iid: any;
+
   @ViewChild("app", { read: ViewContainerRef, static: true })
   containerRef!: ViewContainerRef;
 
@@ -26,10 +31,12 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(
     public router: Router,
     public activatedRoute: ActivatedRoute,
-    public transferService: TransferDataService
+    public transferService: TransferDataService,
+    public authService: AuthService
   ) { }
 
   ngOnInit() {
+    this.prepareAuthContext();
     this.subcribeEvents();
   }
 
@@ -40,9 +47,13 @@ export class AppComponent implements OnInit, OnDestroy {
 
   cancelProgessListener() {
     this.transferService
-      .cancelRouteProgressEvent
+      .cancelRouteEvent
       .pipe(takeUntil(this._onDestroySub))
-      .subscribe(() => this.progress = 0);
+      .subscribe(() => {
+        clearInterval(this.iid);
+        this.progress = 0;
+      }
+      );
   }
 
   routeChangeListener() {
@@ -51,9 +62,9 @@ export class AppComponent implements OnInit, OnDestroy {
       .subscribe(async (event: any) => {
         if (event instanceof NavigationStart) {
           this.progress = 35;
-          const id = setInterval(() => {
+          this.iid = setInterval(() => {
             if (this.progress >= 90) {
-              clearInterval(id);
+              clearInterval(this.iid);
               return;
             }
             this.progress += 1;
@@ -64,6 +75,13 @@ export class AppComponent implements OnInit, OnDestroy {
           this.progress = 0;
         }
       });
+  }
+
+  prepareAuthContext() {
+    AuthService.CurrentStatus = this.authService.getCurrentStatus();
+    if (AuthService.CurrentStatus == AuthStatus.Unknown) {
+      AuthService.CurrentStatus = AuthStatus.LoggedOut;
+    }
   }
 
   ngOnDestroy(): void {

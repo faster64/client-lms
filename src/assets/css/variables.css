@@ -4,9 +4,12 @@
   --scroll-thumb: rgb(189, 189, 189);
   --scroll-thumb-hover: rgb(156, 156, 156);
   --shadow: rgba(0, 0, 0, 0.15);
+  --progress-color: #FFB74D;
   --grey: #ddd;
   --greyish: #ebebeb;
   --white: #fff;
+  --gray: #E4E7EC;
+  --gray-800: #1d2939;
   --main-color: #305FE8;
   --yellow-color: #EDC95E;
   --footer-bg: #1D2939;
@@ -14,6 +17,7 @@
   /* font-size */
   --size: 16px;
   --title-size: 20px;
+  --auth-title-size: 28px;
   --contact-title-size: 40px;
   --contact-sub-title-size: 21px;
 

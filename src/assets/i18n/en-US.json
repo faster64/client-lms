@@ -35,10 +35,28 @@
     "content": "Content",
     "placeholder_full_name": "Enter full name",
     "placeholder_phone": "Enter phone number",
-    "placeholder_email": "Enter  email",
+    "placeholder_email": "Enter email",
     "placeholder_class": "Select class",
     "placeholder_address": "Enter address",
     "placeholder_content": "Enter content",
     "send": "Send"
+  },
+  "auth": {
+    "login": {
+      "title": "Login",
+      "title2": "Login to system",
+      "label_email": "Email",
+      "label_password": "Password",
+      "placeholder_email": "Enter email",
+      "placeholder_password": "Enter password",
+      "remember_me": "Remember me",
+      "forgot_password": "Forgot password?",
+      "login_btn": "Login",
+      "have_no_account": "Have no account?",
+      "register": "Register"
+    },
+    "register": {
+
+    }
   }
 }

@@ -137,7 +137,7 @@ export class RequestHandlingInterceptor implements HttpInterceptor {
   }
 
   private refreshInvalid(error) {
-    const currentStatus = this.authService.getAuthStatus();
+    const currentStatus = this.authService.getCurrentStatus();
     if (currentStatus == AuthStatus.SignedIn) {
       SnackBar.danger(new SnackBarParameter(null, TranslationService.VALUES['ERROR']['SESSION_EXPRIED'], 2000));
     }

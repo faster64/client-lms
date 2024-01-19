@@ -40,5 +40,23 @@
     "placeholder_address": "Nhập địa chỉ",
     "placeholder_content": "Nhập nội dung",
     "send": "Gửi thông tin"
+  },
+  "auth": {
+    "login": {
+      "title": "Đăng nhập",
+      "title2": "Đăng nhập hệ thống",
+      "label_email": "Email",
+      "label_password": "Mật khẩu",
+      "placeholder_email": "Nhập email",
+      "placeholder_password": "Nhập mật khẩu",
+      "remember_me": "Ghi nhớ đăng nhập",
+      "forgot_password": "Quên mật khẩu?",
+      "login_btn": "Đăng nhập",
+      "have_no_account": "Bạn chưa có tài khoản?",
+      "register": "Đăng ký"
+    },
+    "register": {
+
+    }
   }
 }

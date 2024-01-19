@@ -28,7 +28,7 @@ export class BaseService {
   constructor(
     public http: HttpService
   ) {
-    this.userId = LocalHelper.getAndParse('auth')[LocalStorageKey.USER_ID] || '';
+    this.userId = LocalHelper.parse('auth')[LocalStorageKey.USER_ID] || '';
   }
 
   getBaseHost() {

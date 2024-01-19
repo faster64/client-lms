@@ -9,7 +9,7 @@ export class UserHelper {
   static get USER_PERMISSION(): string {
     try {
       if (StringHelper.isNullOrEmpty(this.UP)) {
-        const accessToken = LocalHelper.getAndParse('auth')[LocalStorageKey.ACCESS_TOKEN] || '';
+        const accessToken = LocalHelper.parse('auth')[LocalStorageKey.ACCESS_TOKEN] || '';
         if (accessToken) {
           const permission = StringHelper.parseJwt(accessToken)["permission"];
           if (permission) {
@@ -28,7 +28,7 @@ export class UserHelper {
   static get MODULE_PERMISSION(): string {
     try {
       if (StringHelper.isNullOrEmpty(this.MP) || this.MP == '0') {
-        const accessToken = LocalHelper.getAndParse('auth')[LocalStorageKey.ACCESS_TOKEN] || '';
+        const accessToken = LocalHelper.parse('auth')[LocalStorageKey.ACCESS_TOKEN] || '';
         if (accessToken) {
           const permission = StringHelper.parseJwt(accessToken)["module_permission"];
           if (permission) {
@@ -46,7 +46,7 @@ export class UserHelper {
 
   static get USER_ROLES(): string[] {
     try {
-      const accessToken = LocalHelper.getAndParse('auth')[LocalStorageKey.ACCESS_TOKEN] || '';
+      const accessToken = LocalHelper.parse('auth')[LocalStorageKey.ACCESS_TOKEN] || '';
       if (accessToken) {
         const roles = StringHelper.parseJwt(accessToken)["roles"];
         return roles.split(',');

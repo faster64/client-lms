@@ -1,0 +1,45 @@
+<div class="login-cmp">
+  <div class="title">
+    <div class="icon bg-contain"></div>
+    <div class="text">{{'auth.login.title' | translate}}</div>
+  </div>
+  <div class="wrap">
+    <div class="left bg-contain"></div>
+    <div class="right">
+      <div class="title-system">
+        <div class="text">{{'auth.login.title2' | translate}}</div>
+        <div class="logo"></div>
+      </div>
+
+      <div class="email">
+        <div class="label">{{'auth.login.label_email' | translate}} <span class="required">*</span> </div>
+        <dx-text-box placeholder="{{'auth.login.placeholder_email' | translate}}" height="40"></dx-text-box>
+      </div>
+      <div class="password">
+        <div class="label">{{'auth.login.label_password' | translate}} <span class="required">*</span> </div>
+        <dx-text-box mode="password" placeholder="{{'auth.login.placeholder_password' | translate}}" height="40">
+        </dx-text-box>
+
+        <!-- <div class="view-password"></div> -->
+      </div>
+
+      <div class="one-row">
+        <div class="remember-me">
+          <input type="checkbox" name="remeber">
+          <label for="remeber"> {{'auth.login.remember_me' | translate}}</label>
+        </div>
+
+        <div class="forgot-password">{{'auth.login.forgot_password' | translate}}</div>
+      </div>
+
+      <div class="login-btn">
+        <base-button text="{{'auth.login.login_btn' | translate}}" [height]="44"></base-button>
+      </div>
+
+      <div class="have-no-account">
+        <span>{{'auth.login.have_no_account' | translate}}</span>
+        <span class="register-now" (click)="register()">{{'auth.login.register' | translate}}</span>
+      </div>
+    </div>
+  </div>
+</div>

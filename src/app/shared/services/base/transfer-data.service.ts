@@ -5,7 +5,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 })
 export class TransferDataService {
 
-  cancelRouteProgressEvent = new EventEmitter<any>();
+  cancelRouteEvent = new EventEmitter<any>();
   changeScreenEvent = new EventEmitter<any>();
   resolvedEvent = new EventEmitter<any>();
 
