@@ -1,4 +1,4 @@
-.course-cmp {
+::ng-deep .course-cmp {
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -60,5 +60,9 @@
     justify-content: space-between;
     height: calc(100% - 370px);
     padding-bottom: 4px;
+  }
+
+  .mdc-button {
+    border-color: var(--main-color) !important;
   }
 }

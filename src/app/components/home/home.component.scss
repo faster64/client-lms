@@ -63,3 +63,40 @@
     height: 640px;
   }
 }
+
+
+@media screen and (max-width: 1200px) {
+  .home-cmp {
+    .app-courses {
+      .course-wrapper {
+        .course {
+          width: 33%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .home-cmp {
+    .app-courses {
+      .course-wrapper {
+        .course {
+          width: 50%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .home-cmp {
+    .app-courses {
+      .course-wrapper {
+        .course {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
