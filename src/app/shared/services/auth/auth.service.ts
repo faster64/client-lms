@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { of, throwError } from 'rxjs';
-import { catchError, finalize } from 'rxjs/operators';
+import { LoginComponent } from 'src/app/auth-components/login/login.component';
 import { StringHelper } from 'src/app/shared/helpers/string.helper';
 import { HttpService } from 'src/app/shared/services/base/http.service';
 import { TransferDataService } from 'src/app/shared/services/base/transfer-data.service';
 import { environment } from 'src/environments/environment';
-import { LocalHelper } from '../../helpers/local.helper';
-import { Routing } from '../../constants/routing.constant';
 import { LocalStorageKey } from '../../constants/localstorage-key.constant';
+import { Routing } from '../../constants/routing.constant';
 import { AuthStatus } from '../../enums/auth-status.enum';
-import { ServiceResult } from '../../models/base/service-result';
+import { LocalHelper } from '../../helpers/local.helper';
+import { BreakPoint } from '../../constants/break-point.constant';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +32,8 @@ export class AuthService {
     public httpService: HttpService,
     public transfer: TransferDataService,
     public router: Router,
-    public activatedRoute: ActivatedRoute
+    public activatedRoute: ActivatedRoute,
+    public dialog: MatDialog
   ) {
   }
 
@@ -96,5 +97,36 @@ export class AuthService {
     config[LocalStorageKey.REFRESH_TOKEN] = refreshToken;
 
     localStorage.setItem('auth', JSON.stringify(config));
+  }
+
+
+
+
+
+
+  authenticate(callback: Function, config?: MatDialogConfig) {
+    if (AuthService.CurrentStatus === AuthStatus.LoggedIn) {
+      callback();
+      return;
+    }
+    if (!config) {
+      const screenWidth = window.innerWidth * 0.8;
+      const screenHeight = window.innerHeight * 0.8;
+
+      config = new MatDialogConfig();
+      config.minWidth = config.width = Math.min(screenWidth, 1024) + 'px';
+      config.minHeight = config.height = Math.min(screenHeight, 656) + 'px';
+      config.autoFocus = false;
+      config.position = { top: '0' };
+      config.panelClass = ['slide-dialog'];
+      config.data = {
+        padding: '24px',
+        showTitle: false,
+        showImage: window.innerWidth > BreakPoint.MD
+      }
+    }
+
+    const ref = this.dialog.open(LoginComponent, config);
+    ref.afterOpened().subscribe(() => document.querySelector('.cdk-overlay-pane.slide-dialog').classList.add('in'));
   }
 }

@@ -107,3 +107,17 @@
     }
   }
 }
+
+
+@media screen and (max-width: 576px) {
+  .login-cmp {
+    .wrap {
+      .left {
+        display: none;
+      }
+      .right {
+        width: 100%;
+      }
+    }
+  }
+}

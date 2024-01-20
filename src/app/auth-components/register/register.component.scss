@@ -88,3 +88,16 @@
     }
   }
 }
+
+@media screen and (max-width: 576px) {
+  .register-cmp {
+    .wrap {
+      .left {
+        display: none;
+      }
+      .right {
+        width: 100%;
+      }
+    }
+  }
+}

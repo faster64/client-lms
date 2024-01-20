@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, Injector, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Inject, Injectable, Injector, ViewChild } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { DxTextBoxComponent } from 'devextreme-angular';
 import { BaseComponent } from 'src/app/shared/components/base-component';
@@ -10,6 +11,9 @@ import { TranslationService } from 'src/app/shared/services/translation/translat
 import { SnackBar } from 'src/app/shared/snackbar/snackbar.component';
 import { SnackBarParameter } from 'src/app/shared/snackbar/snackbar.param';
 
+@Injectable({
+  providedIn: 'root'
+})
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -30,9 +34,11 @@ export class LoginComponent extends BaseComponent implements AfterViewInit {
 
   constructor(
     injector: Injector,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     public router: Router
   ) {
     super(injector);
+    console.log(this.data)
   }
 
   ngAfterViewInit(): void {

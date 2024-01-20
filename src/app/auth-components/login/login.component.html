@@ -1,11 +1,11 @@
-<div class="login-cmp">
-  <div class="title">
+<div class="login-cmp" [ngStyle]="data ? {'padding': data.padding} : {}">
+  <div class="title" *ngIf="!data || data.showTitle">
     <div class="icon bg-contain"></div>
     <div class="text">{{'auth.login.title' | translate}}</div>
   </div>
   <div class="wrap">
-    <div class="left bg-contain"></div>
-    <div class="right">
+    <div class="left bg-contain" *ngIf="!data || data.showImage"></div>
+    <div class="right" [ngStyle]="data && !data.showImage? {'width': '100%'} : {}">
       <div class="title-system">
         <div class="text">{{'auth.login.title2' | translate}}</div>
         <div class="logo"></div>
