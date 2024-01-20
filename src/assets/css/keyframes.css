@@ -20,3 +20,23 @@
         background-position-x: -200%;
     }
 }
+
+@keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slip {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-2000px);
+  }
+}
+
+

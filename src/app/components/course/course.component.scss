@@ -1,0 +1,64 @@
+.course-cmp {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  .course-banner {
+    position: relative;
+    height: 234px;
+    margin-bottom: 12px;
+    .course-img {
+      height: calc(100% - 32px);
+      border-radius: 8px;
+      background-image: url(~/src/assets/img/course/bg.png);
+    }
+    .class {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 80px;
+      height: 80px;
+      padding: 4px;
+      border: 1.5px solid var(--main-color);
+      background: var(--white);
+    }
+    .price {
+      position: absolute;
+      bottom: 0;
+      left: 80px;
+      display: flex;
+      align-items: center;
+      height: 32px;
+      padding: 4px;
+      background-color: var(--yellow-color);
+      color: var(--white);
+    }
+  }
+
+  .course-name {
+    height: 40px;
+    margin-bottom: 12px;
+    color: var(--gray-800);
+    font-size: var(--medium-title-size);
+    font-weight: 600;
+    text-decoration-line: underline;
+    cursor: pointer;
+  }
+
+  .course-description {
+    height: 60px;
+    margin-bottom: 12px;
+    overflow: hidden;
+  }
+
+  .course-features {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    height: calc(100% - 370px);
+    padding-bottom: 4px;
+  }
+}

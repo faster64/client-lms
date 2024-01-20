@@ -1,0 +1,65 @@
+<div class="register-cmp">
+  <div class="title">
+    <div class="icon bg-contain"></div>
+    <div class="text">{{'auth.register.title' | translate}}</div>
+  </div>
+  <div class="wrap">
+    <div class="left bg-contain"></div>
+    <div class="right">
+      <div class="title-system">
+        <div class="text">{{'auth.register.title2' | translate}}</div>
+        <div class="logo"></div>
+      </div>
+
+      <div class="reg-item full-name">
+        <div class="label">{{'auth.register.label_full_name' | translate}} <span class="required">*</span> </div>
+        <dx-text-box #fullname placeholder="{{'auth.register.placeholder_email' | translate}}" height="40"
+          [(value)]="request.fullname" (onEnterKey)="register()">
+        </dx-text-box>
+      </div>
+
+      <div class="reg-item email">
+        <div class="label">{{'auth.register.label_email' | translate}} <span class="required">*</span> </div>
+        <dx-text-box #email placeholder="{{'auth.register.placeholder_email' | translate}}" height="40"
+          [(value)]="request.email" (onEnterKey)="register()">
+        </dx-text-box>
+      </div>
+
+      <div class="reg-item phone">
+        <div class="label">{{'auth.register.label_phone' | translate}} <span class="required">*</span> </div>
+        <dx-text-box #phone placeholder="{{'auth.register.placeholder_phone' | translate}}" height="40"
+          [(value)]="request.phone" (onEnterKey)="register()">
+        </dx-text-box>
+      </div>
+
+      <div class="reg-item class">
+        <div class="label">{{'auth.register.label_class' | translate}} <span class="required">*</span> </div>
+        <selector placeholder="{{'auth.register.placeholder_class' | translate}}"></selector>
+      </div>
+
+      <div class="reg-item password">
+        <div class="label">{{'auth.register.label_password' | translate}} <span class="required">*</span> </div>
+        <dx-text-box #password mode="password" placeholder="{{'auth.register.placeholder_password' | translate}}"
+          height="40" [(value)]="request.password" (onEnterKey)="register()">
+        </dx-text-box>
+      </div>
+
+      <div class="reg-item confirm-password">
+        <div class="label">{{'auth.register.label_confirm_password' | translate}} <span class="required">*</span> </div>
+        <dx-text-box #confirmPassword mode="password" placeholder="{{'auth.register.placeholder_confirm_password' | translate}}"
+          height="40" [(value)]="request.confirmPassword" (onEnterKey)="register()">
+        </dx-text-box>
+      </div>
+
+      <div class="register-btn">
+        <base-button #registerBtn text="{{'auth.register.register_btn' | translate}}" [height]="44"
+          (onClick)="register()"></base-button>
+      </div>
+
+      <div class="have-an-account">
+        <span>{{'auth.register.have_an_account' | translate}}</span>
+        <span class="login-now" (click)="login()">{{'auth.register.login' | translate}}</span>
+      </div>
+    </div>
+  </div>
+</div>

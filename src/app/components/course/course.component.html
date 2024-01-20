@@ -1,0 +1,16 @@
+<div class="course-cmp">
+  <div class="course-banner">
+    <div class="course-img bg-cover"></div>
+    <div class="class">{{'course.class' | translate}} 12</div>
+    <div class="price">2.099.000</div>
+  </div>
+  <div class="course-name" (click)="Utility.featureIsInDevelopment($event)">Python Basics - Python Cơ Bản</div>
+  <div class="course-description">Python là một ngôn ngữ lập trình bậc cao cho các mục đích lập trình...</div>
+  <div class="course-features">
+    <base-button text="{{'course.features.add_to_cart' | translate}}" [width]="160" [height]="44" [buttonType]="ButtonType.STROKED" [color]="ButtonColor.BASIC">
+    </base-button>
+
+    <base-button text="{{'course.features.buy_now' | translate}}" [width]="128" [height]="44">
+    </base-button>
+  </div>
+</div>

@@ -6,6 +6,8 @@ import { TransferDataService } from './shared/services/base/transfer-data.servic
 import { AuthService } from './shared/services/auth/auth.service';
 import { isFakeMousedownFromScreenReader } from '@angular/cdk/a11y';
 import { AuthStatus } from './shared/enums/auth-status.enum';
+import { TranslationService } from './shared/services/translation/translation.service';
+import { Routing } from './shared/constants/routing.constant';
 
 @Component({
   selector: 'app-root',
@@ -31,6 +33,7 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(
     public router: Router,
     public activatedRoute: ActivatedRoute,
+    public translationService: TranslationService,
     public transferService: TransferDataService,
     public authService: AuthService
   ) { }
@@ -73,6 +76,11 @@ export class AppComponent implements OnInit, OnDestroy {
 
         if (event instanceof NavigationEnd) {
           this.progress = 0;
+          if (event.urlAfterRedirects == `/${Routing.HOME.path}`) {
+            document.documentElement.style.setProperty("--header-bg", "#305FE8");
+          } else {
+            document.documentElement.style.setProperty("--header-bg", "#fff");
+          }
         }
       });
   }

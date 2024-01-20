@@ -1,0 +1,33 @@
+.about-we-cmp {
+  padding: 56px var(--side-distance);
+  .title {
+    margin-bottom: 24px;
+    color: #e8edfc;
+    -webkit-text-stroke-width: 1.5;
+    -webkit-text-stroke-color: var(--main-color);
+    font-size: var(--large-title-size);
+    font-weight: 700;
+    letter-spacing: -0.8px;
+  }
+
+  .wrap {
+    display: flex;
+    align-items: center;
+    .left {
+      width: 50%;
+      padding-right: 8px;
+      .label {
+        margin-bottom: 16px;
+        color: var(--gray-800);
+        font-size: var(--large-sub-title-size);
+        font-weight: 700;
+      }
+    }
+
+    .right {
+      width: 50%;
+      height: 344px;
+      background-image: url(~/src/assets/img/about-we/background.png);
+    }
+  }
+}

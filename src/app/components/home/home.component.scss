@@ -1,4 +1,64 @@
 .home-cmp {
+  .app-courses {
+    padding: 16px var(--side-distance);
+    .course-title {
+      margin-bottom: 12px;
+      text-align: center;
+      span {
+        font-size: var(--large-title-size);
+        font-weight: 600;
+
+        &.highlight {
+          margin-left: 6px;
+          color: var(--main-color);
+        }
+      }
+    }
+
+    .course-sub-title {
+      font-size: var(--large-sub-title-size);
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .course-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      .course {
+        width: 25%;
+        min-width: 312px;
+        height: 468px;
+        padding: 8px 16px;
+        margin-bottom: 24px;
+        border-radius: 8px;
+        overflow: hidden;
+
+        &:hover {
+          box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.12);
+        }
+      }
+    }
+
+    .view-more {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      padding: 12px 0px;
+      border-radius: 8px;
+      background-color: var(--blue-01);
+      cursor: pointer;
+      .icon {
+        width: 24px;
+        height: 24px;
+        margin-right: 8px;
+        background-image: url(~/src/assets/img/course/plus.png);
+      }
+      .text {
+        color: var(--main-color);
+      }
+    }
+  }
   .app-contact {
     height: 640px;
   }

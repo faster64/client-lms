@@ -13,11 +13,14 @@
 
       <div class="email">
         <div class="label">{{'auth.login.label_email' | translate}} <span class="required">*</span> </div>
-        <dx-text-box placeholder="{{'auth.login.placeholder_email' | translate}}" height="40"></dx-text-box>
+        <dx-text-box #email placeholder="{{'auth.login.placeholder_email' | translate}}" height="40"
+          [(value)]="request.username" (onEnterKey)="login()">
+        </dx-text-box>
       </div>
       <div class="password">
         <div class="label">{{'auth.login.label_password' | translate}} <span class="required">*</span> </div>
-        <dx-text-box mode="password" placeholder="{{'auth.login.placeholder_password' | translate}}" height="40">
+        <dx-text-box #password mode="password" placeholder="{{'auth.login.placeholder_password' | translate}}"
+          height="40" [(value)]="request.password" (onEnterKey)="login()">
         </dx-text-box>
 
         <!-- <div class="view-password"></div> -->
@@ -25,15 +28,16 @@
 
       <div class="one-row">
         <div class="remember-me">
-          <input type="checkbox" name="remeber">
+          <input type="checkbox" id="remeber" name="remeber">
           <label for="remeber"> {{'auth.login.remember_me' | translate}}</label>
         </div>
 
-        <div class="forgot-password">{{'auth.login.forgot_password' | translate}}</div>
+        <div class="forgot-password" (click)="forgotPassword()">{{'auth.login.forgot_password' | translate}}</div>
       </div>
 
       <div class="login-btn">
-        <base-button text="{{'auth.login.login_btn' | translate}}" [height]="44"></base-button>
+        <base-button #loginBtn text="{{'auth.login.login_btn' | translate}}" [height]="44"
+          (onClick)="login()"></base-button>
       </div>
 
       <div class="have-no-account">

@@ -1,9 +1,9 @@
-import { SnackBarParameter } from "src/app/models/snackbar.param";
-import { SnackBar } from "../components/element/snackbar/snackbar.component";
-import { SessionStorageKey } from "../constants/sessionstorage.key";
-import { DeviceType } from "../enumerations/device.enum";
+import { SessionStorageKey } from "../constants/sessionstorage-key.constant";
+import { DeviceType } from "../enums/device.enum";
 import { DateHelper } from "../helpers/date.helper";
 import { TranslationService } from "../services/translation/translation.service";
+import { SnackBar } from "../snackbar/snackbar.component";
+import { SnackBarParameter } from "../snackbar/snackbar.param";
 
 export class Utility {
   public static videoExtensions = [
@@ -48,7 +48,7 @@ export class Utility {
       arr.push(message);
     }
     sessionStorage.setItem(SessionStorageKey.SESSION_LOG, JSON.stringify(arr));
-    console.customize(message, ...options);
+    console.log(message, ...options);
   }
 
   public static changeTitle(title: string) {
@@ -66,7 +66,7 @@ export class Utility {
     }
     finally {
       // MessageBox.information(new Message(this, { content: TranslationService.VALUES['COMMON']['FEATURE_IS_IN_DEVELOPMENT'] }));
-      SnackBar.warning(new SnackBarParameter(this, TranslationService.VALUES['COMMON']['FEATURE_IS_IN_DEVELOPMENT'], 2000));
+      SnackBar.warning(new SnackBarParameter(this, TranslationService.VALUES['warnings']['feature_is_in_development'], 2000));
     }
   }
 

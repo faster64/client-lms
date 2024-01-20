@@ -1,0 +1,54 @@
+.banner-cmp {
+  position: relative;
+  .blue-line {
+    height: 460px;
+    background-color: var(--main-color);
+  }
+
+  .white-line {
+    height: 230px;
+    background-color: var(--white);
+  }
+
+  .hero-slide {
+    position: absolute;
+    top: 120px;
+    left: var(--side-distance);
+    right: var(--side-distance);
+    height: 464px;
+    background-color: #ddd;
+
+    .slideshow-container {
+      height: calc(100% - 72px);
+      background-image: url(~/src/assets/img/banner/demo-slide.png);
+
+      .slip {
+        // animation: slip 1s;
+      }
+    }
+
+    .intro {
+      display: flex;
+      align-items: center;
+      height: 72px;
+      .dots {
+        width: 200px;
+        height: 100%;
+        background-color: var(--white);
+      }
+      .text {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: calc(100% - 200px);
+        height: 100%;
+        padding: 8px 16px;
+        background-color: var(--yellow-color);
+        .text-left {
+          color: var(--white);
+          font-size: 24px;
+        }
+      }
+    }
+  }
+}

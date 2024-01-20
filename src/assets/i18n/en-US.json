@@ -1,4 +1,10 @@
 {
+  "base_keys": {
+    "view_more": "View more"
+  },
+  "warnings": {
+    "feature_is_in_development": "The feature is in development"
+  },
   "errors": {
     "not_permission": "Not permission!"
   },
@@ -53,10 +59,43 @@
       "forgot_password": "Forgot password?",
       "login_btn": "Login",
       "have_no_account": "Have no account?",
-      "register": "Register"
+      "register": "Register",
+      "email_not_valid_msg": "The email is not valid",
+      "password_must_not_empty_msg": "The password must not be empty",
+      "login_info_is_incorrect": "Email or password is incorrect"
     },
     "register": {
-
+      "title": "Register",
+      "title2": "Register an account",
+      "label_full_name": "Full name",
+      "label_email": "Email",
+      "label_phone": "Phone",
+      "label_class": "Class",
+      "label_password": "Password",
+      "label_confirm_password": "Confirm password",
+      "placeholder_full_name": "Enter full name",
+      "placeholder_email": "Enter email",
+      "placeholder_phone": "Enter phone number",
+      "placeholder_class": "Select class",
+      "placeholder_password": "Enter password",
+      "placeholder_confirm_password": "Enter confirm password",
+      "register_btn": "Register",
+      "have_an_account": "Have an account?",
+      "login": "Login"
+    },
+    "forgot_password": {
+      "title": "Forgot password",
+      "label_email": "Email",
+      "placeholder_email": "Enter email",
+      "send_btn": "Send",
+      "back_to_login": "Back to login page"
+    }
+  },
+  "course": {
+    "class": "Class",
+    "features": {
+      "add_to_cart": "Add to cart",
+      "buy_now": "Buy now"
     }
   }
 }

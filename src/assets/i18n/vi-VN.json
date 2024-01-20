@@ -1,4 +1,10 @@
 {
+  "base_keys": {
+    "view_more": "Xem thêm"
+  },
+  "warnings": {
+    "feature_is_in_development": "Tính năng đang phát triển"
+  },
   "errors": {
     "not_permission": "Bạn không có quyền thực hiện!"
   },
@@ -53,10 +59,43 @@
       "forgot_password": "Quên mật khẩu?",
       "login_btn": "Đăng nhập",
       "have_no_account": "Bạn chưa có tài khoản?",
-      "register": "Đăng ký"
+      "register": "Đăng ký",
+      "email_not_valid_msg": "Email không hợp lệ",
+      "password_must_not_empty_msg": "Mật khẩu không được để trống",
+      "login_info_is_incorrect": "Thông tin đăng nhập không chính xác"
     },
     "register": {
-
+      "title": "Đăng ký",
+      "title2": "Đăng ký tài khoản",
+      "label_full_name": "Họ và tên",
+      "label_email": "Email",
+      "label_phone": "Số điện thoại",
+      "label_class": "Lớp",
+      "label_password": "Mật khẩu",
+      "label_confirm_password": "Nhập lại mật khẩu",
+      "placeholder_full_name": "Nhập họ và tên",
+      "placeholder_email": "Nhập email",
+      "placeholder_phone": "Nhập số điện thoại",
+      "placeholder_class": "Chọn lớp",
+      "placeholder_password": "Nhập mật khẩu",
+      "placeholder_confirm_password": "Nhập lại mật khẩu",
+      "register_btn": "Đăng ký",
+      "have_an_account": "Bạn đã có tài khoản?",
+      "login": "Đăng nhập"
+    },
+    "forgot_password": {
+      "title": "Quên mật khẩu",
+      "label_email": "Email",
+      "placeholder_email": "Nhập email",
+      "send_btn": "Gửi đi",
+      "back_to_login": "Quay lại trang đăng nhập"
+    }
+  },
+  "course": {
+    "class": "Lớp",
+    "features": {
+      "add_to_cart": "Thêm vào giỏ",
+      "buy_now": "Mua ngay"
     }
   }
 }

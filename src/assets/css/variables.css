@@ -10,16 +10,18 @@
   --white: #fff;
   --gray: #E4E7EC;
   --gray-800: #1d2939;
+  --blue-01: #E8EDFC;
   --main-color: #305FE8;
   --yellow-color: #EDC95E;
+  --header-bg: #fff;
   --footer-bg: #1D2939;
 
   /* font-size */
   --size: 16px;
-  --title-size: 20px;
+  --medium-title-size: 20px;
   --auth-title-size: 28px;
-  --contact-title-size: 40px;
-  --contact-sub-title-size: 21px;
+  --large-title-size: 40px;
+  --large-sub-title-size: 21px;
 
   /* spacing  */
   --side-distance: 300px;
@@ -37,9 +39,9 @@
   :root {
     --side-distance: 120px;
     --size: 15px;
-    --title-size: 18px;
-    --contact-title-size: 32px;
-    --contact-sub-title-size: 18px;
+    --medium-title-size: 18px;
+    --large-title-size: 32px;
+    --large-sub-title-size: 18px;
   }
 }
 
@@ -47,7 +49,7 @@
   :root {
     --side-distance: 100px;
     --size: 14px;
-    --title-size: 16px;
+    --medium-title-size: 16px;
   }
 }
 
@@ -55,9 +57,9 @@
   :root {
     --side-distance: 80px;
     --size: 13px;
-    --title-size: 15px;
-    --contact-title-size: 24px;
-    --contact-sub-title-size: 15px;
+    --medium-title-size: 15px;
+    --large-title-size: 24px;
+    --large-sub-title-size: 15px;
   }
 }
 

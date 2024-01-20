@@ -1,6 +1,7 @@
 .app-header-cmp {
   position: absolute;
   inset: 0;
+  background-color: var(--header-bg);
   .bg-line {
     height: 80px;
     background-color: var(--main-color);

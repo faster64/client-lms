@@ -1,5 +1,3 @@
-import { TimeModel } from "src/app/models/base/time-model";
-
 export class DateHelper {
 
   public static Now = new Date(Date.now());

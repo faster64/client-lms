@@ -1,5 +1,34 @@
 <div class="home-cmp">
+  <div class="app-banner">
+    <app-banner></app-banner>
+  </div>
+
+  <div class="app-courses">
+    <div class="course-title">
+      <span>KHÓA HỌC TẠI</span> <span class="highlight">CÁNH BUỒM EDUCATION</span>
+    </div>
+
+    <div class="course-sub-title">
+      Khóa học hữu ích nhất mà Cánh Buồm Education dành tới bạn
+    </div>
+
+    <div class="course-wrapper">
+      <div class="course" *ngFor="let course of [].constructor(10)">
+        <app-course></app-course>
+      </div>
+    </div>
+
+    <div class="view-more" (click)="Utility.featureIsInDevelopment($event)">
+      <div class="icon bg-contain"></div>
+      <div class="text">{{'base_keys.view_more' | translate }}</div>
+    </div>
+  </div>
+
   <div class="app-contact">
     <app-contact></app-contact>
+  </div>
+
+  <div class="app-about-we">
+    <app-about-we></app-about-we>
   </div>
 </div>

@@ -8,11 +8,11 @@
         <div class="text">{{'header.navs.home' | translate}}</div>
         <div class="under-line"></div>
       </div>
-      <div class="nav-item" [ngClass]="selectedIndex == 1 ? 'selected' : ''">
+      <div class="nav-item" [ngClass]="selectedIndex == 1 ? 'selected' : ''" (click)="Utility.featureIsInDevelopment($event)">
         <div class="text">{{'header.navs.contact' | translate}}</div>
         <div class="under-line"></div>
       </div>
-      <div class="nav-item" [ngClass]="selectedIndex == 2 ? 'selected' : ''">
+      <div class="nav-item" [ngClass]="selectedIndex == 2 ? 'selected' : ''" (click)="Utility.featureIsInDevelopment($event)">
         <div class="text">{{'header.navs.guide' | translate}}</div>
         <div class="under-line"></div>
       </div>
@@ -22,9 +22,9 @@
       </div>
     </div>
     <div class="nav-right unauthenticated" *ngIf="AuthService.CurrentStatus != AuthStatus.LoggedIn && AuthService.CurrentStatus != AuthStatus.Unknown">
-      <div class="cart"></div>
+      <div class="cart" (click)="Utility.featureIsInDevelopment($event)"></div>
       <div class="wrap">
-        <div class="search"></div>
+        <div class="search" (click)="Utility.featureIsInDevelopment($event)"></div>
         <div class="seperate-line"></div>
         <div class="login" (click)="redirect(Routing.LOGIN.path)">
           {{'header.features.login' | translate}}
@@ -37,12 +37,12 @@
     </div>
 
     <div class="nav-right authenticated" *ngIf="AuthService.CurrentStatus == AuthStatus.LoggedIn">
-      <div class="search"></div>
-      <div class="cart"></div>
+      <div class="search" (click)="Utility.featureIsInDevelopment($event)"></div>
+      <div class="cart" (click)="Utility.featureIsInDevelopment($event)"></div>
 
       <div class="avatar"></div>
       <div class="name over-3-dots">Nguyễn Phong</div>
-      <div class="more-dropdown"></div>
+      <div class="more-dropdown" (click)="Utility.featureIsInDevelopment($event)"></div>
     </div>
   </div>
 

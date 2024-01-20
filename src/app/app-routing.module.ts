@@ -22,6 +22,26 @@ const routes: Routes = [
     }
   },
   {
+    path: Routing.REGISTER.path,
+    loadChildren: () => import('./auth-components/register/register.module').then(m => m.RegisterModule),
+    canActivate: [
+      UnauthenticatedOnlyGuard
+    ],
+    resolve: {
+      resolver: BaseResolver,
+    }
+  },
+  {
+    path: Routing.FORGOT_PASSWORD.path,
+    loadChildren: () => import('./auth-components/forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule),
+    canActivate: [
+      UnauthenticatedOnlyGuard
+    ],
+    resolve: {
+      resolver: BaseResolver,
+    }
+  },
+  {
     path: Routing.HOME.path,
     loadChildren: () => import('./components/home/home.module').then(m => m.HomeModule),
     canActivate: [BaseGuard],

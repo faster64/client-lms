@@ -174,4 +174,8 @@ export class BaseButton implements OnInit, AfterViewInit, OnDestroy {
 
     SnackBar.warning(snackBarParameter);
   }
+
+  finish() {
+    this.isFinished = true;
+  }
 }
