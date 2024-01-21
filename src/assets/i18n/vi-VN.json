@@ -9,7 +9,9 @@
     "feature_is_in_development": "Tính năng đang phát triển"
   },
   "errors": {
-    "not_permission": "Bạn không có quyền thực hiện!"
+    "not_permission": "Bạn không có quyền thực hiện!",
+    "session_expried": "Phiên làm việc đã hết hạn",
+    "unknown": "Đã xảy ra lỗi"
   },
   "message_box": {
     "agree": "Đồng ý",

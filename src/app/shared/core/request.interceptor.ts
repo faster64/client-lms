@@ -138,7 +138,7 @@ export class RequestHandlingInterceptor implements HttpInterceptor {
   private refreshInvalid(error) {
     const currentStatus = this.authService.getCurrentStatus();
     if (currentStatus == AuthStatus.LoggedIn) {
-      SnackBar.danger(new SnackBarParameter(null, TranslationService.VALUES['ERROR']['SESSION_EXPRIED'], 2000));
+      SnackBar.danger(new SnackBarParameter(null, TranslationService.VALUES['errors']['session_expried'], 2000));
     }
     this.authService.moveOut(false);
     return throwError(error);
@@ -170,7 +170,7 @@ export class RequestHandlingInterceptor implements HttpInterceptor {
       return;
     }
 
-    message = !StringHelper.isNullOrEmpty(message) ? message : TranslationService.VALUES['ERROR']['UNKNOWN_MSG'];
+    message = !StringHelper.isNullOrEmpty(message) ? message : TranslationService.VALUES['errors']['unknown'];
     switch (mark.notificationType) {
       case NotificationType.MessageBox:
         MessageBox.information(new Message(null, { content: message }));

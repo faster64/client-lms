@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoginComponent } from 'src/app/auth-components/login/login.component';
 import { StringHelper } from 'src/app/shared/helpers/string.helper';
@@ -39,7 +39,8 @@ export class AuthService {
     public publisher: PublisherService,
     public router: Router,
     public activatedRoute: ActivatedRoute,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public dialogRef: MatDialogRef<LoginComponent>
   ) {
   }
 
@@ -151,6 +152,7 @@ export class AuthService {
       callback();
       return;
     }
+
     if (!config) {
       const screenWidth = window.innerWidth * 0.8;
       const screenHeight = window.innerHeight * 0.8;
@@ -165,11 +167,14 @@ export class AuthService {
         padding: '24px',
         showTitle: false,
         showImage: window.innerWidth > BreakPoint.MD,
-        callback: callback
+        callback: () => {
+          this.dialogRef.close();
+          callback();
+        }
       }
     }
 
-    const ref = this.dialog.open(LoginComponent, config);
-    ref.afterOpened().subscribe(() => document.querySelector('.cdk-overlay-pane.slide-dialog').classList.add('in'));
+    this.dialogRef = this.dialog.open(LoginComponent, config);
+    this.dialogRef.afterOpened().subscribe(() => document.querySelector('.cdk-overlay-pane.slide-dialog').classList.add('in'));
   }
 }

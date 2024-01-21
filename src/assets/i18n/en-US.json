@@ -9,7 +9,9 @@
     "feature_is_in_development": "The feature is in development"
   },
   "errors": {
-    "not_permission": "Not permission!"
+    "not_permission": "Not permission!",
+    "session_expried": "Session is expried. Please login again!",
+    "unknown": "Unknown error"
   },
   "message_box": {
     "agree": "Agree",

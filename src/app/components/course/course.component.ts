@@ -21,9 +21,14 @@ export class CourseComponent extends BaseComponent {
     public dialogRef: MatDialogRef<LoginComponent>
   ) {
     super(injector);
+    // this.loginCallback = this.loginCallback.bind(this);
   }
 
   buy() {
-    this.authService.authenticate(() => this.dialogRef.close());
+    this.authService.authenticate(this.loginCallback);
+  }
+
+  loginCallback() {
+    console.log('clicked');
   }
 }
