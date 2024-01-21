@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CmsPageComponent } from './cms-page.component';
 import { CmsBannerComponent } from './cms-banner/cms-banner.component';
 import { CmsCourseComponent } from './cms-course/cms-course.component';
 import { CmsContactComponent } from './cms-contact/cms-contact.component';

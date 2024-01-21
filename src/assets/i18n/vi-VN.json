@@ -1,5 +1,6 @@
 {
   "base_keys": {
+    "no_data": "Chưa có dữ liệu",
     "view_more": "Xem Thêm",
     "cancel": "Hủy",
     "save": "Lưu"
@@ -103,7 +104,8 @@
       "placeholder_email": "Nhập email",
       "send_btn": "Gửi đi",
       "back_to_login": "Quay lại trang đăng nhập"
-    }
+    },
+    "logout": "Đăng xuất"
   },
   "course": {
     "class": "Lớp",

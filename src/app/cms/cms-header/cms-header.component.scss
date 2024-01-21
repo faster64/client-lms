@@ -1,0 +1,24 @@
+.cms-header-cpn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+  .left {
+    display: flex;
+    align-items: center;
+    .icon {
+      width: 24px;
+      height: 24px;
+      margin-right: 8px;
+      background-image: url(~/src/assets/img/common/icon.png);
+    }
+    .text {
+      font-weight: 700;
+      font-size: var(--medium-title-size);
+    }
+  }
+
+  .right {
+
+  }
+}

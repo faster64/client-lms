@@ -9,15 +9,18 @@
   --greyish: #ebebeb;
   --white: #fff;
   --gray: #E4E7EC;
+  --gray-50: #F9FAFB;
+  --gray-200: #e4e7ec;
   --gray-800: #1d2939;
   --blue-01: #E8EDFC;
   --main-color: #305FE8;
   --yellow-color: #EDC95E;
   --header-bg: #fff;
-  --footer-bg: #1D2939;
+
+  --grid-header-color:
 
   /* font-size */
-  --size: 16px;
+  --size: 14px;
   --medium-title-size: 20px;
   --auth-title-size: 28px;
   --large-title-size: 40px;
@@ -29,6 +32,7 @@
   --header-padding: 16px 56px;
 
   /* z-index */
+  --grid-sticky: 100;
   --header-index: 990;
   --mat-progress-bar: 1000;
   --loading-index: 1001;

@@ -15,7 +15,8 @@ import { RegisterRequest } from '../../models/auth/register-request';
 import { ServiceResult } from '../../models/base/service-result';
 import { LoginRequest } from '../../models/auth/login-request';
 import { AuthResponse } from '../../models/auth/auth-response';
-import { of } from 'rxjs';
+import { finalize, of } from 'rxjs';
+import { SnackBar } from '../../snackbar/snackbar.component';
 
 @Injectable({
   providedIn: 'root'
@@ -103,6 +104,29 @@ export class AuthService {
   login = (request: LoginRequest) => this.httpService.post<ServiceResult>(this.getUrl() + '/login', request);
 
   register = (request: RegisterRequest) => this.httpService.post<ServiceResult>(this.getUrl() + '/register', request);
+
+  logout = (callback?: Function) => {
+    const accessToken = this.getAccessToken();
+    if (!StringHelper.isNullOrEmpty(accessToken)) {
+      this.httpService
+        .get<AuthResponse>(`${this.getUrl()}/logout`)
+        .pipe(
+          finalize(() => {
+            this.clearAuth();
+          })
+        )
+        .subscribe();
+    } else {
+      this.clearAuth();
+    }
+  }
+
+  private clearAuth() {
+    localStorage.removeItem('auth');
+    this.clearListSession.forEach(item => sessionStorage.removeItem(`${environment.organization}_${item}`));
+    this.clearListLocal.forEach(item => localStorage.removeItem(item));
+    window.location.href = `/${Routing.LOGIN.path}`;
+  }
 
   refreshToken() {
     return of(new AuthResponse());

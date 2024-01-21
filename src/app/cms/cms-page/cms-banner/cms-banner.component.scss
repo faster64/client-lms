@@ -1,7 +1,7 @@
-::ng-deep .cms-banner-cmp {
+::ng-deep .cms-banner-cpn {
   position: relative;
   height: 100%;
-  padding: 36px 36px 0 36px;
+  padding: 0 36px;
   .label {
     font-weight: 600;
     margin-bottom: 4px;
@@ -10,7 +10,7 @@
     }
   }
 
-  .select-banner, .title-block, .sub-title-block {
+  .cms-header, .select-banner, .title-block, .sub-title-block {
     margin-bottom: 24px;
   }
 

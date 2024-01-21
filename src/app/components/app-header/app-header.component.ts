@@ -3,8 +3,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LocalStorageKey } from 'src/app/shared/constants/localstorage-key.constant';
 import { Routing } from 'src/app/shared/constants/routing.constant';
 import { AuthStatus } from 'src/app/shared/enums/auth-status.enum';
+import { User } from 'src/app/shared/models/user/user';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { PublisherService } from 'src/app/shared/services/base/publisher.service';
+import { UserService } from 'src/app/shared/services/user/user.service';
 import { Utility } from 'src/app/shared/utility/utility';
 
 @Component({
@@ -27,7 +29,8 @@ export class AppHeaderComponent implements OnInit {
     public router: Router,
     public activatedRoute: ActivatedRoute,
     public authService: AuthService,
-    public publisher: PublisherService
+    public publisher: PublisherService,
+    public userService: UserService
   ) {
   }
 
@@ -44,5 +47,7 @@ export class AppHeaderComponent implements OnInit {
 
   getFullname() {
     this.fullname = this.authService.getProperty(LocalStorageKey.FULL_NAME);
+    this.userService.user = new User();
+    this.userService.user.fullName = this.fullname;
   }
 }

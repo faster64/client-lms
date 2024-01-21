@@ -1,5 +1,6 @@
 {
   "base_keys": {
+    "no_data": "No data",
     "view_more": "View more",
     "cancel": "cancel",
     "save": "save"
@@ -103,7 +104,8 @@
       "placeholder_email": "Enter email",
       "send_btn": "Send",
       "back_to_login": "Back to login page"
-    }
+    },
+    "logout": "Logout"
   },
   "course": {
     "class": "Class",

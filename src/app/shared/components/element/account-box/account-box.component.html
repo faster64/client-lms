@@ -1,0 +1,25 @@
+<div class="account-box-cpn">
+  <div class="avatar bg-cover" [matMenuTriggerFor]="menu"></div>
+  <div class="name over-3-dots" [matMenuTriggerFor]="menu">{{userService.user.fullName}}</div>
+  <div class="more-dropdown" [matMenuTriggerFor]="menu"></div>
+</div>
+
+<mat-menu #menu="matMenu">
+  <div class="account-management-content" style="padding: 12px 24px">
+    <div class="amc-item">
+      <div class="avatar bg-cover">
+
+      </div>
+    </div>
+
+    <div class="amc-item full-name">
+      <span class="over-3-dots">{{ userService.user.fullName }} ({{userService.user.username}})</span>
+    </div>
+
+    <div class="amc-item signout">
+      <base-button #signoutBtn [color]="ButtonColor.WARN" text="{{'auth.logout' | translate}}" (onClick)="signOut()"
+        [width]="240" [height]="44">
+      </base-button>
+    </div>
+  </div>
+</mat-menu>

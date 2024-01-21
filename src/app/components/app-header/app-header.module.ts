@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppHeaderComponent } from './app-header.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { AccountBoxModule } from 'src/app/shared/components/element/account-box/account-box.module';
 
 
 
@@ -11,7 +12,8 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
   imports: [
     CommonModule,
-    TranslateModule
+    TranslateModule,
+    AccountBoxModule
   ],
   exports: [AppHeaderComponent]
 })

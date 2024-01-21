@@ -1,0 +1,37 @@
+.account-box-cpn {
+  display: flex;
+  align-items: center;
+  .name {
+    max-width: 140px;
+    margin-right: 4px;
+    font-size: var(--size);
+    cursor: pointer;
+  }
+  .more-dropdown {
+    width: 24px;
+    height: 24px;
+    background-image: url(~/src/assets/img/header/dropdown.png);
+    cursor: pointer;
+  }
+}
+
+.account-box-cpn,
+.account-management-content {
+  .avatar {
+    width: 48px;
+    height: 48px;
+    margin-right: 8px;
+    border-radius: 48px;
+    background-image: url(~/src/assets/img/header/bot-dance.gif);
+    cursor: pointer;
+  }
+}
+
+.account-management-content {
+  .amc-item:not(:last-child) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+}

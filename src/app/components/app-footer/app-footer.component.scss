@@ -1,4 +1,4 @@
-.app-footer-cmp {
+.app-footer-cpn {
   display: flex;
   height: 100%;
   padding: 56px var(--side-distance);
@@ -95,7 +95,7 @@
 }
 
 @media screen and (max-width: 992px) {
-  .app-footer-cmp {
+  .app-footer-cpn {
     flex-wrap: wrap;
     padding: 16px var(--side-distance);
     .block {

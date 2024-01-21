@@ -1,4 +1,4 @@
-.login-cmp {
+.login-cpn {
   padding: 24px var(--side-distance);
   .title {
     display: flex;
@@ -110,7 +110,7 @@
 
 
 @media screen and (max-width: 576px) {
-  .login-cmp {
+  .login-cpn {
     .wrap {
       .left {
         display: none;

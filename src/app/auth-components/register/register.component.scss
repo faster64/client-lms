@@ -1,4 +1,4 @@
-.register-cmp {
+.register-cpn {
   padding: 24px var(--side-distance);
   .title {
     display: flex;
@@ -90,7 +90,7 @@
 }
 
 @media screen and (max-width: 576px) {
-  .register-cmp {
+  .register-cpn {
     .wrap {
       .left {
         display: none;

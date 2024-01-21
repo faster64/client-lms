@@ -1,4 +1,4 @@
-<div class="app-header-cmp">
+<div class="app-header-cpn">
   <div class="bg-line"></div>
   <div class="nav-line">
     <div class="nav-left">
@@ -50,9 +50,7 @@
       <div class="search" (click)="Utility.featureIsInDevelopment($event)"></div>
       <div class="cart" (click)="Utility.featureIsInDevelopment($event)"></div>
 
-      <div class="avatar"></div>
-      <div class="name over-3-dots">{{fullname}}</div>
-      <div class="more-dropdown" (click)="Utility.featureIsInDevelopment($event)"></div>
+      <app-account-box></app-account-box>
     </div>
   </div>
 

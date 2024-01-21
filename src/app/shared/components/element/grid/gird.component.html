@@ -1,0 +1,129 @@
+<div class="base-grid-cpn">
+  <div class="grid-content">
+
+    <div class="grid-toolbar">
+      <div class="left">
+        <div class="search">
+          <dx-text-box mode="search" placeholder="Tìm kiếm..." width="320"></dx-text-box>
+        </div>
+      </div>
+      <div class="right">
+        <!-- <div class="delete-btn">
+          <base-button></base-button>
+        </div> -->
+
+        <div class="sort-btn">
+          <div class="text">Sắp xếp theo: Mặc định</div>
+          <div class="icon"></div>
+        </div>
+
+        <div class="add-btn">
+          <base-button text="Thêm dữ liệu" [height]="36" [iconButtonType]="IconButtonType.ADD"></base-button>
+        </div>
+      </div>
+    </div>
+
+    <div #gridContentBody class="grid-content-body">
+
+      <!-- table  -->
+      <div #table class="table">
+
+        <!-- header  -->
+        <div class="table-header">
+          <div class="column column-header sticky" [ngStyle]="{minWidth: '56px', maxWidth: '56px', width: '56px'}">
+            <dx-check-box #checkAll (click)="onCheckAll($event)"></dx-check-box>
+          </div>
+
+          <div class="column column-header" [ngClass]="[col.column, col.class || '']" [ngStyle]="setWidth(col)"
+            *ngFor="let col of displayColumn; index as i">
+            <span class="text">{{col.displayText}}</span>
+          </div>
+
+          <div class="column column-header column-feature">
+            <span class="text">Chức năng</span>
+          </div>
+        </div>
+
+        <!-- body -->
+        <div class="table-body">
+
+          <div *ngIf="!isLoading && data && data.length">
+            <div class="row-item" [ngClass]="checkedList[i] ? 'checked' : ''" *ngFor="let item of data; index as i"
+              (click)="onRowClick(item)" (dblclick)="onRowDblClick(item)">
+              <div class="column column-body sticky" [ngStyle]="{minWidth: '56px', maxWidth: '56px', width: '56px'}">
+                <dx-check-box [value]="checkedList[i]" (onValueChanged)="onCheck($event, i)"></dx-check-box>
+              </div>
+
+              <div class="column column-body over-3-dots"
+                [ngClass]="[col.column, col.class || '', col.type == FieldType.Password ? 'password-field' : '']"
+                [ngStyle]="setWidth(col)" *ngFor="let col of displayColumn; index as i">
+                <ng-container [ngSwitch]="col.type" *ngIf="item[col.column]">
+                  <!-- Nếu là link    -->
+                  <a *ngSwitchCase="FieldType.Link" [href]="col.getLink(item) || item[col.column]"
+                    [target]="col.target ?? '_self'" [matTooltip]="Utility.removeHtml(item[col.column])"
+                    [innerHTML]="item[col.column]">
+                  </a>
+
+                  <img *ngSwitchCase="FieldType.Image" [src]="item[col.column]">
+
+                  <!-- Nếu là số  -->
+                  <p *ngSwitchCase="FieldType.Number"
+                    [matTooltip]="Utility.removeHtml(item[col.column] | NumberFormatPipe)"
+                    [innerHTML]="item[col.column] | NumberFormatPipe">
+                  </p>
+
+                  <!-- Nếu là số không format  -->
+                  <p *ngSwitchCase="FieldType.NumberNoFormat" [matTooltip]="Utility.removeHtml(item[col.column])"
+                    [innerHTML]="item[col.column]">
+                  </p>
+
+                  <!-- Nếu là ngày  -->
+                  <p *ngSwitchCase="FieldType.Date"
+                    [matTooltip]="Utility.removeHtml(item[col.column] | DateVietnamPipe)"
+                    [innerHTML]="item[col.column] | DateVietnamPipe">
+                  </p>
+
+                  <!-- Nếu là ngày giờ -->
+                  <p *ngSwitchCase="FieldType.DateTime"
+                    [matTooltip]="Utility.removeHtml(item[col.column] | DateTimeVietnamPipe)"
+                    [innerHTML]="item[col.column] | DateTimeVietnamPipe">
+                  </p>
+
+                  <!-- Default  -->
+                  <p *ngSwitchDefault [matTooltip]="Utility.removeHtml(item[col.column])"
+                    [innerHTML]="item[col.column] || ''"></p>
+                </ng-container>
+
+                <ng-container *ngIf="!item[col.column]">
+                  <span class="empty">-</span>
+                </ng-container>
+              </div>
+
+              <div class="column column-body column-feature">
+                <div class="feature-icon bg-contain view" matTooltip="Xem bản ghi này"></div>
+                <div class="feature-icon bg-contain edit" matTooltip="Chỉnh sửa"></div>
+                <div class="feature-icon bg-contain delete" matTooltip="Xóa"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="no-data dis-flex" *ngIf="!isLoading && data && !data.length">
+            <div class="wrapper">
+              <div class="icon bg-contain"></div>
+              <div class="text">{{'base_keys.no_data' | translate}}</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- pagination  -->
+    <div class="grid-content-pagination">
+      <mat-paginator #matPaginator aria-label="Select page" [length]="total" [pageIndex]="pageIndex"
+        [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" [showFirstLastButtons]="true"
+        (page)="changePage($event)">
+      </mat-paginator>
+    </div>
+  </div>
+</div>

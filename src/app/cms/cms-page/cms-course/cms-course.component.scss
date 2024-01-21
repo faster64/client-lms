@@ -1,0 +1,10 @@
+::ng-deep .cms-course-cpn {
+  position: relative;
+  height: 100%;
+  padding: 0 36px;
+
+  .course-content {
+    position: relative;
+    height: calc(100% - 80px);
+  }
+}
