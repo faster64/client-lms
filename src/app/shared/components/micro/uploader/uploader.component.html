@@ -1,0 +1,34 @@
+<div class="base-uploader">
+  <div class="uploader" (click)="prevent($event)">
+    <ngx-dropzone #dropzone class="ngx-dropzone" [multiple]="multiple" (change)="selected($event)"
+      [accept]="allowedFileExtensions" [expandable]="false" [disabled]="disabled">
+      <ngx-dropzone-label>
+        <div>Kéo và thả</div>
+        <div>Hoặc click để chọn hình ảnh tải lên tại đây</div>
+      </ngx-dropzone-label>
+
+      <ng-container *ngFor="let f of files">
+        <ngx-dropzone-image-preview *ngIf="f.type.startsWith('image')" [ngClass]="!multiple ? 'single' : ''" [file]="f" [removable]="true"
+          (removed)="removed(f)">
+          <!-- <ngx-dropzone-label>{{ f.name }}</ngx-dropzone-label> -->
+        </ngx-dropzone-image-preview>
+
+        <ngx-dropzone-video-preview *ngIf="f.type.startsWith('video')" [ngClass]="!multiple ? 'single' : ''" [file]="f" [removable]="true"
+          (removed)="removed(f)">
+        </ngx-dropzone-video-preview>
+
+        <ngx-dropzone-preview *ngIf="!f.type.startsWith('image') && !f.type.startsWith('video')" [ngClass]="!multiple ? 'single' : ''" [file]="f"
+          [removable]="true" (removed)="removed(f)">
+          <ngx-dropzone-label>{{ f.name }}</ngx-dropzone-label>
+        </ngx-dropzone-preview>
+      </ng-container>
+
+    </ngx-dropzone>
+
+    <progess-spinner-loading *ngIf="isGettingPresignedUrl"></progess-spinner-loading>
+  </div>
+
+  <div class="upload-btn" *ngIf="showUploadButton">
+    <base-button #uploadBtn text="{{'COMMON.UPLOAD' | translate}}" [height]="44" [disabled]="files.length === 0 || isGettingPresignedUrl" (onClick)="upload()"></base-button>
+  </div>
+</div>

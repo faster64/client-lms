@@ -33,29 +33,6 @@ export class AuthUtility {
     return true;
   }
 
-  public static checkModulePermission(moduleExponent: number) {
-    // Nếu không yêu cầu permission
-    if (moduleExponent == 0) {
-      return true;
-    }
-
-    // Lấy quyền người dùng
-    const numberTwo = bigInt(2);
-    const userModulePermission = bigInt(UserHelper.MODULE_PERMISSION);
-
-    let action = bigInt(1);
-    for (let e = 1; e <= moduleExponent; e++) {
-      action = action.multiply(numberTwo);
-    }
-
-    const hasPermission = userModulePermission.and(action).compare(action) == 0;
-    console.log(`module permission of user: ${userModulePermission.toString()},`, `required:`, action.toString(), " => result: ", hasPermission);
-    if (!hasPermission) {
-      return false;
-    }
-    return true;
-  }
-
   public static getRoutingConfig(next: ActivatedRouteSnapshot) {
     const keys = Object.keys(Routing);
     const path = next.routeConfig.path;

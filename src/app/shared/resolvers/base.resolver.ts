@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from "@angular/router";
 import { Observable, of } from "rxjs";
-import { TransferDataService } from "../services/base/transfer-data.service";
+import { PublisherService } from "../services/base/publisher.service";
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +9,11 @@ import { TransferDataService } from "../services/base/transfer-data.service";
 export class BaseResolver implements Resolve<boolean> {
 
   constructor(
-    public transferService: TransferDataService
+    public publisher: PublisherService
   ) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> {
-    this.transferService.cancelRouteEvent.emit();
+    this.publisher.cancelRouteEvent.emit();
     return of(true);
   }
 

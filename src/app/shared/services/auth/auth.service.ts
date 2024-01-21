@@ -4,13 +4,18 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LoginComponent } from 'src/app/auth-components/login/login.component';
 import { StringHelper } from 'src/app/shared/helpers/string.helper';
 import { HttpService } from 'src/app/shared/services/base/http.service';
-import { TransferDataService } from 'src/app/shared/services/base/transfer-data.service';
+import { PublisherService } from 'src/app/shared/services/base/publisher.service';
 import { environment } from 'src/environments/environment';
 import { LocalStorageKey } from '../../constants/localstorage-key.constant';
 import { Routing } from '../../constants/routing.constant';
 import { AuthStatus } from '../../enums/auth-status.enum';
 import { LocalHelper } from '../../helpers/local.helper';
 import { BreakPoint } from '../../constants/break-point.constant';
+import { RegisterRequest } from '../../models/auth/register-request';
+import { ServiceResult } from '../../models/base/service-result';
+import { LoginRequest } from '../../models/auth/login-request';
+import { AuthResponse } from '../../models/auth/auth-response';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +35,7 @@ export class AuthService {
 
   constructor(
     public httpService: HttpService,
-    public transfer: TransferDataService,
+    public publisher: PublisherService,
     public router: Router,
     public activatedRoute: ActivatedRoute,
     public dialog: MatDialog
@@ -82,27 +87,40 @@ export class AuthService {
     }
   }
 
-  setAuthStatus(status: AuthStatus) {
-    this.setProperty(LocalStorageKey.AUTH_STATUS, status);
-  }
+  setAuthStatus = (status: AuthStatus) => this.setProperty(LocalStorageKey.AUTH_STATUS, status);
 
-  removeAccessToken() {
-    this.setProperty(LocalStorageKey.ACCESS_TOKEN, '');
-  }
+  removeAccessToken = () => this.setProperty(LocalStorageKey.ACCESS_TOKEN, '');
 
   saveAuthenticate(accessToken: string, refreshToken: string) {
     const config = StringHelper.parseJwt(accessToken);
-    config[LocalStorageKey.AUTH_STATUS] = AuthStatus.LoggedIn;
+    config[LocalStorageKey.AUTH_STATUS] = AuthService.CurrentStatus = AuthStatus.LoggedIn;
     config[LocalStorageKey.ACCESS_TOKEN] = accessToken;
     config[LocalStorageKey.REFRESH_TOKEN] = refreshToken;
 
     localStorage.setItem('auth', JSON.stringify(config));
   }
 
+  login = (request: LoginRequest) => this.httpService.post<ServiceResult>(this.getUrl() + '/login', request);
 
+  register = (request: RegisterRequest) => this.httpService.post<ServiceResult>(this.getUrl() + '/register', request);
 
+  refreshToken() {
+    return of(new AuthResponse());
+    // const model = new RefreshTokenModel();
+    // model.userId = this.getUserId() || "";
+    // model.refreshToken = this.getRefreshToken();
+    // if (model.userId.isEmpty() || model.refreshToken.isEmpty()) {
+    //   const response = new AuthResponse();
+    //   response.code = "unauthorized";
+    //   return of(response);
+    // }
 
-
+    // this.refreshing = true;
+    // const url = `${this.getUrl()}/refresh-token?${CommonConstant.DISALLOW_NOTICE}`;
+    // return this.httpService
+    //   .post<AuthResponse>(url, model)
+    //   .pipe(finalize(() => this.refreshing = false));
+  }
 
   authenticate(callback: Function, config?: MatDialogConfig) {
     if (AuthService.CurrentStatus === AuthStatus.LoggedIn) {
@@ -122,7 +140,8 @@ export class AuthService {
       config.data = {
         padding: '24px',
         showTitle: false,
-        showImage: window.innerWidth > BreakPoint.MD
+        showImage: window.innerWidth > BreakPoint.MD,
+        callback: callback
       }
     }
 

@@ -21,6 +21,25 @@
   .app-footer {
     height: 355px;
   }
+
+  &.cms {
+    min-height: 100%;
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: var(--sidebar-width);
+      background-color: var(--main-color);
+    }
+    .app-content {
+      position: absolute;
+      top: 0;
+      left: var(--sidebar-width);
+      width: calc(100% - 264px);
+      height: 100%;
+    }
+  }
 }
 
 ::ng-deep {

@@ -14,13 +14,13 @@
       <div class="email">
         <div class="label">{{'auth.login.label_email' | translate}} <span class="required">*</span> </div>
         <dx-text-box #email placeholder="{{'auth.login.placeholder_email' | translate}}" height="40"
-          [(value)]="request.username" (onEnterKey)="login()">
+          [(value)]="request.username" (onEnterKey)="loginBtn.clickExecute($event)">
         </dx-text-box>
       </div>
       <div class="password">
         <div class="label">{{'auth.login.label_password' | translate}} <span class="required">*</span> </div>
         <dx-text-box #password mode="password" placeholder="{{'auth.login.placeholder_password' | translate}}"
-          height="40" [(value)]="request.password" (onEnterKey)="login()">
+          height="40" [(value)]="request.password" (onEnterKey)="loginBtn.clickExecute($event)">
         </dx-text-box>
 
         <!-- <div class="view-password"></div> -->

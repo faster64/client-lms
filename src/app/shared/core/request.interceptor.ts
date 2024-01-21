@@ -4,20 +4,20 @@ import {
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, throwError, timer } from 'rxjs';
 import { catchError, filter, retryWhen, switchMap, take } from 'rxjs/operators';
-import { BaseResponse } from 'src/app/models/base/base-response';
-import { Mark } from '../../models/core/mark';
-import { NotificationType } from '../../models/core/notify-type.enum';
-import { Message } from '../../models/message';
-import { SnackBarParameter } from '../../models/snackbar.param';
-import { MessageBox } from '../components/element/message-box/message-box.component';
-import { SnackBar } from '../components/element/snackbar/snackbar.component';
-import { CommonConstant } from '../constants/common.constant';
-import { AuthStatus } from '../enumerations/auth-status.enum';
 import { StringHelper } from '../helpers/string.helper';
 import { AuthService } from '../services/auth/auth.service';
 import { TranslationService } from '../services/translation/translation.service';
-import { SessionStorageKey } from '../constants/sessionstorage.key';
 import { SharedService } from '../services/base/shared.service';
+import { CommonConstant } from '../constants/common.constant';
+import { SessionStorageKey } from '../constants/sessionstorage-key.constant';
+import { AuthStatus } from '../enums/auth-status.enum';
+import { SnackBar } from '../snackbar/snackbar.component';
+import { SnackBarParameter } from '../snackbar/snackbar.param';
+import { BaseResponse } from '../models/base/base-response';
+import { MessageBox } from '../message-box/message-box.component';
+import { Message } from '../message-box/model/message';
+import { Mark } from '../models/base/mark';
+import { NotificationType } from '../enums/notification-type.enum';
 
 @Injectable()
 export class RequestHandlingInterceptor implements HttpInterceptor {
@@ -40,14 +40,14 @@ export class RequestHandlingInterceptor implements HttpInterceptor {
       retryWhen(errors => errors.pipe(
         switchMap((error: HttpErrorResponse, retryCount: number) => {
           if (request.url.includes(CommonConstant.NO_RETRY)) {
-            console.warning(`Http request ${error.url} has been failed with status code = ${error.status} but will not retry because not enabled retry!`);
+            console.log(`Http request ${error.url} has been failed with status code = ${error.status} but will not retry because not enabled retry!`);
             return throwError(error);
           }
           if (retryCount >= 1 || error.status.toString().startsWith('4')) {
-            console.warning(`Http request ${error.url} has been failed with status code = ${error.status} but will not retry because it's probably a client error!`);
+            console.log(`Http request ${error.url} has been failed with status code = ${error.status} but will not retry because it's probably a client error!`);
             return throwError(error);
           }
-          console.warning(`Http request ${error.url} has been failed with status code = ${error.status}. We will retry after 2s...`);
+          console.log(`Http request ${error.url} has been failed with status code = ${error.status}. We will retry after 2s...`);
           return timer(2000);
         })
       )),
@@ -94,7 +94,6 @@ export class RequestHandlingInterceptor implements HttpInterceptor {
     header['X-Client-Time'] = Date.now() + "";
     header['X-Client-Offset'] = new Date().getTimezoneOffset() * 60000 + "";
     header['Accept-Language'] = this.culture();
-    header['Secret-Key'] = sessionStorage.getItem(SessionStorageKey.SECRET_KEY) ?? '';
 
     return request.clone({
       setHeaders: header,
@@ -138,7 +137,7 @@ export class RequestHandlingInterceptor implements HttpInterceptor {
 
   private refreshInvalid(error) {
     const currentStatus = this.authService.getCurrentStatus();
-    if (currentStatus == AuthStatus.SignedIn) {
+    if (currentStatus == AuthStatus.LoggedIn) {
       SnackBar.danger(new SnackBarParameter(null, TranslationService.VALUES['ERROR']['SESSION_EXPRIED'], 2000));
     }
     this.authService.moveOut(false);
@@ -164,21 +163,12 @@ export class RequestHandlingInterceptor implements HttpInterceptor {
         break;
     }
     return throwError(errorResponse);
-    // return of(errorResponse) as unknown as Observable<HttpEvent<unknown>>;
   }
 
   fireNotify(mark: Mark, message: string, body: any) {
     if (!mark.allowNotice) {
       return;
     }
-
-    // if (error && !StringHelper.isNullOrEmpty(error.type)) {
-    //   const handler = RequestErrorMapping.mapping.find(m => m.type == error.type);
-    //   if (handler) {
-    //     handler.func(error, body);
-    //     return;
-    //   }
-    // }
 
     message = !StringHelper.isNullOrEmpty(message) ? message : TranslationService.VALUES['ERROR']['UNKNOWN_MSG'];
     switch (mark.notificationType) {

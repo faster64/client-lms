@@ -90,12 +90,15 @@ export class SelectorComponent implements OnInit {
     }
     this.onValueChanged.emit(e);
   }
+
   public onEnterKeyFunc(e: any) {
     this.onEnterKey.emit(e);
   }
+
   public onBlurFunc(e: any) {
     this.onBlur.emit(e);
   }
+
   public onAddFunc(e: any) {
     this.onAdd.emit(e);
   }

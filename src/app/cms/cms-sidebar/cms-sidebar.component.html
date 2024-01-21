@@ -1,0 +1,15 @@
+<div class="cms-sidebar-cmp">
+  <div class="logo bg-contain" (click)="toHome()"></div>
+  <ul class="cms-list">
+    <li class="cms-item" [ngClass]="[item.class, item.selected ? 'selected' : '']" *ngFor="let item of items" (click)="redirect(item)">
+
+      <div *ngIf="!item.selected" class="icon bg-contain" [ngStyle]="{'background': 'url(' + '../../../assets/img/cms/' + item.class + '.svg' + ')'}"></div>
+
+      <div *ngIf="item.selected" class="icon bg-contain" [ngStyle]="{'background': 'url(' + '../../../assets/img/cms/' + item.class + '-selected.svg' + ')'}"></div>
+
+      <div class="text">
+        {{item.text}}
+      </div>
+    </li>
+  </ul>
+</div>

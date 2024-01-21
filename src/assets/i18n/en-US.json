@@ -1,12 +1,20 @@
 {
   "base_keys": {
-    "view_more": "View more"
+    "view_more": "View more",
+    "cancel": "cancel",
+    "save": "save"
   },
   "warnings": {
     "feature_is_in_development": "The feature is in development"
   },
   "errors": {
     "not_permission": "Not permission!"
+  },
+  "message_box": {
+    "agree": "Agree",
+    "cancel": "cancel",
+    "ok": "Ok",
+    "delete": "Delete"
   },
   "header": {
     "navs": {
@@ -81,7 +89,13 @@
       "placeholder_confirm_password": "Enter confirm password",
       "register_btn": "Register",
       "have_an_account": "Have an account?",
-      "login": "Login"
+      "login": "Login",
+      "fullname_must_not_be_empty_msg": "Full name must not be empty",
+      "email_not_valid_msg": "The email is not valid",
+      "phone_must_not_be_empty_msg": "Phone must not be empty",
+      "password_not_valid_msg": "Password must not be empty",
+      "confirm_password_not_valid_msg": "Confirm password must not be empty",
+      "both_password_must_be_the_same": "Password and confirm password must be the same"
     },
     "forgot_password": {
       "title": "Forgot password",

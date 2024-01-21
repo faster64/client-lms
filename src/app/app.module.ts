@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -17,6 +17,8 @@ import './shared/extension-methods/console-extension';
 import './shared/extension-methods/string-extension';
 import { MessageBoxModule } from './shared/message-box/message-box.module';
 import { SnackbarModule } from './shared/snackbar/snackbar.module';
+import { RequestHandlingInterceptor } from './shared/core/request.interceptor';
+import { CmsSidebarModule } from './cms/cms-sidebar/cms-sidebar.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -42,6 +44,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatProgressBarModule,
     SnackbarModule,
     MessageBoxModule,
+    CmsSidebarModule,
     AppHeaderModule,
     AppFooterModule
   ],
@@ -50,11 +53,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     //   provide: ErrorHandler,
     //   useClass: GlobalErrorHandler,
     // },
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: RequestHandlingInterceptor,
-    //   multi: true
-    // },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestHandlingInterceptor,
+      multi: true
+    },
     {
       provide: MatDialogRef,
       useValue: {}

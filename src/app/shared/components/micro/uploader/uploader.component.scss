@@ -1,0 +1,31 @@
+::ng-deep .base-uploader {
+  .upload-btn {
+    margin-top: 12px;
+  }
+
+  .ngx-dropzone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    border: 1px dashed rgb(45, 45, 202) !important;
+
+    .single {
+      width: 90% !important;
+      height: 90% !important;
+      max-width: 90% !important;
+      max-height: 90% !important;
+    }
+  }
+
+  ngx-dropzone-preview {
+    overflow: hidden;
+  }
+
+  .uploader {
+    position: relative;
+    .progess-spinner-loading {
+      position: absolute;
+    }
+  }
+}

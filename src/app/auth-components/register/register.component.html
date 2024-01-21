@@ -13,7 +13,7 @@
 
       <div class="reg-item full-name">
         <div class="label">{{'auth.register.label_full_name' | translate}} <span class="required">*</span> </div>
-        <dx-text-box #fullname placeholder="{{'auth.register.placeholder_email' | translate}}" height="40"
+        <dx-text-box #fullname placeholder="{{'auth.register.placeholder_full_name' | translate}}" height="40"
           [(value)]="request.fullname" (onEnterKey)="register()">
         </dx-text-box>
       </div>
@@ -34,7 +34,8 @@
 
       <div class="reg-item class">
         <div class="label">{{'auth.register.label_class' | translate}} <span class="required">*</span> </div>
-        <selector placeholder="{{'auth.register.placeholder_class' | translate}}"></selector>
+        <selector placeholder="{{'auth.register.placeholder_class' | translate}}" [isFetching]="fetchingClass"
+          [dataSource]="classes" (onValueChanged)="request.class = $event.value" (onOpened)="getClassList()"></selector>
       </div>
 
       <div class="reg-item password">
@@ -46,8 +47,9 @@
 
       <div class="reg-item confirm-password">
         <div class="label">{{'auth.register.label_confirm_password' | translate}} <span class="required">*</span> </div>
-        <dx-text-box #confirmPassword mode="password" placeholder="{{'auth.register.placeholder_confirm_password' | translate}}"
-          height="40" [(value)]="request.confirmPassword" (onEnterKey)="register()">
+        <dx-text-box #confirmPassword mode="password"
+          placeholder="{{'auth.register.placeholder_confirm_password' | translate}}" height="40"
+          [(value)]="request.confirmPassword" (onEnterKey)="register()">
         </dx-text-box>
       </div>
 

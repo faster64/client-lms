@@ -2,11 +2,14 @@ import { AfterViewInit, Component, Inject, Injectable, Injector, ViewChild } fro
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { DxTextBoxComponent } from 'devextreme-angular';
+import { finalize, takeUntil } from 'rxjs';
 import { BaseComponent } from 'src/app/shared/components/base-component';
 import { BaseButton } from 'src/app/shared/components/micro/button/button.component';
 import { Routing } from 'src/app/shared/constants/routing.constant';
 import { StringHelper } from 'src/app/shared/helpers/string.helper';
 import { LoginRequest } from 'src/app/shared/models/auth/login-request';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
+import { PublisherService } from 'src/app/shared/services/base/publisher.service';
 import { TranslationService } from 'src/app/shared/services/translation/translation.service';
 import { SnackBar } from 'src/app/shared/snackbar/snackbar.component';
 import { SnackBarParameter } from 'src/app/shared/snackbar/snackbar.param';
@@ -35,7 +38,9 @@ export class LoginComponent extends BaseComponent implements AfterViewInit {
   constructor(
     injector: Injector,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public router: Router
+    public router: Router,
+    public authService: AuthService,
+    public publisher: PublisherService
   ) {
     super(injector);
     console.log(this.data)
@@ -77,8 +82,23 @@ export class LoginComponent extends BaseComponent implements AfterViewInit {
       return;
     }
 
-    SnackBar.warning(new SnackBarParameter(this, TranslationService.VALUES['auth']['login']['login_info_is_incorrect']));
-    this.loginBtn.finish();
+    this.authService.login(this.request)
+      .pipe(
+        takeUntil(this._onDestroySub),
+        finalize(() => this.loginBtn.finish())
+      )
+      .subscribe(resp => {
+        if (resp.code == 'success') {
+          this.authService.saveAuthenticate(resp.data.accessToken, resp.data.refreshToken);
+          this.publisher.loggedInEvent.emit();
 
+          if (this.data && this.data.callback) {
+            this.data.callback();
+          }
+          else {
+            this.router.navigateByUrl(Routing.HOME.path);
+          }
+        }
+      })
   }
 }

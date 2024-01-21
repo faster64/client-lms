@@ -1,14 +1,27 @@
-<div id="app" #app>
+<div id="app" #app [ngClass]="cmsMode ? 'cms' : ''">
   <!-- <mat-progress-bar mode="determinate" [value]="progress" *ngIf="progress > 0"></mat-progress-bar> -->
-  <div class="app-header">
-    <app-header></app-header>
-  </div>
-  <div #appContent class="app-content">
-    <router-outlet></router-outlet>
-  </div>
-  <div class="app-footer">
-    <app-footer></app-footer>
-  </div>
+
+  <ng-container *ngIf="!cmsMode">
+    <div class="app-header">
+      <app-header></app-header>
+    </div>
+    <div #appContent class="app-content">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="app-footer">
+      <app-footer></app-footer>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="cmsMode">
+    <div class="sidebar">
+      <app-cms-sidebar></app-cms-sidebar>
+    </div>
+
+    <div #appContent class="app-content">
+      <router-outlet></router-outlet>
+    </div>
+  </ng-container>
 </div>
 
 <snackbar></snackbar>

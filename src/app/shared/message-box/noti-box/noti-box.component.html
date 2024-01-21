@@ -16,20 +16,20 @@
   <!-- confirm  -->
   <mat-dialog-actions align="end" *ngIf="message.data.boxType == MessageBoxType.Confirm" cdkDrag
     cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
-    <button mat-stroked-button mat-dialog-close> {{'COMMON.CANCEL' | translate }} </button>
+    <button mat-stroked-button mat-dialog-close> {{'message_box.cancel' | translate }} </button>
 
     <button mat-raised-button color="primary" [mat-dialog-close]="true" (click)="confirm($event)">
-      {{'COMMON.AGREE' | translate}}
+      {{'message_box.agree' | translate}}
     </button>
   </mat-dialog-actions>
 
   <!-- confirm delete  -->
   <mat-dialog-actions align="end" *ngIf="message.data.boxType == MessageBoxType.ConfirmDelete" cdkDrag
     cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
-    <button mat-stroked-button mat-dialog-close> {{'COMMON.CANCEL' | translate }} </button>
+    <button mat-stroked-button mat-dialog-close> {{'message_box.cancel' | translate }} </button>
 
     <button mat-raised-button color="warn" [mat-dialog-close]="true" (click)="confirmDelete($event)">
-      {{'COMMON.DELETE' | translate}}
+      {{'message_box.delete' | translate}}
     </button>
   </mat-dialog-actions>
 
@@ -37,7 +37,7 @@
   <mat-dialog-actions align="end" *ngIf="message.data.boxType == MessageBoxType.Information" cdkDrag
     cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
     <button mat-raised-button color="primary" [mat-dialog-close]="true" (click)="agree($event)">
-      {{'COMMON.AGREE' | translate}}
+      {{'message_box.agree' | translate}}
     </button>
   </mat-dialog-actions>
 
@@ -45,7 +45,7 @@
   <mat-dialog-actions align="end" *ngIf="message.data.boxType == MessageBoxType.Html" cdkDrag
     cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
     <button mat-raised-button color="primary" [mat-dialog-close]="true" (click)="agree($event)">
-      {{'COMMON.AGREE' | translate}}
+      {{'message_box.agree' | translate}}
     </button>
   </mat-dialog-actions>
 

@@ -1,12 +1,20 @@
 {
   "base_keys": {
-    "view_more": "Xem thêm"
+    "view_more": "Xem Thêm",
+    "cancel": "Hủy",
+    "save": "Lưu"
   },
   "warnings": {
     "feature_is_in_development": "Tính năng đang phát triển"
   },
   "errors": {
     "not_permission": "Bạn không có quyền thực hiện!"
+  },
+  "message_box": {
+    "agree": "Đồng ý",
+    "cancel": "Hủy bỏ",
+    "ok": "Ok",
+    "delete": "Xóa"
   },
   "header": {
     "navs":{
@@ -81,7 +89,13 @@
       "placeholder_confirm_password": "Nhập lại mật khẩu",
       "register_btn": "Đăng ký",
       "have_an_account": "Bạn đã có tài khoản?",
-      "login": "Đăng nhập"
+      "login": "Đăng nhập",
+      "fullname_must_not_be_empty_msg": "Họ và tên không được để trống",
+      "email_not_valid_msg": "Email không hợp lệ",
+      "phone_must_not_be_empty_msg": "Số điện thoại không được để trống",
+      "password_not_valid_msg": "Mật khẩu không được để trống",
+      "confirm_password_not_valid_msg": "Mật khẩu xác nhận không được để trống",
+      "both_password_must_be_the_same": "Mật khẩu và mật khẩu xác nhận phải giống nhau"
     },
     "forgot_password": {
       "title": "Quên mật khẩu",

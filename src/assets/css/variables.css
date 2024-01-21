@@ -24,7 +24,9 @@
   --large-sub-title-size: 21px;
 
   /* spacing  */
+  --sidebar-width: 264px;
   --side-distance: 300px;
+  --header-padding: 16px 56px;
 
   /* z-index */
   --header-index: 990;
@@ -60,6 +62,7 @@
     --medium-title-size: 15px;
     --large-title-size: 24px;
     --large-sub-title-size: 15px;
+    --header-padding: 16px 36px;
   }
 }
 
@@ -67,6 +70,7 @@
   :root {
     --side-distance: 50px;
     --size: 12px;
+    --header-padding: 16px 24px;
   }
 }
 
@@ -75,5 +79,6 @@
   :root {
     --side-distance: 16px;
     --size: 12px;
+    --header-padding: 12px 16px;
   }
 }

@@ -8,20 +8,30 @@
         <div class="text">{{'header.navs.home' | translate}}</div>
         <div class="under-line"></div>
       </div>
-      <div class="nav-item" [ngClass]="selectedIndex == 1 ? 'selected' : ''" (click)="Utility.featureIsInDevelopment($event)">
+      <div class="nav-item" [ngClass]="selectedIndex == 1 ? 'selected' : ''"
+        (click)="Utility.featureIsInDevelopment($event)">
         <div class="text">{{'header.navs.contact' | translate}}</div>
         <div class="under-line"></div>
       </div>
-      <div class="nav-item" [ngClass]="selectedIndex == 2 ? 'selected' : ''" (click)="Utility.featureIsInDevelopment($event)">
+      <div class="nav-item" [ngClass]="selectedIndex == 2 ? 'selected' : ''"
+        (click)="Utility.featureIsInDevelopment($event)">
         <div class="text">{{'header.navs.guide' | translate}}</div>
         <div class="under-line"></div>
       </div>
-      <div class="nav-item" [ngClass]="selectedIndex == 3 ? 'selected' : ''" *ngIf="AuthService.CurrentStatus == AuthStatus.LoggedIn">
+      <div class="nav-item" [ngClass]="selectedIndex == 3 ? 'selected' : ''"
+        *ngIf="AuthService.CurrentStatus == AuthStatus.LoggedIn" (click)="Utility.featureIsInDevelopment($event)">
         <div class="text">{{'header.navs.my_courses' | translate}}</div>
         <div class="under-line"></div>
       </div>
+
+      <div class="nav-item" *ngIf="AuthService.CurrentStatus == AuthStatus.LoggedIn"
+        (click)="redirect(Routing.CMS.path)">
+        <div class="text">CMS</div>
+        <div class="under-line"></div>
+      </div>
     </div>
-    <div class="nav-right unauthenticated" *ngIf="AuthService.CurrentStatus != AuthStatus.LoggedIn && AuthService.CurrentStatus != AuthStatus.Unknown">
+    <div class="nav-right unauthenticated"
+      *ngIf="AuthService.CurrentStatus != AuthStatus.LoggedIn && AuthService.CurrentStatus != AuthStatus.Unknown">
       <div class="cart" (click)="Utility.featureIsInDevelopment($event)"></div>
       <div class="wrap">
         <div class="search" (click)="Utility.featureIsInDevelopment($event)"></div>
@@ -41,7 +51,7 @@
       <div class="cart" (click)="Utility.featureIsInDevelopment($event)"></div>
 
       <div class="avatar"></div>
-      <div class="name over-3-dots">Nguyễn Phong</div>
+      <div class="name over-3-dots">{{fullname}}</div>
       <div class="more-dropdown" (click)="Utility.featureIsInDevelopment($event)"></div>
     </div>
   </div>

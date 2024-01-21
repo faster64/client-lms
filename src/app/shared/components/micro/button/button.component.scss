@@ -39,6 +39,10 @@
     .material-icons {
         font-size: 16px !important;
     }
+
+    button {
+      border: 1px solid var(--main-color);
+    }
 }
 
 ::ng-deep {

@@ -5,6 +5,7 @@ import { NotiBoxComponent } from './noti-box/noti-box.component';
 import { Message } from './model/message';
 import { MessageData } from './model/message-data';
 import { MessageBoxType } from './enum/message.enum';
+import { BreakPoint } from '../constants/break-point.constant';
 
 
 @Component({
@@ -32,7 +33,7 @@ export class MessageBox implements OnInit {
    */
   private static initConfig() {
     const width = Math.min(440, window.innerWidth * 0.8) + 'px';
-    const height = Math.min(120, window.innerHeight * 0.8) + 'px';
+    const height = Math.min(window.innerWidth > BreakPoint.XL ? 148 : 120, window.innerHeight * 0.8) + 'px';
 
     this._config = new MatDialogConfig();
     this._config.minWidth = this._config.maxWidth = this._config.width = width;

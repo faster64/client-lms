@@ -2,6 +2,7 @@ export enum ActionExponent {
   None = -1,
   SA = 128,
   Admin = 64,
+  CMS = 56,
   View = 0,
   Add = 1,
   Edit = 2,

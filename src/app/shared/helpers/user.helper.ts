@@ -4,7 +4,6 @@ import { StringHelper } from "./string.helper";
 
 export class UserHelper {
   private static UP = '';
-  private static MP = '';
 
   static get USER_PERMISSION(): string {
     try {
@@ -20,25 +19,6 @@ export class UserHelper {
         }
       }
       return this.UP;
-    } catch (e) {
-      return '0';
-    }
-  }
-
-  static get MODULE_PERMISSION(): string {
-    try {
-      if (StringHelper.isNullOrEmpty(this.MP) || this.MP == '0') {
-        const accessToken = LocalHelper.parse('auth')[LocalStorageKey.ACCESS_TOKEN] || '';
-        if (accessToken) {
-          const permission = StringHelper.parseJwt(accessToken)["module_permission"];
-          if (permission) {
-            this.MP = permission + "";
-          } else {
-            this.MP = '0';
-          }
-        }
-      }
-      return this.MP;
     } catch (e) {
       return '0';
     }

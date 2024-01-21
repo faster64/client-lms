@@ -2,7 +2,7 @@ import { Component, ElementRef, OnDestroy, OnInit, ViewChild, ViewContainerRef }
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { TransferDataService } from './shared/services/base/transfer-data.service';
+import { PublisherService } from './shared/services/base/publisher.service';
 import { AuthService } from './shared/services/auth/auth.service';
 import { isFakeMousedownFromScreenReader } from '@angular/cdk/a11y';
 import { AuthStatus } from './shared/enums/auth-status.enum';
@@ -17,6 +17,8 @@ import { Routing } from './shared/constants/routing.constant';
 export class AppComponent implements OnInit, OnDestroy {
 
   _onDestroySub: Subject<void> = new Subject<void>();
+
+  cmsMode = false;
 
   progress = 0;
 
@@ -34,7 +36,7 @@ export class AppComponent implements OnInit, OnDestroy {
     public router: Router,
     public activatedRoute: ActivatedRoute,
     public translationService: TranslationService,
-    public transferService: TransferDataService,
+    public publisher: PublisherService,
     public authService: AuthService
   ) { }
 
@@ -49,7 +51,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   cancelProgessListener() {
-    this.transferService
+    this.publisher
       .cancelRouteEvent
       .pipe(takeUntil(this._onDestroySub))
       .subscribe(() => {
@@ -76,6 +78,12 @@ export class AppComponent implements OnInit, OnDestroy {
 
         if (event instanceof NavigationEnd) {
           this.progress = 0;
+          if (event.urlAfterRedirects.startsWith(`/${Routing.CMS.path}`)) {
+            this.cmsMode = true;
+            return;
+          }
+          this.cmsMode = false;
+
           if (event.urlAfterRedirects == `/${Routing.HOME.path}`) {
             document.documentElement.style.setProperty("--header-bg", "#305FE8");
           } else {
