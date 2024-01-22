@@ -27,7 +27,7 @@ export class ServerInfoService extends BaseService {
     this.controller = 'serverinfo';
   }
 
-  override getUrl = () => `${environment.base_host}/${this.controller}`;
+  override url = () => `${environment.base_host}/${this.controller}`;
 
   checkConnect() {
     const url = `${environment.base_host}/ping?${CommonConstant.NO_RETRY}&${CommonConstant.DISALLOW_NOTICE}`;
@@ -38,7 +38,7 @@ export class ServerInfoService extends BaseService {
     if (this.serverTime) {
       return;
     }
-    const url = `${this.getUrl()}/server-time`;
+    const url = `${this.url()}/server-time`;
     this.http.get<ServerTime>(url).subscribe(resp => this.serverTime = resp);
   }
 }

@@ -1,5 +1,5 @@
 <div id="app" #app [ngClass]="mode == 'cms' ? 'cms' : ''">
-  <!-- <mat-progress-bar mode="determinate" [value]="progress" *ngIf="progress > 0"></mat-progress-bar> -->
+  <mat-progress-bar mode="determinate" [value]="progress" *ngIf="progress > 0 && mode == 'cms'"></mat-progress-bar>
 
   <ng-container *ngIf="mode == 'user'">
     <div class="app-header">

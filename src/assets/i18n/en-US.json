@@ -5,7 +5,9 @@
     "cancel": "cancel",
     "save": "save",
     "update": "Update",
-    "delete": "Delete"
+    "delete": "Delete",
+    "created_date": "Created date",
+    "last_modified_date": "Last modified date"
   },
   "warnings": {
     "feature_is_in_development": "The feature is in development",

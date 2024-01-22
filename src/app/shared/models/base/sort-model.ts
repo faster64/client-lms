@@ -1,10 +1,10 @@
 export class SortModel {
   public fieldName = "";
 
-  public sortAscending = true;
+  public asc = true;
 
-  constructor(fieldName = "", sortAscending = true) {
+  constructor(fieldName = "", asc = true) {
     this.fieldName = fieldName;
-    this.sortAscending = sortAscending;
+    this.asc = asc;
   }
 }

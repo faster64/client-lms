@@ -4,7 +4,7 @@
     <div class="class">{{'course.class' | translate}} 12</div>
     <div class="price">2.099.000</div>
   </div>
-  <div class="course-name" (click)="Utility.featureIsInDevelopment($event)">Python Basics - Python Cơ Bản</div>
+  <a class="course-name" [routerLink]="'/'" (click)="Utility.featureIsInDevelopment($event)">Python Basics - Python Cơ Bản</a>
   <div class="course-description">Python là một ngôn ngữ lập trình bậc cao cho các mục đích lập trình...</div>
   <div class="course-features">
     <base-button text="{{'course.features.add_to_cart' | translate}}" [width]="156" [height]="44" [buttonType]="ButtonType.STROKED" [color]="ButtonColor.BASIC">

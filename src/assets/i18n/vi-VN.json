@@ -5,7 +5,9 @@
     "cancel": "Hủy",
     "save": "Lưu",
     "update": "Cập nhật",
-    "delete": "Xóa"
+    "delete": "Xóa",
+    "created_date": "Ngày tạo",
+    "last_modified_date": "Ngày chỉnh sửa cuối"
   },
   "warnings": {
     "feature_is_in_development": "Tính năng đang phát triển",

@@ -7,82 +7,127 @@ import { BaseService } from "src/app/shared/services/base/base.service";
 import { CmsFeatureComponent } from "../cms-feature/cms-feature.component";
 import { finalize, takeUntil } from "rxjs";
 import { PublisherService } from "src/app/shared/services/base/publisher.service";
+import { MessageBox } from "src/app/shared/message-box/message-box.component";
+import { Message } from "src/app/shared/message-box/model/message";
+import { TranslationService } from "src/app/shared/services/translation/translation.service";
+import { SnackBar } from "src/app/shared/snackbar/snackbar.component";
+import { SnackBarParameter } from "src/app/shared/snackbar/snackbar.param";
+import { FormModeText } from "src/app/shared/constants/form-mode.constant";
 
 @Directive()
 export class CmsFormComponent extends BaseComponent {
 
-    FormMode = FormMode;
+  FormMode = FormMode;
 
-    displayColumns: ColumnGrid[] = [];
+  displayColumns: ColumnGrid[] = [];
 
-    formMode = FormMode.View;
+  formMode = FormMode.View;
 
-    id = '';
+  id = '';
 
-    data: any = {};
+  data: any = {};
 
-    service: BaseService;
+  path = '';
 
-    router: Router;
+  service: BaseService;
 
-    publisher: PublisherService;
+  router: Router;
 
-    @ViewChild("cmsFeature")
-    cmsFeature: CmsFeatureComponent;
+  publisher: PublisherService;
 
-    constructor(
-        injector: Injector
-    ) {
-        super(injector);
+  @ViewChild("cmsFeature")
+  cmsFeature: CmsFeatureComponent;
+
+  constructor(
+    injector: Injector
+  ) {
+    super(injector);
+  }
+
+  override ngOnInit(): void {
+    super.ngOnInit();
+    this.initConfig();
+    this.loadData();
+  }
+
+  override initServices(): void {
+    super.initServices();
+    this.router = this.injector.get(Router);
+    this.publisher = this.injector.get(PublisherService);
+  }
+
+  initConfig() {
+    this.service = this.injector.get(BaseService);
+    this.formMode = this.activatedRoute.snapshot.data['formMode'];
+
+    if (this.formMode == FormMode.Add) {
+      this.publisher.updateCmsHeaderLabelEvent.emit('Thêm mới');
+    } else if (this.formMode == FormMode.Update) {
+      this.publisher.updateCmsHeaderLabelEvent.emit('Cập nhật thông tin');
+    } else if (this.formMode == FormMode.View) {
+      this.publisher.updateCmsHeaderLabelEvent.emit('Thông tin chi tiết');
     }
+  }
 
-    override ngOnInit(): void {
-        super.ngOnInit();
-        this.initConfig();
-        this.loadData();
+  loadData() {
+    if (this.formMode != FormMode.Add) {
+      this.id = this.activatedRoute.snapshot.params['id'];
+      this.isLoading = true;
+      this.service
+        .byId(this.id)
+        .pipe(
+          takeUntil(this._onDestroySub),
+          finalize(() => this.isLoading = false)
+        )
+        .subscribe(resp => {
+          if (resp.code == 'success') {
+            this.data = resp.data ?? {};
+          }
+        })
     }
+  }
 
-    override initServices(): void {
-        super.initServices();
-        this.router = this.injector.get(Router);
-        this.publisher = this.injector.get(PublisherService);
-    }
+  cancel = () => this.router.navigateByUrl(this.path);
 
-    initConfig() {
-        this.service = this.injector.get(BaseService);
-        this.formMode = this.activatedRoute.snapshot.data['formMode'];
+  update = () => this.router.navigateByUrl(`${this.path}/${FormModeText.UPDATE}/${this.id}`);
 
-        if (this.formMode == FormMode.Add) {
-            this.publisher.updateCmsHeaderLabelEvent.emit('Thêm mới');
-        } else if (this.formMode == FormMode.Update) {
-            this.publisher.updateCmsHeaderLabelEvent.emit('Cập nhật thông tin');
-        } else if (this.formMode == FormMode.View) {
-            this.publisher.updateCmsHeaderLabelEvent.emit('Thông tin chi tiết');
+  save() {
+    this.isLoading = true;
+    const api = this.formMode == FormMode.Add ? this.service.save(this.data) : this.service.update(this.data);
+
+    api.pipe(
+      takeUntil(this._onDestroySub),
+      finalize(() => {
+        this.isLoading = false;
+        this.cmsFeature.saveBtn.finish();
+      })
+    )
+      .subscribe(resp => {
+        if (resp.code == 'success') {
+          const id = this.formMode == FormMode.Add ? resp.data : this.id;
+          const message = TranslationService.VALUES['data_messages'][this.formMode == FormMode.Add ? 'save_success_msg' : 'update_success_msg'];
+          SnackBar.success(new SnackBarParameter(this, message));
+
+          this.router.navigateByUrl(`/${this.path}/${FormModeText.VIEW}/${id}`);
         }
-    }
+      })
+  }
 
-    loadData() {
-        if (this.formMode != FormMode.Add) {
-            this.id = this.activatedRoute.snapshot.params['id'];
-            this.service
-                .getById(this.id)
-                .pipe(
-                    takeUntil(this._onDestroySub),
-                    finalize(() => this.isLoading = false)
-                )
-                .subscribe(resp => {
-                    if (resp.code == 'success') {
-                        this.data = resp.data ?? {};
-                    }
-                })
-        }
-    }
-
-    cancel() {
-        throw new Error('Method not implemented.');
-    }
-
-    save() {
-        throw new Error('Method not implemented.');
-    }
+  delete() {
+    MessageBox.delete(new Message(this, { content: TranslationService.VALUES['warnings']['delete_warning_msg'] }, () => {
+      this.isLoading = true;
+      this.service
+        .delete([this.id])
+        .pipe(
+          takeUntil(this._onDestroySub),
+          finalize(() => this.isLoading = false)
+        )
+        .subscribe(resp => {
+          if (resp.code == 'success') {
+            SnackBar.success(new SnackBarParameter(this, TranslationService.VALUES['data_messages']['delete_success_msg']));
+            this.cancel();
+          }
+        });
+    }));
+  }
 }

@@ -1,13 +1,12 @@
 import { ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { DxCheckBoxComponent } from 'devextreme-angular';
+import { IconButtonType } from 'src/app/shared/constants/button.constant';
 import { FieldType } from 'src/app/shared/enums/field-type.enum';
 import { SortModel } from 'src/app/shared/models/base/sort-model';
 import { ColumnGrid } from 'src/app/shared/models/grid/column-grid';
-import { TranslationService } from 'src/app/shared/services/translation/translation.service';
-import { Utility } from 'src/app/shared/utility/utility';
 import { BaseGridComponent } from './base-grid-component';
-import { IconButtonType } from 'src/app/shared/constants/button.constant';
+import { BreakPoint } from 'src/app/shared/constants/break-point.constant';
 
 @Component({
   selector: 'app-gird',
@@ -18,9 +17,18 @@ export class GirdComponent extends BaseGridComponent implements OnChanges {
 
   FieldType = FieldType;
 
-  Utility = Utility;
-
   IconButtonType = IconButtonType;
+
+  searchValue = '';
+
+  searchWidth = window.innerWidth >= BreakPoint.LG ? 320 : 200;
+
+  searchPlaceholder = '';
+
+  sortValue = 'Mặc định';
+
+  checkedCount = 0;
+
 
   @Input()
   displayColumn: ColumnGrid[] = [];
@@ -46,17 +54,20 @@ export class GirdComponent extends BaseGridComponent implements OnChanges {
   @Input()
   autoAdjust = true;
 
-  @Output()
-  checkedEvent = new EventEmitter();
+  @Input()
+  searchKeys = [];
 
   @Output()
-  sort = new EventEmitter();
+  checkedEvent = new EventEmitter();
 
   @Output()
   changePageEvent = new EventEmitter();
 
   @Output()
   rowChange = new EventEmitter();
+
+  @Output()
+  sort = new EventEmitter();
 
   @Output()
   onView = new EventEmitter();
@@ -70,6 +81,12 @@ export class GirdComponent extends BaseGridComponent implements OnChanges {
   @Output()
   onDelete = new EventEmitter();
 
+  @Output()
+  onDeleteMulti = new EventEmitter();
+
+  @Output()
+  onSearch = new EventEmitter();
+
   @ViewChild('gridContentBody')
   gridContentBody!: ElementRef;
 
@@ -82,7 +99,7 @@ export class GirdComponent extends BaseGridComponent implements OnChanges {
   @ViewChild("matPaginator")
   paginator: MatPaginator;
 
-  checkedList: boolean[] = Array(1000).fill(false);
+  checkedList: boolean[] = Array(200).fill(false);
 
   offset = 0;
 
@@ -121,6 +138,15 @@ export class GirdComponent extends BaseGridComponent implements OnChanges {
         this.adjustGrid();
       }, 1);
     }
+  }
+
+  setSearchPlaceholder() {
+    if (this.searchKeys.length) {
+      this.searchPlaceholder = 'Tìm theo ' + this.searchKeys.map(x => x.text.toLowerCase()).join(', ');
+    } else {
+      this.searchPlaceholder = 'Tìm kiếm không khả dụng';
+    }
+    console.log(this.searchKeys);
   }
 
   setPaginator() {
@@ -175,14 +201,6 @@ export class GirdComponent extends BaseGridComponent implements OnChanges {
   }
 
 
-  onRowClick(item: any) {
-    this.rowClick.emit(item);
-  }
-
-  onRowDblClick(item: any) {
-    this.rowDblClick.emit(item);
-  }
-
   onCheck(e: any, index: number) {
     this.checkedList[index] = e.value;
     if (e.value === false) {
@@ -191,6 +209,8 @@ export class GirdComponent extends BaseGridComponent implements OnChanges {
       (this.checkAllInstance as any)["value"] = this.isCheckedAll();
     }
     this.checkedEvent.emit();
+
+    this.checkedCount = this.getCheckedItems().length;
   }
 
   onCheckAll(e: any) {
@@ -208,7 +228,7 @@ export class GirdComponent extends BaseGridComponent implements OnChanges {
     });
   }
 
-  changeAllCheckBox(value: boolean) {
+  private changeAllCheckBox(value: boolean) {
     if (value) {
       for (let i = 0; i < this.checkedList.length; i++) {
         this.checkedList[i] = true;
@@ -220,7 +240,12 @@ export class GirdComponent extends BaseGridComponent implements OnChanges {
     }
     (this.checkAllInstance as any)["value"] = value;
     this.checkedEvent.emit();
+    this.checkedCount = this.getCheckedItems().length;
   }
+
+  checkAll = () => this.changeAllCheckBox(true);
+
+  uncheckAll = () => this.changeAllCheckBox(false);
 
   isCheckedAll() {
     for (let i = 0; i < this.data.length; i++) {
@@ -249,18 +274,11 @@ export class GirdComponent extends BaseGridComponent implements OnChanges {
     return result;
   }
 
-  sortGrid(column: ColumnGrid, index: number) {
-    for (let i = 0; i < this.sortAscendingValue.length; i++) {
-      if (i !== index) {
-        this.sortAscendingValue[i].firstClick = true;
-        this.sortAscendingValue[i].sortAscending = true;
-      }
-    }
-
-    this.sortAscendingValue[index].firstClick = false;
-    this.sortAscendingValue[index].sortAscending = !this.sortAscendingValue[index].sortAscending;
-    this.paginationRequest.sorts = [new SortModel(column.sortBy || column.column, this.sortAscendingValue[index].sortAscending)];
-    this.sort.emit(this.paginationRequest);
+  sortGrid(asc: boolean) {
+    this.sort.emit({
+      fieldName: 'createdDate',
+      asc: asc
+    });
   }
 
   changePage(event: any) {
@@ -273,6 +291,10 @@ export class GirdComponent extends BaseGridComponent implements OnChanges {
 
   onRowChange(event) {
     this.rowChange.emit(event);
+  }
+
+  deleteMulti() {
+    this.onDeleteMulti.emit();
   }
 }
 

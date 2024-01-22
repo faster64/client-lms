@@ -14,6 +14,12 @@ export class ClassSelectorComponent extends BaseComponent {
 
   classes = [];
 
+  @Input()
+  disabled = false;
+
+  @Input()
+  height = -1;
+
   @Output()
   onValueChanged = new EventEmitter<any>();
 
@@ -26,7 +32,7 @@ export class ClassSelectorComponent extends BaseComponent {
 
   getClassList() {
     this.fetchingClass = true;
-    this.classService.getAll()
+    this.classService.all()
       .pipe(
         takeUntil(this._onDestroySub),
         finalize(() => this.fetchingClass = false)

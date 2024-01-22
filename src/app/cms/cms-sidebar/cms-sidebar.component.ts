@@ -10,6 +10,8 @@ import { Routing } from 'src/app/shared/constants/routing.constant';
 })
 export class CmsSidebarComponent extends BaseComponent {
 
+  showTooltip = false && window.innerWidth >= 1200;
+
   items = [];
 
   constructor(
@@ -108,8 +110,6 @@ export class CmsSidebarComponent extends BaseComponent {
       this.items[i].selected = false;
     }
     item.selected = true;
-
-    this.router.navigateByUrl(item.path);
   }
 
   toHome = () => this.router.navigateByUrl(Routing.HOME.path);

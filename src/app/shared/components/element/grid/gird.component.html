@@ -2,28 +2,40 @@
   <div class="grid-content">
 
     <div class="grid-toolbar">
-      <div class="left">
-        <div class="search">
-          <dx-text-box mode="search" placeholder="Tìm kiếm..." width="320"></dx-text-box>
-        </div>
-      </div>
-      <div class="right">
-        <!-- <div class="delete-btn">
-          <base-button></base-button>
-        </div> -->
 
-        <div class="sort-btn">
-          <div class="text">Sắp xếp theo: Mặc định</div>
-          <div class="icon"></div>
+      <ng-container *ngIf="checkedCount == 0">
+        <div class="left">
+          <div class="search">
+            <dx-text-box mode="search" [matTooltip]="searchPlaceholder" [placeholder]="searchPlaceholder" [disabled]="!searchKeys.length" [width]="searchWidth" [(value)]="searchValue"
+              (onValueChanged)="onSearch.emit(searchValue)">
+            </dx-text-box>
+          </div>
         </div>
+        <div class="right">
+          <div class="sort-btn" [matMenuTriggerFor]="menu">
+            <div class="text">Sắp xếp theo: {{sortValue}}</div>
+            <div class="icon"></div>
+          </div>
 
-        <div class="add-btn">
-          <base-button text="Thêm dữ liệu" [height]="36" [iconButtonType]="IconButtonType.ADD"
-            [finishImmediately]="true" (onClick)="onAdd.emit()">
-          </base-button>
+          <div class="add-btn">
+            <base-button text="Thêm dữ liệu" [height]="36" [iconButtonType]="IconButtonType.ADD"
+              [finishImmediately]="true" (onClick)="onAdd.emit()">
+            </base-button>
+          </div>
         </div>
-      </div>
+      </ng-container>
+
+      <ng-container *ngIf="checkedCount > 0">
+        <div class="wrap">
+          <span class="unselect-item" (click)="uncheckAll()">
+            Bỏ chọn <strong>{{checkedCount | NumberFormatPipe}}</strong> bản ghi
+          </span>
+
+          <span class="delete-multi" (click)="deleteMulti()">Xóa</span>
+        </div>
+      </ng-container>
     </div>
+
 
     <div #gridContentBody class="grid-content-body">
 
@@ -51,7 +63,7 @@
 
           <div *ngIf="!isLoading && data && data.length">
             <div class="row-item" [ngClass]="checkedList[i] ? 'checked' : ''" *ngFor="let item of data; index as i"
-              (click)="onRowClick(item)" (dblclick)="onRowDblClick(item)">
+              (click)="rowClick.emit(item)" (dblclick)="rowDblClick.emit(item)">
               <div class="column column-body sticky" [ngStyle]="{minWidth: '56px', maxWidth: '56px', width: '56px'}">
                 <dx-check-box [value]="checkedList[i]" (onValueChanged)="onCheck($event, i)"></dx-check-box>
               </div>
@@ -132,3 +144,18 @@
     </div>
   </div>
 </div>
+
+
+<mat-menu #menu="matMenu">
+  <div class="sort-grid-menu">
+    <div class="sgm-item latest" (click)="sortValue = 'Mới nhất'; sortGrid(false)">
+      <div class="icon bg-contain"></div>
+      <div class="text">Sắp xếp theo Mới nhất</div>
+    </div>
+
+    <div class="sgm-item oldest" (click)="sortValue = 'Cũ nhất'; sortGrid(true)">
+      <div class="icon bg-contain"></div>
+      <div class="text">Sắp xếp theo Cũ nhất</div>
+    </div>
+  </div>
+</mat-menu>

@@ -20,6 +20,10 @@
     &:not(.mat-warn) {
       border: 1px solid var(--main-color);
     }
+
+    &:disabled {
+      border-color: initial !important;
+    }
   }
 
   .mat-mdc-button-base.mat-primary {

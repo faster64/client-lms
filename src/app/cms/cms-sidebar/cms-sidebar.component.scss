@@ -6,6 +6,7 @@
   transition: all 0.3s;
 
   .logo {
+    display: block;
     height: 56px;
     margin-bottom: 24px;
     background-image: url(~/src/assets/img/cms/logo.png);
@@ -19,6 +20,7 @@
       padding: 8px 16px;
       margin-bottom: 8px;
       border-radius: 8px;
+      text-decoration: none;
       transition: all 0.1s;
       cursor: pointer;
 

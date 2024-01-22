@@ -26,6 +26,7 @@
           margin-right: 12px;
           border: 1px solid var(--gray-200);
           border-radius: 8px;
+          overflow: hidden;
           cursor: pointer;
 
           .text {
@@ -36,9 +37,27 @@
           .icon {
             width: 20px;
             height: 20px;
+            margin-bottom: 2px;
             background-image: url(~/src/assets/img/grid/dropdown.svg);
           }
         }
+      }
+
+      .unselect-item {
+        color: var(--main-color);
+        cursor: pointer;
+      }
+
+      .delete-multi {
+        display: inline-block;
+        margin-left: 12px;
+        font-weight: 600;
+        color: var(--danger);
+        cursor: pointer;
+      }
+
+      .dx-placeholder {
+        font-size: 11px !important;
       }
     }
 
@@ -210,6 +229,42 @@
   .dx-checkbox-icon {
     width: 16px;
     height: 16px;
+  }
+}
+
+::ng-deep {
+  .sort-grid-menu {
+    padding: 4px;
+    .sgm-item {
+      display: flex;
+      align-items: center;
+      padding: 4px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+
+      .icon {
+        width: 24px;
+        height: 24px;
+        margin-right: 8px;
+      }
+      .text {
+        width: calc(100% - 32px);
+      }
+
+      &.latest {
+        .icon {
+          background-image: url(~/src/assets/img/grid/latest.svg);
+        }
+      }
+      &.oldest {
+        .icon {
+          background-image: url(~/src/assets/img/grid/oldest.svg);
+        }
+      }
+      &:hover {
+        background-color: var(--greyish);
+      }
+    }
   }
 }
 

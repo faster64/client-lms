@@ -47,18 +47,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
   subcribeEvents() {
     this.routeChangeListener();
-    this.cancelProgessListener();
-  }
-
-  cancelProgessListener() {
-    this.publisher
-      .cancelRouteEvent
-      .pipe(takeUntil(this._onDestroySub))
-      .subscribe(() => {
-        clearInterval(this.iid);
-        this.progress = 0;
-      }
-      );
   }
 
   routeChangeListener() {
@@ -66,7 +54,7 @@ export class AppComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this._onDestroySub))
       .subscribe(async (event: any) => {
         if (event instanceof NavigationStart) {
-          this.progress = 35;
+          this.progress = 50;
           this.iid = setInterval(() => {
             if (this.progress >= 90) {
               clearInterval(this.iid);
@@ -77,7 +65,12 @@ export class AppComponent implements OnInit, OnDestroy {
         }
 
         if (event instanceof NavigationEnd) {
-          this.progress = 0;
+          this.progress = 80;
+          setTimeout(() => {
+            clearInterval(this.iid);
+            this.progress = 0;
+          }, 300);
+
           if (event.urlAfterRedirects.startsWith(`/${Routing.CMS.path}`)) {
             this.mode = 'cms';
             return;

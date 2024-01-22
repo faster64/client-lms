@@ -14,6 +14,7 @@ import { CmsReportComponent } from './cms-report/cms-report.component';
 import { FormModeText } from 'src/app/shared/constants/form-mode.constant';
 import { CmsClassFormComponent } from './cms-class/cms-class-form/cms-class-form.component';
 import { FormMode } from 'src/app/shared/enums/form-mode.enum';
+import { CmsCourseFormComponent } from './cms-course/cms-course-form/cms-course-form.component';
 
 const routes: Routes = [
   {
@@ -25,10 +26,35 @@ const routes: Routes = [
     path: 'banner',
     component: CmsBannerComponent
   },
+
+  //#region  Course
   {
     path: 'khoa-hoc',
     component: CmsCourseComponent
   },
+  {
+    path: `khoa-hoc/${FormModeText.ADD}`,
+    component: CmsCourseFormComponent,
+    data: {
+      formMode: FormMode.Add
+    }
+  },
+  {
+    path: `khoa-hoc/${FormModeText.UPDATE}/:id`,
+    component: CmsCourseFormComponent,
+    data: {
+      formMode: FormMode.Update
+    }
+  },
+  {
+    path: `khoa-hoc/${FormModeText.VIEW}/:id`,
+    component: CmsCourseFormComponent,
+    data: {
+      formMode: FormMode.View
+    }
+  },
+//#endregion
+
   {
     path: 'lien-he',
     component: CmsContactComponent
@@ -41,6 +67,9 @@ const routes: Routes = [
     path: 'quan-ly-tai-khoan-quan-tri',
     component: CmsAdminComponent
   },
+
+
+  //#region  Class
   {
     path: 'lop-hoc',
     component: CmsClassComponent
@@ -53,7 +82,7 @@ const routes: Routes = [
     }
   },
   {
-    path: `lop-hoc/${FormModeText.UPDATE}`,
+    path: `lop-hoc/${FormModeText.UPDATE}/:id`,
     component: CmsClassFormComponent,
     data: {
       formMode: FormMode.Update
@@ -66,6 +95,8 @@ const routes: Routes = [
       formMode: FormMode.View
     }
   },
+  //#endregion
+
   {
     path: 'bai-giang',
     component: CmsLessonComponent

@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { TranslateModule } from '@ngx-translate/core';
-import { DxNumberBoxModule, DxTextBoxModule } from 'devextreme-angular';
+import { DxDateBoxModule, DxNumberBoxModule, DxTextAreaModule, DxTextBoxModule } from 'devextreme-angular';
 import { BaseButtonModule } from 'src/app/shared/components/micro/button/button.module';
 import { BaseLoadingModule } from 'src/app/shared/components/micro/loading/loading.module';
 import { BaseUploaderModule } from 'src/app/shared/components/micro/uploader/uploader.module';
@@ -22,6 +22,8 @@ import { CmsUserComponent } from './cms-user/cms-user.component';
 import { GridModule } from 'src/app/shared/components/element/grid/grid.module';
 import { CmsClassFormComponent } from './cms-class/cms-class-form/cms-class-form.component';
 import { CmsFeatureModule } from '../cms-feature/cms-feature.module';
+import { CmsCourseFormComponent } from './cms-course/cms-course-form/cms-course-form.component';
+import { ClassSelectorModule } from 'src/app/shared/components/micro/class-selector/class-selector.module';
 
 
 @NgModule({
@@ -37,7 +39,8 @@ import { CmsFeatureModule } from '../cms-feature/cms-feature.module';
     CmsOrderComponent,
     CmsGuideComponent,
     CmsReportComponent,
-    CmsClassFormComponent
+    CmsClassFormComponent,
+    CmsCourseFormComponent
   ],
   imports: [
     CommonModule,
@@ -47,10 +50,13 @@ import { CmsFeatureModule } from '../cms-feature/cms-feature.module';
     CmsFeatureModule,
     DxTextBoxModule,
     DxNumberBoxModule,
+    DxTextAreaModule,
+    DxDateBoxModule,
     BaseButtonModule,
     BaseLoadingModule,
     BaseUploaderModule,
     GridModule,
+    ClassSelectorModule
   ]
 })
 export class CmsPageModule { }

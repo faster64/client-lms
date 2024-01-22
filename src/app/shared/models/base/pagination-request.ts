@@ -7,6 +7,7 @@ export class PaginationRequest {
 
   public query = '';
 
-  public sorts: SortModel[] = [];
+  public sort = new SortModel('', false);
+
 }
 

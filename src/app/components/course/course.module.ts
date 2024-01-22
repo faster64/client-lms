@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CourseComponent } from './course.component';
 import { BaseButtonModule } from 'src/app/shared/components/micro/button/button.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -12,6 +13,7 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
   imports: [
     CommonModule,
+    RouterModule,
     BaseButtonModule,
     TranslateModule
   ],

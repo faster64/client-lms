@@ -8,6 +8,7 @@ import { PipesModule } from 'src/app/shared/pipes/pipes.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { BaseButtonModule } from '../../micro/button/button.module';
 import { BaseLoadingModule } from '../../micro/loading/loading.module';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { BaseLoadingModule } from '../../micro/loading/loading.module';
     DxTextBoxModule,
     MatTooltipModule,
     MatPaginatorModule,
+    MatMenuModule,
     PipesModule,
     BaseButtonModule,
     BaseLoadingModule

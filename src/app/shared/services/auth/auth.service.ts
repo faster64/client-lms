@@ -17,6 +17,8 @@ import { LoginRequest } from '../../models/auth/login-request';
 import { AuthResponse } from '../../models/auth/auth-response';
 import { finalize, of } from 'rxjs';
 import { SnackBar } from '../../snackbar/snackbar.component';
+import { RefreshTokenModel } from '../../models/auth/refresh-token-model';
+import { CommonConstant } from '../../constants/common.constant';
 
 @Injectable({
   providedIn: 'root'
@@ -130,21 +132,20 @@ export class AuthService {
   }
 
   refreshToken() {
-    return of(new AuthResponse());
-    // const model = new RefreshTokenModel();
-    // model.userId = this.getUserId() || "";
-    // model.refreshToken = this.getRefreshToken();
-    // if (model.userId.isEmpty() || model.refreshToken.isEmpty()) {
-    //   const response = new AuthResponse();
-    //   response.code = "unauthorized";
-    //   return of(response);
-    // }
+    const model = new RefreshTokenModel();
+    model.userId = this.getProperty(LocalStorageKey.USER_ID);
+    model.refreshToken = this.getRefreshToken();
+    if (model.userId.isEmpty() || model.refreshToken.isEmpty()) {
+      const response = new AuthResponse();
+      response.code = "unauthorized";
+      return of(response);
+    }
 
-    // this.refreshing = true;
-    // const url = `${this.getUrl()}/refresh-token?${CommonConstant.DISALLOW_NOTICE}`;
-    // return this.httpService
-    //   .post<AuthResponse>(url, model)
-    //   .pipe(finalize(() => this.refreshing = false));
+    this.refreshing = true;
+    const url = `${this.getUrl()}/refresh-token?${CommonConstant.DISALLOW_NOTICE}`;
+    return this.httpService
+      .post<AuthResponse>(url, model)
+      .pipe(finalize(() => this.refreshing = false));
   }
 
   authenticate(callback: Function, config?: MatDialogConfig) {

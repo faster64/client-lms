@@ -16,7 +16,7 @@ export class UtilsService extends BaseService {
   }
 
   uploadImage(formData: FormData) {
-    const url = `${this.getUrl()}/upload-image`;
+    const url = `${this.url()}/upload-image`;
     return this.http.post<ServiceResult>(url, formData);
   }
 }

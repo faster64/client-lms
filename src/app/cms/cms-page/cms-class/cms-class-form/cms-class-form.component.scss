@@ -1,11 +1,19 @@
-.cms-class-form-cpn {
-    height: 100%;
+::ng-deep .cms-class-form-cpn {
+  position: relative;
+  height: 100%;
 
+  .data-item {
+    margin-bottom: 24px;
     .label {
-        margin-bottom: 4px;
+      margin-bottom: 4px;
 
-        .required {
-            color: var(--danger);
-        }
+      .required {
+        color: var(--danger);
+      }
     }
+  }
+
+  .progess-spinner-loading {
+    position: absolute !important;
+  }
 }

@@ -1,8 +1,8 @@
 <div class="cms-sidebar-cpn">
-  <div class="logo bg-contain" (click)="toHome()"></div>
-  <ul class="cms-list">
-    <li class="cms-item" [ngClass]="[item.class, item.selected ? 'selected' : '']" *ngFor="let item of items"
-      (click)="redirect(item)" [matTooltip]="item.text">
+  <a class="logo bg-contain" [routerLink]="['/' + Routing.HOME.path]"></a>
+  <div class="cms-list">
+    <a class="cms-item" [routerLink]="['/' + item.path]" [ngClass]="[item.class, item.selected ? 'selected' : '']" *ngFor="let item of items"
+      (click)="redirect(item)" [matTooltip]="showTooltip ? item.text : ''">
 
       <div *ngIf="!item.selected" class="icon bg-contain"
         [ngStyle]="{'background': 'url(' + '../../../assets/img/cms/' + item.class + '.svg' + ')'}">
@@ -15,6 +15,6 @@
       <div class="text">
         {{item.text}}
       </div>
-    </li>
-  </ul>
+    </a>
+  </div>
 </div>

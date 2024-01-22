@@ -10,10 +10,9 @@ export class BaseResolver implements Resolve<boolean> {
 
   constructor(
     public publisher: PublisherService
-  ) {}
+  ) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> {
-    this.publisher.cancelRouteEvent.emit();
     return of(true);
   }
 
