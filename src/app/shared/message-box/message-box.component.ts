@@ -33,11 +33,10 @@ export class MessageBox implements OnInit {
    */
   private static initConfig() {
     const width = Math.min(440, window.innerWidth * 0.8) + 'px';
-    const height = Math.min(window.innerWidth > BreakPoint.XL ? 148 : 120, window.innerHeight * 0.8) + 'px';
 
     this._config = new MatDialogConfig();
     this._config.minWidth = this._config.maxWidth = this._config.width = width;
-    this._config.minHeight = height;
+    this._config.minHeight = '120px';
     this._config.maxHeight = window.innerHeight * 0.8 + 'px';
     this._config.position = { top: '50px' };
     this._config.panelClass = ['message-box'];
