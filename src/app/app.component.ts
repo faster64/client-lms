@@ -18,7 +18,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   _onDestroySub: Subject<void> = new Subject<void>();
 
-  cmsMode = false;
+  mode = '';
 
   progress = 0;
 
@@ -79,10 +79,10 @@ export class AppComponent implements OnInit, OnDestroy {
         if (event instanceof NavigationEnd) {
           this.progress = 0;
           if (event.urlAfterRedirects.startsWith(`/${Routing.CMS.path}`)) {
-            this.cmsMode = true;
+            this.mode = 'cms';
             return;
           }
-          this.cmsMode = false;
+          this.mode = 'user';
 
           if (event.urlAfterRedirects == `/${Routing.HOME.path}`) {
             document.documentElement.style.setProperty("--header-bg", "#305FE8");

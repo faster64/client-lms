@@ -1,33 +1,19 @@
 ::ng-deep .cms-banner-cpn {
   position: relative;
   height: 100%;
-  padding: 0 36px;
+
   .label {
     font-weight: 600;
     margin-bottom: 4px;
+
     .required {
       color: var(--danger);
     }
   }
 
-  .cms-header, .select-banner, .title-block, .sub-title-block {
+  .select-banner,
+  .title-block,
+  .sub-title-block {
     margin-bottom: 24px;
-  }
-
-  .features {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    height: 80px;
-    padding: 16px 36px;
-    border-bottom: 1px solid var(--greyish);
-
-    .base-button {
-      margin-left: 24px !important;
-    }
   }
 }

@@ -58,6 +58,18 @@ export class GirdComponent extends BaseGridComponent implements OnChanges {
   @Output()
   rowChange = new EventEmitter();
 
+  @Output()
+  onView = new EventEmitter();
+
+  @Output()
+  onAdd = new EventEmitter();
+
+  @Output()
+  onUpdate = new EventEmitter();
+
+  @Output()
+  onDelete = new EventEmitter();
+
   @ViewChild('gridContentBody')
   gridContentBody!: ElementRef;
 
@@ -162,9 +174,6 @@ export class GirdComponent extends BaseGridComponent implements OnChanges {
     }
   }
 
-  onRowEdit(item: any) {
-    this.onEdit.emit(item);
-  }
 
   onRowClick(item: any) {
     this.rowClick.emit(item);
@@ -230,7 +239,7 @@ export class GirdComponent extends BaseGridComponent implements OnChanges {
   }
 
   getCheckedItems() {
-    const result: any = [];
+    const result = [];
     const length = this.checkedList.length < this.data.length ? this.checkedList.length : this.data.length;
     for (let i = 0; i < length; i++) {
       if (this.checkedList[i]) {

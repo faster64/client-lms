@@ -16,9 +16,6 @@ export class BaseGridComponent implements OnInit, OnDestroy, AfterViewInit {
   @Output()
   rowDblClick = new EventEmitter();
 
-  @Output()
-  onEdit = new EventEmitter();
-
   public _onDestroySub: Subject<void> = new Subject<void>();
 
   ngOnInit(): void {

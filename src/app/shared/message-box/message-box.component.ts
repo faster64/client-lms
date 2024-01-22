@@ -37,7 +37,8 @@ export class MessageBox implements OnInit {
 
     this._config = new MatDialogConfig();
     this._config.minWidth = this._config.maxWidth = this._config.width = width;
-    this._config.minHeight = this._config.maxHeight = this._config.height = height;
+    this._config.minHeight = height;
+    this._config.maxHeight = window.innerHeight * 0.8 + 'px';
     this._config.position = { top: '50px' };
     this._config.panelClass = ['message-box'];
   }
@@ -79,7 +80,7 @@ export class MessageBox implements OnInit {
     return MessageBox.dialogRef.afterClosed();
   }
 
-  public static confirmDelete(message: Message) {
+  public static delete(message: Message) {
     const config = this.prepareConfig(message, MessageBoxType.ConfirmDelete);
     if (MessageBox.dialogRef && MessageBox.dialogRef._containerInstance) {
       const configInstance = MessageBox.dialogRef._containerInstance._config;

@@ -1,0 +1,5 @@
+<div class="class-selector-cpn">
+    <selector placeholder="{{'auth.register.placeholder_class' | translate}}" [isFetching]="fetchingClass"
+        [dataSource]="classes" (onValueChanged)="emit($event)" (onOpened)="getClassList()">
+    </selector>
+</div>

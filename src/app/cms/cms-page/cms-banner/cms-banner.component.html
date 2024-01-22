@@ -1,8 +1,4 @@
 <div class="cms-banner-cpn">
-  <div class="cms-header">
-    <app-cms-header label="Quản lý Banner trang chủ"></app-cms-header>
-  </div>
-
   <div class="select-banner">
     <div class="label">
       Banner trang chủ <span class="required">*</span> (tối đa 3 ảnh KT 1320 *464)
@@ -28,9 +24,7 @@
     </div>
   </div>
 
-  <div class="features">
-    <base-button text="{{'base_keys.cancel' | translate}}" [buttonType]="ButtonType.STROKED" [color]="ButtonColor.BASIC" [width]="128" [height]="36" ></base-button>
-
-    <base-button text="{{'base_keys.save' | translate}}" [width]="128" [height]="36" ></base-button>
+  <div class="cms-features-bottom">
+    <app-cms-feature #cmsFeature></app-cms-feature>
   </div>
 </div>

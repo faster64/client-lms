@@ -18,7 +18,9 @@
         </div>
 
         <div class="add-btn">
-          <base-button text="Thêm dữ liệu" [height]="36" [iconButtonType]="IconButtonType.ADD"></base-button>
+          <base-button text="Thêm dữ liệu" [height]="36" [iconButtonType]="IconButtonType.ADD"
+            [finishImmediately]="true" (onClick)="onAdd.emit()">
+          </base-button>
         </div>
       </div>
     </div>
@@ -100,9 +102,12 @@
               </div>
 
               <div class="column column-body column-feature">
-                <div class="feature-icon bg-contain view" matTooltip="Xem bản ghi này"></div>
-                <div class="feature-icon bg-contain edit" matTooltip="Chỉnh sửa"></div>
-                <div class="feature-icon bg-contain delete" matTooltip="Xóa"></div>
+                <div class="feature-icon bg-contain view" matTooltip="Xem bản ghi này" (click)="onView.emit(item)">
+                </div>
+                <div class="feature-icon bg-contain edit" matTooltip="Chỉnh sửa" (click)="onUpdate.emit(item)">
+                </div>
+                <div class="feature-icon bg-contain delete" matTooltip="Xóa" (click)="onDelete.emit(item)">
+                </div>
               </div>
             </div>
           </div>

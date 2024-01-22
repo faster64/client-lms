@@ -11,6 +11,9 @@ import { CmsSocialComponent } from './cms-social/cms-social.component';
 import { CmsOrderComponent } from './cms-order/cms-order.component';
 import { CmsGuideComponent } from './cms-guide/cms-guide.component';
 import { CmsReportComponent } from './cms-report/cms-report.component';
+import { FormModeText } from 'src/app/shared/constants/form-mode.constant';
+import { CmsClassFormComponent } from './cms-class/cms-class-form/cms-class-form.component';
+import { FormMode } from 'src/app/shared/enums/form-mode.enum';
 
 const routes: Routes = [
   {
@@ -41,6 +44,27 @@ const routes: Routes = [
   {
     path: 'lop-hoc',
     component: CmsClassComponent
+  },
+  {
+    path: `lop-hoc/${FormModeText.ADD}`,
+    component: CmsClassFormComponent,
+    data: {
+      formMode: FormMode.Add
+    }
+  },
+  {
+    path: `lop-hoc/${FormModeText.UPDATE}`,
+    component: CmsClassFormComponent,
+    data: {
+      formMode: FormMode.Update
+    }
+  },
+  {
+    path: `lop-hoc/${FormModeText.VIEW}/:id`,
+    component: CmsClassFormComponent,
+    data: {
+      formMode: FormMode.View
+    }
   },
   {
     path: 'bai-giang',

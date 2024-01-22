@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ContactComponent } from './contact.component';
-import { DxTextAreaModule, DxTextBoxModule } from 'devextreme-angular';
+import { NgModule } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
+import { DxTextAreaModule, DxTextBoxModule } from 'devextreme-angular';
 import { BaseButtonModule } from 'src/app/shared/components/micro/button/button.module';
-import { SelectorModule } from 'src/app/shared/components/micro/selector/selector.module';
+import { ClassSelectorModule } from 'src/app/shared/components/micro/class-selector/class-selector.module';
+import { ContactComponent } from './contact.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,7 @@ import { SelectorModule } from 'src/app/shared/components/micro/selector/selecto
     DxTextBoxModule,
     DxTextAreaModule,
     BaseButtonModule,
-    SelectorModule
+    ClassSelectorModule
   ],
   exports: [ContactComponent]
 })

@@ -1,0 +1,18 @@
+<div class="cms-features-cpn">
+    <base-button #cancelBtn text="{{'base_keys.cancel' | translate}}" [buttonType]="ButtonType.STROKED"
+        [color]="ButtonColor.BASIC" [width]="128" [height]="36" (onClick)="cancel.emit()">
+    </base-button>
+
+    <base-button #updateBtn text="{{'base_keys.update' | translate}}" [width]="128" [height]="36"
+        (onClick)="update.emit()" *ngIf="formMode == FormMode.View">
+    </base-button>
+
+    <base-button #saveBtn text="{{'base_keys.save' | translate}}" [width]="128" [height]="36" (onClick)="save.emit()"
+        *ngIf="formMode == FormMode.Add || formMode == FormMode.Update">
+    </base-button>
+
+    <base-button #deleteBtn text="{{'base_keys.delete' | translate}}" [width]="128" [height]="36"
+        [color]="ButtonColor.WARN" (onClick)="delete.emit()"
+        *ngIf="formMode == FormMode.Update || formMode == FormMode.View">
+    </base-button>
+</div>

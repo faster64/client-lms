@@ -3,15 +3,23 @@
     "no_data": "Chưa có dữ liệu",
     "view_more": "Xem Thêm",
     "cancel": "Hủy",
-    "save": "Lưu"
+    "save": "Lưu",
+    "update": "Cập nhật",
+    "delete": "Xóa"
   },
   "warnings": {
-    "feature_is_in_development": "Tính năng đang phát triển"
+    "feature_is_in_development": "Tính năng đang phát triển",
+    "delete_warning_msg": "Các dữ liệu liên quan cũng sẽ bị xóa. Bạn có chắc chắn muốn xóa không?"
   },
   "errors": {
     "not_permission": "Bạn không có quyền thực hiện!",
     "session_expried": "Phiên làm việc đã hết hạn",
     "unknown": "Đã xảy ra lỗi"
+  },
+  "data_messages": {
+    "save_success_msg": "Lưu thành công",
+    "update_success_msg": "Cập nhật thành công",
+    "delete_success_msg": "Xóa thành công"
   },
   "message_box": {
     "agree": "Đồng ý",
@@ -20,7 +28,7 @@
     "delete": "Xóa"
   },
   "header": {
-    "navs":{
+    "navs": {
       "home": "Trang chủ",
       "contact": "Liên hệ",
       "guide": "Hướng dẫn sử dụng",
@@ -115,5 +123,9 @@
       "add_to_cart": "Thêm vào giỏ",
       "buy_now": "Mua ngay"
     }
+  },
+  "class": {
+    "label_class": "Tên lớp",
+    "placeholder_class": "Nhập tên lớp"
   }
 }

@@ -1,4 +1,4 @@
-#app {
+::ng-deep #app {
   position: relative;
   width: 100%;
   max-width: 100%;
@@ -24,6 +24,7 @@
 
   &.cms {
     min-height: 100%;
+
     .sidebar {
       position: fixed;
       top: 0;
@@ -32,12 +33,30 @@
       width: var(--sidebar-width);
       background-color: var(--main-color);
     }
+
+    .app-cms-header {
+      position: absolute;
+      left: var(--sidebar-width);
+      right: 0;
+      height: var(--app-cms-header-height);
+      border-bottom: 1px solid var(--grey);
+    }
+
     .app-content {
       position: absolute;
-      top: 0;
+      top: var(--app-cms-header-height);
       left: var(--sidebar-width);
-      width: calc(100% - 264px);
-      height: 100%;
+      bottom: 0;
+      width: calc(100% - var(--sidebar-width));
+      padding: var(--cms-content-padding);
+
+      .cms-features-bottom {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 80px;
+      }
     }
   }
 }
@@ -45,6 +64,12 @@
 ::ng-deep {
   .mat-mdc-menu-content {
     padding: 4px !important;
+  }
+
+  .mat-mdc-dialog-content {
+    span {
+      color: black;
+    }
   }
 
   .dx-popup-content {
@@ -78,13 +103,10 @@
       // background-color: #1774e7;
       background-color: var(--progress-color);
       border: none;
-      background: linear-gradient(
-          100deg,
+      background: linear-gradient(100deg,
           rgba(255, 255, 255, 0) 40%,
           rgba(255, 255, 255, 0.5) 50%,
-          rgba(255, 255, 255, 0) 60%
-        )
-        var(--progress-color);
+          rgba(255, 255, 255, 0) 60%) var(--progress-color);
       background-size: 200% 100%;
       background-position-x: 180%;
       animation: 1.8s shine linear infinite !important;
@@ -111,11 +133,14 @@
   ::ng-deep {
     #app {
       overflow-x: hidden;
+
       .app-header {
         height: 80px !important;
+
         .bg-line {
           display: none;
         }
+
         .nav-line {
           top: 0;
           left: 0;

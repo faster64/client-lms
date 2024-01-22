@@ -1,0 +1,12 @@
+::ng-deep .cms-features-cpn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+    padding: 16px 36px;
+    border-top: 1px solid var(--greyish);
+
+    .base-button {
+        margin-left: 24px !important;
+    }
+}

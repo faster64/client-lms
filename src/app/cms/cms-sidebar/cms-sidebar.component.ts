@@ -29,58 +29,58 @@ export class CmsSidebarComponent extends BaseComponent {
       {
         text: 'Banner trang chủ',
         class: 'banner',
-        path: 'banner',
+        path: Routing.CMS_BANNER.path,
         selected: true,
       },
       {
         text: 'Quản lý khóa học',
         class: 'course',
-        path: 'khoa-hoc',
+        path: Routing.CMS_COURSE.path,
       },
       {
         text: 'Quản lý liên hệ',
         class: 'contact',
-        path: 'lien-he',
+        path: Routing.CMS_CONTACT.path,
       },
       {
         text: 'Quản lý tài khoản người dùng',
         class: 'user',
-        path: 'quan-ly-tai-khoan-nguoi-dung',
+        path: Routing.CMS_USER.path,
       },
       {
         text: 'Quản lý tài khoản quản trị',
         class: 'admin',
-        path: 'quan-ly-tai-khoan-quan-tri',
+        path: Routing.CMS_ADMIN.path,
       },
       {
         text: 'Quản lý lớp học',
         class: 'class',
-        path: 'lop-hoc',
+        path: Routing.CMS_CLASS.path,
       },
       {
         text: 'Quản lý bài giảng',
         class: 'lesson',
-        path: 'bai-giang',
+        path: Routing.CMS_LESSON.path,
       },
       {
         text: 'Quản lý mạng xã hội',
         class: 'social',
-        path: 'mang-xa-hoi',
+        path: Routing.CMS_SOCIAL.path,
       },
       {
         text: 'Đơn mua hàng',
         class: 'order',
-        path: 'don-mua-hang',
+        path: Routing.CMS_ORDER.path,
       },
       {
         text: 'Hướng dẫn sử dụng',
         class: 'guide',
-        path: 'huong-dan-su-dung',
+        path: Routing.CMS_GUIDE.path,
       },
       {
         text: 'Báo cáo thống kê',
         class: 'report',
-        path: 'bao-cao-thong-ke',
+        path: Routing.CMS_REPORT.path,
       },
     ];
 
@@ -109,7 +109,7 @@ export class CmsSidebarComponent extends BaseComponent {
     }
     item.selected = true;
 
-    this.router.navigateByUrl(Routing.CMS.path + '/' + item.path);
+    this.router.navigateByUrl(item.path);
   }
 
   toHome = () => this.router.navigateByUrl(Routing.HOME.path);

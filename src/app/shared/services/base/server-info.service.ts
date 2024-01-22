@@ -30,7 +30,7 @@ export class ServerInfoService extends BaseService {
   override getUrl = () => `${environment.base_host}/${this.controller}`;
 
   checkConnect() {
-    const url = `${this.getUrl()}/can-connect?${CommonConstant.NO_RETRY}&${CommonConstant.DISALLOW_NOTICE}`;
+    const url = `${environment.base_host}/ping?${CommonConstant.NO_RETRY}&${CommonConstant.DISALLOW_NOTICE}`;
     return this.http.get<ServiceResult>(url);
   }
 

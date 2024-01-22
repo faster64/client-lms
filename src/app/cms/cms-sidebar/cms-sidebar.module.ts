@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CmsSidebarComponent } from './cms-sidebar.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 
@@ -9,7 +10,8 @@ import { CmsSidebarComponent } from './cms-sidebar.component';
     CmsSidebarComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatTooltipModule
   ],
   exports: [CmsSidebarComponent]
 })

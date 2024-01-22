@@ -20,6 +20,8 @@ import { CmsReportComponent } from './cms-report/cms-report.component';
 import { CmsSocialComponent } from './cms-social/cms-social.component';
 import { CmsUserComponent } from './cms-user/cms-user.component';
 import { GridModule } from 'src/app/shared/components/element/grid/grid.module';
+import { CmsClassFormComponent } from './cms-class/cms-class-form/cms-class-form.component';
+import { CmsFeatureModule } from '../cms-feature/cms-feature.module';
 
 
 @NgModule({
@@ -34,19 +36,21 @@ import { GridModule } from 'src/app/shared/components/element/grid/grid.module';
     CmsSocialComponent,
     CmsOrderComponent,
     CmsGuideComponent,
-    CmsReportComponent
+    CmsReportComponent,
+    CmsClassFormComponent
   ],
   imports: [
     CommonModule,
     CmsPageRoutingModule,
     TranslateModule,
     CmsHeaderModule,
+    CmsFeatureModule,
     DxTextBoxModule,
     DxNumberBoxModule,
     BaseButtonModule,
     BaseLoadingModule,
     BaseUploaderModule,
-    GridModule
+    GridModule,
   ]
 })
 export class CmsPageModule { }

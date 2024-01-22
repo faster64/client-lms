@@ -28,8 +28,15 @@
 
   /* spacing  */
   --sidebar-width: 264px;
+  --sidebar-padding: 24px;
   --side-distance: 300px;
+  --cms-content-padding: 16px 36px 0 36px;
+  --app-cms-header-height: 80px;
   --header-padding: 16px 56px;
+  --search-input-width: 320px;
+
+  /* visibility */
+  --text-sidebar-visibility: visible;
 
   /* z-index */
   --grid-sticky: 100;
@@ -62,6 +69,9 @@
 @media screen and (max-width: 1200px) {
   :root {
     --side-distance: 80px;
+    --sidebar-width: 60px;
+    --sidebar-padding: 8px;
+    --text-sidebar-visibility: hidden;
     --size: 13px;
     --medium-title-size: 15px;
     --large-title-size: 24px;

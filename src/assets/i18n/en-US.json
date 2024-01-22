@@ -3,15 +3,23 @@
     "no_data": "No data",
     "view_more": "View more",
     "cancel": "cancel",
-    "save": "save"
+    "save": "save",
+    "update": "Update",
+    "delete": "Delete"
   },
   "warnings": {
-    "feature_is_in_development": "The feature is in development"
+    "feature_is_in_development": "The feature is in development",
+    "delete_warning_msg": "The related data will also be deleted. Are you sure you want to delete these data?"
   },
   "errors": {
     "not_permission": "Not permission!",
     "session_expried": "Session is expried. Please login again!",
     "unknown": "Unknown error"
+  },
+  "data_messages": {
+    "save_success_msg": "Save success",
+    "update_success_msg": "Update success",
+    "delete_success_msg": "Delete success"
   },
   "message_box": {
     "agree": "Agree",
@@ -115,5 +123,9 @@
       "add_to_cart": "Add to cart",
       "buy_now": "Buy now"
     }
+  },
+  "class": {
+    "label_class": "Class name",
+    "placeholder_class": "Enter class name"
   }
 }

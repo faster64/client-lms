@@ -1,0 +1,16 @@
+<div class="cms-class-form-cpn">
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <div class="label">
+                {{'class.label_class' | translate}} <span class="required">*</span>
+            </div>
+            <dx-text-box #classInput placeholder="{{'class.placeholder_class' | translate}}" [(value)]="data.name"
+                [disabled]="formMode == FormMode.View">
+            </dx-text-box>
+        </div>
+    </div>
+
+    <div class="cms-features-bottom">
+        <app-cms-feature #cmsFeature [formMode]="formMode" (cancel)="cancel()" (save)="save()"></app-cms-feature>
+    </div>
+</div>

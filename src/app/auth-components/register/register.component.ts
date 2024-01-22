@@ -25,9 +25,6 @@ export class RegisterComponent extends BaseComponent implements AfterViewInit {
 
   request = new RegisterRequest();
 
-  fetchingClass = false;
-
-  classes = [];
 
   @ViewChild("fullname")
   fullnameInstance!: DxTextBoxComponent;
@@ -68,25 +65,6 @@ export class RegisterComponent extends BaseComponent implements AfterViewInit {
     // this.request.confirmPassword = '123';
   }
 
-  getClassList() {
-    this.fetchingClass = true;
-    this.classService.getClasses()
-      .pipe(
-        takeUntil(this._onDestroySub),
-        finalize(() => this.fetchingClass = false)
-      )
-      .subscribe(resp => {
-        if (resp.code == 'success') {
-          this.classes = [];
-          for (let i = 0; i < resp.data.length; i++) {
-            this.classes.push({
-              id: resp.data[i],
-              name: `Lớp ${resp.data[i]}`
-            });
-          }
-        }
-      })
-  }
 
   register() {
     const valid = this.validate();

@@ -1,13 +1,19 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { PublisherService } from 'src/app/shared/services/base/publisher.service';
 
 @Component({
   selector: 'app-cms-header',
   templateUrl: './cms-header.component.html',
   styleUrls: ['./cms-header.component.scss']
 })
-export class CmsHeaderComponent {
+export class CmsHeaderComponent implements OnInit {
 
-  @Input()
   label = '';
+
+  constructor(public publisher: PublisherService) { }
+
+  ngOnInit(): void {
+    this.publisher.updateCmsHeaderLabelEvent.subscribe(l => this.label = l);
+  }
 
 }

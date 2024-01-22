@@ -1,9 +1,9 @@
 <div class="cms-course-cpn">
-  <div class="cms-header">
-    <app-cms-header label="Quản lý Khóa học"></app-cms-header>
-  </div>
-
   <div class="course-content">
-    <app-gird [data]="courses" [displayColumn]="displayColumns" [current]="current" [total]="total" [isLoading]="false"></app-gird>
+    <app-gird #grid [data]="dataSource" [displayColumn]="displayColumns" [current]="current" [total]="total"
+      [isLoading]="false">
+    </app-gird>
+
+    <progess-spinner-loading *ngIf="isLoading"></progess-spinner-loading>
   </div>
 </div>

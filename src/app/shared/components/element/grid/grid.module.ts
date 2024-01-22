@@ -7,6 +7,7 @@ import { GirdComponent } from './gird.component';
 import { PipesModule } from 'src/app/shared/pipes/pipes.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { BaseButtonModule } from '../../micro/button/button.module';
+import { BaseLoadingModule } from '../../micro/loading/loading.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { BaseButtonModule } from '../../micro/button/button.module';
     MatTooltipModule,
     MatPaginatorModule,
     PipesModule,
-    BaseButtonModule
+    BaseButtonModule,
+    BaseLoadingModule
   ],
   exports: [GirdComponent]
 })

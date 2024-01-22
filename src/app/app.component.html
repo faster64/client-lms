@@ -1,7 +1,7 @@
-<div id="app" #app [ngClass]="cmsMode ? 'cms' : ''">
+<div id="app" #app [ngClass]="mode == 'cms' ? 'cms' : ''">
   <!-- <mat-progress-bar mode="determinate" [value]="progress" *ngIf="progress > 0"></mat-progress-bar> -->
 
-  <ng-container *ngIf="!cmsMode">
+  <ng-container *ngIf="mode == 'user'">
     <div class="app-header">
       <app-header></app-header>
     </div>
@@ -13,9 +13,13 @@
     </div>
   </ng-container>
 
-  <ng-container *ngIf="cmsMode">
+  <ng-container *ngIf="mode == 'cms'">
     <div class="sidebar">
       <app-cms-sidebar></app-cms-sidebar>
+    </div>
+
+    <div class="app-cms-header">
+      <app-cms-header></app-cms-header>
     </div>
 
     <div #appContent class="app-content">

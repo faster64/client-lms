@@ -34,8 +34,7 @@
 
       <div class="reg-item class">
         <div class="label">{{'auth.register.label_class' | translate}} <span class="required">*</span> </div>
-        <selector placeholder="{{'auth.register.placeholder_class' | translate}}" [isFetching]="fetchingClass"
-          [dataSource]="classes" (onValueChanged)="request.class = $event.value" (onOpened)="getClassList()"></selector>
+        <app-class-selector (onValueChanged)="request.classId = $event.current"></app-class-selector>
       </div>
 
       <div class="reg-item password">
