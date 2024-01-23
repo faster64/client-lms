@@ -1,59 +1,75 @@
 <div class="cms-course-form-cpn">
+  <div class="cms-content-middle">
 
-  <div class="row image">
-    <div class="col-12 col-md-6 data-item"></div>
-  </div>
+    <div class="row image">
+      <div class="col-12 col-md-6 data-item" *ngIf="formMode != FormMode.View">
+        <div class="label">Hình ảnh khóa học <span class="required">*</span>(1 ảnh KT 312 *234) </div>
 
-  <div class="row name">
-    <div class="col-12 data-item">
-      <div class="label">Tên khóa học <span class="required">*</span></div>
-      <dx-text-box #name placeholder="Nhập tên khóa học" [(value)]="data.name" [readOnly]="formMode == FormMode.View" [height]="44"
-        (onEnterKey)="save()">
-      </dx-text-box>
-    </div>
-  </div>
+        <uploader [multiple]="false" [auto]="true" [maxFileSize]="10 * 1024 * 1024" (onChanged)="uploaded($event)">
+        </uploader>
+      </div>
 
-  <div class="row short-description">
-    <div class="col-12 data-item">
-      <div class="label">Mô tả ngắn <span class="required">*</span></div>
-      <dx-text-box #shortDescription placeholder="Nhập mô tả ngắn" [(value)]="data.shortDescription"
-        [readOnly]="formMode == FormMode.View" [height]="44" (onEnterKey)="save()">
-      </dx-text-box>
-    </div>
-  </div>
+      <div class="col-12 col-md-6 data-item" *ngIf="data.imageUrl != ''">
+        <div class="label">Hình ảnh đã tải lên </div>
+        <div class="img-wrap">
+          <img [src]="data.imageUrl">
+        </div>
+      </div>
 
-  <div class="row price">
-    <div class="col-12 col-md-6 data-item">
-      <div class="label">Giá <span class="required">*</span></div>
-      <dx-number-box #price placeholder="Nhập giá tiền khóa học" [(value)]="data.price"
-        [readOnly]="formMode == FormMode.View" [height]="44" (onEnterKey)="save()">
-      </dx-number-box>
     </div>
 
-    <div class="col-12 col-md-6 data-item">
-      <div class="label">Lớp <span class="required">*</span></div>
-      <app-class-selector [disabled]="formMode == FormMode.View" [height]="44" (onValueChanged)="data.classId = $event.current"></app-class-selector>
-    </div>
-  </div>
-
-  <div class="row description">
-    <div class="col-12 data-item">
-      <div class="label">Mô tả khóa học <span class="required">*</span></div>
-      <dx-text-area #description placeholder="Nhập mô tả" [(value)]="data.description"
-        [readOnly]="formMode == FormMode.View" [minHeight]="240" (onEnterKey)="save()">
-      </dx-text-area>
-    </div>
-  </div>
-
-  <div class="row" *ngIf="formMode == FormMode.View">
-    <div class="col-12 col-md-6 data-item">
-      <div class="label"> {{'base_keys.created_date' | translate}} </div>
-      <dx-date-box [(value)]="data.createdDate" [readOnly]="true"></dx-date-box>
+    <div class="row name">
+      <div class="col-12 data-item">
+        <div class="label">Tên khóa học <span class="required">*</span></div>
+        <dx-text-box #name placeholder="Nhập tên khóa học" [(value)]="data.name" [readOnly]="formMode == FormMode.View"
+          [height]="44" (onEnterKey)="save()">
+        </dx-text-box>
+      </div>
     </div>
 
-    <div class="col-12 col-md-6 data-item">
-      <div class="label"> {{'base_keys.last_modified_date' | translate}} </div>
-      <dx-date-box [(value)]="data.lastModifiedDate" [readOnly]="true"></dx-date-box>
+    <div class="row short-description">
+      <div class="col-12 data-item">
+        <div class="label">Mô tả ngắn <span class="required">*</span></div>
+        <dx-text-box #shortDescription placeholder="Nhập mô tả ngắn" [(value)]="data.shortDescription"
+          [readOnly]="formMode == FormMode.View" [height]="44" (onEnterKey)="save()">
+        </dx-text-box>
+      </div>
+    </div>
+
+    <div class="row price">
+      <div class="col-12 col-md-6 data-item">
+        <div class="label">Giá <span class="required">*</span></div>
+        <dx-number-box #price placeholder="Nhập giá tiền khóa học" [(value)]="data.price"
+          [readOnly]="formMode == FormMode.View" [height]="44" (onEnterKey)="save()">
+        </dx-number-box>
+      </div>
+
+      <div class="col-12 col-md-6 data-item">
+        <div class="label">Lớp <span class="required">*</span></div>
+        <app-class-selector #selector [disabled]="formMode == FormMode.View" [height]="44"
+          (onValueChanged)="data.classId = $event.current"></app-class-selector>
+      </div>
+    </div>
+
+    <div class="row description">
+      <div class="col-12 data-item">
+        <div class="label">Mô tả khóa học <span class="required">*</span></div>
+        <dx-text-area #description placeholder="Nhập mô tả" [(value)]="data.description"
+          [readOnly]="formMode == FormMode.View" [minHeight]="240" (onEnterKey)="save()">
+        </dx-text-area>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="formMode == FormMode.View">
+      <div class="col-12 col-md-6 data-item">
+        <div class="label"> {{'base_keys.created_date' | translate}} </div>
+        <dx-date-box [(value)]="data.createdDate" [readOnly]="true"></dx-date-box>
+      </div>
+
+      <div class="col-12 col-md-6 data-item">
+        <div class="label"> {{'base_keys.last_modified_date' | translate}} </div>
+        <dx-date-box [(value)]="data.lastModifiedDate" [readOnly]="true"></dx-date-box>
+      </div>
     </div>
   </div>
 

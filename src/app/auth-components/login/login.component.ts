@@ -43,7 +43,6 @@ export class LoginComponent extends BaseComponent implements AfterViewInit {
     public publisher: PublisherService
   ) {
     super(injector);
-    console.log(this.data)
   }
 
   ngAfterViewInit(): void {

@@ -21,45 +21,6 @@
   .app-footer {
     height: 355px;
   }
-
-  &.cms {
-    min-height: 100%;
-
-    .sidebar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      width: var(--sidebar-width);
-      background-color: var(--main-color);
-    }
-
-    .app-cms-header {
-      position: absolute;
-      top: 0;
-      left: var(--sidebar-width);
-      right: 0;
-      height: var(--app-cms-header-height);
-      border-bottom: 1px solid var(--grey);
-    }
-
-    .app-content {
-      position: absolute;
-      top: var(--app-cms-header-height);
-      left: var(--sidebar-width);
-      bottom: 0;
-      width: calc(100% - var(--sidebar-width));
-      padding: var(--cms-content-padding);
-
-      .cms-features-bottom {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 80px;
-      }
-    }
-  }
 }
 
 ::ng-deep {

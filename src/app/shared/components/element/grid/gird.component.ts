@@ -146,7 +146,6 @@ export class GirdComponent extends BaseGridComponent implements OnChanges {
     } else {
       this.searchPlaceholder = 'Tìm kiếm không khả dụng';
     }
-    console.log(this.searchKeys);
   }
 
   setPaginator() {

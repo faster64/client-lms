@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { NgxDropzoneComponent } from 'ngx-dropzone';
 import { forkJoin, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, finalize } from 'rxjs/operators';
 import { Utility } from 'src/app/shared/utility/utility';
 import { BaseButton } from '../button/button.component';
 import { FileHandlingStatus, UploadEvent } from 'src/app/shared/interfaces/upload-event.interface';
@@ -9,6 +9,7 @@ import { UtilsService } from 'src/app/shared/services/utils/utils.service';
 import { FileEvent } from 'src/app/shared/interfaces/file-event.interface';
 import { SnackBarParameter } from 'src/app/shared/snackbar/snackbar.param';
 import { SnackBar } from 'src/app/shared/snackbar/snackbar.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'uploader',
@@ -19,13 +20,14 @@ export class BaseUploaderComponent {
 
   formData = new FormData();
 
-  maxFileSize = 1024 * 1024 * 50;
-
   events: UploadEvent[] = [];
 
-  presignedUrls: any[] = [];
+  urls: any[] = [];
 
-  isGettingPresignedUrl = false;
+  isFetching = false;
+
+  @Input()
+  maxFileSize = 1024 * 1024 * 50;
 
   @Input()
   allowedFileExtensions = Utility.videoExtensions.map(i => `.${i}`).concat(Utility.imageExtensions.map(i => `.${i}`)).join(",");
@@ -37,22 +39,19 @@ export class BaseUploaderComponent {
   multiple = true;
 
   @Input()
-  uploadUrl = '';
-
-  @Input()
-  showUploadButton = true;
+  url = '';
 
   @Input()
   files: File[] = [];
 
   @Input()
-  usePresignedUrl = false;
+  auto = false;
 
   @Output()
   onChanged = new EventEmitter();
 
   @Output()
-  onGetPresignedUrlStarted = new EventEmitter();
+  onAutoFetchStarted = new EventEmitter();
 
   @Output()
   onRemoved = new EventEmitter();
@@ -70,6 +69,7 @@ export class BaseUploaderComponent {
   selected(fileEvent: FileEvent) {
     const files = [...fileEvent.addedFiles].filter(x => !this.files.find(f => f.name == x.name));
 
+    this.events = [];
     if (!this.multiple) {
       this.files = [];
       this.files = files;
@@ -77,16 +77,13 @@ export class BaseUploaderComponent {
       this.files.push(...files);
     }
 
-    if (!this.showUploadButton) {
-      this.upload();
-    }
     this.handle(fileEvent);
   }
 
   removed(file: any) {
     if (!this.multiple) {
       this.files = [];
-      this.presignedUrls = [];
+      this.urls = [];
       this.events = [];
     }
     else {
@@ -98,27 +95,28 @@ export class BaseUploaderComponent {
       this.events.splice(eventIndex, 1);
 
       // Xóa presigned url
-      if (this.usePresignedUrl) {
-        const presignedIndex = this.presignedUrls.findIndex(x => x.originFileName == file.name);
-        this.presignedUrls.splice(presignedIndex, 1);
+      if (this.auto) {
+        const presignedIndex = this.urls.findIndex(x => x.originFileName == file.name);
+        this.urls.splice(presignedIndex, 1);
       }
     }
 
     this.onRemoved.emit({
       files: this.files,
-      presignedUrls: this.presignedUrls
+      presignedUrls: this.urls
     });
   }
 
-  upload() {
-    if (this.usePresignedUrl && this.isGettingPresignedUrl) {
+  upload(fileNames: string[]) {
+    if (this.auto && this.isFetching) {
       SnackBar.warning(new SnackBarParameter(this, 'File đang được tải lên, vui lòng đợi'));
       return;
     }
 
     this.onChanged.emit({
       files: this.files,
-      presignedUrls: this.presignedUrls
+      presignedUrls: this.urls,
+      fileNames: fileNames
     });
   }
 
@@ -140,12 +138,13 @@ export class BaseUploaderComponent {
   }
 
   handle(fileEvent: FileEvent) {
-    if (!this.usePresignedUrl) {
+    if (!this.auto) {
+      this.upload([]);
       return;
     }
 
-    this.onGetPresignedUrlStarted.emit();
-    this.isGettingPresignedUrl = true;
+    this.onAutoFetchStarted.emit();
+    this.isFetching = true;
     if (!this.events.length) {
       this.appendEvents(this.files);
     } else {
@@ -153,17 +152,16 @@ export class BaseUploaderComponent {
     }
 
     const batchSize = 3;
-    const events = [...this.events].filter(e => !this.presignedUrls.find(x => x.originFileName == e.file.name));
+    const events = [...this.events].filter(e => !this.urls.find(x => x.originFileName == e.file.name));
     const remain = events.length;
     if (remain == 0) {
-      this.isGettingPresignedUrl = false;
+      this.isFetching = false;
       return;
     }
 
     this.next(events, batchSize, remain, () => {
-      this.isGettingPresignedUrl = false;
-      this.presignedUrls = this.events.map(e => e.response.data);
-      this.upload();
+      this.urls = this.events.map(e => environment.upload_url + '/public/content/' + e.response.data);
+      this.upload(this.events.map(e => e.response.data));
     });
   }
 
@@ -186,6 +184,7 @@ export class BaseUploaderComponent {
       )
     );
     forkJoin(obs)
+      .pipe(finalize(() => this.isFetching = false))
       .subscribe(resps => {
         resps.forEach((resp, idx) => {
           localEvents[idx].response = resp;
@@ -207,7 +206,7 @@ export class BaseUploaderComponent {
   }
 
   prevent(event) {
-    if (this.isGettingPresignedUrl) {
+    if (this.isFetching) {
       event.stopPropagation();
       event.preventDefault();
     }

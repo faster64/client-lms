@@ -1,19 +1,4 @@
 ::ng-deep .cms-banner-cpn {
   position: relative;
   height: 100%;
-
-  .label {
-    font-weight: 600;
-    margin-bottom: 4px;
-
-    .required {
-      color: var(--danger);
-    }
-  }
-
-  .select-banner,
-  .title-block,
-  .sub-title-block {
-    margin-bottom: 24px;
-  }
 }

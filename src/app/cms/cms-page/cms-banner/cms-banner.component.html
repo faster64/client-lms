@@ -1,27 +1,40 @@
 <div class="cms-banner-cpn">
-  <div class="select-banner">
-    <div class="label">
-      Banner trang chủ <span class="required">*</span> (tối đa 3 ảnh KT 1320 *464)
+
+  <div class="cms-content-middle">
+
+    <div class="row select-banner">
+      <div class="col-12 col-md-6 data-item">
+        <div class="label">
+          Banner trang chủ <span class="required">*</span> (tối đa 3 ảnh KT 1320 *464)
+        </div>
+        <div class="banner-uploader">
+          <uploader></uploader>
+        </div>
+      </div>
     </div>
-    <div class="banner-uploader">
-      <uploader [showUploadButton]="false"></uploader>
+
+    <div class="row title-block">
+      <div class="col-12 data-item">
+        <div class="label">
+          Tiêu đề lớn <span class="required">*</span>
+        </div>
+        <div class="input">
+          <dx-text-box #title placeholder="Nhập nội dung" height="44"></dx-text-box>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="title-block">
-    <div class="label">
-      Tiêu đề lớn <span class="required">*</span>
+
+    <div class="row sub-title-block">
+      <div class="col-12 data-item">
+        <div class="label">
+          Tiêu đề nhỏ <span class="required">*</span>
+        </div>
+        <div class="input">
+          <dx-text-box #subTitle placeholder="Nhập nội dung" height="44"></dx-text-box>
+        </div>
+      </div>
     </div>
-    <div class="input">
-      <dx-text-box placeholder="Nhập nội dung" height="44"></dx-text-box>
-    </div>
-  </div>
-  <div class="sub-title-block">
-    <div class="label">
-      Tiêu đề nhỏ <span class="required">*</span>
-    </div>
-    <div class="input">
-      <dx-text-box placeholder="Nhập nội dung" height="44"></dx-text-box>
-    </div>
+
   </div>
 
   <div class="cms-features-bottom">

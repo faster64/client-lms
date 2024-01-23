@@ -56,7 +56,8 @@ import { ClassSelectorModule } from 'src/app/shared/components/micro/class-selec
     BaseLoadingModule,
     BaseUploaderModule,
     GridModule,
-    ClassSelectorModule
+    ClassSelectorModule,
+    BaseUploaderModule
   ]
 })
 export class CmsPageModule { }

@@ -83,15 +83,26 @@ export class CmsFormComponent extends BaseComponent {
           if (resp.code == 'success') {
             this.data = resp.data ?? {};
           }
+          this.loaded();
         })
     }
   }
+
+  loaded = () => { };
+
+  validate = () => true;
 
   cancel = () => this.router.navigateByUrl(this.path);
 
   update = () => this.router.navigateByUrl(`${this.path}/${FormModeText.UPDATE}/${this.id}`);
 
   save() {
+    const valid = this.validate();
+    if (!valid) {
+      this.cmsFeature.saveBtn.finish();
+      return;
+    }
+
     this.isLoading = true;
     const api = this.formMode == FormMode.Add ? this.service.save(this.data) : this.service.update(this.data);
 
@@ -101,16 +112,15 @@ export class CmsFormComponent extends BaseComponent {
         this.isLoading = false;
         this.cmsFeature.saveBtn.finish();
       })
-    )
-      .subscribe(resp => {
-        if (resp.code == 'success') {
-          const id = this.formMode == FormMode.Add ? resp.data : this.id;
-          const message = TranslationService.VALUES['data_messages'][this.formMode == FormMode.Add ? 'save_success_msg' : 'update_success_msg'];
-          SnackBar.success(new SnackBarParameter(this, message));
+    ).subscribe(resp => {
+      if (resp.code == 'success') {
+        const id = this.formMode == FormMode.Add ? resp.data : this.id;
+        const message = TranslationService.VALUES['data_messages'][this.formMode == FormMode.Add ? 'save_success_msg' : 'update_success_msg'];
+        SnackBar.success(new SnackBarParameter(this, message));
 
-          this.router.navigateByUrl(`/${this.path}/${FormModeText.VIEW}/${id}`);
-        }
-      })
+        this.router.navigateByUrl(`/${this.path}/${FormModeText.VIEW}/${id}`);
+      }
+    })
   }
 
   delete() {

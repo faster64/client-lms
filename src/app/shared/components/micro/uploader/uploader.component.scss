@@ -8,7 +8,8 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    border: 1px dashed rgb(45, 45, 202) !important;
+    height: 200px;
+    border: 1px dashed var(--main-color) !important;
 
     .single {
       width: 90% !important;
@@ -24,6 +25,7 @@
 
   .uploader {
     position: relative;
+
     .progess-spinner-loading {
       position: absolute;
     }

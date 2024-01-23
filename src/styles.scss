@@ -4,6 +4,7 @@
 @import url("~/src/assets/css/keyframes.css");
 @import url("~/src/assets/css/notification.css");
 @import url("~/src/assets/css/dialog.css");
+@import url("~/src/assets/css/cms.scss");
 
 html,
 body {
@@ -68,4 +69,3 @@ a {
   user-select: none;
   /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 }
-

@@ -94,6 +94,7 @@ export class RequestHandlingInterceptor implements HttpInterceptor {
     header['X-Client-Time'] = Date.now() + "";
     header['X-Client-Offset'] = new Date().getTimezoneOffset() * 60000 + "";
     header['Accept-Language'] = this.culture();
+    header['InternalKey'] = 'public';
 
     return request.clone({
       setHeaders: header,

@@ -27,13 +27,9 @@ export class BaseService {
   constructor(public http: HttpService) {
   }
 
-  getBaseHost() {
-    return this.baseHost;
-  }
+  getBaseHost = () => this.baseHost;
 
-  getApiVersion() {
-    return this.apiVersion;
-  }
+  getApiVersion = () => this.apiVersion;
 
   url() {
     if (this.serviceName == '') {

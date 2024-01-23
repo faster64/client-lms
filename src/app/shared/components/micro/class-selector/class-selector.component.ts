@@ -14,6 +14,8 @@ export class ClassSelectorComponent extends BaseComponent {
 
   classes = [];
 
+  value = '';
+
   @Input()
   disabled = false;
 
@@ -48,6 +50,7 @@ export class ClassSelectorComponent extends BaseComponent {
   }
 
   emit(event) {
+    this.value = event.value;
     this.onValueChanged.emit({
       source: this.classes,
       current: event.value

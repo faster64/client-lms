@@ -1,29 +1,33 @@
 <div class="cms-class-form-cpn">
-  <div class="row">
-    <div class="col-12 col-md-6 data-item">
-      <div class="label">
-        {{'class.label_class' | translate}} <span class="required">*</span>
+
+  <div class="cms-content-middle">
+    <div class="row">
+      <div class="col-12 col-md-6 data-item">
+        <div class="label">
+          {{'class.label_class' | translate}} <span class="required">*</span>
+        </div>
+        <dx-text-box #classInput placeholder="{{'class.placeholder_class' | translate}}" [(value)]="data.name"
+          [readOnly]="formMode == FormMode.View" (onEnterKey)="save()">
+        </dx-text-box>
       </div>
-      <dx-text-box #classInput placeholder="{{'class.placeholder_class' | translate}}" [(value)]="data.name"
-        [readOnly]="formMode == FormMode.View" (onEnterKey)="save()">
-      </dx-text-box>
-    </div>
-  </div>
-
-  <div class="row" *ngIf="formMode == FormMode.View">
-    <div class="col-12 col-md-6 data-item">
-      <div class="label"> {{'base_keys.created_date' | translate}} </div>
-      <dx-date-box [(value)]="data.createdDate" [readOnly]="true"></dx-date-box>
     </div>
 
-    <div class="col-12 col-md-6 data-item">
-      <div class="label"> {{'base_keys.last_modified_date' | translate}} </div>
-      <dx-date-box [(value)]="data.lastModifiedDate" [readOnly]="true"></dx-date-box>
+    <div class="row" *ngIf="formMode == FormMode.View">
+      <div class="col-12 col-md-6 data-item">
+        <div class="label"> {{'base_keys.created_date' | translate}} </div>
+        <dx-date-box [(value)]="data.createdDate" [readOnly]="true"></dx-date-box>
+      </div>
+
+      <div class="col-12 col-md-6 data-item">
+        <div class="label"> {{'base_keys.last_modified_date' | translate}} </div>
+        <dx-date-box [(value)]="data.lastModifiedDate" [readOnly]="true"></dx-date-box>
+      </div>
     </div>
   </div>
 
   <div class="cms-features-bottom">
-    <app-cms-feature #cmsFeature [formMode]="formMode" (cancel)="cancel()" (save)="save()" (update)="update()" (delete)="delete()">
+    <app-cms-feature #cmsFeature [formMode]="formMode" (cancel)="cancel()" (save)="save()" (update)="update()"
+      (delete)="delete()">
     </app-cms-feature>
   </div>
 
