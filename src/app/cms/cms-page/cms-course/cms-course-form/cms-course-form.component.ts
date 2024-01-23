@@ -9,6 +9,7 @@ import { SnackBar } from 'src/app/shared/snackbar/snackbar.component';
 import { SnackBarParameter } from 'src/app/shared/snackbar/snackbar.param';
 import { CmsFormComponent } from '../../cms-page-form.component';
 import { CourseStatus } from 'src/app/shared/enums/course-status.enum';
+import { TinyEditorService } from 'src/app/shared/services/tiny-editor/tiny-editor.service';
 
 @Component({
   selector: 'app-cms-course-form',
@@ -19,7 +20,13 @@ export class CmsCourseFormComponent extends CmsFormComponent implements AfterVie
 
   statuses = CourseService.Statuses;
 
+  TinyEditorService = TinyEditorService;
+
   CourseStatus = CourseStatus;
+
+  isLoadingEditor = true;
+
+  config = this.tinyEditorService.autoResizeConfig(() => this.isLoadingEditor = false);
 
   @ViewChild("name")
   name!: DxTextBoxComponent;
@@ -37,7 +44,8 @@ export class CmsCourseFormComponent extends CmsFormComponent implements AfterVie
   selector!: ClassSelectorComponent;
 
   constructor(
-    injector: Injector
+    injector: Injector,
+    public tinyEditorService: TinyEditorService
   ) {
     super(injector);
   }
@@ -102,5 +110,10 @@ export class CmsCourseFormComponent extends CmsFormComponent implements AfterVie
     this.data.imageUrl = '';
     this.data.imageUrl = event.presignedUrls[0];
     this.data.image = event.fileNames[0];
+  }
+
+  removeImage() {
+    this.data.imageUrl = '';
+    this.data.image = '';
   }
 }

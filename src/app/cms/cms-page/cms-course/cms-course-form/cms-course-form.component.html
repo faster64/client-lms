@@ -9,10 +9,13 @@
         </uploader>
       </div>
 
-      <div class="col-12 col-md-6 data-item" *ngIf="data.imageUrl != ''">
+      <div class="col-12 col-md-6 data-item" *ngIf="data.imageUrl && data.imageUrl != ''">
         <div class="label">Hình ảnh đã tải lên </div>
         <div class="img-wrap">
           <img [src]="data.imageUrl">
+          <div class="remove" (click)="removeImage()" *ngIf="formMode != FormMode.View">
+            <div class="icon bg-contain"></div>
+          </div>
         </div>
       </div>
 
@@ -40,7 +43,7 @@
       <div class="col-12 col-md-6 data-item">
         <div class="label">Giá <span class="required">*</span></div>
         <dx-number-box #price placeholder="Nhập giá tiền khóa học" [(value)]="data.price"
-          [readOnly]="formMode == FormMode.View" [height]="44" (onEnterKey)="save()">
+          [readOnly]="formMode == FormMode.View" [height]="44" [min]="0" format="0,###" (onEnterKey)="save()">
         </dx-number-box>
       </div>
 
@@ -54,8 +57,9 @@
     <div class="row status">
       <div class="col-12 col-md-6 data-item">
         <div class="label">Trạng thái <span class="required">*</span></div>
-        <dx-select-box [dataSource]="statuses" [(value)]="data.status" [height]="44" valueExpr="id" displayExpr="text"
-          noDataText="Chưa chọn" placeholder="Chọn trạng thái khóa học">
+        <dx-select-box [dataSource]="statuses" [(value)]="data.status" [height]="44"
+          [readOnly]="formMode == FormMode.View" valueExpr="id" displayExpr="text" noDataText="Chưa chọn"
+          placeholder="Chọn trạng thái khóa học">
         </dx-select-box>
       </div>
 
@@ -69,9 +73,9 @@
     <div class="row description">
       <div class="col-12 data-item">
         <div class="label">Mô tả khóa học <span class="required">*</span></div>
-        <dx-text-area #description placeholder="Nhập mô tả" [(value)]="data.description"
-          [readOnly]="formMode == FormMode.View" [minHeight]="240" (onEnterKey)="save()">
-        </dx-text-area>
+        <editor [apiKey]="TinyEditorService.Key" #tinymce class="editor-tiny"
+          [(ngModel)]="data.description" [init]="config" [disabled]="formMode == FormMode.View">
+        </editor>
       </div>
     </div>
 

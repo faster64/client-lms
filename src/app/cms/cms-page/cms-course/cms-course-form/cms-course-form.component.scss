@@ -7,7 +7,7 @@
 
     .data-item {
       max-width: 400px;
-      max-height: 212px;
+      max-height: 200px;
 
       .img-wrap {
         display: flex;
@@ -15,10 +15,35 @@
         height: 100%;
 
         img {
+          position: relative;
           max-width: 100%;
           max-height: 100%;
         }
+
+        .remove {
+          position: absolute;
+          top: 24px;
+          right: 24px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 4px;
+          border-radius: 2px;
+          background-color: var(--greyish);
+          cursor: pointer;
+          .icon {
+            width: 20px;
+            height: 20px;
+            background-image: url(~/src/assets/img/common/remove.svg);
+          }
+        }
       }
+    }
+  }
+
+  .row.description {
+    .tox-tinymce {
+      min-height: 400px;
     }
   }
 

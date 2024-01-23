@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { DxFileUploaderModule, DxProgressBarModule } from 'devextreme-angular';
 import { NgxDropzoneModule } from 'ngx-dropzone';
-import { BaseUploaderComponent } from './uploader.component';
 import { BaseButtonModule } from '../button/button.module';
-import { TranslateModule } from '@ngx-translate/core';
 import { BaseLoadingModule } from '../loading/loading.module';
+import { BaseUploaderComponent } from './uploader.component';
 
 @NgModule({
   declarations: [BaseUploaderComponent],
@@ -13,9 +13,9 @@ import { BaseLoadingModule } from '../loading/loading.module';
     CommonModule,
     DxFileUploaderModule,
     DxProgressBarModule,
+    TranslateModule,
     NgxDropzoneModule,
     BaseButtonModule,
-    TranslateModule,
     BaseLoadingModule
   ],
   exports: [BaseUploaderComponent]

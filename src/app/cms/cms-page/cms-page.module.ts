@@ -24,6 +24,8 @@ import { CmsClassFormComponent } from './cms-class/cms-class-form/cms-class-form
 import { CmsFeatureModule } from '../cms-feature/cms-feature.module';
 import { CmsCourseFormComponent } from './cms-course/cms-course-form/cms-course-form.component';
 import { ClassSelectorModule } from 'src/app/shared/components/micro/class-selector/class-selector.module';
+import { FormsModule } from '@angular/forms';
+import { EditorModule } from '@tinymce/tinymce-angular';
 
 
 @NgModule({
@@ -45,6 +47,7 @@ import { ClassSelectorModule } from 'src/app/shared/components/micro/class-selec
   imports: [
     CommonModule,
     CmsPageRoutingModule,
+    FormsModule,
     TranslateModule,
     CmsHeaderModule,
     CmsFeatureModule,
@@ -58,7 +61,8 @@ import { ClassSelectorModule } from 'src/app/shared/components/micro/class-selec
     BaseUploaderModule,
     GridModule,
     ClassSelectorModule,
-    BaseUploaderModule
+    BaseUploaderModule,
+    EditorModule
   ]
 })
 export class CmsPageModule { }

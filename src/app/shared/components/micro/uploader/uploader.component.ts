@@ -30,7 +30,10 @@ export class BaseUploaderComponent {
   maxFileSize = 1024 * 1024 * 50;
 
   @Input()
-  allowedFileExtensions = Utility.videoExtensions.map(i => `.${i}`).concat(Utility.imageExtensions.map(i => `.${i}`)).join(",");
+  allowedFileExtensions = Utility.imageExtensions.map(i => `.${i}`).join(",");
+
+  //@Input()
+  //=allowedFileExtensions = Utility.videoExtensions.map(i => `.${i}`).concat(Utility.imageExtensions.map(i => `.${i}`)).join(",");
 
   @Input()
   disabled = false;
