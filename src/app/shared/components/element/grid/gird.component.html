@@ -6,7 +6,8 @@
       <ng-container *ngIf="checkedCount == 0">
         <div class="left">
           <div class="search">
-            <dx-text-box mode="search" [matTooltip]="searchPlaceholder" [placeholder]="searchPlaceholder" [disabled]="!searchKeys.length" [width]="searchWidth" [(value)]="searchValue"
+            <dx-text-box mode="search" [matTooltip]="searchPlaceholder" [placeholder]="searchPlaceholder"
+              [disabled]="!searchKeys.length" [width]="searchWidth" [(value)]="searchValue"
               (onValueChanged)="onSearch.emit(searchValue)">
             </dx-text-box>
           </div>
@@ -72,6 +73,7 @@
                 [ngClass]="[col.column, col.class || '', col.type == FieldType.Password ? 'password-field' : '']"
                 [ngStyle]="setWidth(col)" *ngFor="let col of displayColumn; index as i">
                 <ng-container [ngSwitch]="col.type" *ngIf="item[col.column]">
+
                   <!-- Nếu là link    -->
                   <a *ngSwitchCase="FieldType.Link" [href]="col.getLink(item) || item[col.column]"
                     [target]="col.target ?? '_self'" [matTooltip]="Utility.removeHtml(item[col.column])"
@@ -103,9 +105,11 @@
                     [innerHTML]="item[col.column] | DateTimeVietnamPipe">
                   </p>
 
+
                   <!-- Default  -->
                   <p *ngSwitchDefault [matTooltip]="Utility.removeHtml(item[col.column])"
-                    [innerHTML]="item[col.column] || ''"></p>
+                    [innerHTML]="item[col.column] || ''">
+                  </p>
                 </ng-container>
 
                 <ng-container *ngIf="!item[col.column]">

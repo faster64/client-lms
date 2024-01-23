@@ -9,5 +9,20 @@
     .progess-spinner-loading {
       position: absolute !important;
     }
+
+    span.release {
+      color: limegreen !important;
+      font-weight: 550;
+    }
+
+    span.comming-soon {
+      color: var(--main-color) !important;
+      font-weight: 550;
+    }
+
+    span.inactive {
+      color: red !important;
+      font-weight: 550;
+    }
   }
 }

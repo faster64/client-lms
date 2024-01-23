@@ -3,6 +3,7 @@ import { FieldType } from 'src/app/shared/enums/field-type.enum';
 import { CmsGridComponent } from '../cms-page-grid.component';
 import { PublisherService } from 'src/app/shared/services/base/publisher.service';
 import { CourseService } from 'src/app/shared/services/course/course.service';
+import { CourseStatus } from 'src/app/shared/enums/course-status.enum';
 
 @Component({
   selector: 'app-cms-course',
@@ -27,5 +28,16 @@ export class CmsCourseComponent extends CmsGridComponent {
     this.displayColumns.push({ column: 'shortDescription', displayText: 'Mô tả ngắn', width: 480 });
     this.displayColumns.push({ column: 'class', displayText: 'Lớp', width: 120 });
     this.displayColumns.push({ column: 'price', displayText: 'Giá', width: 140, type: FieldType.Number });
+    this.displayColumns.push({ column: 'statusText', displayText: 'Trạng thái', width: 160 });
+  }
+
+  override filterResponse = (data) => {
+    for (let i = 0; i < data.length; i++) {
+      const item = data[i];
+      const className = item.status == CourseStatus.Release ? 'release' : item.status == CourseStatus.CommingSoon ? 'comming-soon' : 'inactive';
+      item.statusText = `<span class='${className}'>${item.statusText}</span>`;
+    }
+
+    return data;
   }
 }

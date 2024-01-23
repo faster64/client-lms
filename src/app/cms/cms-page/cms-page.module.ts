@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { TranslateModule } from '@ngx-translate/core';
-import { DxDateBoxModule, DxNumberBoxModule, DxTextAreaModule, DxTextBoxModule } from 'devextreme-angular';
+import { DxDateBoxModule, DxNumberBoxModule, DxSelectBoxModule, DxTextAreaModule, DxTextBoxModule } from 'devextreme-angular';
 import { BaseButtonModule } from 'src/app/shared/components/micro/button/button.module';
 import { BaseLoadingModule } from 'src/app/shared/components/micro/loading/loading.module';
 import { BaseUploaderModule } from 'src/app/shared/components/micro/uploader/uploader.module';
@@ -52,6 +52,7 @@ import { ClassSelectorModule } from 'src/app/shared/components/micro/class-selec
     DxNumberBoxModule,
     DxTextAreaModule,
     DxDateBoxModule,
+    DxSelectBoxModule,
     BaseButtonModule,
     BaseLoadingModule,
     BaseUploaderModule,

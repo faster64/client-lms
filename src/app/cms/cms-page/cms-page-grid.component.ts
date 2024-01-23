@@ -73,6 +73,8 @@ export class CmsGridComponent extends BaseComponent {
       })
   }
 
+  filterResponse = (data) => data;
+
   loadData() {
     this.isLoading = true;
     this.service
@@ -83,6 +85,7 @@ export class CmsGridComponent extends BaseComponent {
       )
       .subscribe(resp => {
         if (resp.code == 'success') {
+          resp.data = this.filterResponse(resp.data);
           this.dataSource = resp.data;
           this.current = this.dataSource.length;
           this.total = resp.total;

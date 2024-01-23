@@ -8,6 +8,7 @@ import { CourseService } from 'src/app/shared/services/course/course.service';
 import { SnackBar } from 'src/app/shared/snackbar/snackbar.component';
 import { SnackBarParameter } from 'src/app/shared/snackbar/snackbar.param';
 import { CmsFormComponent } from '../../cms-page-form.component';
+import { CourseStatus } from 'src/app/shared/enums/course-status.enum';
 
 @Component({
   selector: 'app-cms-course-form',
@@ -15,6 +16,10 @@ import { CmsFormComponent } from '../../cms-page-form.component';
   styleUrls: ['./cms-course-form.component.scss']
 })
 export class CmsCourseFormComponent extends CmsFormComponent implements AfterViewInit {
+
+  statuses = CourseService.Statuses;
+
+  CourseStatus = CourseStatus;
 
   @ViewChild("name")
   name!: DxTextBoxComponent;
@@ -50,6 +55,7 @@ export class CmsCourseFormComponent extends CmsFormComponent implements AfterVie
   override initConfig(): void {
     super.initConfig();
     this.path = Routing.CMS_COURSE.path;
+    this.data.status = CourseStatus.CommingSoon;
     this.service = this.injector.get(CourseService);
   }
 

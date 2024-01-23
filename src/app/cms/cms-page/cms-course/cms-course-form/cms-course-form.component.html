@@ -51,6 +51,21 @@
       </div>
     </div>
 
+    <div class="row status">
+      <div class="col-12 col-md-6 data-item">
+        <div class="label">Trạng thái <span class="required">*</span></div>
+        <dx-select-box [dataSource]="statuses" [(value)]="data.status" [height]="44" valueExpr="id" displayExpr="text"
+          noDataText="Chưa chọn" placeholder="Chọn trạng thái khóa học">
+        </dx-select-box>
+      </div>
+
+      <div class="col-12 col-md-6 data-item" *ngIf="data.status == CourseStatus.Release">
+        <div class="label">Ngày phát hành</div>
+        <dx-date-box [value]="data.releaseDate" [readOnly]="true" [height]="44">
+        </dx-date-box>
+      </div>
+    </div>
+
     <div class="row description">
       <div class="col-12 data-item">
         <div class="label">Mô tả khóa học <span class="required">*</span></div>
