@@ -8,34 +8,34 @@
     .data-item {
       max-width: 400px;
       max-height: 200px;
+    }
 
-      .img-wrap {
+    .img-wrap {
+      position: relative;
+      width: 212px;
+      height: 100%;
+
+      img {
+        width: 200px;
+        height: 200px;
+      }
+
+      .remove {
+        position: absolute;
+        top: 12px;
+        right: 12px;
         display: flex;
         align-items: center;
-        height: 100%;
+        justify-content: center;
+        padding: 4px;
+        border-radius: 2px;
+        background-color: var(--greyish);
+        cursor: pointer;
 
-        img {
-          position: relative;
-          max-width: 100%;
-          max-height: 100%;
-        }
-
-        .remove {
-          position: absolute;
-          top: 24px;
-          right: 24px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 4px;
-          border-radius: 2px;
-          background-color: var(--greyish);
-          cursor: pointer;
-          .icon {
-            width: 20px;
-            height: 20px;
-            background-image: url(~/src/assets/img/common/remove.svg);
-          }
+        .icon {
+          width: 16px;
+          height: 16px;
+          background-image: url(~/src/assets/img/common/remove.svg);
         }
       }
     }

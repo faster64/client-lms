@@ -45,8 +45,8 @@
 
     <div class="cms-features-bottom">
         <base-button text="{{'base_keys.cancel' | translate}}" [buttonType]="ButtonType.STROKED"
-            [color]="ButtonColor.BASIC" [width]="128" [height]="36" [finishImmediately]="true"
-            (onClick)="updateMode = false" *ngIf="updateMode">
+            [color]="ButtonColor.BASIC" [width]="128" [height]="36" [finishImmediately]="true" (onClick)="cancel()"
+            *ngIf="updateMode">
         </base-button>
 
         <base-button text="{{'base_keys.update' | translate}}" [width]="128" [height]="36" [finishImmediately]="true"

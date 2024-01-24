@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BaseService } from '../base/base.service';
 import { HttpService } from '../base/http.service';
 import { ServiceResult } from '../../models/base/service-result';
+import { CommonConstant } from '../../constants/common.constant';
 @Injectable({
     providedIn: 'root'
 })
@@ -12,7 +13,7 @@ export class SocialService extends BaseService {
     }
 
     information() {
-        const url = this.url() + '/social-information';
+        const url = this.url() + `/social-information?${CommonConstant.DISALLOW_NOTICE}`;
         return this.http.get<ServiceResult>(url);
     }
 

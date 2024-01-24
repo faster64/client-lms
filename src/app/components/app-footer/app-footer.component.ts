@@ -21,10 +21,10 @@ export class AppFooterComponent extends BaseComponent {
 
   override initData(): void {
     super.initData();
-    this.loadSocial();
+    this.load();
   }
 
-  loadSocial() {
+  load() {
     this.isLoading = true;
     this.socialService
       .information()

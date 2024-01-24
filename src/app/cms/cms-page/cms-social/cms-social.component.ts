@@ -43,13 +43,13 @@ export class CmsSocialComponent extends BaseComponent implements AfterViewInit {
   override ngOnInit(): void {
     this.publisher.updateCmsHeaderLabelEvent.emit('Quản lý mạng xã hội');
     super.ngOnInit();
-    this.load();
+    this.load(true);
   }
 
   ngAfterViewInit(): void {
   }
 
-  load() {
+  load(autoFocus: boolean) {
     this.isLoading = true;
     this.socialService
       .information()
@@ -67,7 +67,9 @@ export class CmsSocialComponent extends BaseComponent implements AfterViewInit {
           StringHelper.isNullOrEmpty(this.data.youtube) &&
           StringHelper.isNullOrEmpty(this.data.facebook)
         ) {
-          this.update();
+          if (autoFocus) {
+            this.update();
+          }
         }
       });
   }
@@ -77,7 +79,13 @@ export class CmsSocialComponent extends BaseComponent implements AfterViewInit {
     this.phone.instance.focus();
   }
 
+  cancel() {
+    this.updateMode = false;
+    this.load(false);
+  }
+
   save() {
+    this.isLoading = true;
     this.socialService
       .updateInformation(this.data)
       .pipe(
@@ -88,7 +96,7 @@ export class CmsSocialComponent extends BaseComponent implements AfterViewInit {
         if (resp.code == 'success') {
           SnackBar.success(new SnackBarParameter(this, TranslationService.VALUES['data_messages']['save_success_msg']));
           this.updateMode = false;
-          this.load();
+          this.load(false);
         }
       });
   }

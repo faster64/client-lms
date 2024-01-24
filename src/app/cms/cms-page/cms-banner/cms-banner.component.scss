@@ -1,4 +1,63 @@
 ::ng-deep .cms-banner-cpn {
   position: relative;
   height: 100%;
+
+  .progess-spinner-loading {
+    position: absolute !important;
+  }
+
+  .cms-features-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+    padding: 16px 36px;
+    border-top: 1px solid var(--greyish);
+
+    .base-button {
+      margin-left: 24px !important;
+    }
+  }
+
+  .select-banner {
+    .preview {
+      height: 100%;
+
+      .banner-image-wrapper {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        overflow: auto;
+
+        .banner-image {
+          position: relative;
+          margin-right: 24px;
+
+          img {
+            width: 200px;
+            height: 200px;
+          }
+
+          .remove {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px;
+            border-radius: 2px;
+            background-color: var(--greyish);
+            cursor: pointer;
+
+            .icon {
+              width: 16px;
+              height: 16px;
+              background-image: url(~/src/assets/img/common/remove.svg);
+            }
+          }
+        }
+      }
+    }
+  }
 }

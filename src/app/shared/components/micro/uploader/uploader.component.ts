@@ -30,6 +30,9 @@ export class BaseUploaderComponent {
   maxFileSize = 1024 * 1024 * 50;
 
   @Input()
+  maxCount = 0;
+
+  @Input()
   allowedFileExtensions = Utility.imageExtensions.map(i => `.${i}`).join(",");
 
   //@Input()
@@ -49,6 +52,7 @@ export class BaseUploaderComponent {
 
   @Input()
   auto = false;
+
 
   @Output()
   onChanged = new EventEmitter();
@@ -141,6 +145,10 @@ export class BaseUploaderComponent {
   }
 
   handle(fileEvent: FileEvent) {
+    if (this.maxCount > 0) {
+      this.files = this.files.splice(0, this.maxCount);
+    }
+
     if (!this.auto) {
       this.upload([]);
       return;

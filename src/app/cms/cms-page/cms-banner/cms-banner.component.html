@@ -8,8 +8,28 @@
           Banner trang chủ <span class="required">*</span> (tối đa 3 ảnh KT 1320 *464)
         </div>
         <div class="banner-uploader">
-          <uploader></uploader>
+          <uploader [disabled]="!updateMode" [auto]="true" [maxFileSize]="10 * 1024 * 1024" [maxCount]="3"
+            (onChanged)="uploaded($event)">
+          </uploader>
         </div>
+      </div>
+
+      <div class="col-12 col-md-6 data-item preview" *ngIf="data && data.images && data.images.length">
+
+        <div class="label">
+          Hình ảnh đã tải lên
+        </div>
+
+        <div class="banner-image-wrapper">
+          <div class="banner-image" *ngFor="let url of data.imageUrls; index as i">
+            <img [src]="url">
+
+            <div class="remove" (click)="remove(i)">
+              <div class="icon bg-contain"></div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -19,7 +39,8 @@
           Tiêu đề lớn <span class="required">*</span>
         </div>
         <div class="input">
-          <dx-text-box #title placeholder="Nhập nội dung" height="44"></dx-text-box>
+          <dx-text-box #title placeholder="Nhập nội dung" height="44" [(value)]="data.title"
+            [readOnly]="!updateMode"></dx-text-box>
         </div>
       </div>
     </div>
@@ -30,7 +51,8 @@
           Tiêu đề nhỏ <span class="required">*</span>
         </div>
         <div class="input">
-          <dx-text-box #subTitle placeholder="Nhập nội dung" height="44"></dx-text-box>
+          <dx-text-box #subTitle placeholder="Nhập nội dung" height="44" [(value)]="data.subTitle"
+            [readOnly]="!updateMode"></dx-text-box>
         </div>
       </div>
     </div>
@@ -38,6 +60,18 @@
   </div>
 
   <div class="cms-features-bottom">
-    <app-cms-feature #cmsFeature></app-cms-feature>
+    <base-button text="{{'base_keys.cancel' | translate}}" [buttonType]="ButtonType.STROKED" [color]="ButtonColor.BASIC"
+      [width]="128" [height]="36" [finishImmediately]="true" (onClick)="cancel()" *ngIf="updateMode">
+    </base-button>
+
+    <base-button text="{{'base_keys.update' | translate}}" [width]="128" [height]="36" [finishImmediately]="true"
+      (onClick)="update()" *ngIf="!updateMode">
+    </base-button>
+
+    <base-button #saveBtn text="{{'base_keys.save' | translate}}" [width]="128" [height]="36" (onClick)="save()"
+      *ngIf="updateMode">
+    </base-button>
   </div>
+
+  <progess-spinner-loading *ngIf="isLoading"></progess-spinner-loading>
 </div>
