@@ -1,10 +1,12 @@
-.app-footer-cpn {
+::ng-deep .app-footer-cpn {
   display: flex;
   height: 100%;
   padding: 56px var(--side-distance);
   background-color: var(--footer-bg);
+
   .common-info {
     margin-right: 100px;
+
     .logo {
       width: 93px;
       height: 48px;
@@ -13,22 +15,37 @@
       background-image: url(~/src/assets/img/logo.png);
       cursor: pointer;
     }
+
     .info-item {
       display: flex;
       align-items: center;
       margin-bottom: 16px;
+
       .icon {
         width: 24px;
         height: 24px;
         margin-right: 8px;
       }
+
       .text {
+        display: flex;
+        align-items: center;
         width: calc(100% - 32px);
         color: var(--white);
         font-size: var(--size);
         font-style: normal;
         font-weight: 400;
         line-height: 28px;
+
+        .loading-hook {
+          position: relative;
+          display: inline-block;
+          width: 120px;
+          height: 16px;
+          margin-left: 4px;
+        }
+
+
       }
 
       &.address {
@@ -36,11 +53,13 @@
           background-image: url(~/src/assets/img/footer/address.png);
         }
       }
+
       &.phone {
         .icon {
           background-image: url(~/src/assets/img/footer/phone.png);
         }
       }
+
       &.email {
         .icon {
           background-image: url(~/src/assets/img/footer/email.png);
@@ -52,6 +71,7 @@
   .about-we,
   .social {
     margin-top: 72px;
+
     .title {
       margin-bottom: 24px;
       color: var(--white);
@@ -62,6 +82,7 @@
 
   .about-we {
     margin-right: 100px;
+
     .about-item {
       margin-bottom: 16px;
       color: var(--white);
@@ -87,6 +108,7 @@
         margin-right: 24px;
         background-image: url(~/src/assets/img/footer/youtube.png);
       }
+
       &.facebook {
         background-image: url(~/src/assets/img/footer/facebook.png);
       }
@@ -98,18 +120,22 @@
   .app-footer-cpn {
     flex-wrap: wrap;
     padding: 16px var(--side-distance);
+
     .block {
       flex-basis: 100%;
     }
 
-    .about-we, .social {
+    .about-we,
+    .social {
       margin-top: 24px;
+
       .title {
         margin-bottom: 8px;
       }
     }
 
-    .about-item, .info-item {
+    .about-item,
+    .info-item {
       margin-bottom: 4px !important;
     }
   }

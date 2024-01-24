@@ -1,1 +1,62 @@
-<p>cms-social works!</p>
+<div class="cms-social-form-cpn">
+
+    <div class="cms-content-middle">
+        <div class="row">
+            <div class="col-12 col-md-6 data-item phone">
+                <div class="label">Số điện thoại</div>
+                <dx-text-box #phone placeholder="Nhập số điện thoại" [height]="44" [readOnly]="!updateMode"
+                    [(value)]="data.phoneNumber" [maxLength]="25" (onEnterKey)="save()">
+                </dx-text-box>
+            </div>
+
+            <div class="col-12 col-md-6 data-item email">
+                <div class="label">Email</div>
+                <dx-text-box #email placeholder="Nhập email" [height]="44" [readOnly]="!updateMode"
+                    [(value)]="data.email" (onEnterKey)="save()">
+                </dx-text-box>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-md-6 data-item zalo">
+                <div class="label">Số điện thoại</div>
+                <dx-text-box #zalo placeholder="Nhập số điện thoại zalo" [height]="44" [readOnly]="!updateMode"
+                    [(value)]="data.zalo" [maxLength]="25" (onEnterKey)="save()">
+                </dx-text-box>
+            </div>
+
+            <div class="col-12 col-md-6 data-item youtube">
+                <div class="label">Youtube</div>
+                <dx-text-box #youtube placeholder="Nhập link youtube" [height]="44" [readOnly]="!updateMode"
+                    [(value)]="data.youtube" (onEnterKey)="save()">
+                </dx-text-box>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-md-6 data-item facebook">
+                <div class="label">Facebook</div>
+                <dx-text-box #facebook placeholder="Nhập link facebook" [height]="44" [readOnly]="!updateMode"
+                    [(value)]="data.facebook" (onEnterKey)="save()">
+                </dx-text-box>
+            </div>
+        </div>
+    </div>
+
+    <div class="cms-features-bottom">
+        <base-button text="{{'base_keys.cancel' | translate}}" [buttonType]="ButtonType.STROKED"
+            [color]="ButtonColor.BASIC" [width]="128" [height]="36" [finishImmediately]="true"
+            (onClick)="updateMode = false" *ngIf="updateMode">
+        </base-button>
+
+        <base-button text="{{'base_keys.update' | translate}}" [width]="128" [height]="36" [finishImmediately]="true"
+            (onClick)="update()" *ngIf="!updateMode">
+        </base-button>
+
+        <base-button #saveBtn text="{{'base_keys.save' | translate}}" [width]="128" [height]="36" (onClick)="save()"
+            *ngIf="updateMode">
+        </base-button>
+    </div>
+
+    <progess-spinner-loading *ngIf="isLoading"></progess-spinner-loading>
+</div>

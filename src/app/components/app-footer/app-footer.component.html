@@ -7,11 +7,24 @@
     </div>
     <div class="info-item phone">
       <div class="icon"></div>
-      <div class="text">{{'footer.phone' | translate}}: 02432669140</div>
+      <div class="text">
+        <span>
+          {{'footer.phone' | translate}}: {{social.phoneNumber}}
+        </span>
+
+        <span class="loading-hook">
+          <skeleton-loading *ngIf="isLoading"></skeleton-loading>
+        </span>
+      </div>
     </div>
     <div class="info-item email">
       <div class="icon"></div>
-      <div class="text">Email: info@canhbuom-edu.vn</div>
+      <div class="text">
+        <span>Email: {{social.email}}</span>
+        <span class="loading-hook">
+          <skeleton-loading *ngIf="isLoading"></skeleton-loading>
+        </span>
+      </div>
     </div>
   </div>
   <div class="about-we block">
@@ -22,7 +35,7 @@
   </div>
   <div class="social block">
     <div class="title">{{'footer.social_network_media' | translate}}</div>
-    <div class="icon youtube"></div>
-    <div class="icon facebook"></div>
+    <a class="icon youtube" [href]="social.youtube" target="_blank"></a>
+    <a class="icon facebook" [href]="social.facebook" target="_blank"></a>
   </div>
 </div>

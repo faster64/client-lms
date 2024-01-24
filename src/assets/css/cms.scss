@@ -27,10 +27,12 @@
         left: var(--sidebar-width);
         bottom: 0;
         width: calc(100% - var(--sidebar-width));
-        padding: var(--cms-content-padding);
 
         .cms-content-middle {
-            min-height: calc(100% - 80px);
+            height: calc(100% - 80px);
+            padding: var(--cms-content-padding);
+            overflow-x: hidden;
+            overflow-y: auto;
 
             .data-item {
                 margin-bottom: 24px;
