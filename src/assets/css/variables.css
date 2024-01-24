@@ -10,6 +10,7 @@
   --white: #fff;
   --gray: #E4E7EC;
   --gray-50: #F9FAFB;
+  --gray-100: #edf0f5;
   --gray-200: #e4e7ec;
   --gray-800: #1d2939;
   --blue-01: #E8EDFC;
@@ -21,6 +22,7 @@
 
   /* font-size */
   --size: 14px;
+  --small-title-size: 16px;
   --medium-title-size: 20px;
   --auth-title-size: 28px;
   --large-title-size: 40px;
@@ -62,6 +64,7 @@
   :root {
     --side-distance: 100px;
     --size: 14px;
+    --small-title-size: 15px;
     --medium-title-size: 16px;
   }
 }
@@ -73,6 +76,7 @@
     --sidebar-padding: 8px;
     --text-sidebar-visibility: hidden;
     --size: 13px;
+    --small-title-size: 14px;
     --medium-title-size: 15px;
     --large-title-size: 24px;
     --large-sub-title-size: 15px;

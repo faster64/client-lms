@@ -28,6 +28,9 @@ export class CmsCourseFormComponent extends CmsFormComponent implements AfterVie
 
   config = this.tinyEditorService.autoResizeConfig(() => this.isLoadingEditor = false);
 
+  @ViewChild("code")
+  code!: DxTextBoxComponent;
+
   @ViewChild("name")
   name!: DxTextBoxComponent;
 
@@ -56,7 +59,7 @@ export class CmsCourseFormComponent extends CmsFormComponent implements AfterVie
 
   ngAfterViewInit(): void {
     if (this.formMode != FormMode.View) {
-      this.name.instance.focus();
+      this.code.instance.focus();
     }
   }
 
@@ -65,6 +68,10 @@ export class CmsCourseFormComponent extends CmsFormComponent implements AfterVie
     this.path = Routing.CMS_COURSE.path;
     this.data.status = CourseStatus.CommingSoon;
     this.service = this.injector.get(CourseService);
+    this.data.name = 'Khóa học ok';
+    this.data.price = 12000000;
+    this.data.shortDescription = '1';
+    this.data.description = '1';
   }
 
   override loaded = () => {

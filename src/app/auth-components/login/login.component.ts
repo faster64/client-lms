@@ -54,8 +54,7 @@ export class LoginComponent extends BaseComponent implements AfterViewInit {
   forgotPassword = () => this.router.navigateByUrl(Routing.FORGOT_PASSWORD.path);
 
   validate() {
-    console.log(TranslationService.VALUES)
-    if (StringHelper.isNullOrEmpty(this.request.username) || !this.request.username.isMail()) {
+    if (StringHelper.isNullOrEmpty(this.request.username)) {
       SnackBar.warning(new SnackBarParameter(this, TranslationService.VALUES['auth']['login']['email_not_valid_msg']));
       this.emailInstance.instance.focus();
       this.emailInstance.instance.option("isValid", false);

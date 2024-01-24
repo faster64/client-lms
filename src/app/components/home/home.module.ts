@@ -8,6 +8,7 @@ import { BannerModule } from '../banner/banner.module';
 import { AboutWeModule } from '../about-we/about-we.module';
 import { CourseModule } from '../course/course.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { BaseLoadingModule } from 'src/app/shared/components/micro/loading/loading.module';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { TranslateModule } from '@ngx-translate/core';
     BannerModule,
     ContactModule,
     AboutWeModule,
-    CourseModule
+    CourseModule,
+    BaseLoadingModule
   ]
 })
 export class HomeModule { }

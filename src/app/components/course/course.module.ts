@@ -4,8 +4,7 @@ import { CourseComponent } from './course.component';
 import { BaseButtonModule } from 'src/app/shared/components/micro/button/button.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
-
-
+import { PipesModule } from 'src/app/shared/pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +14,8 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     RouterModule,
     BaseButtonModule,
-    TranslateModule
+    TranslateModule,
+    PipesModule
   ],
   exports: [CourseComponent]
 })

@@ -1,16 +1,23 @@
 <div class="course-cpn">
+
   <div class="course-banner">
-    <div class="course-img bg-cover"></div>
-    <div class="class">{{'course.class' | translate}} 12</div>
-    <div class="price">2.099.000</div>
+    <div class="course-img bg-cover" [ngStyle]="{backgroundImage: 'url(' + course.imageUrl + ')'}"></div>
+    <div class="class">{{course.className}}</div>
+    <div class="price">{{course.price | NumberFormatPipe}}</div>
   </div>
-  <a class="course-name" [routerLink]="'/'" (click)="Utility.featureIsInDevelopment($event)">Python Basics - Python Cơ Bản</a>
-  <div class="course-description">Python là một ngôn ngữ lập trình bậc cao cho các mục đích lập trình...</div>
+
+  <a class="course-name" [routerLink]="'/'" (click)="Utility.featureIsInDevelopment($event)">
+    {{course.name}}
+  </a>
+  <div class="course-description">{{course.shortDescription}}</div>
+
   <div class="course-features">
-    <base-button text="{{'course.features.add_to_cart' | translate}}" [width]="156" [height]="44" [buttonType]="ButtonType.STROKED" [color]="ButtonColor.BASIC">
+    <base-button text="{{'course.features.add_to_cart' | translate}}" [width]="132" [height]="44"
+      [buttonType]="ButtonType.STROKED" [color]="ButtonColor.BASIC">
     </base-button>
 
-    <base-button text="{{'course.features.buy_now' | translate}}" [width]="128" [height]="44" [finishImmediately]="true" (onClick)="buy()">
+    <base-button class="buy-btn" text="{{'course.features.buy_now' | translate}}" [width]="112" [height]="44"
+      [finishImmediately]="true" (onClick)="buy()">
     </base-button>
   </div>
 </div>

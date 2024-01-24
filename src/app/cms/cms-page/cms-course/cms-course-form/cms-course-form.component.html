@@ -21,6 +21,15 @@
 
     </div>
 
+    <div class="row">
+      <div class="col-12 data-item code">
+        <div class="label">Mã khóa học <span class="required">*</span></div>
+        <dx-text-box #code placeholder="Nhập mã khóa học" [(value)]="data.code" [readOnly]="formMode == FormMode.View"
+          [height]="44" (onEnterKey)="save()">
+        </dx-text-box>
+      </div>
+    </div>
+
     <div class="row name">
       <div class="col-12 data-item">
         <div class="label">Tên khóa học <span class="required">*</span></div>
@@ -73,8 +82,8 @@
     <div class="row description">
       <div class="col-12 data-item">
         <div class="label">Mô tả khóa học <span class="required">*</span></div>
-        <editor [apiKey]="TinyEditorService.Key" #tinymce class="editor-tiny"
-          [(ngModel)]="data.description" [init]="config" [disabled]="formMode == FormMode.View">
+        <editor [apiKey]="TinyEditorService.Key" #tinymce class="editor-tiny" [(ngModel)]="data.description"
+          [init]="config" [disabled]="formMode == FormMode.View">
         </editor>
       </div>
     </div>

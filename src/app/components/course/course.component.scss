@@ -1,17 +1,21 @@
 ::ng-deep .course-cpn {
   width: 100%;
   height: 100%;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.12);
   overflow: hidden;
 
   .course-banner {
     position: relative;
     height: 234px;
     margin-bottom: 12px;
+
     .course-img {
       height: calc(100% - 32px);
       border-radius: 8px;
-      background-image: url(~/src/assets/img/course/bg.png);
     }
+
     .class {
       position: absolute;
       bottom: 0;
@@ -24,7 +28,11 @@
       padding: 4px;
       border: 1.5px solid var(--main-color);
       background: var(--white);
+      color: var(--main-color);
+      font-weight: 600;
+      text-align: center;
     }
+
     .price {
       position: absolute;
       bottom: 0;
@@ -39,10 +47,11 @@
   }
 
   .course-name {
+    display: block;
     height: 40px;
     margin-bottom: 12px;
     color: var(--gray-800);
-    font-size: var(--medium-title-size);
+    font-size: var(--small-title-size);
     font-weight: 600;
     text-decoration-line: underline;
     cursor: pointer;
@@ -60,9 +69,29 @@
     justify-content: space-between;
     height: calc(100% - 370px);
     padding-bottom: 4px;
+
+    base-button.buy-btn {
+      margin-left: 16px;
+    }
+
+    button {
+      padding: 4px;
+    }
   }
 
   .mdc-button {
     border-color: var(--main-color) !important;
+  }
+
+  &:hover {
+    background-color: var(--gray-100);
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .course-cpn {
+    .course-features {
+      justify-content: flex-end;
+    }
   }
 }

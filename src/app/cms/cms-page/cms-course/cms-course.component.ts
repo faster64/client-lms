@@ -24,6 +24,7 @@ export class CmsCourseComponent extends CmsGridComponent {
   override initColumns() {
     this.displayColumns = [];
     this.displayColumns.push({ column: 'imageUrl', displayText: 'Hình ảnh', width: 120, type: FieldType.Image });
+    this.displayColumns.push({ column: 'code', displayText: 'Mã khóa học', width: 160 });
     this.displayColumns.push({ column: 'name', displayText: 'Tên khóa học', width: 300 });
     this.displayColumns.push({ column: 'shortDescription', displayText: 'Mô tả ngắn', width: 480 });
     this.displayColumns.push({ column: 'class', displayText: 'Lớp', width: 120 });

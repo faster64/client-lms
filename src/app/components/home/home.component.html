@@ -13,12 +13,22 @@
     </div>
 
     <div class="course-wrapper">
-      <div class="course" *ngFor="let course of [].constructor(10)">
-        <app-course></app-course>
+      <div class="course" *ngFor="let course of courses">
+        <app-course [course]="course"></app-course>
+      </div>
+
+      <div class="loading-wrapper" *ngIf="isLoading">
+        <div class="course-loading">
+          <open-loading></open-loading>
+        </div>
+
+        <div class="course-loading">
+          <open-loading></open-loading>
+        </div>
       </div>
     </div>
 
-    <div class="view-more" (click)="Utility.featureIsInDevelopment($event)">
+    <div class="view-more" (click)="viewMore()" *ngIf="current < total">
       <div class="icon bg-contain"></div>
       <div class="text">{{'base_keys.view_more' | translate }}</div>
     </div>
