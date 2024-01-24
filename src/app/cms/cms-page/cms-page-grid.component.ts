@@ -16,10 +16,10 @@ import { SnackBar } from "src/app/shared/snackbar/snackbar.component";
 import { SnackBarParameter } from "src/app/shared/snackbar/snackbar.param";
 
 @Directive()
-export class CmsGridComponent extends BaseComponent {
+export class CmsGridComponent<T> extends BaseComponent {
 
   displayColumns: ColumnGrid[] = [];
-  dataSource = [];
+  dataSource: T[] = [];
   current = 0;
   total = 0;
   pagingUrl = '';
@@ -129,7 +129,9 @@ export class CmsGridComponent extends BaseComponent {
 
   delete(item) {
     item = item ? [item] : this.grid.getCheckedItems();
-    MessageBox.delete(new Message(this, { content: TranslationService.VALUES['warnings']['delete_warning_msg'] }, () => {
+
+    const message = item.length == 1 ? TranslationService.VALUES['warnings']['delete_warning_msg'] : TranslationService.VALUES['warnings']['delete_multi_msg'].replace("{0}", item.length);
+    MessageBox.delete(new Message(this, { content:  message}, () => {
       const ids = item.map(x => x.id);
 
       this.isLoading = true;

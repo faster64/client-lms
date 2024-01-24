@@ -1,6 +1,7 @@
 ::ng-deep .cms-class-cpn {
     position: relative;
     height: 100%;
+    padding: var(--cms-content-padding);
 
     .class-content {
         position: relative;

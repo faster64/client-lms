@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, Injector, OnInit } from '@angular/core';
 import { finalize, takeUntil } from 'rxjs';
 import { BaseComponent } from 'src/app/shared/components/base-component';
+import { Banner } from 'src/app/shared/models/banner/banner';
 import { BannerService } from 'src/app/shared/services/banner/banner.service';
 
 @Component({
@@ -10,11 +11,13 @@ import { BannerService } from 'src/app/shared/services/banner/banner.service';
 })
 export class BannerComponent extends BaseComponent implements AfterViewInit {
 
-  banner: any = {};
+  banner = new Banner();
 
-  slideIndex = 0;
+  time = 4000;
 
-  delay = 3000;
+  currentIndex = 0;
+
+  iid: any;
 
   constructor(
     injector: Injector,
@@ -22,24 +25,12 @@ export class BannerComponent extends BaseComponent implements AfterViewInit {
   ) {
     super(injector);
   }
-
   ngAfterViewInit(): void {
-    // this.showSlides();
   }
 
-  showSlides() {
-    const slides = document.getElementsByClassName("slide");
-    for (let i = 0; i < slides.length; i++) {
-      (slides[i] as any).style.display = "none";
-    }
-    if (++this.slideIndex >= slides.length) {
-      this.slideIndex = 0
-    }
-    (slides[this.slideIndex] as any).style.display = "block";
-
-    setTimeout(() => {
-      this.showSlides();
-    }, this.delay);
+  override ngOnDestroy(): void {
+    clearInterval(this.iid);
+    super.ngOnDestroy();
   }
 
   override initData(): void {
@@ -58,7 +49,26 @@ export class BannerComponent extends BaseComponent implements AfterViewInit {
       .subscribe(resp => {
         if (resp.code == 'success') {
           this.banner = resp.data;
+          setTimeout(() => {
+            this.startAutoSlide();
+          }, 50);
         }
       });
   }
+
+  defClass = (startPos, index) => {
+    const imgs = document.querySelectorAll(".image-container img");
+    for (let i = startPos; i < this.banner.imageUrls.length; i++) {
+      (imgs[i] as any).style.display = "none";
+    }
+    (imgs[index] as any).style.display = "block";
+  };
+
+  startAutoSlide = () => {
+    this.defClass(1, 0);
+    this.iid = setInterval(() => {
+      this.currentIndex >= this.banner.imageUrls.length - 1 ? this.currentIndex = 0 : this.currentIndex++;
+      this.defClass(0, this.currentIndex);
+    }, this.time);
+  };
 }

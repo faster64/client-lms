@@ -1,16 +1,17 @@
 import { Component } from '@angular/core';
+import { CourseStatus } from 'src/app/shared/enums/course-status.enum';
 import { FieldType } from 'src/app/shared/enums/field-type.enum';
-import { CmsGridComponent } from '../cms-page-grid.component';
+import { Course } from 'src/app/shared/models/course/course';
 import { PublisherService } from 'src/app/shared/services/base/publisher.service';
 import { CourseService } from 'src/app/shared/services/course/course.service';
-import { CourseStatus } from 'src/app/shared/enums/course-status.enum';
+import { CmsGridComponent } from '../cms-page-grid.component';
 
 @Component({
   selector: 'app-cms-course',
   templateUrl: './cms-course.component.html',
   styleUrls: ['./cms-course.component.scss']
 })
-export class CmsCourseComponent extends CmsGridComponent {
+export class CmsCourseComponent extends CmsGridComponent<Course> {
 
   override ngOnInit(): void {
     this.injector.get(PublisherService).updateCmsHeaderLabelEvent.emit('Quản lý Khóa học');

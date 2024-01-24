@@ -1,17 +1,28 @@
 <div class="banner-cpn">
   <div class="blue-line"></div>
   <div class="white-line"></div>
-  <div class="hero-slide">
-    <div class="slideshow-container bg-cover">
+  <div class="hero-slide" *ngIf="!isLoading">
+    <div class="large-title">
+      <div class="yellow-block"></div>
+      <div class="text">
+        {{banner.title}}
+      </div>
+    </div>
+
+    <div class="image-container">
+
+      <img [src]="url" *ngFor="let url of banner.imageUrls">
+
+      <div class="dots">
+        <div class="dot" *ngFor="let url of banner.imageUrls; index as i">
+          <div class="inner-dot" *ngIf="currentIndex == i"></div>
+        </div>
+      </div>
     </div>
 
     <div class="intro">
-      <div class="dots"></div>
       <div class="text">
-        <div class="text-left">
-          <!-- 250,998 người đang theo học cùng chúng tôi ! -->
-          {{banner.title}}
-        </div>
+        {{banner.subTitle}}
       </div>
     </div>
   </div>

@@ -2,6 +2,7 @@
   position: relative;
   width: 100%;
   max-width: 100%;
+  scroll-behavior: smooth;
 
   .app-header {
     position: sticky;
@@ -16,10 +17,19 @@
     width: 100%;
     max-width: 100%;
     min-height: calc(var(--vh, 1vh) * 100 - 475px);
+    scroll-behavior: smooth;
   }
 
   .app-footer {
     height: 355px;
+  }
+
+  .app-balloon {
+    position: fixed;
+    right: 24px;
+    bottom: 128px;
+    border-radius: 4px;
+    z-index: var(--balloon-index);
   }
 }
 
@@ -67,10 +77,13 @@
       // background-color: #1774e7;
       background-color: var(--progress-color);
       border: none;
-      background: linear-gradient(100deg,
+      background: linear-gradient(
+          100deg,
           rgba(255, 255, 255, 0) 40%,
           rgba(255, 255, 255, 0.5) 50%,
-          rgba(255, 255, 255, 0) 60%) var(--progress-color);
+          rgba(255, 255, 255, 0) 60%
+        )
+        var(--progress-color);
       background-size: 200% 100%;
       background-position-x: 180%;
       animation: 1.8s shine linear infinite !important;

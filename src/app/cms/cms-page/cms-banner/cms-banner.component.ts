@@ -3,7 +3,8 @@ import { DxTextBoxComponent } from 'devextreme-angular';
 import { finalize, takeUntil } from 'rxjs';
 import { BaseComponent } from 'src/app/shared/components/base-component';
 import { BaseButton } from 'src/app/shared/components/micro/button/button.component';
-import { StringHelper } from 'src/app/shared/helpers/string.helper';
+import { BaseUploaderComponent } from 'src/app/shared/components/micro/uploader/uploader.component';
+import { Banner } from 'src/app/shared/models/banner/banner';
 import { BannerService } from 'src/app/shared/services/banner/banner.service';
 import { PublisherService } from 'src/app/shared/services/base/publisher.service';
 import { TranslationService } from 'src/app/shared/services/translation/translation.service';
@@ -17,15 +18,20 @@ import { SnackBarParameter } from 'src/app/shared/snackbar/snackbar.param';
 })
 export class CmsBannerComponent extends BaseComponent implements AfterViewInit {
 
-  data: any = {};
+  data = new Banner();
 
-  updateMode = true;
+  updateMode = false;
+
+  maxCount = 3;
 
   @ViewChild("title")
   title!: DxTextBoxComponent;
 
   @ViewChild("saveBtn")
   saveBtn!: BaseButton;
+
+  @ViewChild("uploader")
+  uploader: BaseUploaderComponent;
 
   constructor(
     injector: Injector,
@@ -87,8 +93,20 @@ export class CmsBannerComponent extends BaseComponent implements AfterViewInit {
   }
 
   uploaded(event) {
-    this.data.images = event.fileNames;
-    this.data.imageUrls = event.presignedUrls;
+    if (this.data && this.data.images && this.data.images.length) {
+      this.data.images = this.data.images.concat(event.fileNames);
+      this.data.imageUrls = this.data.imageUrls.concat(event.presignedUrls);
+
+      if (this.data.images.length > 3) {
+        const index = this.data.images.length - 3;
+        this.data.images = this.data.images.splice(index, this.maxCount);
+        this.data.imageUrls = this.data.imageUrls.splice(index, this.maxCount);
+      }
+    }
+    else {
+      this.data.images = event.fileNames;
+      this.data.imageUrls = event.presignedUrls;
+    }
   }
 
   remove(index) {

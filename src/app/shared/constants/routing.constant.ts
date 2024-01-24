@@ -22,6 +22,7 @@ export class Routing {
   public static readonly REGISTER = new RoutingConfig('dang-ky', 'register');
   public static readonly FORGOT_PASSWORD = new RoutingConfig('quen-mat-khau', 'forgot_password');
   public static readonly HOME = new RoutingConfig('', 'home');
+  public static readonly COURSE_DETAIL = new RoutingConfig('chi-tiet-khoa-hoc', 'course_detail');
 }
 
 export const CommonRedirect = Routing.HOME.path;

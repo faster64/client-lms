@@ -22,7 +22,7 @@
     }
 
     &:disabled {
-      border-color: initial !important;
+      border-color: rgba(0, 0, 0, 0.02) !important;
     }
   }
 

@@ -14,6 +14,8 @@
   --gray-200: #e4e7ec;
   --gray-800: #1d2939;
   --blue-01: #E8EDFC;
+  --green-07: #17CF4E;
+  --red-05: #E83030;
   --main-color: #305FE8;
   --yellow-color: #EDC95E;
   --header-bg: #fff;
@@ -24,6 +26,8 @@
   --size: 14px;
   --small-title-size: 16px;
   --medium-title-size: 20px;
+  --banner-title-size: 32px;
+  --banner-sub-title-size: 24px;
   --auth-title-size: 28px;
   --large-title-size: 40px;
   --large-sub-title-size: 21px;
@@ -32,6 +36,7 @@
   --sidebar-width: 264px;
   --sidebar-padding: 24px;
   --side-distance: 300px;
+  --course-description-distance: 280px;
   --cms-content-padding: 16px 36px 0 36px;
   --app-cms-header-height: 80px;
   --header-padding: 16px 56px;
@@ -42,7 +47,9 @@
 
   /* z-index */
   --grid-sticky: 100;
+  --banner-title: 100;
   --header-index: 990;
+  --balloon-index: 990;
   --mat-progress-bar: 1000;
   --loading-index: 1001;
   --message-box: 2000;
@@ -53,6 +60,7 @@
 @media screen and (max-width: 1600px) {
   :root {
     --side-distance: 120px;
+    --course-description-distance: 100px;
     --size: 15px;
     --medium-title-size: 18px;
     --large-title-size: 32px;
@@ -63,6 +71,7 @@
 @media screen and (max-width: 1400px) {
   :root {
     --side-distance: 100px;
+    --course-description-distance: 80px;
     --size: 14px;
     --small-title-size: 15px;
     --medium-title-size: 16px;
@@ -72,6 +81,7 @@
 @media screen and (max-width: 1200px) {
   :root {
     --side-distance: 80px;
+    --course-description-distance: 60px;
     --sidebar-width: 60px;
     --sidebar-padding: 8px;
     --text-sidebar-visibility: hidden;
@@ -80,6 +90,8 @@
     --medium-title-size: 15px;
     --large-title-size: 24px;
     --large-sub-title-size: 15px;
+    --banner-title-size: 20px;
+    --banner-sub-title-size: 16px;
     --header-padding: 16px 36px;
   }
 }
@@ -87,6 +99,7 @@
 @media screen and (max-width: 992px) {
   :root {
     --side-distance: 50px;
+    --course-description-distance: 30px;
     --size: 12px;
     --header-padding: 16px 24px;
   }
@@ -96,6 +109,7 @@
 @media screen and (max-width: 576px) {
   :root {
     --side-distance: 16px;
+    --course-description-distance: 0px;
     --size: 12px;
     --header-padding: 12px 16px;
   }

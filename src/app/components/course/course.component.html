@@ -1,19 +1,21 @@
 <div class="course-cpn">
 
-  <div class="course-banner">
+  <a class="course-banner" [routerLink]="Routing.COURSE_DETAIL.path + '/' + course.id">
     <div class="course-img bg-cover" [ngStyle]="{backgroundImage: 'url(' + course.imageUrl + ')'}"></div>
     <div class="class">{{course.className}}</div>
     <div class="price">{{course.price | NumberFormatPipe}}</div>
-  </div>
+  </a>
 
-  <a class="course-name" [routerLink]="'/'" (click)="Utility.featureIsInDevelopment($event)">
+  <a class="course-name max-3-lines" [routerLink]="Routing.COURSE_DETAIL.path + '/' + course.id">
     {{course.name}}
   </a>
-  <div class="course-description">{{course.shortDescription}}</div>
+  <a class="course-description max-3-lines"
+    [routerLink]="Routing.COURSE_DETAIL.path + '/' + course.id">{{course.shortDescription}}
+  </a>
 
   <div class="course-features">
     <base-button text="{{'course.features.add_to_cart' | translate}}" [width]="132" [height]="44"
-      [buttonType]="ButtonType.STROKED" [color]="ButtonColor.BASIC">
+      [buttonType]="ButtonType.STROKED" [color]="ButtonColor.BASIC" [finishImmediately]="true" (onClick)="Utility.featureIsInDevelopment($event)">
     </base-button>
 
     <base-button class="buy-btn" text="{{'course.features.buy_now' | translate}}" [width]="112" [height]="44"

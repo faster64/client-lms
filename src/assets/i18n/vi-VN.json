@@ -11,7 +11,8 @@
   },
   "warnings": {
     "feature_is_in_development": "Tính năng đang phát triển",
-    "delete_warning_msg": "Các dữ liệu liên quan cũng sẽ bị xóa. Bạn có chắc chắn muốn xóa không?"
+    "delete_warning_msg": "Các dữ liệu liên quan cũng sẽ bị xóa. Bạn có chắc chắn muốn xóa không?",
+    "delete_multi_msg": "Xóa {0} bản ghi, các dữ liệu liên quan cũng sẽ bị xóa. Bạn có chắc chắn muốn xóa không?"
   },
   "errors": {
     "not_permission": "Bạn không có quyền thực hiện!",

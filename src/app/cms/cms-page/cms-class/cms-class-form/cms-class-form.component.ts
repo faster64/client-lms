@@ -4,6 +4,7 @@ import { Routing } from 'src/app/shared/constants/routing.constant';
 import { FormMode } from 'src/app/shared/enums/form-mode.enum';
 import { ClassService } from 'src/app/shared/services/class/class.service';
 import { CmsFormComponent } from '../../cms-page-form.component';
+import { Class } from 'src/app/shared/models/class/class';
 
 @Component({
   selector: 'app-cms-class-form',

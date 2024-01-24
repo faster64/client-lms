@@ -2,6 +2,7 @@ import { Component, EventEmitter, Injector, Input, Output } from '@angular/core'
 import { ClassService } from 'src/app/shared/services/class/class.service';
 import { BaseComponent } from '../../base-component';
 import { finalize, takeUntil } from 'rxjs';
+import { Class } from 'src/app/shared/models/class/class';
 
 @Component({
   selector: 'app-class-selector',
@@ -12,7 +13,7 @@ export class ClassSelectorComponent extends BaseComponent {
 
   fetchingClass = false;
 
-  classes = [];
+  classes: Class[] = [];
 
   value = '';
 

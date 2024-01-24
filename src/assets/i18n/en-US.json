@@ -11,7 +11,8 @@
   },
   "warnings": {
     "feature_is_in_development": "The feature is in development",
-    "delete_warning_msg": "The related data will also be deleted. Are you sure you want to delete these data?"
+    "delete_warning_msg": "The related data will also be deleted. Are you sure you want to delete these data?",
+    "delete_multi_msg": "Delete {0} items, the related data will also be deleted. Are you sure you want to delete these data?"
   },
   "errors": {
     "not_permission": "Not permission!",

@@ -59,6 +59,14 @@ const routes: Routes = [
       resolver: BaseResolver,
     }
   },
+  {
+    path: Routing.COURSE_DETAIL.path,
+    loadChildren: () => import('./components/course-detail/course-detail.module').then(m => m.CourseDetailModule),
+    canActivate: [BaseGuard],
+    resolve: {
+      resolver: BaseResolver,
+    }
+  },
   // {
   //   path: "**",
   //   redirectTo: `/${Routing.NOT_FOUND.path}`,

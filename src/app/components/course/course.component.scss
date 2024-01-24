@@ -8,6 +8,7 @@
 
   .course-banner {
     position: relative;
+    display: block;
     height: 234px;
     margin-bottom: 12px;
 
@@ -58,9 +59,7 @@
   }
 
   .course-description {
-    height: 60px;
     margin-bottom: 12px;
-    overflow: hidden;
   }
 
   .course-features {

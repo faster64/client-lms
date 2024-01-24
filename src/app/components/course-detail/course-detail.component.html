@@ -1,0 +1,30 @@
+<div #courseDetail class="course-detail-cpn">
+  <div class="wrapper" *ngIf="!isLoading">
+    <div class="course-name">
+      <div class="icon bg-contain"></div>
+      <div class="text">{{course.name}}</div>
+    </div>
+
+    <div class="course-short-description">{{course.shortDescription}}</div>
+
+    <div class="course-image" [ngStyle]="{backgroundImage: 'url(' + course.imageUrl + ')'}"></div>
+
+    <div class="course-description">
+      <editor [apiKey]="TinyEditorService.Key" #tinymce class="editor-tiny" [initialValue]="course.description"
+        [init]="config" [disabled]="true">
+      </editor>
+    </div>
+
+    <div class="course-features">
+      <base-button text="{{'course.features.add_to_cart' | translate}}" [width]="160" [height]="44"
+        [buttonType]="ButtonType.STROKED" [color]="ButtonColor.BASIC">
+      </base-button>
+
+      <base-button class="buy-btn" text="{{'course.features.buy_now' | translate}}" [width]="128" [height]="44"
+        [finishImmediately]="true" (onClick)="buy()">
+      </base-button>
+    </div>
+  </div>
+
+  <progess-spinner-loading *ngIf="isLoading"></progess-spinner-loading>
+</div>

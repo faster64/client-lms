@@ -13,6 +13,7 @@ import { TranslationService } from "src/app/shared/services/translation/translat
 import { SnackBar } from "src/app/shared/snackbar/snackbar.component";
 import { SnackBarParameter } from "src/app/shared/snackbar/snackbar.param";
 import { FormModeText } from "src/app/shared/constants/form-mode.constant";
+import { BaseModel } from "src/app/shared/models/base/base-model";
 
 @Directive()
 export class CmsFormComponent extends BaseComponent {
@@ -43,6 +44,7 @@ export class CmsFormComponent extends BaseComponent {
   ) {
     super(injector);
   }
+
 
   override ngOnInit(): void {
     super.ngOnInit();

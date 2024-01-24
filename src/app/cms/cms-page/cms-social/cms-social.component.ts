@@ -1,17 +1,16 @@
 import { AfterViewInit, Component, Injector, ViewChild } from '@angular/core';
-import { CmsFormComponent } from '../cms-page-form.component';
-import { FormMode } from 'src/app/shared/enums/form-mode.enum';
 import { DxTextBoxComponent } from 'devextreme-angular';
-import { Routing } from 'src/app/shared/constants/routing.constant';
+import { finalize, takeUntil } from 'rxjs';
 import { BaseComponent } from 'src/app/shared/components/base-component';
+import { BaseButton } from 'src/app/shared/components/micro/button/button.component';
+import { FormMode } from 'src/app/shared/enums/form-mode.enum';
+import { StringHelper } from 'src/app/shared/helpers/string.helper';
+import { Social } from 'src/app/shared/models/social/social';
 import { PublisherService } from 'src/app/shared/services/base/publisher.service';
 import { SocialService } from 'src/app/shared/services/social/social.service';
-import { finalize, takeUntil } from 'rxjs';
 import { TranslationService } from 'src/app/shared/services/translation/translation.service';
 import { SnackBar } from 'src/app/shared/snackbar/snackbar.component';
 import { SnackBarParameter } from 'src/app/shared/snackbar/snackbar.param';
-import { BaseButton } from 'src/app/shared/components/micro/button/button.component';
-import { StringHelper } from 'src/app/shared/helpers/string.helper';
 
 @Component({
   selector: 'app-cms-social',
@@ -22,7 +21,7 @@ export class CmsSocialComponent extends BaseComponent implements AfterViewInit {
 
   FormMode = FormMode;
 
-  data: any = {};
+  data = new Social();
 
   updateMode = false;
 

@@ -3,18 +3,19 @@
   <div class="cms-content-middle">
 
     <div class="row select-banner">
-      <div class="col-12 col-md-6 data-item">
+      <div class="col-12 data-item" *ngIf="updateMode || (!this.data || !this.data.images || !this.data.images.length)">
         <div class="label">
-          Banner trang chủ <span class="required">*</span> (tối đa 3 ảnh KT 1320 *464)
+          Banner trang chủ <span class="required">*</span> (tối đa {{maxCount}} ảnh KT 1320 *464)
         </div>
         <div class="banner-uploader">
-          <uploader [disabled]="!updateMode" [auto]="true" [maxFileSize]="10 * 1024 * 1024" [maxCount]="3"
-            (onChanged)="uploaded($event)">
+          <uploader #uploader
+            [disabled]="!updateMode || (this.data && this.data.images && this.data.images.length == maxCount)"
+            [auto]="true" [maxFileSize]="10 * 1024 * 1024" [maxCount]="maxCount" (onChanged)="uploaded($event)">
           </uploader>
         </div>
       </div>
 
-      <div class="col-12 col-md-6 data-item preview" *ngIf="data && data.images && data.images.length">
+      <div class="col-12 data-item preview" *ngIf="data && data.images && data.images.length">
 
         <div class="label">
           Hình ảnh đã tải lên
@@ -24,7 +25,7 @@
           <div class="banner-image" *ngFor="let url of data.imageUrls; index as i">
             <img [src]="url">
 
-            <div class="remove" (click)="remove(i)">
+            <div class="remove" (click)="remove(i)" *ngIf="updateMode">
               <div class="icon bg-contain"></div>
             </div>
           </div>
