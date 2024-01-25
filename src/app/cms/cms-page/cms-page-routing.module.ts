@@ -15,6 +15,7 @@ import { FormModeText } from 'src/app/shared/constants/form-mode.constant';
 import { CmsClassFormComponent } from './cms-class/cms-class-form/cms-class-form.component';
 import { FormMode } from 'src/app/shared/enums/form-mode.enum';
 import { CmsCourseFormComponent } from './cms-course/cms-course-form/cms-course-form.component';
+import { CmsUserFormComponent } from './cms-user/cms-user-form/cms-user-form.component';
 
 const routes: Routes = [
   {
@@ -53,21 +54,45 @@ const routes: Routes = [
       formMode: FormMode.View
     }
   },
-//#endregion
+  //#endregion
 
   {
     path: 'lien-he',
     component: CmsContactComponent
   },
+
+  //#region User
   {
     path: 'quan-ly-tai-khoan-nguoi-dung',
     component: CmsUserComponent
   },
   {
+    path: `quan-ly-tai-khoan-nguoi-dung/${FormModeText.ADD}`,
+    component: CmsUserFormComponent,
+    data: {
+      formMode: FormMode.Add
+    }
+  },
+  {
+    path: `quan-ly-tai-khoan-nguoi-dung/${FormModeText.UPDATE}/:id`,
+    component: CmsUserFormComponent,
+    data: {
+      formMode: FormMode.Update
+    }
+  },
+  {
+    path: `quan-ly-tai-khoan-nguoi-dung/${FormModeText.VIEW}/:id`,
+    component: CmsUserFormComponent,
+    data: {
+      formMode: FormMode.View
+    }
+  },
+  //#endregion 
+
+  {
     path: 'quan-ly-tai-khoan-quan-tri',
     component: CmsAdminComponent
   },
-
 
   //#region  Class
   {

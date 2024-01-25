@@ -1,0 +1,74 @@
+<div class="cms-user-form-cpn">
+
+    <div class="cms-content-middle">
+        <div class="row">
+            <div class="col-12 col-md-6 data-item">
+                <div class="label"> Họ và tên<span class="required">*</span></div>
+                <dx-text-box #fullname placeholder="Nhập họ và tên" [(value)]="data.fullName"
+                    [readOnly]="formMode == FormMode.View" [height]="44" (onEnterKey)="save()">
+                </dx-text-box>
+            </div>
+
+            <div class="col-12 col-md-6 data-item">
+                <div class="label"> Số điện thoại<span class="required">*</span></div>
+                <dx-text-box #phone placeholder="Nhập số điện thoại" [(value)]="data.phoneNumber"
+                    [readOnly]="formMode == FormMode.View" [height]="44" (onEnterKey)="save()">
+                </dx-text-box>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-md-6 data-item">
+                <div class="label"> Email<span class="required">*</span></div>
+                <dx-text-box #email placeholder="Nhập email" [(value)]="data.email"
+                    [readOnly]="formMode == FormMode.View" [height]="44" (onEnterKey)="save()">
+                </dx-text-box>
+            </div>
+
+            <div class="col-12 col-md-6 data-item">
+                <div class="label"> Lớp học<span class="required">*</span></div>
+                <app-class-selector #selector [value]="data.classId" [disabled]="formMode == FormMode.View"
+                    [height]="44" (onValueChanged)="data.classId = $event.current">
+                </app-class-selector>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 data-item">
+                <div class="label"> Mật khẩu<span class="required">*</span></div>
+                <dx-text-box #password placeholder="Nhập mật khẩu" [(value)]="data.password"
+                    [readOnly]="formMode == FormMode.View" [height]="44" (onEnterKey)="save()">
+                </dx-text-box>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-md-6 data-item state">
+                <div class="label"> Trạng thái tài khoản</div>
+                <app-cms-user-states *ngIf="!isLoading" [state]="data.state" [disabled]="formMode == FormMode.View"
+                    (onChanged)="data.state = $event.id">
+                </app-cms-user-states>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="formMode == FormMode.View">
+            <div class="col-12 col-md-6 data-item">
+                <div class="label"> {{'base_keys.created_date' | translate}} </div>
+                <dx-date-box [(value)]="data.createdDate" [readOnly]="true"></dx-date-box>
+            </div>
+
+            <div class="col-12 col-md-6 data-item">
+                <div class="label"> {{'base_keys.last_modified_date' | translate}} </div>
+                <dx-date-box [(value)]="data.lastModifiedDate" [readOnly]="true"></dx-date-box>
+            </div>
+        </div>
+    </div>
+
+    <div class="cms-features-bottom">
+        <app-cms-feature #cmsFeature [formMode]="formMode" (cancel)="cancel()" (save)="save()" (update)="update()"
+            (delete)="delete()">
+        </app-cms-feature>
+    </div>
+
+    <progess-spinner-loading *ngIf="isLoading"></progess-spinner-loading>
+</div>

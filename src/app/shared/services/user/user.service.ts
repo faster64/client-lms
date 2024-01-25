@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
+import { User } from "../../models/user/user";
 import { BaseService } from "../base/base.service";
 import { HttpService } from "../base/http.service";
-import { ServiceResult } from "../../models/base/service-result";
-import { User } from "../../models/user/user";
+import { UserState } from "../../enums/user-state.enum";
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +10,11 @@ import { User } from "../../models/user/user";
 export class UserService extends BaseService {
 
   public user = new User();
+
+  public static States = [
+    { id: UserState.Active, text: "Đang hoạt động" },
+    { id: UserState.Inactive, text: "Ngừng hoạt động" },
+  ]
 
   constructor(
     http: HttpService

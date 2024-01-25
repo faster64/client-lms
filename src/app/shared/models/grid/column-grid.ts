@@ -5,23 +5,25 @@ export class ColumnGrid {
 
   public displayText = "";
 
-  public width?= 160; // < 0 tương ứng với 100%
+  public width? = 160; // < 0 tương ứng với 100%
 
-  public type?= FieldType.Text;
+  public type? = FieldType.Text;
 
-  public tagColor?= ""; // Dùng với type là Tag
+  public tagColor? = ""; // Dùng với type là Tag
 
-  public disabledFilter?= false;
+  public disabledFilter? = false;
 
-  public sortable?= false;
+  public sortable? = false;
 
-  public sortBy?= '';
+  public sortBy? = '';
 
-  public class?= "";
+  public class? = "";
 
   public getLink?: Function = () => "";  // Dùng với type là Link
 
-  public target?= '_self'; // Dùng với type là Link
+  public target? = '_self'; // Dùng với type là Link
 
   public showPassword? = false;
+
+  public callback?: Function;
 }

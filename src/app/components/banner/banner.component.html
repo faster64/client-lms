@@ -13,6 +13,10 @@
 
       <img [src]="url" *ngFor="let url of banner.imageUrls">
 
+      <!-- <div class="bg-image bg-cover" *ngFor="let url of banner.imageUrls"
+        [ngStyle]="{backgroundImage: 'url(' + url + ')'}">
+      </div> -->
+
       <div class="dots">
         <div class="dot" *ngFor="let url of banner.imageUrls; index as i">
           <div class="inner-dot" *ngIf="currentIndex == i"></div>

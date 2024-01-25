@@ -1,0 +1,93 @@
+.cms-user-states-cpn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 200px;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+
+    &.c-1 {
+        background: var(--green-01);
+
+        .icon {
+            background-color: var(--green-07);
+        }
+
+        .text {
+            color: var(--green-07);
+        }
+    }
+
+    &.c-2 {
+        background: var(--red-01);
+
+        .icon {
+            background-color: var(--red-05);
+        }
+
+        .text {
+            color: var(--red-05);
+        }
+    }
+
+    .icon,
+    .drop-icon {
+        width: 8px;
+        height: 8px;
+        margin-right: 8px;
+        border-radius: 50%;
+    }
+
+    .dropdown {
+        position: absolute;
+        top: 50%;
+        right: 12px;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
+        margin-left: 8px;
+        background-image: url(~/src/assets/img/common/dropdown2.svg);
+    }
+
+    .dropdown-list {
+        position: absolute;
+        bottom: -36px;
+        left: 0;
+        right: 0;
+        border-radius: 8px;
+        background-color: var(--white);
+        box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.12);
+        z-index: var(--header-index);
+
+        .drop-item {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+
+            &.d-1 {
+                background: var(--green-01);
+
+                .drop-icon {
+                    background-color: var(--green-07);
+                }
+
+                .drop-text {
+                    color: var(--green-07);
+                }
+            }
+
+            &.d-2 {
+                background: var(--red-01);
+
+                .drop-icon {
+                    background-color: var(--red-05);
+                }
+
+                .drop-text {
+                    color: var(--red-05);
+                }
+            }
+        }
+    }
+}

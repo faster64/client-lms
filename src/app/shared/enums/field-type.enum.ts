@@ -12,4 +12,5 @@ export enum FieldType {
   Tag,
   DateTime,
   CanEdit,
+  AccountState,
 }

@@ -1,0 +1,14 @@
+<div class="cms-user-states-cpn unselectable" [ngClass]="'c-' + current.id" (click)="click($event)">
+    <div class="icon"></div>
+    <div class="text">{{current.text}}</div>
+    <div class="dropdown bg-contain" *ngIf="showDropdown"></div>
+
+
+    <div class="dropdown-list" *ngIf="show">
+        <div class="drop-item" [ngClass]="'d-' + item.id" *ngFor="let item of otherStates"
+            (click)="change(item, $event)">
+            <div class="drop-icon"></div>
+            <div class="drop-text">{{item.text}}</div>
+        </div>
+    </div>
+</div>

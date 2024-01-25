@@ -8,4 +8,6 @@ export class User extends BaseModel {
   public confirmedPhone = false;
   public confirmedEmail = false;
   public fullName = "";
+  public state = 0;
+  public stateText = "";
 }

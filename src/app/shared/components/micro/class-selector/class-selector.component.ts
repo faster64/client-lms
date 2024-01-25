@@ -15,6 +15,7 @@ export class ClassSelectorComponent extends BaseComponent {
 
   classes: Class[] = [];
 
+  @Input()
   value = '';
 
   @Input()

@@ -9,6 +9,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { BaseButtonModule } from '../../micro/button/button.module';
 import { BaseLoadingModule } from '../../micro/loading/loading.module';
 import { MatMenuModule } from '@angular/material/menu';
+import { CmsUserStatesModule } from 'src/app/cms/cms-user-states/cms-user-states.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatMenuModule,
     PipesModule,
     BaseButtonModule,
-    BaseLoadingModule
+    BaseLoadingModule,
+    CmsUserStatesModule
   ],
   exports: [GirdComponent]
 })

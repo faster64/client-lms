@@ -28,7 +28,7 @@ export class CmsCourseComponent extends CmsGridComponent<Course> {
     this.displayColumns.push({ column: 'code', displayText: 'Mã khóa học', width: 160 });
     this.displayColumns.push({ column: 'name', displayText: 'Tên khóa học', width: 300 });
     this.displayColumns.push({ column: 'shortDescription', displayText: 'Mô tả ngắn', width: 480 });
-    this.displayColumns.push({ column: 'class', displayText: 'Lớp', width: 120 });
+    this.displayColumns.push({ column: 'className', displayText: 'Lớp', width: 120 });
     this.displayColumns.push({ column: 'price', displayText: 'Giá', width: 140, type: FieldType.Number });
     this.displayColumns.push({ column: 'statusText', displayText: 'Trạng thái', width: 160 });
   }

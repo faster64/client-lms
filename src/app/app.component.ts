@@ -8,6 +8,7 @@ import { isFakeMousedownFromScreenReader } from '@angular/cdk/a11y';
 import { AuthStatus } from './shared/enums/auth-status.enum';
 import { TranslationService } from './shared/services/translation/translation.service';
 import { Routing } from './shared/constants/routing.constant';
+import { HubConnectionService } from './shared/services/socket/hub-connection.service';
 
 @Component({
   selector: 'app-root',
@@ -37,12 +38,14 @@ export class AppComponent implements OnInit, OnDestroy {
     public activatedRoute: ActivatedRoute,
     public translationService: TranslationService,
     public publisher: PublisherService,
-    public authService: AuthService
+    public authService: AuthService,
+    public hubService: HubConnectionService,
   ) { }
 
   ngOnInit() {
     this.prepareAuthContext();
     this.subcribeEvents();
+    this.hubService.connectHub();
   }
 
   subcribeEvents() {
