@@ -1,19 +1,21 @@
 import { Component, EventEmitter, Injector, Input, Output } from '@angular/core';
-import { ClassService } from 'src/app/shared/services/class/class.service';
 import { BaseComponent } from '../../base-component';
-import { finalize, takeUntil } from 'rxjs';
 import { Class } from 'src/app/shared/models/class/class';
+import { Role } from 'src/app/shared/models/auth/role';
+import { ClassService } from 'src/app/shared/services/class/class.service';
+import { RoleService } from 'src/app/shared/services/auth/role.service';
+import { finalize, takeUntil } from 'rxjs';
 
 @Component({
-  selector: 'app-class-selector',
-  templateUrl: './class-selector.component.html',
-  styleUrls: ['./class-selector.component.scss']
+  selector: 'app-role-selector',
+  templateUrl: './role-selector.component.html',
+  styleUrls: ['./role-selector.component.scss']
 })
-export class ClassSelectorComponent extends BaseComponent {
+export class RoleSelectorComponent extends BaseComponent {
 
-  fetchingClass = false;
+  fetching = false;
 
-  classes: Class[] = [];
+  roles: Role[] = [];
 
   @Input()
   value = '';
@@ -29,23 +31,23 @@ export class ClassSelectorComponent extends BaseComponent {
 
   constructor(
     injector: Injector,
-    public classService: ClassService
+    public classService: RoleService
   ) {
     super(injector)
   }
 
-  getClassList() {
-    this.fetchingClass = true;
+  get() {
+    this.fetching = true;
     this.classService.all()
       .pipe(
         takeUntil(this._onDestroySub),
-        finalize(() => this.fetchingClass = false)
+        finalize(() => this.fetching = false)
       )
       .subscribe(resp => {
         if (resp.code == 'success') {
-          this.classes = [];
+          this.roles = [];
           for (let i = 0; i < resp.data.length; i++) {
-            this.classes = resp.data.sort((a, b) => a.name.localeCompare(b.name));
+            this.roles = resp.data.filter(x => x.code != 'STUDENT');
           }
         }
       })
@@ -54,7 +56,7 @@ export class ClassSelectorComponent extends BaseComponent {
   emit(event) {
     this.value = event.value;
     this.onValueChanged.emit({
-      source: this.classes,
+      source: this.roles,
       current: event.value
     })
   }

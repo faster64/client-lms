@@ -28,6 +28,8 @@ import { FormsModule } from '@angular/forms';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { CmsUserFormComponent } from './cms-user/cms-user-form/cms-user-form.component';
 import { CmsUserStatesModule } from '../cms-user-states/cms-user-states.module';
+import { CmsAdminFormComponent } from './cms-admin/cms-admin-form/cms-admin-form.component';
+import { RoleSelectorModule } from 'src/app/shared/components/micro/role-selector/role-selector.module';
 
 
 @NgModule({
@@ -45,7 +47,8 @@ import { CmsUserStatesModule } from '../cms-user-states/cms-user-states.module';
     CmsReportComponent,
     CmsClassFormComponent,
     CmsCourseFormComponent,
-    CmsUserFormComponent
+    CmsUserFormComponent,
+    CmsAdminFormComponent
   ],
   imports: [
     CommonModule,
@@ -64,6 +67,7 @@ import { CmsUserStatesModule } from '../cms-user-states/cms-user-states.module';
     BaseUploaderModule,
     GridModule,
     ClassSelectorModule,
+    RoleSelectorModule,
     BaseUploaderModule,
     EditorModule,
     CmsUserStatesModule

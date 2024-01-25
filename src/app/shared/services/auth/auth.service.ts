@@ -73,6 +73,8 @@ export class AuthService {
     localStorage.setItem('auth', JSON.stringify(auth));
   }
 
+  getUserId = () => this.getProperty(LocalStorageKey.USER_ID);
+
   getAccessToken = () => this.getProperty(LocalStorageKey.ACCESS_TOKEN);
 
   getRefreshToken = () => this.getProperty(LocalStorageKey.REFRESH_TOKEN);

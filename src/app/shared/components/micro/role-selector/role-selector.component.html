@@ -1,0 +1,5 @@
+<div class="role-selector-cpn">
+  <selector placeholder="Chọn vai trò" [isFetching]="fetching" [readOnly]="readOnly" [dataSource]="roles"
+    [value]="value" [height]="height" (onValueChanged)="emit($event)" (onOpened)="get()">
+  </selector>
+</div>

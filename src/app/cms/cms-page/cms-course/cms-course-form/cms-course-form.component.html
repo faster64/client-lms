@@ -60,7 +60,7 @@
 
       <div class="col-12 col-md-6 data-item">
         <div class="label">Lớp <span class="required">*</span></div>
-        <app-class-selector #selector [disabled]="formMode == FormMode.View" [height]="44"
+        <app-class-selector #selector [readOnly]="formMode == FormMode.View" [height]="44"
           (onValueChanged)="data.classId = $event.current"></app-class-selector>
       </div>
     </div>

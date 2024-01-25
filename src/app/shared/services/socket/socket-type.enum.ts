@@ -4,6 +4,7 @@ export enum SocketType {
   Notification,
   Login,
   Logout,
+  FindLogout,
   UpdateRole,
   UpdateAccount,
 }

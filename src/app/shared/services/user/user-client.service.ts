@@ -22,11 +22,6 @@ export class UserClientService extends BaseService {
         this.controller = 'user';
     }
 
-    override byId(id: any): Observable<ServiceResult> {
-        const url = `${this.url()}/client-user/${id}`;
-        return this.http.get<ServiceResult>(url, this._baseOptions);
-    }
-
     override paging(paginationRequest: PaginationRequest): Observable<ServiceResult> {
         let url = `${this.url()}/client-paging?page=${paginationRequest.number}&size=${paginationRequest.size}&query=${paginationRequest.query}`;
 

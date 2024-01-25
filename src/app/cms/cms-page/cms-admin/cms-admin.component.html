@@ -1,1 +1,11 @@
-<p>cms-admin works!</p>
+<div class="cms-admin-cpn">
+  <div class="admin-content">
+      <app-gird #grid [data]="dataSource" [displayColumn]="displayColumns" [current]="current" [total]="total"
+          [isLoading]="false" [searchKeys]="searchKeys" (rowDblClick)="view($event)" (onView)="view($event)"
+          (onAdd)="add()" (onUpdate)="update($event)" (onDelete)="delete($event)" (onDeleteMulti)="delete(null)"
+          (onSearch)="search($event)" (sort)="sort($event)" (changePageEvent)="changePage($event)">
+      </app-gird>
+
+      <progess-spinner-loading *ngIf="isLoading"></progess-spinner-loading>
+  </div>
+</div>

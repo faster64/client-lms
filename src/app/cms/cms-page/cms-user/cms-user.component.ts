@@ -26,7 +26,7 @@ export class CmsUserComponent extends CmsGridComponent<User> {
   override initColumns() {
     this.displayColumns = [];
     this.displayColumns.push({ column: 'fullName', displayText: 'Họ và tên', width: 180 });
-    // this.displayColumns.push({ column: 'roleName', displayText: 'Vai trò', width: 180 });
+    this.displayColumns.push({ column: 'roleName', displayText: 'Vai trò', width: 180 });
     this.displayColumns.push({ column: 'phoneNumber', displayText: 'Số điện thoại', width: 160 });
     this.displayColumns.push({ column: 'email', displayText: 'Email', width: 180 });
     this.displayColumns.push({ column: 'className', displayText: 'Lớp', width: 120 });

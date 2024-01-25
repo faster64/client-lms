@@ -61,7 +61,6 @@ export class CmsFormComponent extends BaseComponent {
   initConfig() {
     this.service = this.injector.get(BaseService);
     this.formMode = this.activatedRoute.snapshot.data['formMode'];
-    console.log("form mode = ", this.formMode)
 
     if (this.formMode == FormMode.Add) {
       this.publisher.updateCmsHeaderLabelEvent.emit('Thêm mới');

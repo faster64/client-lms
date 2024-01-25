@@ -103,6 +103,12 @@ export class HubConnectionService {
         case SocketType.Logout:
           this.authService.logout();
           break;
+        case SocketType.FindLogout:
+          console.log("Find logout: ", socketMessage);
+          if (this.authService.getUserId() + "" == socketMessage.message) {
+            this.authService.logout();
+          }
+          break;
         case SocketType.OnlineUser:
           break;
         case SocketType.UpdateRole:

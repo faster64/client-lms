@@ -25,6 +25,7 @@ export class CmsUserFormComponent extends CmsFormComponent implements AfterViewI
 
   override ngOnInit(): void {
     this.data.state = UserState.Active;
+    this.data.isClient = true;
     super.ngOnInit();
   }
 
@@ -32,11 +33,6 @@ export class CmsUserFormComponent extends CmsFormComponent implements AfterViewI
     if (this.formMode != FormMode.View) {
       this.fullname.instance.focus();
     }
-
-    this.data.fullName = 'Nguyễn Gà ' + this.Utility.randomInRange(1, 1000);
-    this.data.phoneNumber = '0868554433';
-    this.data.email = 'nguyenga' + this.Utility.randomInRange(1, 1000) + '@gmail.com';
-    this.data.password = '12345678@Abc';
   }
 
   override loaded = () => {
