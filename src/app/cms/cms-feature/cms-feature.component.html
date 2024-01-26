@@ -12,7 +12,7 @@
     </base-button>
 
     <base-button #deleteBtn text="{{'base_keys.delete' | translate}}" [width]="128" [height]="36"
-        [color]="ButtonColor.WARN" (onClick)="delete.emit()"
+        [color]="ButtonColor.WARN" (onClick)="delete.emit()" [finishImmediately]="true"
         *ngIf="formMode == FormMode.Update || formMode == FormMode.View">
     </base-button>
 </div>

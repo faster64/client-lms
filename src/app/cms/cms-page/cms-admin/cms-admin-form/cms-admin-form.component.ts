@@ -25,6 +25,7 @@ export class CmsAdminFormComponent extends CmsFormComponent implements AfterView
 
   override ngOnInit(): void {
     this.data.state = UserState.Active;
+    this.data.roles = [{ id: 0 }];
     this.data.isClient = false;
     super.ngOnInit();
   }
@@ -40,14 +41,14 @@ export class CmsAdminFormComponent extends CmsFormComponent implements AfterView
     this.data.password = '123';
   }
 
-  override loaded = () => {
-    this.selector.value = this.data.roleId;
-    this.selector.get();
-  }
-
   override initConfig(): void {
     super.initConfig();
     this.path = Routing.CMS_ADMIN.path;
     this.service = this.injector.get(UserAdminService);
+  }
+
+  override loaded = () => {
+    this.selector.value = (this.data.roles && this.data.roles.length) ? this.data.roles[0].id : '0';
+    this.selector.get();
   }
 }

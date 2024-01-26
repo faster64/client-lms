@@ -36,8 +36,8 @@
 
       <div class="col-12 col-md-6 data-item">
         <div class="label"> Quyền quản trị<span class="required">*</span></div>
-        <app-role-selector #selector [value]="data.roleId" [readOnly]="formMode == FormMode.View" [height]="44"
-          (onValueChanged)="data.roleId = $event.current">
+        <app-role-selector #selector [value]="data.roles[0].id" [readOnly]="formMode == FormMode.View" [height]="44"
+          (onValueChanged)="data.roles[0].id = $event.current">
         </app-role-selector>
       </div>
     </div>

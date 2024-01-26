@@ -9,6 +9,8 @@ import { AuthService } from '../auth/auth.service';
 import { PublisherService } from '../base/publisher.service';
 import { SocketMessage } from './socket-message';
 import { SocketType } from './socket-type.enum';
+import { MessageBox } from '../../message-box/message-box.component';
+import { AppComponent } from 'src/app/app.component';
 
 @Injectable({
   providedIn: 'root'
@@ -81,32 +83,35 @@ export class HubConnectionService {
     this.onReceiveMessage();
     this.connection.onreconnecting(() => {
       console.warn("Kết nối tới máy chủ bị gián đoạn, đang thử kết nối lại...");
-      SnackBar.warning(new SnackBarParameter(this, "Mất kết nối tới máy chủ, đang thử kết nối lại...", SnackBar.forever));
+      if (AppComponent.Mode == 'cms')
+        SnackBar.warning(new SnackBarParameter(this, "Mất kết nối tới máy chủ, đang thử kết nối lại...", SnackBar.forever));
 
     });
     this.connection.onreconnected(() => {
       console.log("Kết nối tới máy chủ được phục hồi");
-      SnackBar.success(new SnackBarParameter(this, "Kết nối tới máy chủ được phục hồi", 2000));
+      if (AppComponent.Mode == 'cms')
+        SnackBar.success(new SnackBarParameter(this, "Kết nối tới máy chủ được phục hồi", 2000));
     });
     this.connection.onclose((error) => {
       console.log("Không thể kết nối tới máy chủ");
-      SnackBar.danger(new SnackBarParameter(this, "Không thể kết nối tới máy chủ", SnackBar.forever));
+      if (AppComponent.Mode == 'cms')
+        SnackBar.danger(new SnackBarParameter(this, "Không thể kết nối tới máy chủ", SnackBar.forever));
     });
   }
 
   onReceiveMessage() {
-    this.connection.on('ReceiveMessage', (socketMessage: SocketMessage) => {
-      console.log(`[${this.connection.connectionId}] received a message: `, socketMessage);
-      switch (socketMessage.type) {
+    this.connection.on('ReceiveMessage', (socket: SocketMessage) => {
+      console.log('[socket] received a message: ', socket);
+      switch (socket.type) {
         case SocketType.Login:
           break;
         case SocketType.Logout:
           this.authService.logout();
           break;
-        case SocketType.FindLogout:
-          console.log("Find logout: ", socketMessage);
-          if (this.authService.getUserId() + "" == socketMessage.message) {
-            this.authService.logout();
+        case SocketType.ForceLogout:
+          console.log("Force logout: ", socket);
+          if (this.authService.getUserId() + "" == socket.data) {
+            this.authService.logout(() => MessageBox.information(socket.message));
           }
           break;
         case SocketType.OnlineUser:
@@ -115,7 +120,7 @@ export class HubConnectionService {
         case SocketType.UpdateAccount:
           break;
         default:
-          console.log(socketMessage);
+          console.log(socket);
           break;
       }
     });

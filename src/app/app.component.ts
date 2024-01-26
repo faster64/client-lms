@@ -17,9 +17,11 @@ import { HubConnectionService } from './shared/services/socket/hub-connection.se
 })
 export class AppComponent implements OnInit, OnDestroy {
 
-  _onDestroySub: Subject<void> = new Subject<void>();
+  AppComponent = AppComponent;
 
-  mode = '';
+  public static Mode = '';
+
+  _onDestroySub: Subject<void> = new Subject<void>();
 
   progress = 0;
 
@@ -75,10 +77,10 @@ export class AppComponent implements OnInit, OnDestroy {
           }, 300);
 
           if (event.urlAfterRedirects.startsWith(`/${Routing.CMS.path}`)) {
-            this.mode = 'cms';
+            AppComponent.Mode = 'cms';
             return;
           }
-          this.mode = 'user';
+          AppComponent.Mode = 'user';
 
           if (event.urlAfterRedirects == `/${Routing.HOME.path}`) {
             document.documentElement.style.setProperty("--header-bg", "#305FE8");

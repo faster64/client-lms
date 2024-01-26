@@ -26,7 +26,7 @@ export class CmsAdminComponent extends CmsGridComponent<User> {
   override initColumns() {
     this.displayColumns = [];
     this.displayColumns.push({ column: 'fullName', displayText: 'Họ và tên', width: 180 });
-    this.displayColumns.push({ column: 'roleName', displayText: 'Vai trò', width: 180 });
+    this.displayColumns.push({ column: 'role', displayText: 'Vai trò', width: 180 });
     this.displayColumns.push({ column: 'phoneNumber', displayText: 'Số điện thoại', width: 160 });
     this.displayColumns.push({ column: 'email', displayText: 'Email', width: 180 });
     this.displayColumns.push({ column: 'className', displayText: 'Lớp', width: 120 });
@@ -57,12 +57,10 @@ export class CmsAdminComponent extends CmsGridComponent<User> {
           break;
       }
       item.stateText = `<span class='${className}'>${item.stateText}</span>`;
+      if (item.roles && item.roles.length) {
+        item['role'] = item.roles[0].name;
+      }
     }
-
     return data;
-  }
-
-  updateState(id,) {
-
   }
 }

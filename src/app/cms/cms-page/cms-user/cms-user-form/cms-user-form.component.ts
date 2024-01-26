@@ -25,6 +25,7 @@ export class CmsUserFormComponent extends CmsFormComponent implements AfterViewI
 
   override ngOnInit(): void {
     this.data.state = UserState.Active;
+    this.data.class = {};
     this.data.isClient = true;
     super.ngOnInit();
   }
@@ -33,6 +34,17 @@ export class CmsUserFormComponent extends CmsFormComponent implements AfterViewI
     if (this.formMode != FormMode.View) {
       this.fullname.instance.focus();
     }
+
+    this.data.fullName = 'Trần Thị Gà ' + this.Utility.randomInRange(1, 1000);
+    this.data.phoneNumber = '0868554' + this.Utility.randomInRange(1, 9) + this.Utility.randomInRange(1, 9) + this.Utility.randomInRange(1, 9);
+    this.data.email = 'daga' + this.Utility.randomInRange(1, 1000) + '@gmail.com';
+    this.data.password = '123@@';
+  }
+
+  override initConfig(): void {
+    super.initConfig();
+    this.path = Routing.CMS_USER.path;
+    this.service = this.injector.get(UserClientService);
   }
 
   override loaded = () => {
@@ -40,9 +52,12 @@ export class CmsUserFormComponent extends CmsFormComponent implements AfterViewI
     this.selector.getClassList();
   }
 
-  override initConfig(): void {
-    super.initConfig();
-    this.path = Routing.CMS_USER.path;
-    this.service = this.injector.get(UserClientService);
+  override filterResponse = (data: any) => {
+    if (data.class) {
+      data['className'] = data.class.name;
+    } else {
+      data.class = {};
+    }
+    return data;
   }
 }

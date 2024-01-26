@@ -83,12 +83,15 @@ export class CmsFormComponent extends BaseComponent {
         )
         .subscribe(resp => {
           if (resp.code == 'success') {
+            resp.data = this.filterResponse(resp.data);
             this.data = resp.data ?? {};
           }
           this.loaded();
         });
     }
   }
+
+  filterResponse = (data) => data;
 
   loaded = () => { };
 
@@ -98,12 +101,16 @@ export class CmsFormComponent extends BaseComponent {
 
   update = () => this.router.navigateByUrl(`${this.path}/${FormModeText.UPDATE}/${this.id}`);
 
+  beforeSave() { }
+
   save() {
     const valid = this.validate();
     if (!valid) {
       this.cmsFeature.saveBtn.finish();
       return;
     }
+
+    this.beforeSave();
 
     this.isLoading = true;
     const api = this.formMode == FormMode.Add ? this.service.save(this.data) : this.service.update(this.data);

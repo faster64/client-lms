@@ -19,17 +19,6 @@ export class UserClientService extends BaseService {
         http: HttpService
     ) {
         super(http);
-        this.controller = 'user';
-    }
-
-    override paging(paginationRequest: PaginationRequest): Observable<ServiceResult> {
-        let url = `${this.url()}/client-paging?page=${paginationRequest.number}&size=${paginationRequest.size}&query=${paginationRequest.query}`;
-
-        if (!StringHelper.isNullOrEmpty(paginationRequest.sort.fieldName)) {
-            url += (paginationRequest.sort.asc ? '&orderBy' : '&orderByDescending') + `=${paginationRequest.sort.fieldName}`;
-        }
-
-        url += `&${CommonConstant.ALLOW_NOTICE_WITH_SNACKBAR_DANGER}`;
-        return this.http.get<ServiceResult>(url, this._baseOptions);
+        this.controller = 'userclient';
     }
 }

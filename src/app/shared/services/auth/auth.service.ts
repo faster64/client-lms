@@ -120,7 +120,11 @@ export class AuthService {
             this.clearAuth();
           })
         )
-        .subscribe();
+        .subscribe(resp => {
+          if (callback) {
+            callback(resp);
+          }
+        });
     } else {
       this.clearAuth();
     }
