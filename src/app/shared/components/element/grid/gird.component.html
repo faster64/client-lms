@@ -18,7 +18,7 @@
             <div class="icon"></div>
           </div>
 
-          <div class="add-btn">
+          <div class="add-btn" *ngIf="enabledAdd">
             <base-button text="Thêm dữ liệu" [height]="36" [iconButtonType]="IconButtonType.ADD"
               [finishImmediately]="true" (onClick)="onAdd.emit()">
             </base-button>
@@ -110,6 +110,11 @@
                     (onChanged)="col.callback ? col.callback(item, $event) : ''">
                   </app-cms-user-states>
 
+                  <app-cms-ticket-states *ngSwitchCase="FieldType.TicketState" [state]="item[col.column]"
+                    [showDropdown]="false" [disabled]="true"
+                    (onChanged)="col.callback ? col.callback(item, $event) : ''">
+                  </app-cms-ticket-states>
+
                   <!-- Default  -->
                   <p *ngSwitchDefault [matTooltip]="Utility.removeHtml(item[col.column])"
                     [innerHTML]="item[col.column] || ''" class="over-3-dots">
@@ -124,9 +129,11 @@
               <div class="column column-body column-feature">
                 <div class="feature-icon bg-contain view" matTooltip="Xem bản ghi này" (click)="onView.emit(item)">
                 </div>
-                <div class="feature-icon bg-contain edit" matTooltip="Chỉnh sửa" (click)="onUpdate.emit(item)">
+                <div class="feature-icon bg-contain edit" matTooltip="Chỉnh sửa" (click)="onUpdate.emit(item)"
+                  *ngIf="enabledUpdate">
                 </div>
-                <div class="feature-icon bg-contain delete" matTooltip="Xóa" (click)="onDelete.emit(item)">
+                <div class="feature-icon bg-contain delete" matTooltip="Xóa" (click)="onDelete.emit(item)"
+                  *ngIf="enabledDelete">
                 </div>
               </div>
             </div>

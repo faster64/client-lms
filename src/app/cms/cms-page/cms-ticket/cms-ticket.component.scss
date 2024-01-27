@@ -1,0 +1,24 @@
+::ng-deep .cms-ticket-cpn {
+  position: relative;
+  height: 100%;
+  padding: var(--cms-content-padding);
+
+  .ticket-content {
+      position: relative;
+      height: 100%;
+
+      .progess-spinner-loading {
+          position: absolute !important;
+      }
+
+      span.active {
+          color: limegreen !important;
+          font-weight: 550;
+      }
+
+      span.inactive {
+          color: red !important;
+          font-weight: 550;
+      }
+  }
+}

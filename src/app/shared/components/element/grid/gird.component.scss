@@ -196,15 +196,17 @@
           }
 
           .view {
+            margin-right: 12px;
             background-image: url(~/src/assets/img/grid/view.svg);
           }
 
           .edit {
-            margin: 0 12px;
+            margin-right: 12px;
             background-image: url(~/src/assets/img/grid/edit.svg);
           }
 
           .delete {
+            margin-right: 12px;
             background-image: url(~/src/assets/img/grid/delete.svg);
           }
         }

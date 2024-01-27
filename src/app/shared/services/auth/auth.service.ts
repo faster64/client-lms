@@ -59,7 +59,7 @@ export class AuthService {
       window.location.href = `/${Routing.LOGIN.path}?next=${window.location.href}`;
       return;
     }
-    window.location.href = `/${Routing.LOGIN.path}`;
+    // window.location.href = `/${Routing.LOGIN.path}`;
   }
 
   private getContext = () => LocalHelper.parse('auth');

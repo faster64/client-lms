@@ -10,6 +10,7 @@ import { BaseButtonModule } from '../../micro/button/button.module';
 import { BaseLoadingModule } from '../../micro/loading/loading.module';
 import { MatMenuModule } from '@angular/material/menu';
 import { CmsUserStatesModule } from 'src/app/cms/cms-user-states/cms-user-states.module';
+import { CmsTicketStatesModule } from 'src/app/cms/cms-ticket-states/cms-ticket-states.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { CmsUserStatesModule } from 'src/app/cms/cms-user-states/cms-user-states
     PipesModule,
     BaseButtonModule,
     BaseLoadingModule,
-    CmsUserStatesModule
+    CmsUserStatesModule,
+    CmsTicketStatesModule,
   ],
   exports: [GirdComponent]
 })

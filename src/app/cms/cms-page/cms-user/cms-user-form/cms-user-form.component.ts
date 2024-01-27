@@ -60,4 +60,8 @@ export class CmsUserFormComponent extends CmsFormComponent implements AfterViewI
     }
     return data;
   }
+
+  override beforeSave(): void {
+    this.data.isClient = true;
+  }
 }

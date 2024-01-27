@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
-import { ContactModule } from '../contact/contact.module';
+import { TicketModule } from '../ticket/ticket.module';
 import { BannerModule } from '../banner/banner.module';
 import { AboutWeModule } from '../about-we/about-we.module';
 import { CourseModule } from '../course/course.module';
@@ -20,7 +20,7 @@ import { BaseLoadingModule } from 'src/app/shared/components/micro/loading/loadi
     HomeRoutingModule,
     TranslateModule,
     BannerModule,
-    ContactModule,
+    TicketModule,
     AboutWeModule,
     CourseModule,
     BaseLoadingModule

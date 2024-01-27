@@ -25,7 +25,7 @@ export class CmsAdminFormComponent extends CmsFormComponent implements AfterView
 
   override ngOnInit(): void {
     this.data.state = UserState.Active;
-    this.data.roles = [{ id: 0 }];
+    this.data.roles = [{ id: 0, roleId: 0 }];
     this.data.isClient = false;
     super.ngOnInit();
   }
@@ -48,7 +48,11 @@ export class CmsAdminFormComponent extends CmsFormComponent implements AfterView
   }
 
   override loaded = () => {
-    this.selector.value = (this.data.roles && this.data.roles.length) ? this.data.roles[0].id : '0';
+    this.selector.value = (this.data.roles && this.data.roles.length) ? this.data.roles[0].roleId : '0';
     this.selector.get();
+  }
+
+  override beforeSave(): void {
+    this.data.isClient = false;
   }
 }

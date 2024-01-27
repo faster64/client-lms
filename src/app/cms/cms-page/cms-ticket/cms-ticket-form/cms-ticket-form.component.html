@@ -1,0 +1,84 @@
+<div class="cms-ticket-form-cpn">
+
+  <div class="cms-content-middle">
+
+    <div class="client-title">
+      Nội dung khách hàng yêu cầu tư vấn
+    </div>
+
+    <div class="row">
+      <div class="col-12 col-md-6 data-item">
+        <div class="label"> Họ và tên</div>
+        <dx-text-box [(value)]="data.fullName" [disabled]="true" [height]="44">
+        </dx-text-box>
+      </div>
+
+      <div class="col-12 col-md-6 data-item">
+        <div class="label"> Số điện thoại</div>
+        <dx-text-box [(value)]="data.phoneNumber" [disabled]="true" [height]="44">
+        </dx-text-box>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 col-md-6 data-item">
+        <div class="label"> Email</div>
+        <dx-text-box [(value)]="data.email" [disabled]="true" [height]="44">
+        </dx-text-box>
+      </div>
+
+      <div class="col-12 col-md-6 data-item">
+        <div class="label"> Lớp</div>
+        <app-class-selector #selector [value]="data.classId" [disabled]="true" [height]="44"
+          (onValueChanged)="data.classId = $event.current">
+        </app-class-selector>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 data-item">
+        <div class="label"> Địa chỉ</div>
+        <dx-text-box [(value)]="data.address" [disabled]="true" [height]="44">
+        </dx-text-box>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 data-item">
+        <div class="label"> Nội dung liên hệ</div>
+        <dx-text-area [(value)]="data.question" [disabled]="true" [minHeight]="80" [maxHeight]="400">
+        </dx-text-area>
+      </div>
+    </div>
+
+    <div class="admin-title">
+      Trả lời phản hồi khách hàng
+    </div>
+
+    <div class="row">
+      <div class="col-12 data-item">
+        <div class="label"> Nội dung phản hồi <span class="required">*</span> </div>
+        <dx-text-area #response [(value)]="data.response" [disabled]="data.status == TicketStatus.Responsed"
+          [minHeight]="200" [maxHeight]="400">
+        </dx-text-area>
+      </div>
+    </div>
+  </div>
+
+  <div class="cms-features-bottom">
+    <base-button text="{{'base_keys.cancel' | translate}}" [buttonType]="ButtonType.STROKED" [color]="ButtonColor.BASIC"
+      [width]="128" [height]="36" [finishImmediately]="true" (onClick)="cancel()"
+      *ngIf="data.status == TicketStatus.NotResponsed">
+    </base-button>
+
+    <base-button #saveBtn text="Gửi" [width]="128" [height]="36" (onClick)="save()"
+      *ngIf="data.status == TicketStatus.NotResponsed">
+    </base-button>
+
+    <base-button text="Quay lại" [width]="128" [height]="36" [finishImmediately]="true"
+      (onClick)="cancel()" *ngIf="data.status == TicketStatus.Responsed">
+    </base-button>
+  </div>
+
+  <progess-spinner-loading *ngIf="isLoading"></progess-spinner-loading>
+</div>

@@ -1,0 +1,53 @@
+<div class="ticket-cpn">
+  <div class="content">
+    <div class="left bg-contain">
+    </div>
+    <div class="right">
+      <div class="title">{{'ticket.title' | translate}}</div>
+      <div class="sub-title">{{'ticket.sub_title' | translate}}</div>
+
+      <div class="wrap-info">
+        <div class="info-item full-name">
+          <div class="label">{{'ticket.full_name' | translate}} <span class="required">*</span> </div>
+          <div class="value">
+            <dx-text-box placeholder="{{'ticket.placeholder_full_name' | translate}}" [(value)]="ticket.fullName"></dx-text-box>
+          </div>
+        </div>
+        <div class="info-item phone">
+          <div class="label">{{'ticket.phone' | translate}} <span class="required">*</span> </div>
+          <div class="value">
+            <dx-text-box placeholder="{{'ticket.placeholder_phone' | translate}}" [(value)]="ticket.phoneNumber"></dx-text-box>
+          </div>
+        </div>
+        <div class="info-item email">
+          <div class="label">{{'ticket.email' | translate}} <span class="required">*</span> </div>
+          <div class="value">
+            <dx-text-box placeholder="{{'ticket.placeholder_email' | translate}}" [(value)]="ticket.email"></dx-text-box>
+          </div>
+        </div>
+        <div class="info-item class">
+          <div class="label">{{'ticket.class' | translate}} <span class="required">*</span> </div>
+          <div class="value">
+            <app-class-selector (onValueChanged)="ticket.classId = $event.current"></app-class-selector>
+          </div>
+        </div>
+        <div class="info-item address">
+          <div class="label">{{'ticket.address' | translate}} <span class="required">*</span> </div>
+          <div class="value">
+            <dx-text-box placeholder="{{'ticket.placeholder_address' | translate}}" [(value)]="ticket.address"></dx-text-box>
+          </div>
+        </div>
+        <div class="info-item content-txt">
+          <div class="label">{{'ticket.content' | translate}} <span class="required">*</span> </div>
+          <div class="value">
+            <dx-text-area placeholder="{{'ticket.placeholder_content' | translate}}" [(value)]="ticket.question"></dx-text-area>
+          </div>
+        </div>
+      </div>
+
+      <div class="send-btn">
+        <base-button #sendBtn text="{{'ticket.send' | translate}}" [height]="36" (onClick)="send()"></base-button>
+      </div>
+    </div>
+  </div>
+</div>

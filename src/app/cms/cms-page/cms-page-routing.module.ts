@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CmsBannerComponent } from './cms-banner/cms-banner.component';
 import { CmsCourseComponent } from './cms-course/cms-course.component';
-import { CmsContactComponent } from './cms-contact/cms-contact.component';
 import { CmsUserComponent } from './cms-user/cms-user.component';
 import { CmsAdminComponent } from './cms-admin/cms-admin.component';
 import { CmsClassComponent } from './cms-class/cms-class.component';
@@ -17,6 +16,8 @@ import { FormMode } from 'src/app/shared/enums/form-mode.enum';
 import { CmsCourseFormComponent } from './cms-course/cms-course-form/cms-course-form.component';
 import { CmsUserFormComponent } from './cms-user/cms-user-form/cms-user-form.component';
 import { CmsAdminFormComponent } from './cms-admin/cms-admin-form/cms-admin-form.component';
+import { CmsTicketComponent } from './cms-ticket/cms-ticket.component';
+import { CmsTicketFormComponent } from './cms-ticket/cms-ticket-form/cms-ticket-form.component';
 
 const routes: Routes = [
   {
@@ -57,10 +58,19 @@ const routes: Routes = [
   },
   //#endregion
 
+  //#region  Ticket
   {
     path: 'lien-he',
-    component: CmsContactComponent
+    component: CmsTicketComponent
   },
+  {
+    path: `lien-he/${FormModeText.VIEW}/:id`,
+    component: CmsTicketFormComponent,
+    data: {
+      formMode: FormMode.View
+    }
+  },
+  //#endregion ticket
 
   //#region User
   {

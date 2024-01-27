@@ -1,0 +1,44 @@
+.cms-ticket-states-cpn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 160px;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+
+  &.c-2 {
+      background: var(--green-01);
+
+      .icon {
+          background-color: var(--green-07);
+      }
+
+      .text {
+          color: var(--green-07);
+      }
+  }
+
+  &.c-1 {
+      background: var(--red-01);
+
+      .icon {
+          background-color: var(--red-05);
+      }
+
+      .text {
+          color: var(--red-05);
+      }
+  }
+
+  .icon {
+      width: 8px;
+      height: 8px;
+      margin-right: 8px;
+      border-radius: 50%;
+  }
+
+  .text {
+    font-weight: 600;
+  }
+}

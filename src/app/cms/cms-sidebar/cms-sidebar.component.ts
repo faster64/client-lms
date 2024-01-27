@@ -42,7 +42,7 @@ export class CmsSidebarComponent extends BaseComponent {
       {
         text: 'Quản lý liên hệ',
         class: 'contact',
-        path: Routing.CMS_CONTACT.path,
+        path: Routing.CMS_TICKET.path,
       },
       {
         text: 'Quản lý tài khoản người dùng',

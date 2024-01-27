@@ -14,6 +14,7 @@ import { SnackBar } from "src/app/shared/snackbar/snackbar.component";
 import { SnackBarParameter } from "src/app/shared/snackbar/snackbar.param";
 import { FormModeText } from "src/app/shared/constants/form-mode.constant";
 import { BaseModel } from "src/app/shared/models/base/base-model";
+import { ServiceResult } from "src/app/shared/models/base/service-result";
 
 @Directive()
 export class CmsFormComponent extends BaseComponent {
@@ -103,6 +104,16 @@ export class CmsFormComponent extends BaseComponent {
 
   beforeSave() { }
 
+  afterSave(resp: ServiceResult) {
+    if (resp.code == 'success') {
+      const id = this.formMode == FormMode.Add ? resp.data : this.id;
+      const message = TranslationService.VALUES['data_messages'][this.formMode == FormMode.Add ? 'save_success_msg' : 'update_success_msg'];
+      SnackBar.success(new SnackBarParameter(this, message));
+
+      this.router.navigateByUrl(`/${this.path}/${FormModeText.VIEW}/${id}`);
+    }
+  }
+
   save() {
     const valid = this.validate();
     if (!valid) {
@@ -122,13 +133,7 @@ export class CmsFormComponent extends BaseComponent {
         this.cmsFeature.saveBtn.finish();
       })
     ).subscribe(resp => {
-      if (resp.code == 'success') {
-        const id = this.formMode == FormMode.Add ? resp.data : this.id;
-        const message = TranslationService.VALUES['data_messages'][this.formMode == FormMode.Add ? 'save_success_msg' : 'update_success_msg'];
-        SnackBar.success(new SnackBarParameter(this, message));
-
-        this.router.navigateByUrl(`/${this.path}/${FormModeText.VIEW}/${id}`);
-      }
+      this.afterSave(resp);
     })
   }
 

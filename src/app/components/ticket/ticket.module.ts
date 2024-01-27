@@ -4,11 +4,11 @@ import { TranslateModule } from '@ngx-translate/core';
 import { DxTextAreaModule, DxTextBoxModule } from 'devextreme-angular';
 import { BaseButtonModule } from 'src/app/shared/components/micro/button/button.module';
 import { ClassSelectorModule } from 'src/app/shared/components/micro/class-selector/class-selector.module';
-import { ContactComponent } from './contact.component';
+import { TicketComponent } from './ticket.component';
 
 @NgModule({
   declarations: [
-    ContactComponent
+    TicketComponent
   ],
   imports: [
     CommonModule,
@@ -18,6 +18,6 @@ import { ContactComponent } from './contact.component';
     BaseButtonModule,
     ClassSelectorModule
   ],
-  exports: [ContactComponent]
+  exports: [TicketComponent]
 })
-export class ContactModule { }
+export class TicketModule { }

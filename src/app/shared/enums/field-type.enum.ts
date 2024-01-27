@@ -13,4 +13,5 @@ export enum FieldType {
   DateTime,
   CanEdit,
   AccountState,
+  TicketState
 }

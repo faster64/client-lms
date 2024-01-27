@@ -1,12 +1,11 @@
 import { ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { DxCheckBoxComponent } from 'devextreme-angular';
+import { BreakPoint } from 'src/app/shared/constants/break-point.constant';
 import { IconButtonType } from 'src/app/shared/constants/button.constant';
 import { FieldType } from 'src/app/shared/enums/field-type.enum';
-import { SortModel } from 'src/app/shared/models/base/sort-model';
 import { ColumnGrid } from 'src/app/shared/models/grid/column-grid';
 import { BaseGridComponent } from './base-grid-component';
-import { BreakPoint } from 'src/app/shared/constants/break-point.constant';
 
 @Component({
   selector: 'app-gird',
@@ -53,6 +52,15 @@ export class GirdComponent extends BaseGridComponent implements OnChanges {
 
   @Input()
   autoAdjust = true;
+
+  @Input()
+  enabledAdd = true;
+
+  @Input()
+  enabledUpdate = true;
+
+  @Input()
+  enabledDelete = true;
 
   @Input()
   searchKeys = [];

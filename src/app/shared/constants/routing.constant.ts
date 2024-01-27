@@ -7,7 +7,7 @@ export class Routing {
   public static readonly CMS = new RoutingConfig('cms', 'cms');
   public static readonly CMS_BANNER = new RoutingConfig(`${Routing.CMS.path}/banner`, 'cms_banner');
   public static readonly CMS_COURSE = new RoutingConfig(`${Routing.CMS.path}/khoa-hoc`, 'cms_course');
-  public static readonly CMS_CONTACT = new RoutingConfig(`${Routing.CMS.path}/lien-he`, 'cms_contact');
+  public static readonly CMS_TICKET = new RoutingConfig(`${Routing.CMS.path}/lien-he`, 'cms_ticket');
   public static readonly CMS_USER = new RoutingConfig(`${Routing.CMS.path}/quan-ly-tai-khoan-nguoi-dung`, 'cms_user');
   public static readonly CMS_ADMIN = new RoutingConfig(`${Routing.CMS.path}/quan-ly-tai-khoan-quan-tri`, 'cms_admin');
   public static readonly CMS_CLASS = new RoutingConfig(`${Routing.CMS.path}/lop-hoc`, 'cms_class');

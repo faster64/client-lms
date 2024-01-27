@@ -29,10 +29,9 @@ export class CmsAdminComponent extends CmsGridComponent<User> {
     this.displayColumns.push({ column: 'role', displayText: 'Vai trò', width: 180 });
     this.displayColumns.push({ column: 'phoneNumber', displayText: 'Số điện thoại', width: 160 });
     this.displayColumns.push({ column: 'email', displayText: 'Email', width: 180 });
-    this.displayColumns.push({ column: 'className', displayText: 'Lớp', width: 120 });
     this.displayColumns.push({ column: 'password', displayText: 'Mật khẩu', width: 140 });
     this.displayColumns.push({ column: 'createdDate', displayText: 'Ngày tạo', width: 140, type: FieldType.Date });
-    this.displayColumns.push({ column: 'state', displayText: 'Trạng thái', width: 220, type: FieldType.AccountState, callback: (item, e) => console.log(item, e) });
+    this.displayColumns.push({ column: 'state', displayText: 'Trạng thái tài khoản', width: 220, type: FieldType.AccountState, callback: (item, e) => console.log(item, e) });
   }
 
   override filterResponse = (data) => {

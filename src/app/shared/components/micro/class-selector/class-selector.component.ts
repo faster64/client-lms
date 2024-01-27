@@ -22,6 +22,9 @@ export class ClassSelectorComponent extends BaseComponent {
   readOnly = false;
 
   @Input()
+  disabled = false;
+
+  @Input()
   height = -1;
 
   @Output()
