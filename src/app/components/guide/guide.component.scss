@@ -1,0 +1,24 @@
+::ng-deep .guide-cpn {
+  height: 800px;
+  padding: 36px var(--side-distance);
+
+  .guide-title {
+    height: 40px;
+    font-weight: 600;
+  }
+
+  .guide-content {
+    position: relative;
+    width: 100%;
+    height: calc(100% - 40px);
+
+    .progess-spinner-loading {
+      position: absolute !important;
+    }
+
+    .youtube {
+      position: relative;
+      height: 100%;
+    }
+  }
+}

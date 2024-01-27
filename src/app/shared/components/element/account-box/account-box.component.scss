@@ -28,10 +28,48 @@
 }
 
 .account-management-content {
-  .amc-item:not(:last-child) {
+  padding: 0 4px !important;
+  .amc-item {
     display: flex;
     align-items: center;
-    justify-content: center;
-    margin-bottom: 16px;
+    padding: 8px 12px;
+    transition: all 0.3s;
+    cursor: pointer;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid var(--greyish);
+    }
+
+    &:hover {
+      background-color: var(--greyish);
+    }
+
+    .icon {
+      width: 24px;
+      height: 24px;
+      margin-right: 8px;
+    }
+    .text {
+      width: calc(100% - 32px);
+    }
+
+    &.information {
+      .icon {
+        background-image: url(~/src/assets/img/common/person.svg);
+      }
+    }
+    &.change-password {
+      .icon {
+        background-image: url(~/src/assets/img/common/lock.svg);
+      }
+    }
+    &.logout {
+      .icon {
+        background-image: url(~/src/assets/img/common/logout.svg);
+      }
+      .text {
+        color: var(--red-05);
+      }
+    }
   }
 }

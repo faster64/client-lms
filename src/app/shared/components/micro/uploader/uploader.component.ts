@@ -222,4 +222,11 @@ export class BaseUploaderComponent {
       event.preventDefault();
     }
   }
+
+  reset() {
+    this.files = [];
+    this.events = [];
+    this.isFetching = false;
+    this.formData = new FormData();
+  }
 }

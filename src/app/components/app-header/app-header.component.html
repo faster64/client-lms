@@ -4,25 +4,25 @@
     <div class="nav-left">
       <a class="logo" [routerLink]="Routing.HOME.path"></a>
 
-      <a class="nav-item" [routerLink]="Routing.HOME.path" [ngClass]="selectedIndex == 0 ? 'selected' : ''">
+      <a class="nav-item" [routerLink]="Routing.HOME.path" [ngClass]="Routing.HOME.path == path ? 'selected' : ''">
         <div class="text">{{'header.navs.home' | translate}}</div>
         <div class="under-line"></div>
       </a>
 
-      <a class="nav-item" [routerLink]="Routing.HOME.path" [ngClass]="selectedIndex == 1 ? 'selected' : ''"
-        (click)="Utility.featureIsInDevelopment($event)">
+      <!-- <a class="nav-item" [routerLink]="Routing.CONTACT.path" [ngClass]="Routing.CONTACT.path == path ? 'selected' : ''"
+        >
         <div class="text">{{'header.navs.contact' | translate}}</div>
         <div class="under-line"></div>
-      </a>
+      </a> -->
 
-      <a class="nav-item" [routerLink]="Routing.HOME.path" [ngClass]="selectedIndex == 2 ? 'selected' : ''"
-        (click)="Utility.featureIsInDevelopment($event)">
+      <a class="nav-item" [routerLink]="Routing.GUIDE.path" [ngClass]="Routing.GUIDE.path == path ? 'selected' : ''">
         <div class="text">{{'header.navs.guide' | translate}}</div>
         <div class="under-line"></div>
       </a>
 
-      <a class="nav-item" [routerLink]="Routing.HOME.path" [ngClass]="selectedIndex == 3 ? 'selected' : ''"
-        *ngIf="AuthService.CurrentStatus == AuthStatus.LoggedIn" (click)="Utility.featureIsInDevelopment($event)">
+      <a class="nav-item" [routerLink]="Routing.MY_COURES.path"
+        [ngClass]="Routing.MY_COURES.path == path ? 'selected' : ''"
+        *ngIf="AuthService.CurrentStatus == AuthStatus.LoggedIn">
         <div class="text">{{'header.navs.my_courses' | translate}}</div>
         <div class="under-line"></div>
       </a>

@@ -82,6 +82,7 @@ export class AppComponent implements OnInit, OnDestroy {
           }
           AppComponent.Mode = 'user';
 
+          this.publisher.routeChangeEvent.emit();
           if (event.urlAfterRedirects == `/${Routing.HOME.path}`) {
             document.documentElement.style.setProperty("--header-bg", "#305FE8");
           } else {

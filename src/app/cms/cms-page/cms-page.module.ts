@@ -31,6 +31,8 @@ import { CmsTicketComponent } from './cms-ticket/cms-ticket.component';
 import { CmsUserFormComponent } from './cms-user/cms-user-form/cms-user-form.component';
 import { CmsUserComponent } from './cms-user/cms-user.component';
 import { CmsTicketFormComponent } from './cms-ticket/cms-ticket-form/cms-ticket-form.component';
+import { PipesModule } from 'src/app/shared/pipes/pipes.module';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -72,7 +74,9 @@ import { CmsTicketFormComponent } from './cms-ticket/cms-ticket-form/cms-ticket-
     RoleSelectorModule,
     BaseUploaderModule,
     EditorModule,
-    CmsUserStatesModule
+    CmsUserStatesModule,
+    PipesModule,
+    MatTooltipModule
   ]
 })
 export class CmsPageModule { }

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AppFooterComponent } from './app-footer.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { BaseLoadingModule } from 'src/app/shared/components/micro/loading/loading.module';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -13,6 +14,7 @@ import { BaseLoadingModule } from 'src/app/shared/components/micro/loading/loadi
   imports: [
     CommonModule,
     TranslateModule,
+    RouterModule,
     BaseLoadingModule
   ],
   exports: [AppFooterComponent]

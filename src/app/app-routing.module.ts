@@ -60,6 +60,30 @@ const routes: Routes = [
     }
   },
   {
+    path: Routing.GUIDE.path,
+    loadChildren: () => import('./components/guide/guide.module').then(m => m.GuideModule),
+    canActivate: [BaseGuard],
+    resolve: {
+      resolver: BaseResolver,
+    }
+  },
+  {
+    path: Routing.CONTACT.path,
+    loadChildren: () => import('./components/contact/contact.module').then(m => m.ContactModule),
+    canActivate: [BaseGuard],
+    resolve: {
+      resolver: BaseResolver,
+    }
+  },
+  {
+    path: Routing.MY_COURES.path,
+    loadChildren: () => import('./components/my-courses/my-courses.module').then(m => m.MyCoursesModule),
+    canActivate: [BaseGuard],
+    resolve: {
+      resolver: BaseResolver,
+    }
+  },
+  {
     path: Routing.COURSE_DETAIL.path,
     loadChildren: () => import('./components/course-detail/course-detail.module').then(m => m.CourseDetailModule),
     canActivate: [BaseGuard],
@@ -67,11 +91,11 @@ const routes: Routes = [
       resolver: BaseResolver,
     }
   },
-  // {
-  //   path: "**",
-  //   redirectTo: `/${Routing.NOT_FOUND.path}`,
-  //   pathMatch: 'full'
-  // }
+  {
+    path: "**",
+    redirectTo: `/${Routing.HOME.path}`,
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({

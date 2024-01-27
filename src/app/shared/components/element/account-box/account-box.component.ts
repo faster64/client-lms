@@ -31,7 +31,7 @@ export class AccountBoxComponent extends BaseComponent {
     this.publisher.loggedInEvent.subscribe( () => this.getFullname());
   }
 
-  signOut() {
+  logout() {
     this.authService.logout();
   }
 

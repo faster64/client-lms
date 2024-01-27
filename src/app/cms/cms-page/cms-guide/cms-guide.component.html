@@ -1,1 +1,62 @@
-<p>cms-guide works!</p>
+<div class="cms-guide-cpn">
+  <div class="cms-content-middle">
+    <div class="row">
+      <div class="col-12 col-md-6 data-item">
+        <div class="label">Tải file hoặc nhập liên kết youtube <span class="required">*</span> (tối đa 1 file với định
+          dạng pdf)
+        </div>
+
+        <uploader #uploader [allowedFileExtensions]="'.pdf'" [disabled]="!updateMode" [multiple]="false" [auto]="true"
+          [maxFileSize]="10 * 1024 * 1024" (onChanged)="uploaded($event)">
+        </uploader>
+
+        <span class="or">Hoặc</span>
+
+        <dx-text-box placeholder="Nhập liên kết youtube" [disabled]="!updateMode" [(value)]="guide.linkYoutube"
+          [height]="44" (onValueChanged)="youtubeChanged()">
+        </dx-text-box>
+      </div>
+
+      <div class="col-12 col-md-6 data-item"
+        *ngIf="guide.fileUrl && guide.fileUrl != '' && (!guide.linkYoutube || guide.linkYoutube == '')">
+        <div class="label">File đính kèm đã tải lên</div>
+
+        <div class="pdf-wrapper" (click)="openPdf()">
+          <div class="icon bg-contain"></div>
+          <div class="text over-3-dots" [matTooltip]="guide.originFileName">{{guide.originFileName}}</div>
+          <div class="remove-icon bg-contain" (click)="removeFile($event)" *ngIf="updateMode"></div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6 data-item"
+        *ngIf="guide.linkYoutube && guide.linkYoutube != '' && (!guide.fileUrl || guide.fileUrl == '')">
+        <div class="label">Video liên kết youtube</div>
+
+        <div class="ytb-wrapper">
+          <iframe width="378" height="288" [src]="guide.linkYoutube | safe" frameborder="0" allowfullscreen
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
+          </iframe>
+
+          <div class="remove-ytb" (click)="removeYoutube($event)" *ngIf="updateMode">
+            <div class="icon bg-contain"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="cms-features-bottom">
+    <base-button text="{{'base_keys.cancel' | translate}}" [buttonType]="ButtonType.STROKED" [color]="ButtonColor.BASIC"
+      [width]="128" [height]="36" [finishImmediately]="true" (onClick)="cancel()" *ngIf="updateMode">
+    </base-button>
+
+    <base-button text="{{'base_keys.update' | translate}}" [width]="128" [height]="36" [finishImmediately]="true"
+      (onClick)="update()" *ngIf="!updateMode">
+    </base-button>
+
+    <base-button #saveBtn text="{{'base_keys.save' | translate}}" [width]="128" [height]="36" (onClick)="save()"
+      *ngIf="updateMode">
+    </base-button>
+  </div>
+</div>

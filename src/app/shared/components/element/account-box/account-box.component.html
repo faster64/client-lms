@@ -6,20 +6,19 @@
 
 <mat-menu #menu="matMenu">
   <div class="account-management-content" style="padding: 12px 24px">
-    <div class="amc-item">
-      <div class="avatar bg-cover">
-
-      </div>
+    <div class="amc-item information" (click)="Utility.featureIsInDevelopment($event)">
+      <div class="icon"></div>
+      <div class="text">Thông tin cá nhân</div>
     </div>
 
-    <div class="amc-item full-name">
-      <span class="over-3-dots">{{ userService.user.fullName }} ({{userService.user.username}})</span>
+    <div class="amc-item change-password" (click)="Utility.featureIsInDevelopment($event)">
+      <div class="icon"></div>
+      <div class="text">Đổi mật khẩu</div>
     </div>
 
-    <div class="amc-item signout">
-      <base-button #signoutBtn [color]="ButtonColor.WARN" text="{{'auth.logout' | translate}}" (onClick)="signOut()"
-        [width]="240" [height]="44">
-      </base-button>
+    <div class="amc-item logout" (click)="logout()">
+      <div class="icon"></div>
+      <div class="text">Đăng xuất</div>
     </div>
   </div>
 </mat-menu>

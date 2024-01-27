@@ -1,0 +1,26 @@
+<div class="guide-cpn">
+  <div class="guide-title over-3-dots">
+    Hỗ trợ cài đặt ứng dụng CONSTRUCT 2 để edit template và 5 module tương ứng
+  </div>
+
+  <div class="guide-content">
+    <div class="pdf" *ngIf="guide.fileUrl && guide.fileUrl != '' && (!guide.linkYoutube || guide.linkYoutube == '')">
+      <embed  [src]="guide.fileUrl | safe"
+      type="application/pdf"
+      frameBorder="0"
+      scrolling="auto"
+      width="100%"
+      height="660px"
+      />
+    </div>
+
+    <div class="youtube" *ngIf="guide.linkYoutube && guide.linkYoutube != '' && (!guide.fileUrl || guide.fileUrl == '')">
+      <iframe [src]="guide.linkYoutube | safe" frameborder="0" allowfullscreen
+        style="position:absolute; inset: 0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden;"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
+      </iframe>
+    </div>
+
+    <progess-spinner-loading *ngIf="isLoading"></progess-spinner-loading>
+  </div>
+</div>

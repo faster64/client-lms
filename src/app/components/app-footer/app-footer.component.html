@@ -29,9 +29,9 @@
   </div>
   <div class="about-we block">
     <div class="title">{{'footer.about_we' | translate}}</div>
-    <div class="about-item">{{'footer.intro' | translate}}</div>
-    <div class="about-item">{{'footer.my_courses' | translate}}</div>
-    <div class="about-item">{{'footer.contact' | translate}}</div>
+    <a [routerLink]="Routing.HOME.path" class="about-item">{{'footer.intro' | translate}}</a>
+    <a [routerLink]="Routing.MY_COURES.path" class="about-item">{{'footer.my_courses' | translate}}</a>
+    <a [routerLink]="Routing.CONTACT.path" class="about-item">{{'footer.contact' | translate}}</a>
   </div>
   <div class="social block">
     <div class="title">{{'footer.social_network_media' | translate}}</div>

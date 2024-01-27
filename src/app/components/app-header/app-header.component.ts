@@ -19,7 +19,7 @@ export class AppHeaderComponent implements OnInit {
   AuthService = AuthService;
   AuthStatus = AuthStatus;
 
-  selectedIndex = 0;
+  path = '';
 
   constructor(
     public router: Router,
@@ -32,8 +32,12 @@ export class AppHeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.findModule();
+    this.publisher.routeChangeEvent.subscribe( () => this.findModule())
   }
 
   findModule() {
+    setTimeout(() => {
+      this.path = (this.activatedRoute.snapshot as any)['_routerState']['url'].substring(1);
+    }, 100);
   }
 }
