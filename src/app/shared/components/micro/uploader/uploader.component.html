@@ -1,7 +1,8 @@
 <div class="base-uploader">
   <div class="uploader" (click)="prevent($event)">
-    <ngx-dropzone #dropzone class="ngx-dropzone" [multiple]="multiple" [accept]="allowedFileExtensions"
-      [expandable]="false" [disabled]="disabled" [maxFileSize]="maxFileSize" (change)="selected($event)">
+    <ngx-dropzone *ngIf="mode == ''" #dropzone class="ngx-dropzone" [multiple]="multiple"
+      [accept]="allowedFileExtensions" [expandable]="false" [disabled]="disabled" [maxFileSize]="maxFileSize"
+      (change)="selected($event)">
       <ngx-dropzone-label>
         <div>Kéo và thả</div>
         <div>{{label}}</div>
@@ -23,6 +24,18 @@
         </ngx-dropzone-preview>
       </ng-container>
 
+    </ngx-dropzone>
+
+    <ngx-dropzone *ngIf="mode == 'exercise-image'" #dropzone class="ngx-dropzone-image" [multiple]="false"
+      [accept]="allowedFileExtensions" [expandable]="false" [disabled]="disabled" [maxFileSize]="maxFileSize"
+      (change)="selected($event)">
+      <div class="icon-inner bg-contain"></div>
+    </ngx-dropzone>
+
+    <ngx-dropzone *ngIf="mode == 'exercise-audio'" #dropzone class="ngx-dropzone-audio" [multiple]="false"
+      accept='.mp3,.wav,.flac,.aac,.ogg,.m4a,.wma,.aiff,.alac,.ape' [expandable]="false" [disabled]="disabled" [maxFileSize]="maxFileSize"
+      (change)="selected($event)">
+      <div class="icon-inner bg-contain"></div>
     </ngx-dropzone>
 
     <progess-spinner-loading *ngIf="isFetching"></progess-spinner-loading>

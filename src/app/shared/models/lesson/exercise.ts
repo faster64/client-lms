@@ -7,7 +7,9 @@ export class Exercise extends BaseModel {
   public anwserJson = '';
   public anwsers = [];
   public image = '';
+  public imageUrl = '';
   public audio = '';
+  public audioUrl = '';
   public note = '';
   public hint = '';
 }

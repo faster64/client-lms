@@ -30,6 +30,9 @@ export class BaseUploaderComponent {
   label = 'Hoặc click để chọn hình ảnh tải lên tại đây';
 
   @Input()
+  mode = '';
+
+  @Input()
   maxFileSize = 1024 * 1024 * 50;
 
   @Input()
@@ -77,6 +80,7 @@ export class BaseUploaderComponent {
   ) { }
 
   selected(fileEvent: FileEvent) {
+    console.log(fileEvent)
     const files = [...fileEvent.addedFiles].filter(x => !this.files.find(f => f.name == x.name));
 
     this.events = [];

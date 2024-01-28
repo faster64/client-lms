@@ -20,7 +20,7 @@ import { StringHelper } from 'src/app/shared/helpers/string.helper';
 })
 export class CmsLessonFormComponent extends CmsFormComponent implements AfterViewInit {
 
-  mode = 'exercise';
+  mode = 'docs';
 
   courses: Course[] = [];
 
@@ -76,8 +76,6 @@ export class CmsLessonFormComponent extends CmsFormComponent implements AfterVie
       }
       ex.anwserJson = JSON.stringify(ex.anwsers);
     }
-
-    console.log(this.data);
   }
 
   getCourses() {
@@ -138,10 +136,6 @@ export class CmsLessonFormComponent extends CmsFormComponent implements AfterVie
         type: QuestionType.DIEN_KHUYET,
         anwsers: [""]
       },
-      {
-        type: QuestionType.SAP_XEP,
-        anwsers: [""]
-      },
     );
     // setTimeout(() => {
     //   var content = document.querySelector('.cms-content-middle');
@@ -174,5 +168,33 @@ export class CmsLessonFormComponent extends CmsFormComponent implements AfterVie
       return;
     }
     exercise.anwsers.splice(index, 1);
+  }
+
+  imageSelected(event, exercise: Exercise) {
+    exercise.image = event.fileNames[0];
+  }
+
+  removeImageAttachment(event, exercise: Exercise) {
+    event.stopPropagation();
+    event.preventDefault();
+
+    exercise.image = '';
+    exercise.imageUrl = '';
+  }
+
+  audioSelected(event, exercise: Exercise) {
+    exercise.audio = event.fileNames[0];
+  }
+
+  removeAudioAttachment(event, exercise: Exercise) {
+    event.stopPropagation();
+    event.preventDefault();
+
+    exercise.audio = '';
+    exercise.audioUrl = '';
+  }
+
+  openAttachment(url) {
+    window.open(url, '_blank');
   }
 }

@@ -19,6 +19,28 @@
     }
   }
 
+  .ngx-dropzone-image, .ngx-dropzone-audio  {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: 100% !important;
+    border: none !important;
+    border-radius: 4px;
+    background-color: var(--grey);
+
+    .icon-inner {
+      width: 20px;
+      height: 20px;
+      background-image: url(~/src/assets/img/lesson/image.svg);
+    }
+
+    &.ngx-dropzone-audio {
+      .icon-inner {
+        background-image: url(~/src/assets/img/lesson/volume.svg);
+      }
+    }
+  }
+
   ngx-dropzone-preview {
     overflow: hidden;
   }

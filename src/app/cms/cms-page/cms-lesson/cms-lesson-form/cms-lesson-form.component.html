@@ -105,27 +105,50 @@
         <!-- Câu hỏi  -->
         <div class="col-12 col-md-6 data-item">
           <div class="label">Câu hỏi <span class="required">*</span> </div>
-          <dx-text-box [readOnly]="formMode == FormMode.View" [height]="44" [disabled]="exercise.type == QuestionType.SAP_XEP" placeholder="Nhập câu hỏi"
+          <dx-text-box [readOnly]="formMode == FormMode.View" [height]="44"
+            [disabled]="exercise.type == QuestionType.SAP_XEP" placeholder="Nhập câu hỏi"
             [(value)]="exercise.questionJson"></dx-text-box>
         </div>
 
         <!-- Dạng câu hỏi  -->
         <div class="col-12 col-md-4 data-item">
           <div class="label">Chọn dạng câu hỏi <span class="required">*</span> </div>
-          <dx-select-box valueExpr="id" displayExpr="text" [readOnly]="formMode == FormMode.View" [dataSource]="LessonService.QuestionTypes" [height]="44"
-            [(value)]="exercise.type" (onValueChanged)="questionTypeChanged(exercise)">
+          <dx-select-box valueExpr="id" displayExpr="text" [readOnly]="formMode == FormMode.View"
+            [dataSource]="LessonService.QuestionTypes" [height]="44" [(value)]="exercise.type"
+            (onValueChanged)="questionTypeChanged(exercise)">
           </dx-select-box>
         </div>
 
         <!-- Upload file  -->
         <div class="col-2 col-md-1 attachment">
           <div class="choose-file">
-            <!-- <uploader></uploader> -->
+            <uploader #imageUploader mode="exercise-image" [auto]="true" [disabled]="formMode == FormMode.View"
+              (onChanged)="imageSelected($event, exercise)">
+            </uploader>
           </div>
         </div>
         <div class="col-2 col-md-1 attachment">
           <div class="choose-file">
-            <!-- <uploader></uploader> -->
+            <uploader #audioUploader mode="exercise-audio" [auto]="true" [disabled]="formMode == FormMode.View"
+              (onChanged)="audioSelected($event, exercise)">
+            </uploader>
+          </div>
+        </div>
+
+        <!-- Tệp  -->
+        <div class="col-12 data-item image" *ngIf="exercise.image && exercise.image != ''">
+          <div class="wrapper" (click)="openAttachment(exercise.imageUrl)">
+            <div class="icon bg-contain"></div>
+            <div class="name over-3-dots">{{exercise.image}}</div>
+            <div class="remove bg-contain" (click)="removeImageAttachment($event, exercise)" *ngIf="formMode != FormMode.View"></div>
+          </div>
+        </div>
+
+        <div class="col-12 data-item audio" *ngIf="exercise.audio && exercise.audio != ''">
+          <div class="wrapper" (click)="openAttachment(exercise.audioUrl)">
+            <div class="icon bg-contain"></div>
+            <div class="name over-3-dots">{{exercise.audio}}</div>
+            <div class="remove bg-contain" (click)="removeAudioAttachment($event, exercise)" *ngIf="formMode != FormMode.View"></div>
           </div>
         </div>
 
@@ -133,8 +156,8 @@
         <ng-container *ngIf="exercise.type == QuestionType.DIEN_KHUYET">
           <div class="col-12 data-item dien-khuyet" *ngFor="let anwser of exercise.anwsers; index as ii">
             <div class="label">Đáp án <span class="required">*</span> </div>
-            <dx-text-box [readOnly]="formMode == FormMode.View" [height]="44" placeholder="Nhập đáp án" (onValueChanged)="onAnsChanged(exercise, ii, $event)"
-              [value]="exercise.anwsers[ii]">
+            <dx-text-box [readOnly]="formMode == FormMode.View" [height]="44" placeholder="Nhập đáp án"
+              (onValueChanged)="onAnsChanged(exercise, ii, $event)" [value]="exercise.anwsers[ii]">
             </dx-text-box>
 
             <div class="remove-ans-btn" (click)="removeAns(exercise, ii)" *ngIf="formMode != FormMode.View">
@@ -148,7 +171,8 @@
             <div class="label">Đáp án <span class="required">*</span> </div>
             <div class="ans" *ngFor="let anwser of exercise.anwsers; index as ii">
               <div class="checkbox">
-                <dx-check-box [readOnly]="formMode == FormMode.View" [(value)]="exercise.anwsers[ii].value"></dx-check-box>
+                <dx-check-box [readOnly]="formMode == FormMode.View"
+                  [(value)]="exercise.anwsers[ii].value"></dx-check-box>
               </div>
               <div class="title">
                 {{ii == 0 ? 'A' : ii == 1 ? 'B' : ii == 2 ? 'C' : 'D'}}
@@ -163,8 +187,8 @@
         <ng-container *ngIf="exercise.type == QuestionType.SAP_XEP">
           <div class="col-12 data-item tags">
             <div class="tag" *ngFor="let tag of exercise.anwsers; index as ii">
-              <dx-text-box [readOnly]="formMode == FormMode.View" [width]="100" [height]="36" (onValueChanged)="onAnsChanged(exercise, ii, $event)"
-                [value]="exercise.anwsers[ii]">
+              <dx-text-box [readOnly]="formMode == FormMode.View" [width]="100" [height]="36"
+                (onValueChanged)="onAnsChanged(exercise, ii, $event)" [value]="exercise.anwsers[ii]">
               </dx-text-box>
 
               <div class="remove-ans-btn" (click)="removeAns(exercise, ii)" *ngIf="formMode != FormMode.View">
