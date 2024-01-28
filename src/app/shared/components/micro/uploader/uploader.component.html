@@ -4,7 +4,7 @@
       [expandable]="false" [disabled]="disabled" [maxFileSize]="maxFileSize" (change)="selected($event)">
       <ngx-dropzone-label>
         <div>Kéo và thả</div>
-        <div>Hoặc click để chọn hình ảnh tải lên tại đây</div>
+        <div>{{label}}</div>
       </ngx-dropzone-label>
 
       <ng-container *ngFor="let f of files">

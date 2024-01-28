@@ -11,6 +11,7 @@ import { BaseLoadingModule } from '../../micro/loading/loading.module';
 import { MatMenuModule } from '@angular/material/menu';
 import { CmsUserStatesModule } from 'src/app/cms/cms-user-states/cms-user-states.module';
 import { CmsTicketStatesModule } from 'src/app/cms/cms-ticket-states/cms-ticket-states.module';
+import { CmsPdfModule } from 'src/app/cms/cms-pdf/cms-pdf.module';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { CmsTicketStatesModule } from 'src/app/cms/cms-ticket-states/cms-ticket-
     BaseLoadingModule,
     CmsUserStatesModule,
     CmsTicketStatesModule,
+    CmsPdfModule
   ],
   exports: [GirdComponent]
 })

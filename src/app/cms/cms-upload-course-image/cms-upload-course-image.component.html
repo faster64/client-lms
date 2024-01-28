@@ -1,0 +1,20 @@
+<div class="cms-upload-course-image-cpn row">
+  <div class="col-12 col-md-6 data-item" *ngIf="!readOnly">
+    <div class="label">Hình ảnh khóa học <span class="required">*</span>(1 ảnh KT 312 *234) </div>
+    <uploader #uploader [multiple]="false" [auto]="true" [maxFileSize]="10 * 1024 * 1024" (onChanged)="uploaded($event)">
+    </uploader>
+  </div>
+
+  <div class="col-12 col-md-6 data-item" *ngIf="url && url != ''">
+    <div class="label">Hình ảnh đã tải lên </div>
+
+    <div class="img-wrap">
+      <img [src]="url">
+
+      <div class="remove" (click)="removeImage()" *ngIf="!readOnly">
+        <div class="icon bg-contain"></div>
+      </div>
+    </div>
+
+  </div>
+</div>

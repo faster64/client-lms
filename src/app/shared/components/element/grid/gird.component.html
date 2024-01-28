@@ -115,6 +115,10 @@
                     (onChanged)="col.callback ? col.callback(item, $event) : ''">
                   </app-cms-ticket-states>
 
+
+                  <app-cms-pdf *ngSwitchCase="FieldType.Pdf" [readOnly]="true" [name]="item[col.column + '_name']" [url]="item[col.column]">
+                  </app-cms-pdf>
+
                   <!-- Default  -->
                   <p *ngSwitchDefault [matTooltip]="Utility.removeHtml(item[col.column])"
                     [innerHTML]="item[col.column] || ''" class="over-3-dots">

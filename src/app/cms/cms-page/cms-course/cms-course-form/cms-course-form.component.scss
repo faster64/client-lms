@@ -2,45 +2,6 @@
   position: relative;
   height: 100%;
 
-  .row.image {
-    margin-bottom: 24px;
-
-    .data-item {
-      max-width: 400px;
-      max-height: 200px;
-    }
-
-    .img-wrap {
-      position: relative;
-      width: 320px;
-      height: 100%;
-
-      img {
-        width: 320px;
-        height: 200px;
-      }
-
-      .remove {
-        position: absolute;
-        top: 12px;
-        right: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 4px;
-        border-radius: 2px;
-        background-color: var(--greyish);
-        cursor: pointer;
-
-        .icon {
-          width: 16px;
-          height: 16px;
-          background-image: url(~/src/assets/img/common/remove.svg);
-        }
-      }
-    }
-  }
-
   .row.description {
     .tox-tinymce {
       min-height: 400px;

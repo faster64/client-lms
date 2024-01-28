@@ -7,7 +7,8 @@
         </div>
 
         <uploader #uploader [allowedFileExtensions]="'.pdf'" [disabled]="!updateMode" [multiple]="false" [auto]="true"
-          [maxFileSize]="10 * 1024 * 1024" (onChanged)="uploaded($event)">
+          [maxFileSize]="10 * 1024 * 1024" (onChanged)="uploaded($event)"
+          label="Hoặc click để chọn tệp tải lên tại đây">
         </uploader>
 
         <span class="or">Hoặc</span>
@@ -21,11 +22,9 @@
         *ngIf="guide.fileUrl && guide.fileUrl != '' && (!guide.linkYoutube || guide.linkYoutube == '')">
         <div class="label">File đính kèm đã tải lên</div>
 
-        <div class="pdf-wrapper" (click)="openPdf()">
-          <div class="icon bg-contain"></div>
-          <div class="text over-3-dots" [matTooltip]="guide.originFileName">{{guide.originFileName}}</div>
-          <div class="remove-icon bg-contain" (click)="removeFile($event)" *ngIf="updateMode"></div>
-        </div>
+        <app-cms-pdf [readOnly]="!updateMode" [name]="guide.originFileName" [url]="guide.fileUrl"
+          (remove)="removeFile($event)">
+        </app-cms-pdf>
       </div>
 
       <div class="col-12 col-md-6 data-item"

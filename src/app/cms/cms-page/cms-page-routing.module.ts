@@ -18,6 +18,7 @@ import { CmsUserFormComponent } from './cms-user/cms-user-form/cms-user-form.com
 import { CmsAdminFormComponent } from './cms-admin/cms-admin-form/cms-admin-form.component';
 import { CmsTicketComponent } from './cms-ticket/cms-ticket.component';
 import { CmsTicketFormComponent } from './cms-ticket/cms-ticket-form/cms-ticket-form.component';
+import { CmsLessonFormComponent } from './cms-lesson/cms-lesson-form/cms-lesson-form.component';
 
 const routes: Routes = [
   {
@@ -25,10 +26,13 @@ const routes: Routes = [
     redirectTo: 'banner',
     pathMatch: 'full'
   },
+
+  //#region  Banner
   {
     path: 'banner',
     component: CmsBannerComponent
   },
+  //#endregion
 
   //#region  Course
   {
@@ -156,22 +160,53 @@ const routes: Routes = [
   },
   //#endregion
 
+  //#region  Lesson
   {
     path: 'bai-giang',
     component: CmsLessonComponent
   },
   {
+    path: `bai-giang/${FormModeText.ADD}`,
+    component: CmsLessonFormComponent,
+    data: {
+      formMode: FormMode.Add
+    }
+  },
+  {
+    path: `bai-giang/${FormModeText.UPDATE}/:id`,
+    component: CmsLessonFormComponent,
+    data: {
+      formMode: FormMode.Update
+    }
+  },
+  {
+    path: `bai-giang/${FormModeText.VIEW}/:id`,
+    component: CmsLessonFormComponent,
+    data: {
+      formMode: FormMode.View
+    }
+  },
+  //#endregion
+
+  //#region  Social
+  {
     path: 'mang-xa-hoi',
     component: CmsSocialComponent
   },
+  //#endregion
+
   {
     path: 'don-mua-hang',
     component: CmsOrderComponent
   },
+
+  //#region  Guide
   {
     path: 'huong-dan-su-dung',
     component: CmsGuideComponent
   },
+  //#endregion
+
   {
     path: 'bao-cao-thong-ke',
     component: CmsReportComponent

@@ -1,0 +1,7 @@
+<div class="cms-pdf-cpn">
+  <div class="pdf-wrapper" (click)="openPdf()">
+    <div class="icon bg-contain"></div>
+    <div class="text over-3-dots" [matTooltip]="name">{{name}}</div>
+    <div class="remove-icon bg-contain" (click)="removeAttachment($event)" *ngIf="!readOnly"></div>
+  </div>
+</div>

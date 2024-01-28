@@ -1,0 +1,29 @@
+.cms-pdf-cpn {
+  .pdf-wrapper {
+    display: flex;
+    align-items: center;
+    max-width: 280px;
+    padding: 4px 8px;
+    border: 1px solid var(--greyish);
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+
+    .icon {
+      width: 24px;
+      height: 24px;
+      margin-right: 8px;
+      background-image: url(~/src/assets/img/common/pdf.svg);
+    }
+    .remove-icon {
+      width: 24px;
+      height: 24px;
+      margin-left: 16px;
+      background-image: url(~/src/assets/img/common/remove.svg);
+    }
+    .text {
+      width: calc(100% - 72px);
+      max-width: 188px;
+    }
+  }
+}

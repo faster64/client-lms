@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { EditorModule } from '@tinymce/tinymce-angular';
-import { DxDateBoxModule, DxNumberBoxModule, DxSelectBoxModule, DxTextAreaModule, DxTextBoxModule } from 'devextreme-angular';
+import { DxCheckBoxModule, DxDateBoxModule, DxNumberBoxModule, DxSelectBoxModule, DxTextAreaModule, DxTextBoxModule } from 'devextreme-angular';
 import { GridModule } from 'src/app/shared/components/element/grid/grid.module';
 import { BaseButtonModule } from 'src/app/shared/components/micro/button/button.module';
 import { ClassSelectorModule } from 'src/app/shared/components/micro/class-selector/class-selector.module';
@@ -33,6 +33,10 @@ import { CmsUserComponent } from './cms-user/cms-user.component';
 import { CmsTicketFormComponent } from './cms-ticket/cms-ticket-form/cms-ticket-form.component';
 import { PipesModule } from 'src/app/shared/pipes/pipes.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { CmsLessonFormComponent } from './cms-lesson/cms-lesson-form/cms-lesson-form.component';
+import { SelectorModule } from 'src/app/shared/components/micro/selector/selector.module';
+import { CmsUploadCourseImageModule } from '../cms-upload-course-image/cms-upload-course-image.module';
+import { CmsPdfModule } from '../cms-pdf/cms-pdf.module';
 
 
 @NgModule({
@@ -52,7 +56,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     CmsCourseFormComponent,
     CmsUserFormComponent,
     CmsAdminFormComponent,
-    CmsTicketFormComponent
+    CmsTicketFormComponent,
+    CmsLessonFormComponent
   ],
   imports: [
     CommonModule,
@@ -66,15 +71,19 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     DxTextAreaModule,
     DxDateBoxModule,
     DxSelectBoxModule,
+    DxCheckBoxModule,
     BaseButtonModule,
     BaseLoadingModule,
     BaseUploaderModule,
     GridModule,
     ClassSelectorModule,
     RoleSelectorModule,
+    SelectorModule,
     BaseUploaderModule,
     EditorModule,
     CmsUserStatesModule,
+    CmsUploadCourseImageModule,
+    CmsPdfModule,
     PipesModule,
     MatTooltipModule
   ]

@@ -1,0 +1,205 @@
+<div class="cms-lesson-form-cpn" [ngClass]="mode">
+  <div class="cms-content-middle">
+
+    <div class="row row-header">
+      <div class="col-12 col-sm-6 switch-mode">
+        <div class="mode-wrapper">
+          <div class="mode-item docs" [ngClass]="mode == 'docs' ? 'selected' : ''" (click)="mode = 'docs'">
+            Tài liệu
+          </div>
+          <div class="mode-item exercise" [ngClass]="mode == 'exercise' ? 'selected' : ''" (click)="mode = 'exercise'">
+            Bài tập
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 add-question" *ngIf="mode == 'exercise' && formMode != FormMode.View">
+        <div class="question-wrapper">
+          <div class="question-btn" (click)="addQuestion()">
+            <div class="icon bg-contain"></div>
+            <div class="text">Thêm câu hỏi</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="docs-wrapper">
+      <div class="row">
+        <div class="col-12 data-item course">
+          <div class="label">Khóa học <span class="required">*</span> </div>
+          <selector placeholder="Chọn khóa học" [isFetching]="fetchingCourse" [readOnly]="formMode == FormMode.View"
+            [dataSource]="courses" [value]="data.courseId" [height]="44" (onValueChanged)="data.courseId = $event.value"
+            (onOpened)="getCourses()">
+          </selector>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 data-item">
+          <app-cms-upload-course-image [url]="data.imageUrl" [readOnly]="formMode == FormMode.View"
+            (upload)="uploaded($event)" (remove)="removeImage()">
+          </app-cms-upload-course-image>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 data-item">
+          <div class="label">Tên bài giảng <span class="required">*</span> </div>
+          <dx-text-box placeholder="Nhập tên bài giảng" [height]="44" [readOnly]="formMode == FormMode.View"
+            [(value)]="data.name">
+          </dx-text-box>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 data-item">
+          <div class="label">Mô tả <span class="required">*</span> </div>
+          <dx-text-box placeholder="Nhập mô tả bài giảng" [height]="44" [readOnly]="formMode == FormMode.View"
+            [(value)]="data.description">
+          </dx-text-box>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 data-item attachment" *ngIf="formMode != FormMode.View">
+          <div class="label">Tải file đính kèm <span class="required">*</span> (định dạng pdf) </div>
+          <uploader #attachmentUploader [allowedFileExtensions]="'.pdf'" [multiple]="false" [auto]="true"
+            [maxFileSize]="10 * 1024 * 1024" (onChanged)="uploadedAttachment($event)"
+            label="Hoặc click để chọn tệp tải lên tại đây">
+          </uploader>
+        </div>
+
+        <div class="col-12 data-item" *ngIf="data.fileUrl && data.fileUrl != ''">
+          <div class="label">File đính kèm đã tải lên</div>
+          <app-cms-pdf [readOnly]="formMode == FormMode.View" [name]="data.originFileName" [url]="data.fileUrl"
+            (remove)="removeAttachment($event)">
+          </app-cms-pdf>
+        </div>
+      </div>
+    </div>
+
+    <div class="exercise-wrapper">
+      <div class="row block">
+        <div class="col-12 data-item">
+          <div class="label">Tên bài kiểm tra <span class="required">*</span> </div>
+          <dx-text-box placeholder="Nhập tên bài kiểm tra" [height]="44" [readOnly]="formMode == FormMode.View"
+            [(value)]="data.testName">
+          </dx-text-box>
+        </div>
+
+        <div class="col-12 data-item">
+          <div class="label">Mô tả <span class="required">*</span> </div>
+          <dx-text-box placeholder="Nhập mô tả" [height]="44" [readOnly]="formMode == FormMode.View"
+            [(value)]="data.testDescription">
+          </dx-text-box>
+        </div>
+      </div>
+
+      <div class="row block" *ngFor="let exercise of data.exercises; index as i">
+
+        <!-- Order  -->
+        <div class="col-12 question-order">
+          Câu {{i + 1}}
+        </div>
+
+        <!-- Câu hỏi  -->
+        <div class="col-12 col-md-6 data-item">
+          <div class="label">Câu hỏi <span class="required">*</span> </div>
+          <dx-text-box [readOnly]="formMode == FormMode.View" [height]="44" [disabled]="exercise.type == QuestionType.SAP_XEP" placeholder="Nhập câu hỏi"
+            [(value)]="exercise.questionJson"></dx-text-box>
+        </div>
+
+        <!-- Dạng câu hỏi  -->
+        <div class="col-12 col-md-4 data-item">
+          <div class="label">Chọn dạng câu hỏi <span class="required">*</span> </div>
+          <dx-select-box valueExpr="id" displayExpr="text" [readOnly]="formMode == FormMode.View" [dataSource]="LessonService.QuestionTypes" [height]="44"
+            [(value)]="exercise.type" (onValueChanged)="questionTypeChanged(exercise)">
+          </dx-select-box>
+        </div>
+
+        <!-- Upload file  -->
+        <div class="col-2 col-md-1 attachment">
+          <div class="choose-file">
+            <!-- <uploader></uploader> -->
+          </div>
+        </div>
+        <div class="col-2 col-md-1 attachment">
+          <div class="choose-file">
+            <!-- <uploader></uploader> -->
+          </div>
+        </div>
+
+        <!-- Đáp án  -->
+        <ng-container *ngIf="exercise.type == QuestionType.DIEN_KHUYET">
+          <div class="col-12 data-item dien-khuyet" *ngFor="let anwser of exercise.anwsers; index as ii">
+            <div class="label">Đáp án <span class="required">*</span> </div>
+            <dx-text-box [readOnly]="formMode == FormMode.View" [height]="44" placeholder="Nhập đáp án" (onValueChanged)="onAnsChanged(exercise, ii, $event)"
+              [value]="exercise.anwsers[ii]">
+            </dx-text-box>
+
+            <div class="remove-ans-btn" (click)="removeAns(exercise, ii)" *ngIf="formMode != FormMode.View">
+              <div class="icon bg-contain"></div>
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="exercise.type == QuestionType.GACH_DUOI || exercise.type == QuestionType.KHOANH_TRON">
+          <div class="col-12 data-item">
+            <div class="label">Đáp án <span class="required">*</span> </div>
+            <div class="ans" *ngFor="let anwser of exercise.anwsers; index as ii">
+              <div class="checkbox">
+                <dx-check-box [readOnly]="formMode == FormMode.View" [(value)]="exercise.anwsers[ii].value"></dx-check-box>
+              </div>
+              <div class="title">
+                {{ii == 0 ? 'A' : ii == 1 ? 'B' : ii == 2 ? 'C' : 'D'}}
+              </div>
+              <div class="ans-text">
+                <dx-text-box [readOnly]="formMode == FormMode.View" [(value)]="exercise.anwsers[ii].text"></dx-text-box>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="exercise.type == QuestionType.SAP_XEP">
+          <div class="col-12 data-item tags">
+            <div class="tag" *ngFor="let tag of exercise.anwsers; index as ii">
+              <dx-text-box [readOnly]="formMode == FormMode.View" [width]="100" [height]="36" (onValueChanged)="onAnsChanged(exercise, ii, $event)"
+                [value]="exercise.anwsers[ii]">
+              </dx-text-box>
+
+              <div class="remove-ans-btn" (click)="removeAns(exercise, ii)" *ngIf="formMode != FormMode.View">
+                <div class="icon bg-contain"></div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+        <!-- Buttons  -->
+        <div class="col-12 data-item exercise-feature" *ngIf="formMode != FormMode.View">
+          <div class="remove-btn" (click)="removeQuestion(i)">
+            <div class="icon bg-contain"></div>
+          </div>
+
+          <!-- <div class="anwser-btn" (click)="addAnwser(i)" *ngIf="exercise.type == QuestionType.DIEN_KHUYET">
+            <div class="icon bg-contain"></div>
+            <div class="text">Thêm Đáp án</div>
+          </div>
+
+          <div class="anwser-btn" (click)="addTagAnwser(i)" *ngIf="exercise.type == QuestionType.SAP_XEP">
+            <div class="icon bg-contain"></div>
+            <div class="text">Thêm tag</div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="cms-features-bottom">
+    <app-cms-feature #cmsFeature [formMode]="formMode" (cancel)="cancel()" (save)="save()" (update)="update()"
+      (delete)="delete()">
+    </app-cms-feature>
+  </div>
+
+  <progess-spinner-loading *ngIf="isLoading"></progess-spinner-loading>
+</div>

@@ -1,0 +1,220 @@
+::ng-deep .cms-lesson-form-cpn {
+  position: relative;
+  height: 100%;
+
+  .progess-spinner-loading {
+    position: absolute !important;
+  }
+
+  &.docs {
+    .docs-wrapper {
+      display: block;
+    }
+    .exercise-wrapper {
+      display: none;
+    }
+  }
+  &.exercise {
+    .docs-wrapper {
+      display: none;
+    }
+    .exercise-wrapper {
+      display: block;
+    }
+  }
+
+  .row-header {
+    position: sticky;
+    top: -16px;
+    left: 0;
+    right: 0;
+    background-color: var(--white);
+    z-index: var(--header-index);
+    margin-bottom: 24px;
+
+    .switch-mode {
+      .mode-wrapper {
+        display: inline-block;
+        max-width: 300px;
+        padding: 4px;
+        border-radius: 4px;
+        background-color: var(--gray-100);
+        .mode-item {
+          display: inline-block;
+          padding: 10px 32px;
+          margin: 0 4px;
+          border-radius: 4px;
+          background-color: transparent;
+          text-align: center;
+          font-weight: 600;
+          transition: all 0.3s;
+          cursor: pointer;
+          &.selected {
+            background-color: var(--main-color);
+            color: var(--white);
+          }
+        }
+      }
+    }
+
+    .add-question {
+      .question-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+    }
+  }
+
+  .question-btn,
+  .anwser-btn {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    border: 1px solid var(--greyish);
+    border-radius: 4px;
+    cursor: pointer;
+    .icon {
+      width: 24px;
+      height: 24px;
+      margin-right: 8px;
+      background-image: url(~/src/assets/img/lesson/add.svg);
+    }
+    .text {
+      width: calc(100% - 32px);
+      font-weight: 600;
+    }
+  }
+
+  .attachment {
+    ngx-dropzone {
+      width: 300px;
+      max-width: 100%;
+      height: 80px;
+      ngx-dropzone-preview.single {
+        min-height: 48px !important;
+        height: 48px !important;
+      }
+    }
+  }
+
+  .exercise-wrapper {
+    .block {
+      padding: 24px 0;
+      margin-bottom: 24px;
+      border: 1px solid var(--gray-500);
+      border-radius: 8px;
+
+      .data-item:last-child {
+        margin-bottom: 0 !important;
+      }
+
+      .question-order {
+        font-weight: 600;
+        margin-bottom: 24px;
+      }
+
+      .attachment {
+        display: flex;
+        justify-content: center;
+        max-width: 48px;
+        padding: 0 2px;
+      }
+
+      .choose-file {
+        position: relative;
+        width: 44px;
+        height: 44px;
+        margin-top: 26px;
+        border-radius: 4px;
+        background-color: var(--grey);
+        cursor: pointer;
+        uploader {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          background-color: var(--grey);
+        }
+      }
+
+      .exercise-feature {
+        display: flex;
+        align-items: center;
+        .remove-btn {
+          display: inline-block;
+          padding: 8px;
+          margin-right: 16px;
+          border-radius: 8px;
+          background-color: var(--red-05);
+          cursor: pointer;
+          .icon {
+            width: 20px;
+            height: 20px;
+            background-image: url(~/src/assets/img/common/remove2.svg);
+          }
+        }
+      }
+
+      .ans {
+        display: flex;
+        align-items: center;
+        margin-bottom: 12px;
+        .checkbox {
+          width: 40px;
+        }
+        .title {
+          width: 20px;
+        }
+        .ans-text {
+          width: calc(100% - 60px);
+        }
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        .tag {
+          margin-right: 16px;
+        }
+      }
+
+      .tag,
+      .dien-khuyet {
+        position: relative;
+        &:hover {
+          .remove-ans-btn {
+            display: block;
+          }
+        }
+
+        .remove-ans-btn {
+          position: absolute;
+          top: 0;
+          right: 0;
+          display: none;
+          padding: 4px;
+          background-color: var(--white);
+          cursor: pointer;
+          .icon {
+            width: 16px;
+            height: 16px;
+            background-image: url(~/src/assets/img/common/remove.svg);
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .choose-file {
+    margin: 0 0 12px 0 !important;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .question-wrapper {
+    justify-content: flex-start !important;
+  }
+}
