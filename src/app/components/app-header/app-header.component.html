@@ -36,7 +36,12 @@
 
     <div class="nav-right unauthenticated"
       *ngIf="AuthService.CurrentStatus != AuthStatus.LoggedIn && AuthService.CurrentStatus != AuthStatus.Unknown">
-      <div class="cart" (click)="Utility.featureIsInDevelopment($event)"></div>
+      <a class="cart" [routerLink]="Routing.CART.path">
+        <span class="item-count" *ngIf="SharedService.CartItems.length > 0">
+          {{SharedService.CartItems.length > 9 ? '9+' : SharedService.CartItems.length}}
+        </span>
+      </a>
+
       <div class="wrap">
         <div class="search" (click)="Utility.featureIsInDevelopment($event)"></div>
         <div class="seperate-line"></div>
@@ -48,11 +53,17 @@
           {{'header.features.register' | translate}}
         </a>
       </div>
+
     </div>
 
     <div class="nav-right authenticated" *ngIf="AuthService.CurrentStatus == AuthStatus.LoggedIn">
       <div class="search" (click)="Utility.featureIsInDevelopment($event)"></div>
-      <div class="cart" (click)="Utility.featureIsInDevelopment($event)"></div>
+
+      <a class="cart" [routerLink]="Routing.CART.path">
+        <span class="item-count" *ngIf="SharedService.CartItems.length > 0">
+          {{SharedService.CartItems.length > 9 ? '9+' : SharedService.CartItems.length}}
+        </span>
+      </a>
 
       <app-account-box></app-account-box>
     </div>

@@ -10,6 +10,7 @@ export class PublisherService {
   changeScreenEvent = new EventEmitter<any>();
   resolvedEvent = new EventEmitter<any>();
   routeChangeEvent = new EventEmitter<any>();
+  updateCartEvent = new EventEmitter<any>();
   updateCmsHeaderLabelEvent = new EventEmitter<any>();
 
   constructor() { }

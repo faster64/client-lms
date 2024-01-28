@@ -3,6 +3,7 @@ import { User } from "../../models/user/user";
 import { BaseService } from "../base/base.service";
 import { HttpService } from "../base/http.service";
 import { UserState } from "../../enums/user-state.enum";
+import { ServiceResult } from "../../models/base/service-result";
 
 @Injectable({
   providedIn: 'root'
@@ -23,5 +24,8 @@ export class UserService extends BaseService {
     this.controller = 'user';
   }
 
-
+  information() {
+    const url = this.url() + '/information';
+    return this.http.get<ServiceResult>(url);
+  }
 }

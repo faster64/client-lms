@@ -1,0 +1,92 @@
+<div class="cart-cpn">
+  <div class="cart-title">
+    <div class="icon bg-contain"></div>
+    <div class="text">GIỎ HÀNG</div>
+  </div>
+  <div class="cart-content">
+    <div class="row">
+      <div class="col-12 col-xl-8 courses">
+        <table *ngIf="SharedService.CartItems.length > 0">
+          <thead>
+            <th>Sản phẩm</th>
+            <th>Giá</th>
+            <th>Chức năng</th>
+          </thead>
+
+          <tbody>
+            <tr class="course" *ngFor="let course of SharedService.CartItems; index as i">
+              <td class="information">
+                <a class="prod" [routerLink]="'/' +  Routing.COURSE_DETAIL.path + '/' + course.id" target="_blank">
+                  <img [src]="course.imageUrl">
+                  <div class="wrap">
+                    <div class="name">{{course.name}}</div>
+                    <div class="short-description max-3-lines">{{course.shortDescription}}</div>
+                  </div>
+                </a>
+              </td>
+              <td class="price">
+                {{course.price | NumberFormatPipe}}
+              </td>
+              <td class="features">
+                <div class="remove" (click)="removeItem(i)">
+                  <div class="icon bg-contain"></div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="no-data" style="margin: 48px 0; text-align: center; font-weight: 600;" *ngIf="SharedService.CartItems.length == 0">
+          Chưa có sản phẩm nào trong giỏ
+        </div>
+      </div>
+      <div class="col-12 col-xl-4 payment">
+        <div class="payment-wrapper">
+          <div class="info" *ngIf="AuthService.CurrentStatus == AuthStatus.LoggedIn">
+            <div class="title">Thông tin khách hàng</div>
+            <div class="info-item data-item">
+              <div class="label">Họ và tên <span class="required">*</span> </div>
+              <dx-text-box [(value)]="user.fullName" height="40"></dx-text-box>
+            </div>
+
+            <div class="info-item data-item">
+              <div class="label">Số điện thoại <span class="required">*</span> </div>
+              <dx-text-box [(value)]="user.phoneNumber" height="40"></dx-text-box>
+            </div>
+
+            <div class="info-item data-item">
+              <div class="label">Email <span class="required">*</span> </div>
+              <dx-text-box [(value)]="user.email" height="40"></dx-text-box>
+            </div>
+
+            <progess-spinner-loading *ngIf="isLoading"></progess-spinner-loading>
+          </div>
+
+          <div class="title">Hình thức thanh toán</div>
+
+          <div class="method">
+            <div class="icon bg-contain"></div>
+            <div class="text">Quét mã VNPay</div>
+          </div>
+
+          <div class="total">
+            <span>Tổng cộng:</span>
+            <span class="value">
+              {{total | NumberFormatPipe}} VND
+            </span>
+          </div>
+
+          <div class="login" *ngIf="AuthService.CurrentStatus != AuthStatus.LoggedIn" (click)="login()">
+            Đăng nhập để thanh toán khóa học
+          </div>
+
+          <div class="pay-btn" *ngIf="AuthService.CurrentStatus == AuthStatus.LoggedIn">
+            <base-button #payBtn text="Thanh toán VNPay" [height]="44"
+              [disabled]="!user || user.fullName == '' || user.phoneNumber == '' || user.email == ''" (onClick)="pay()">
+            </base-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -92,6 +92,14 @@ const routes: Routes = [
     }
   },
   {
+    path: Routing.CART.path,
+    loadChildren: () => import('./components/cart/cart.module').then(m => m.CartModule),
+    canActivate: [BaseGuard],
+    resolve: {
+      resolver: BaseResolver,
+    }
+  },
+  {
     path: "**",
     redirectTo: `/${Routing.HOME.path}`,
     pathMatch: 'full'
