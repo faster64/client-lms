@@ -1,0 +1,94 @@
+::ng-deep .payment-cpn {
+    height: 100%;
+    padding: 36px var(--side-distance);
+
+    .cart-title {
+        display: flex;
+        align-items: center;
+        height: 32px;
+
+        .icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            background-image: url(~/src/assets/img/common/icon.png);
+        }
+
+        .text {
+            font-size: var(--medium-title-size);
+            font-weight: 600;
+        }
+    }
+
+    .payment-content {
+        width: 320px;
+        padding: 24px 20px;
+        margin: 20px auto;
+        border: 1px solid var(--grey);
+        border-radius: 4px;
+
+        .wrapper {
+            .total-price {
+                p {
+                    text-align: center;
+
+                    &.value {
+                        position: relative;
+                        font-weight: 600;
+                        font-size: var(--medium-title-size);
+
+                        .skeleton-loading {
+                            top: -2px;
+                            bottom: -2px;
+                            left: 24px;
+                            right: 24px;
+                        }
+                    }
+                }
+            }
+
+            .vnpay-frame {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 280px;
+                height: 280px;
+                background-image: url(~/src/assets/img/cart/vnpay-frame.png);
+
+                .qr {
+                    width: 200px;
+                    height: 200px;
+                    background-image: url(~/src/assets/img/cart/qr.png);
+                }
+            }
+
+            .more-info {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                .mid,
+                .tid {
+                    font-size: 11px;
+
+                    span {
+                        font-size: 11px;
+                    }
+                }
+            }
+        }
+    }
+
+    .confirm-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 320px;
+        margin: 20px auto;
+        cursor: pointer;
+
+        base-button {
+            width: 100%;
+        }
+    }
+}

@@ -1,0 +1,32 @@
+<div class="payment-cpn">
+    <div class="cart-title">
+        <div class="icon bg-contain"></div>
+        <div class="text">GIỎ HÀNG</div>
+    </div>
+
+    <div class="payment-content">
+        <div class="wrapper">
+            <div class="total-price">
+                <p>Số tiền cần thanh toán</p>
+                <p class="value">
+                    {{bill.totalPrice | NumberFormatPipe}} đ
+                    <skeleton-loading *ngIf="isLoading"></skeleton-loading>
+                </p>
+            </div>
+
+            <div class="vnpay-frame bg-contain">
+                <div class="qr bg-contain"></div>
+            </div>
+
+            <div class="more-info">
+                <div class="mid">MID: <span style="font-weight: 600;">4226546236442</span></div>
+                <div class="tid">TID: <span style="font-weight: 600;">CANHBUOM16</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="confirm-btn">
+        <base-button #payBtn text="Xác nhận thanh toán" [height]="40" [disabled]="isLoading" (onClick)="confirmPaid()">
+        </base-button>
+    </div>
+</div>

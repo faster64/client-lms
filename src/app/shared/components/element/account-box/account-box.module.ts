@@ -6,6 +6,7 @@ import { MatTooltipModule } from "@angular/material/tooltip";
 import { TranslateModule } from "@ngx-translate/core";
 import { BaseLoadingModule } from '../../micro/loading/loading.module';
 import { BaseButtonModule } from '../../micro/button/button.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { BaseButtonModule } from '../../micro/button/button.module';
     MatTooltipModule,
     TranslateModule,
     BaseLoadingModule,
-    BaseButtonModule
+    BaseButtonModule,
+    RouterModule
   ],
   exports: [AccountBoxComponent]
 })

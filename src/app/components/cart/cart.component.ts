@@ -1,20 +1,21 @@
-import { AfterViewInit, Component, Injector, ViewChild } from '@angular/core';
-import { delay, finalize, of, switchMap, takeUntil } from 'rxjs';
+import { Component, Injector, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { finalize, takeUntil } from 'rxjs';
 import { BaseComponent } from 'src/app/shared/components/base-component';
 import { BaseButton } from 'src/app/shared/components/micro/button/button.component';
 import { LocalStorageKey } from 'src/app/shared/constants/localstorage-key.constant';
+import { Routing } from 'src/app/shared/constants/routing.constant';
 import { AuthStatus } from 'src/app/shared/enums/auth-status.enum';
 import { StringHelper } from 'src/app/shared/helpers/string.helper';
-import { Course } from 'src/app/shared/models/course/course';
 import { User } from 'src/app/shared/models/user/user';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { PublisherService } from 'src/app/shared/services/base/publisher.service';
 import { SharedService } from 'src/app/shared/services/base/shared.service';
+import { BillService } from 'src/app/shared/services/bill/bill.service';
 import { PaymentService } from 'src/app/shared/services/payment/payment.service';
 import { UserService } from 'src/app/shared/services/user/user.service';
 import { SnackBar } from 'src/app/shared/snackbar/snackbar.component';
 import { SnackBarParameter } from 'src/app/shared/snackbar/snackbar.param';
-import { Utility } from 'src/app/shared/utility/utility';
 
 @Component({
   selector: 'app-cart',
@@ -38,7 +39,8 @@ export class CartComponent extends BaseComponent implements AfterViewInit {
     public publisher: PublisherService,
     public authService: AuthService,
     public userService: UserService,
-    public paymentService: PaymentService
+    public billService: BillService,
+    public router: Router
   ) {
     super(injector);
   }
@@ -116,17 +118,16 @@ export class CartComponent extends BaseComponent implements AfterViewInit {
       email: this.user.email,
       courseIds: SharedService.CartItems.map(x => x.id)
     };
-    this.paymentService
+    this.billService
       .check(data)
       .pipe(
         takeUntil(this._onDestroySub),
-        finalize(() => this.payBtn.finish()),
-        switchMap(resp => {
-          return of(true);
-        })
+        finalize(() => this.payBtn.finish())
       )
       .subscribe(resp => {
-        SnackBar.success(new SnackBarParameter(this, 'Tính năng Thanh toán sẽ sớm được hoàn thành', 4000));
+        if (resp.code == 'success') {
+          this.router.navigateByUrl('/' + Routing.PAYMENT.path + '/' + resp.data.id);
+        }
       })
 
   }

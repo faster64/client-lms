@@ -1,12 +1,14 @@
 .account-box-cpn {
   display: flex;
   align-items: center;
+
   .name {
     max-width: 140px;
     margin-right: 4px;
     font-size: var(--size);
     cursor: pointer;
   }
+
   .more-dropdown {
     width: 24px;
     height: 24px;
@@ -29,10 +31,12 @@
 
 .account-management-content {
   padding: 0 4px !important;
+
   .amc-item {
     display: flex;
     align-items: center;
     padding: 8px 12px;
+    color: #333;
     transition: all 0.3s;
     cursor: pointer;
 
@@ -49,6 +53,7 @@
       height: 24px;
       margin-right: 8px;
     }
+
     .text {
       width: calc(100% - 32px);
     }
@@ -58,15 +63,18 @@
         background-image: url(~/src/assets/img/common/person.svg);
       }
     }
+
     &.change-password {
       .icon {
         background-image: url(~/src/assets/img/common/lock.svg);
       }
     }
+
     &.logout {
       .icon {
         background-image: url(~/src/assets/img/common/logout.svg);
       }
+
       .text {
         color: var(--red-05);
       }
