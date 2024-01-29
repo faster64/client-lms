@@ -1,0 +1,74 @@
+::ng-deep .pin4-cpn {
+    height: 100%;
+    padding: 36px var(--side-distance);
+
+    .pin4-title {
+        display: flex;
+        align-items: center;
+        height: 32px;
+
+        .icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            background-image: url(~/src/assets/img/common/icon.png);
+        }
+
+        .text {
+            font-size: var(--medium-title-size);
+            font-weight: 600;
+        }
+    }
+
+    .pin4-content {
+        position: relative;
+
+        .avatar {
+            width: 240px;
+            height: 240px;
+            padding: 2px;
+            // background-color: var(--grey);
+            border-radius: 16px;
+
+            img {
+                width: 100%;
+                height: 100%;
+                border-radius: 16px;
+            }
+        }
+
+        .info-wrapper {
+            padding-left: 16px;
+
+            .data-item {
+                margin-bottom: 24px;
+
+                .label {
+                    min-height: 20px;
+                    margin-bottom: 6px;
+                    font-weight: 600;
+
+                    .required {
+                        color: var(--danger);
+                    }
+                }
+            }
+
+            .update-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 10px 24px;
+                margin-left: 16px;
+                border-radius: 4px;
+                background-color: var(--main-color);
+                color: var(--white);
+                cursor: pointer;
+            }
+        }
+
+        .progess-spinner-loading {
+            position: absolute !important;
+        }
+    }
+}

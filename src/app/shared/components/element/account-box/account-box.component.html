@@ -6,15 +6,15 @@
 
 <mat-menu #menu="matMenu">
   <div class="account-management-content" style="padding: 12px 24px">
-    <div class="amc-item information" (click)="Utility.featureIsInDevelopment($event)">
+    <a class="amc-item information" [routerLink]="Routing.PERSONAL_INFORMATION.path">
       <div class="icon"></div>
       <div class="text">Thông tin cá nhân</div>
-    </div>
+    </a>
 
-    <div class="amc-item change-password" (click)="Utility.featureIsInDevelopment($event)">
+    <a class="amc-item change-password" (click)="Utility.featureIsInDevelopment($event)">
       <div class="icon"></div>
       <div class="text">Đổi mật khẩu</div>
-    </div>
+    </a>
 
     <div class="amc-item logout" (click)="logout()">
       <div class="icon"></div>

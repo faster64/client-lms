@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BaseGuard } from './shared/guards/base.guard';
-import { BaseResolver } from './shared/resolvers/base.resolver';
 import { Routing } from './shared/constants/routing.constant';
-import { UnauthenticatedOnlyGuard } from './shared/guards/unauthenticated-only.guard';
+import { BaseGuard } from './shared/guards/base.guard';
 import { CmsGuard } from './shared/guards/cms.guard';
-import { BannerComponent } from './components/banner/banner.component';
+import { UnauthenticatedOnlyGuard } from './shared/guards/unauthenticated-only.guard';
+import { BaseResolver } from './shared/resolvers/base.resolver';
 
 const routes: Routes = [
   {
@@ -39,6 +38,14 @@ const routes: Routes = [
     canActivate: [
       UnauthenticatedOnlyGuard
     ],
+    resolve: {
+      resolver: BaseResolver,
+    }
+  },
+  {
+    path: Routing.PERSONAL_INFORMATION.path,
+    loadChildren: () => import('./components/personal-information/personal-information.module').then(m => m.PersonalInformationModule),
+    canActivate: [BaseGuard],
     resolve: {
       resolver: BaseResolver,
     }
@@ -100,10 +107,18 @@ const routes: Routes = [
     }
   },
   {
-    path: "**",
-    redirectTo: `/${Routing.HOME.path}`,
-    pathMatch: 'full'
-  }
+    path: Routing.PAYMENT.path,
+    loadChildren: () => import('./components/payment/payment.module').then(m => m.PaymentModule),
+    canActivate: [BaseGuard],
+    resolve: {
+      resolver: BaseResolver,
+    }
+  },
+  // {
+  //   path: "**",
+  //   redirectTo: `/${Routing.HOME.path}`,
+  //   pathMatch: 'full'
+  // }
 ];
 
 @NgModule({

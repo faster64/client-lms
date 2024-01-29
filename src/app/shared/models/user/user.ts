@@ -1,6 +1,8 @@
 import { BaseModel } from "../base/base-model";
+import { Class } from "../class/class";
 
 export class User extends BaseModel {
+  public avatar = "";
   public avatarUrl = "";
   public email = "";
   public username = "";
@@ -10,4 +12,6 @@ export class User extends BaseModel {
   public fullName = "";
   public state = 0;
   public stateText = "";
+  public class = new Class();
+  public classId = "";
 }

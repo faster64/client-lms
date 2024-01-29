@@ -10,9 +10,4 @@ export class PaymentService extends BaseService {
     super(httpService);
     this.controller = 'payment';
   }
-
-  check(data) {
-    const url = this.url() + `/check`;
-    return this.http.post<ServiceResult>(url, data);
-  }
 }
