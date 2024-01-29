@@ -1,0 +1,14 @@
+::ng-deep .cms-order-cpn {
+  position: relative;
+  height: 100%;
+  padding: var(--cms-content-padding);
+
+  .order-content {
+    position: relative;
+    height: 100%;
+
+    .progess-spinner-loading {
+      position: absolute !important;
+    }
+  }
+}

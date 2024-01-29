@@ -1,6 +1,6 @@
 import { Component, Injector, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { delay, finalize, takeUntil } from 'rxjs';
+import { finalize, takeUntil } from 'rxjs';
 import { BaseComponent } from 'src/app/shared/components/base-component';
 import { BaseButton } from 'src/app/shared/components/micro/button/button.component';
 import { LocalStorageKey } from 'src/app/shared/constants/localstorage-key.constant';
@@ -9,7 +9,6 @@ import { BillStatus } from 'src/app/shared/enums/bill-status.enum';
 import { MessageBox } from 'src/app/shared/message-box/message-box.component';
 import { Message } from 'src/app/shared/message-box/model/message';
 import { Bill } from 'src/app/shared/models/bills/bill';
-import { Course } from 'src/app/shared/models/course/course';
 import { SharedService } from 'src/app/shared/services/base/shared.service';
 import { BillService } from 'src/app/shared/services/bill/bill.service';
 
@@ -44,7 +43,6 @@ export class PaymentComponent extends BaseComponent {
     this.billService
       .byId(this.bill.id)
       .pipe(
-        delay(3000),
         takeUntil(this._onDestroySub),
         finalize(() => this.isLoading = false)
       )
@@ -61,18 +59,20 @@ export class PaymentComponent extends BaseComponent {
   }
 
   confirmPaid() {
-    this.billService
-      .confirm(this.bill.id)
-      .pipe(
-        takeUntil(this._onDestroySub),
-        finalize(() => this.payBtn.finish())
-      )
-      .subscribe(resp => {
-        if (resp.code == 'success') {
-          MessageBox.information(new Message(this, { content: 'Đã gửi yêu cầu xác nhận thanh toán. Chúng tôi sẽ xử lý yêu cầu của bạn trong thời gian sớm nhất. Xin cảm ơn!' }));
-          localStorage.removeItem(LocalStorageKey.CART_ITEMS);
-          SharedService.CartItems = [];
-        }
-      })
+    MessageBox.confirm(new Message(this, { content: 'Bạn đã thanh toán?' }, () => {
+      this.billService
+        .confirm(this.bill.id)
+        .pipe(
+          takeUntil(this._onDestroySub),
+          finalize(() => this.payBtn.finish())
+        )
+        .subscribe(resp => {
+          if (resp.code == 'success') {
+            MessageBox.information(new Message(this, { content: 'Đã gửi yêu cầu xác nhận thanh toán. Chúng tôi sẽ xử lý yêu cầu của bạn trong thời gian sớm nhất. Xin cảm ơn!' }));
+            localStorage.removeItem(LocalStorageKey.CART_ITEMS);
+            SharedService.CartItems = [];
+          }
+        });
+    })).subscribe(() => this.payBtn.finish());
   }
 }

@@ -115,8 +115,13 @@
                     (onChanged)="col.callback ? col.callback(item, $event) : ''">
                   </app-cms-ticket-states>
 
+                  <app-cms-bill-states *ngSwitchCase="FieldType.BillState" [state]="item[col.column]"
+                    [showDropdown]="false" [disabled]="true"
+                    (onChanged)="col.callback ? col.callback(item, $event) : ''">
+                  </app-cms-bill-states>
 
-                  <app-cms-pdf *ngSwitchCase="FieldType.Pdf" [readOnly]="true" [name]="item[col.column + '_name']" [url]="item[col.column]">
+                  <app-cms-pdf *ngSwitchCase="FieldType.Pdf" [readOnly]="true" [name]="item[col.column + '_name']"
+                    [url]="item[col.column]">
                   </app-cms-pdf>
 
                   <!-- Default  -->

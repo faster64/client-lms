@@ -1,6 +1,11 @@
 <div class="account-box-cpn">
-  <div class="avatar bg-cover" [matMenuTriggerFor]="menu"></div>
-  <div class="name over-3-dots" [matMenuTriggerFor]="menu">{{userService.user.fullName}}</div>
+  <div class="avatar bg-cover" [ngStyle]="{backgroundImage: 'url(' + user.avatarUrl + ')'}" [matMenuTriggerFor]="menu">
+    <skeleton-loading *ngIf="isLoading"></skeleton-loading>
+  </div>
+  <div class="name over-3-dots" [matMenuTriggerFor]="menu">
+    {{userService.user.fullName}}
+    <skeleton-loading *ngIf="isLoading"></skeleton-loading>
+  </div>
   <div class="more-dropdown" [matMenuTriggerFor]="menu"></div>
 </div>
 

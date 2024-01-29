@@ -1,5 +1,5 @@
 import { Component, Injector } from '@angular/core';
-import { delay, finalize, takeUntil } from 'rxjs';
+import { finalize, takeUntil } from 'rxjs';
 import { BaseComponent } from 'src/app/shared/components/base-component';
 import { SortModel } from 'src/app/shared/models/base/sort-model';
 import { CourseClientService } from 'src/app/shared/services/course/course-client.service';
@@ -39,7 +39,6 @@ export class HomeComponent extends BaseComponent {
     this.courseClientService
       .paging(this.paginationRequest)
       .pipe(
-        // delay(5000),
         takeUntil(this._onDestroySub),
         finalize(() => this.isLoading = false)
       )

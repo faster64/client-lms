@@ -1,4 +1,4 @@
-import { Component, Injector, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Injector, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { finalize, takeUntil } from 'rxjs';
 import { BaseComponent } from 'src/app/shared/components/base-component';
@@ -12,7 +12,6 @@ import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { PublisherService } from 'src/app/shared/services/base/publisher.service';
 import { SharedService } from 'src/app/shared/services/base/shared.service';
 import { BillService } from 'src/app/shared/services/bill/bill.service';
-import { PaymentService } from 'src/app/shared/services/payment/payment.service';
 import { UserService } from 'src/app/shared/services/user/user.service';
 import { SnackBar } from 'src/app/shared/snackbar/snackbar.component';
 import { SnackBarParameter } from 'src/app/shared/snackbar/snackbar.param';

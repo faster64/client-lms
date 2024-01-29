@@ -17,15 +17,27 @@
   }
 }
 
-.account-box-cpn,
+::ng-deep .account-box-cpn,
 .account-management-content {
   .avatar {
+    position: relative;
     width: 48px;
     height: 48px;
     margin-right: 8px;
     border-radius: 48px;
     background-image: url(~/src/assets/img/header/bot-dance.gif);
     cursor: pointer;
+
+    .skeleton-loading {
+      border-radius: 50%;
+      inset: -2px;
+    }
+  }
+
+  .name {
+    position: relative;
+    min-width: 60px;
+    min-height: 20px;
   }
 }
 

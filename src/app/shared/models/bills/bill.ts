@@ -6,4 +6,5 @@ export class Bill extends BaseModel {
     public courses: Course[] = [];
     public totalPrice = 0;
     public status = BillStatus.Unpaid;
+    public purchasedDate = new Date();
 }

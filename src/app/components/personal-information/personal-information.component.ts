@@ -1,9 +1,12 @@
 import { Component, Injector, ViewChild } from '@angular/core';
-import { delay, finalize, takeUntil } from 'rxjs';
+import { finalize, takeUntil } from 'rxjs';
 import { BaseComponent } from 'src/app/shared/components/base-component';
+import { BaseButton } from 'src/app/shared/components/micro/button/button.component';
 import { ClassSelectorComponent } from 'src/app/shared/components/micro/class-selector/class-selector.component';
 import { User } from 'src/app/shared/models/user/user';
 import { UserService } from 'src/app/shared/services/user/user.service';
+import { SnackBar } from 'src/app/shared/snackbar/snackbar.component';
+import { SnackBarParameter } from 'src/app/shared/snackbar/snackbar.param';
 
 @Component({
   selector: 'app-personal-information',
@@ -18,6 +21,9 @@ export class PersonalInformationComponent extends BaseComponent {
 
   @ViewChild("selector")
   selector: ClassSelectorComponent;
+
+  @ViewChild("saveBtn")
+  saveBtn: BaseButton;
 
   constructor(
     injector: Injector,
@@ -45,5 +51,27 @@ export class PersonalInformationComponent extends BaseComponent {
           this.selector.getClassList();
         }
       })
+  }
+
+  selected(event) {
+    this.user.avatar = event.fileNames[0];
+    this.user.avatarUrl = event.presignedUrls[0];
+  }
+
+  save() {
+    this.isLoading = true;
+    this.userService
+      .updateInformation(this.user)
+      .pipe(
+        takeUntil(this._onDestroySub),
+        finalize(() => {this.isLoading = false; this.saveBtn.finish()})
+      )
+      .subscribe(resp => {
+        if (resp.code == 'success') {
+          this.viewMode = true;
+          SnackBar.success(new SnackBarParameter(this, 'Cập nhật thành công'));
+          this.load();
+        }
+      });
   }
 }

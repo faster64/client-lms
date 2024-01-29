@@ -1,44 +1,55 @@
 <div class="pin4-cpn">
-    <div class="pin4-title">
-        <div class="icon bg-contain"></div>
-        <div class="text">THÔNG TIN CÁ NHÂN</div>
-    </div>
+  <div class="pin4-title">
+    <div class="icon bg-contain"></div>
+    <div class="text">THÔNG TIN CÁ NHÂN</div>
+  </div>
 
-    <div class="pin4-content">
-        <div class="row">
-            <div class="col-12 col-md-4">
-                <div class="avatar bg-contain" [ngStyle]="{backgroundImage: 'url(' + user.avatarUrl + ')'}">
-                </div>
-            </div>
-            <div class="col-12 col-md-8">
-                <div class="info-wrapper row">
-                    <div class="col-12 data-item">
-                        <div class="label">Họ và tên <span class="required">*</span></div>
-                        <dx-text-box [(value)]="user.fullName" [disabled]="viewMode"></dx-text-box>
-                    </div>
-
-                    <div class="col-12 data-item">
-                        <div class="label">Email <span class="required">*</span></div>
-                        <dx-text-box [(value)]="user.email" [disabled]="viewMode"></dx-text-box>
-                    </div>
-
-                    <div class="col-12 data-item">
-                        <div class="label">Số điện thoại <span class="required">*</span></div>
-                        <dx-text-box [(value)]="user.phoneNumber" [disabled]="viewMode"></dx-text-box>
-                    </div>
-                    <div class="col-12 data-item">
-                        <div class="label">Lớp</div>
-                        <app-class-selector #selector [value]="!user.class ? '0' : user.class.id"
-                            [disabled]="viewMode"></app-class-selector>
-                    </div>
-
-                    <div class="update-btn" (click)="Utility.featureIsInDevelopment($event)">
-                        Chỉnh sửa thông tin
-                    </div>
-                </div>
-            </div>
+  <div class="pin4-content">
+    <div class="row">
+      <div class="col-12 col-md-4">
+        <div class="avatar bg-cover" [ngStyle]="{backgroundImage: 'url(' + user.avatarUrl + ')'}">
         </div>
 
-        <progess-spinner-loading *ngIf="isLoading"></progess-spinner-loading>
+        <div class="camera" *ngIf="!viewMode">
+          <uploader mode="exercise-image" [disabled]="viewMode" [auto]="true" (onChanged)="selected($event)"></uploader>
+        </div>
+      </div>
+      <div class="col-12 col-md-8">
+        <div class="info-wrapper row">
+          <div class="col-12 data-item">
+            <div class="label">Họ và tên <span class="required">*</span></div>
+            <dx-text-box [(value)]="user.fullName" [disabled]="viewMode"></dx-text-box>
+          </div>
+
+          <div class="col-12 data-item">
+            <div class="label">Email <span class="required">*</span></div>
+            <dx-text-box [(value)]="user.email" [disabled]="viewMode"></dx-text-box>
+          </div>
+
+          <div class="col-12 data-item">
+            <div class="label">Số điện thoại <span class="required">*</span></div>
+            <dx-text-box [(value)]="user.phoneNumber" [disabled]="viewMode"></dx-text-box>
+          </div>
+          <div class="col-12 data-item">
+            <div class="label">Lớp</div>
+            <app-class-selector #selector [value]="user.class ? user.class.id : '0'" [disabled]="viewMode"
+              (onValueChanged)="user.class.id = $event.current">
+            </app-class-selector>
+          </div>
+
+          <div class="update-btn" (click)="viewMode = false" *ngIf="viewMode">
+            Chỉnh sửa thông tin
+          </div>
+
+          <div class="save-btn" *ngIf="!viewMode">
+            <base-button #saveBtn text=" Lưu thông tin chỉnh sửa" [disabled]="isLoading" [height]="38" [width]="240"
+              (onClick)="save()">
+            </base-button>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <progess-spinner-loading *ngIf="isLoading"></progess-spinner-loading>
+  </div>
 </div>

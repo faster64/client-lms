@@ -1,5 +1,5 @@
-import { Component, Injector, OnInit } from '@angular/core';
-import { delay, finalize, takeUntil } from 'rxjs';
+import { Component, Injector } from '@angular/core';
+import { finalize, takeUntil } from 'rxjs';
 import { BaseComponent } from 'src/app/shared/components/base-component';
 import { Social } from 'src/app/shared/models/social/social';
 import { SocialService } from 'src/app/shared/services/social/social.service';

@@ -28,4 +28,8 @@ export class UserService extends BaseService {
     const url = this.url() + '/information';
     return this.http.get<ServiceResult>(url);
   }
+
+  updateInformation(entity: any) {
+    return this.http.put<ServiceResult>(this.url() + '/update-information', entity, this._baseOptions);
+  }
 }

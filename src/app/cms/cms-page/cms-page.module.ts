@@ -37,6 +37,7 @@ import { CmsLessonFormComponent } from './cms-lesson/cms-lesson-form/cms-lesson-
 import { SelectorModule } from 'src/app/shared/components/micro/selector/selector.module';
 import { CmsUploadCourseImageModule } from '../cms-upload-course-image/cms-upload-course-image.module';
 import { CmsPdfModule } from '../cms-pdf/cms-pdf.module';
+import { CmsBillStatesModule } from '../cms-bill-states/cms-bill-states.module';
 
 
 @NgModule({
@@ -82,6 +83,7 @@ import { CmsPdfModule } from '../cms-pdf/cms-pdf.module';
     BaseUploaderModule,
     EditorModule,
     CmsUserStatesModule,
+    CmsBillStatesModule,
     CmsUploadCourseImageModule,
     CmsPdfModule,
     PipesModule,
