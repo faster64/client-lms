@@ -28,7 +28,7 @@
                     </div>
                     <div class="col-12 data-item">
                         <div class="label">Lớp</div>
-                        <app-class-selector #selector [value]="user.class.id"
+                        <app-class-selector #selector [value]="!user.class ? '0' : user.class.id"
                             [disabled]="viewMode"></app-class-selector>
                     </div>
 
