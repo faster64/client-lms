@@ -1,4 +1,4 @@
-import { Component, Injector, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Injector, ViewChild } from '@angular/core';
 import { delay, finalize, of, switchMap, takeUntil } from 'rxjs';
 import { BaseComponent } from 'src/app/shared/components/base-component';
 import { BaseButton } from 'src/app/shared/components/micro/button/button.component';
@@ -21,7 +21,7 @@ import { Utility } from 'src/app/shared/utility/utility';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss']
 })
-export class CartComponent extends BaseComponent {
+export class CartComponent extends BaseComponent implements AfterViewInit {
 
   SharedService = SharedService;
   AuthService = AuthService;
@@ -43,7 +43,6 @@ export class CartComponent extends BaseComponent {
     super(injector);
   }
 
-
   override ngOnInit(): void {
     super.ngOnInit();
     SharedService.AdjustCarts();
@@ -52,6 +51,10 @@ export class CartComponent extends BaseComponent {
     if (AuthService.CurrentStatus == AuthStatus.LoggedIn) {
       this.getInformation();
     }
+  }
+
+  ngAfterViewInit(): void {
+    window.scrollTo(0, 0);
   }
 
   getInformation() {
