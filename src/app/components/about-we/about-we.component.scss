@@ -31,3 +31,19 @@
     }
   }
 }
+
+@media screen and (max-width: 992px) {
+  .about-we-cpn {
+    padding: 28px var(--side-distance);
+    .wrap {
+      flex-wrap: wrap;
+      .left {
+        width: 100%;
+        margin-bottom: 8px;
+      }
+      .right {
+        width: 100%;
+      }
+    }
+  }
+}

@@ -2,21 +2,21 @@
   position: relative;
 
   .blue-line {
-    height: 460px;
+    height: var(--banner-slide-height);
     background-color: var(--main-color);
   }
 
   .white-line {
-    height: 230px;
+    height: var(--banner-white-line-height);
     background-color: var(--white);
   }
 
   .hero-slide {
     position: absolute;
-    top: 120px;
+    top: var(--banner-slide-top-padding);
     left: var(--side-distance);
     right: var(--side-distance);
-    height: 464px;
+    height: var(--banner-slide-height);
 
     .intro {
       display: flex;
@@ -106,6 +106,51 @@
 
     .dot:nth-child(2) {
       margin: 0 8px;
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .banner-cpn {
+    .hero-slide {
+      .intro {
+        height: 56px;
+      }
+
+      .large-title {
+        left: -36px;
+        height: 72px;
+        .yellow-block {
+          width: 72px;
+          height: 72px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .banner-cpn {
+    .hero-slide {
+      .intro {
+        height: 40px;
+      }
+
+      .large-title {
+        left: -20px;
+        height: 40px;
+        .yellow-block {
+          width: 40px;
+          height: 40px;
+        }
+      }
+    }
+
+    .image-container {
+      .dot {
+        width: 8px;
+        height: 8px;
+      }
     }
   }
 }

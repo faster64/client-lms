@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LocalStorageKey } from 'src/app/shared/constants/localstorage-key.constant';
 import { Routing } from 'src/app/shared/constants/routing.constant';
 import { AuthStatus } from 'src/app/shared/enums/auth-status.enum';
-import { Course } from 'src/app/shared/models/course/course';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { PublisherService } from 'src/app/shared/services/base/publisher.service';
 import { SharedService } from 'src/app/shared/services/base/shared.service';
@@ -47,6 +45,10 @@ export class AppHeaderComponent implements OnInit {
     setTimeout(() => {
       this.path = (this.activatedRoute.snapshot as any)['_routerState']['url'].substring(1);
     }, 100);
+  }
+
+  logout() {
+    this.authService.logout();
   }
 
   getCartItems() {

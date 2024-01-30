@@ -94,14 +94,15 @@
   }
 }
 
-
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1200px) {
   .account-box-cpn {
     .name {
       display: none;
     }
   }
+}
 
+@media screen and (max-width: 768px) {
   .avatar {
     width: 36px;
     height: 36px;

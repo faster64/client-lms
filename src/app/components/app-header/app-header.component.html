@@ -4,33 +4,7 @@
     <div class="nav-left">
       <a class="logo" [routerLink]="Routing.HOME.path"></a>
 
-      <a class="nav-item" [routerLink]="Routing.HOME.path" [ngClass]="Routing.HOME.path == path ? 'selected' : ''">
-        <div class="text">{{'header.navs.home' | translate}}</div>
-        <div class="under-line"></div>
-      </a>
-
-      <!-- <a class="nav-item" [routerLink]="Routing.CONTACT.path" [ngClass]="Routing.CONTACT.path == path ? 'selected' : ''"
-        >
-        <div class="text">{{'header.navs.contact' | translate}}</div>
-        <div class="under-line"></div>
-      </a> -->
-
-      <a class="nav-item" [routerLink]="Routing.GUIDE.path" [ngClass]="Routing.GUIDE.path == path ? 'selected' : ''">
-        <div class="text">{{'header.navs.guide' | translate}}</div>
-        <div class="under-line"></div>
-      </a>
-
-      <a class="nav-item" [routerLink]="Routing.MY_COURES.path"
-        [ngClass]="Routing.MY_COURES.path == path ? 'selected' : ''"
-        *ngIf="AuthService.CurrentStatus == AuthStatus.LoggedIn">
-        <div class="text">{{'header.navs.my_courses' | translate}}</div>
-        <div class="under-line"></div>
-      </a>
-
-      <a class="nav-item" [routerLink]="Routing.CMS.path" *ngIf="AuthService.CurrentStatus == AuthStatus.LoggedIn">
-        <div class="text">CMS</div>
-        <div class="under-line"></div>
-      </a>
+      <ng-template [ngTemplateOutlet]="nav"></ng-template>
     </div>
 
 
@@ -56,7 +30,8 @@
 
     </div>
 
-    <div class="nav-right authenticated" *ngIf="AuthService.CurrentStatus == AuthStatus.LoggedIn">
+    <div class="nav-right authenticated" *ngIf="AuthService.CurrentStatus == AuthStatus.LoggedIn"
+      (click)="opened = false">
       <div class="search" (click)="Utility.featureIsInDevelopment($event)"></div>
 
       <a class="cart" [routerLink]="Routing.CART.path">
@@ -69,20 +44,85 @@
     </div>
   </div>
 
-  <div class="on-small" [ngClass]="opened ? 'opened' : ''">
+  <div class="on-small unselectable" [ngClass]="opened ? 'opened' : ''">
     <div class="wrapper">
-      <a class="logo" [routerLink]="Routing.HOME.path"></a>
-      <div class="menu bg-contain" (click)="opened = !opened"></div>
+      <a class="logo" [routerLink]="Routing.HOME.path" (click)="opened = false"></a>
+      <div class="menu bg-contain" (click)="opened = true"></div>
+      <div class="close bg-contain" (click)="opened = false"></div>
     </div>
 
-    <div class="nav-wrapper" (click)="opened = !opened">
+    <div class="nav-wrapper">
       <div class="nav">
-        <a class="nav-item" [routerLink]="Routing.GUIDE.path" [ngClass]="Routing.GUIDE.path == path ? 'selected' : ''">
-          <div class="text">{{'header.navs.guide' | translate}}</div>
-          <div class="under-line"></div>
-        </a>
+
+        <ng-template [ngTemplateOutlet]="nav"></ng-template>
+
       </div>
     </div>
 
   </div>
 </div>
+
+<ng-template #nav>
+  <a class="nav-item" [routerLink]="Routing.HOME.path" [ngClass]="Routing.HOME.path == path ? 'selected' : ''"
+    (click)="opened = false">
+    <div class="text">{{'header.navs.home' | translate}}</div>
+    <div class="under-line"></div>
+  </a>
+
+  <!-- <a class="nav-item" [routerLink]="Routing.CONTACT.path" [ngClass]="Routing.CONTACT.path == path ? 'selected' : ''"
+    >
+    <div class="text">{{'header.navs.contact' | translate}}</div>
+    <div class="under-line"></div>
+  </a> -->
+
+  <a class="nav-item" [routerLink]="Routing.GUIDE.path" [ngClass]="Routing.GUIDE.path == path ? 'selected' : ''"
+    (click)="opened = false">
+    <div class="text">{{'header.navs.guide' | translate}}</div>
+    <div class="under-line"></div>
+  </a>
+
+  <a class="nav-item" [routerLink]="Routing.MY_COURES.path" [ngClass]="Routing.MY_COURES.path == path ? 'selected' : ''"
+    *ngIf="AuthService.CurrentStatus == AuthStatus.LoggedIn" (click)="opened = false">
+    <div class="text">{{'header.navs.my_courses' | translate}}</div>
+    <div class="under-line"></div>
+  </a>
+
+  <a class="nav-item" [routerLink]="Routing.CMS.path" [ngClass]="Routing.CMS.path == path ? 'selected' : ''"
+    *ngIf="AuthService.CurrentStatus == AuthStatus.LoggedIn" (click)="opened = false">
+    <div class="text">CMS</div>
+    <div class="under-line"></div>
+  </a>
+
+  <a class="nav-item small-item" [routerLink]="Routing.PERSONAL_INFORMATION.path"
+    [ngClass]="Routing.PERSONAL_INFORMATION.path == path ? 'selected' : ''"
+    *ngIf="AuthService.CurrentStatus == AuthStatus.LoggedIn" (click)="opened = false">
+    <div class="text">Thông tin cá nhân</div>
+    <div class="under-line"></div>
+  </a>
+
+  <a class="nav-item small-item" [routerLink]="Routing.CHANGE_PASSWORD.path"
+    [ngClass]="Routing.CHANGE_PASSWORD.path == path ? 'selected' : ''"
+    *ngIf="AuthService.CurrentStatus == AuthStatus.LoggedIn" (click)="opened = false">
+    <div class="text">Đổi mật khẩu</div>
+    <div class="under-line"></div>
+  </a>
+
+  <a class="nav-item small-item" [routerLink]="Routing.LOGIN.path"
+    [ngClass]="Routing.LOGIN.path == path ? 'selected' : ''" *ngIf="AuthService.CurrentStatus != AuthStatus.LoggedIn"
+    (click)="opened = false">
+    <div class="text">Đăng nhập</div>
+    <div class="under-line"></div>
+  </a>
+
+  <a class="nav-item small-item" [routerLink]="Routing.REGISTER.path"
+    [ngClass]="Routing.REGISTER.path == path ? 'selected' : ''" *ngIf="AuthService.CurrentStatus != AuthStatus.LoggedIn"
+    (click)="opened = false">
+    <div class="text">Đăng ký</div>
+    <div class="under-line"></div>
+  </a>
+
+  <div class="amc-item small-item logout" (click)="logout()" *ngIf="AuthService.CurrentStatus == AuthStatus.LoggedIn">
+    <div class="icon"></div>
+    <div class="text">Đăng xuất</div>
+  </div>
+</ng-template>
