@@ -81,6 +81,12 @@
     <div class="under-line"></div>
   </a>
 
+  <a class="nav-item" [routerLink]="Routing.CART.path" [ngClass]="Routing.CART.path == path ? 'selected' : ''"
+    (click)="opened = false">
+    <div class="text">Giỏ hàng (<strong>{{SharedService.CartItems.length}}</strong>)</div>
+    <div class="under-line"></div>
+  </a>
+
   <a class="nav-item" [routerLink]="Routing.MY_COURES.path" [ngClass]="Routing.MY_COURES.path == path ? 'selected' : ''"
     *ngIf="AuthService.CurrentStatus == AuthStatus.LoggedIn" (click)="opened = false">
     <div class="text">{{'header.navs.my_courses' | translate}}</div>

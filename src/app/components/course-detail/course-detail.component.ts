@@ -1,11 +1,16 @@
 import { Component, Injector } from '@angular/core';
+import { Router } from '@angular/router';
 import { finalize, takeUntil } from 'rxjs';
 import { BaseComponent } from 'src/app/shared/components/base-component';
+import { LocalStorageKey } from 'src/app/shared/constants/localstorage-key.constant';
 import { Course } from 'src/app/shared/models/course/course';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
+import { PublisherService } from 'src/app/shared/services/base/publisher.service';
 import { CourseClientService } from 'src/app/shared/services/course/course-client.service';
 import { CourseService } from 'src/app/shared/services/course/course.service';
 import { TinyEditorService } from 'src/app/shared/services/tiny-editor/tiny-editor.service';
+import { SnackBar } from 'src/app/shared/snackbar/snackbar.component';
+import { SnackBarParameter } from 'src/app/shared/snackbar/snackbar.param';
 
 @Component({
   selector: 'app-course-detail',
@@ -24,7 +29,9 @@ export class CourseDetailComponent extends BaseComponent {
     injector: Injector,
     public courseClientService: CourseClientService,
     public authService: AuthService,
-    public tinyEditorService: TinyEditorService
+    public tinyEditorService: TinyEditorService,
+    public publisher: PublisherService,
+    public router: Router
   ) {
     super(injector);
   }
@@ -51,11 +58,32 @@ export class CourseDetailComponent extends BaseComponent {
       })
   }
 
+  addToCart(noti: boolean) {
+    let items: Course[] = [];
+
+    try {
+      const local = JSON.parse(localStorage.getItem(LocalStorageKey.CART_ITEMS));
+      items = local ? local : [];
+    } catch (error) {
+      localStorage.removeItem(LocalStorageKey.CART_ITEMS);
+      items = [];
+    }
+
+    items = items.concat(this.course);
+    localStorage.setItem(LocalStorageKey.CART_ITEMS, JSON.stringify(items));
+    this.publisher.updateCartEvent.emit();
+
+    if (noti) {
+      SnackBar.success(new SnackBarParameter(this, 'Thêm vào giỏ thành công'));
+    }
+  }
+
   buy() {
-    this.authService.authenticate(this.loginCallback);
+    this.authService.authenticate(() => this.loginCallback());
   }
 
   loginCallback() {
-    console.log('clicked');
+    this.addToCart(false);
+    this.router.navigateByUrl(this.Routing.CART.path);
   }
 }

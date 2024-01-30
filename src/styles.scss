@@ -77,6 +77,9 @@ a {
   /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 }
 
-.tox-notifications-container {
+div.tox-silver-sink div.tox-notifications-container {
   display: none !important;
+  visibility: hidden !important;
+  width: 0 !important;
+  height: 0 !important;
 }

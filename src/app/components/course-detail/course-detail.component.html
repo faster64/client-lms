@@ -17,7 +17,7 @@
 
     <div class="course-features">
       <base-button text="{{'course.features.add_to_cart' | translate}}" [width]="160" [height]="44"
-        [buttonType]="ButtonType.STROKED" [color]="ButtonColor.BASIC">
+        [buttonType]="ButtonType.STROKED" [color]="ButtonColor.BASIC" [finishImmediately]="true"  (onClick)="addToCart(true)">
       </base-button>
 
       <base-button class="buy-btn" text="{{'course.features.buy_now' | translate}}" [width]="128" [height]="44"
