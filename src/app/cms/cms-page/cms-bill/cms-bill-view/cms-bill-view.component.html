@@ -1,0 +1,98 @@
+<div class="cms-bill-view-cpn">
+
+    <div class="cms-content-middle">
+        <div class="row">
+            <div class="col-12 col-md-6 data-item">
+                <div class="label">Mã đơn hàng</div>
+                <dx-text-box [value]="data.code" [disabled]="true">
+                </dx-text-box>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-md-6 data-item">
+                <div class="label">Họ và tên</div>
+                <dx-text-box [value]="data.fullName" [disabled]="true">
+                </dx-text-box>
+            </div>
+
+            <div class="col-12 col-md-6 data-item">
+                <div class="label">Số điện thoại</div>
+                <dx-text-box [value]="data.phoneNumber" [disabled]="true">
+                </dx-text-box>
+            </div>
+
+            <div class="col-12 col-md-6 data-item">
+                <div class="label">Email</div>
+                <dx-text-box [value]="data.email" [disabled]="true">
+                </dx-text-box>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-md-6 data-item">
+                <div class="label">Tổng tiền</div>
+                <dx-text-box [value]="data.totalPrice | NumberFormatPipe" [disabled]="true">
+                </dx-text-box>
+            </div>
+
+            <div class="col-12 col-md-6 data-item">
+                <div class="label">Ngày mua</div>
+                <dx-date-box [value]="data.purchasedDate" [disabled]="true">
+                </dx-date-box>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-md-6 data-item">
+                <div class="label">Trạng thái đơn hàng</div>
+                <app-cms-bill-states *ngIf="!isLoading" [state]="data.status" [disabled]="true" [showDropdown]="false">
+                </app-cms-bill-states>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 data-item courses">
+                <div class="label">Danh sách khóa học</div>
+                <table>
+                    <thead>
+                        <th>Hình ảnh</th>
+                        <th>Tên khóa học</th>
+                        <th>Giá</th>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let course of data.courses">
+                            <td>
+                                <img [src]="course.imageUrl" alt="">
+                            </td>
+                            <td>
+                                {{course.name}}
+                            </td>
+                            <td>
+                                {{course.price | NumberFormatPipe}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="cms-features-bottom">
+        <base-button #cancelBtn text="Quay lại" [buttonType]="ButtonType.STROKED" [color]="ButtonColor.BASIC"
+            [width]="128" [height]="36" (onClick)="cancel()">
+        </base-button>
+
+        <base-button #confirmBtn text="Xác nhận thanh toán" [color]="ButtonColor.SUCCESS" [width]="208" [height]="36"
+            (onClick)="save()" *ngIf="data.status == BillStatus.WaitConfirm">
+        </base-button>
+
+        <base-button #deleteBtn text="{{'base_keys.delete' | translate}}" [width]="128" [height]="36"
+            [color]="ButtonColor.WARN" (onClick)="delete()" [finishImmediately]="true"
+            *ngIf="data.status != BillStatus.Paid">
+        </base-button>
+    </div>
+
+    <progess-spinner-loading *ngIf="isLoading"></progess-spinner-loading>
+</div>

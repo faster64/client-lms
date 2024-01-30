@@ -24,8 +24,13 @@ export class BillService extends BaseService {
     return this.http.post<ServiceResult>(url, data);
   }
 
-  confirm(id) {
+  requestConfirm(id) {
     const url = this.url() + `/request-confirm/` + id;
+    return this.http.put<ServiceResult>(url, {});
+  }
+
+  confirm(id) {
+    const url = this.url() + `/confirm/` + id;
     return this.http.put<ServiceResult>(url, {});
   }
 }

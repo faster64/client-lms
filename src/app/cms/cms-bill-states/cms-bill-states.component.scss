@@ -68,7 +68,7 @@
 
   .dropdown-list {
     position: absolute;
-    bottom: -36px;
+    top: calc(100% + 2px);
     left: 0;
     right: 0;
     border-radius: 8px;

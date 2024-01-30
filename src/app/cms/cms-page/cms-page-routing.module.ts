@@ -7,7 +7,6 @@ import { CmsAdminComponent } from './cms-admin/cms-admin.component';
 import { CmsClassComponent } from './cms-class/cms-class.component';
 import { CmsLessonComponent } from './cms-lesson/cms-lesson.component';
 import { CmsSocialComponent } from './cms-social/cms-social.component';
-import { CmsOrderComponent } from './cms-order/cms-order.component';
 import { CmsGuideComponent } from './cms-guide/cms-guide.component';
 import { CmsReportComponent } from './cms-report/cms-report.component';
 import { FormModeText } from 'src/app/shared/constants/form-mode.constant';
@@ -19,6 +18,8 @@ import { CmsAdminFormComponent } from './cms-admin/cms-admin-form/cms-admin-form
 import { CmsTicketComponent } from './cms-ticket/cms-ticket.component';
 import { CmsTicketFormComponent } from './cms-ticket/cms-ticket-form/cms-ticket-form.component';
 import { CmsLessonFormComponent } from './cms-lesson/cms-lesson-form/cms-lesson-form.component';
+import { CmsBillComponent } from './cms-bill/cms-bill.component';
+import { CmsBillViewComponent } from './cms-bill/cms-bill-view/cms-bill-view.component';
 
 const routes: Routes = [
   {
@@ -195,10 +196,19 @@ const routes: Routes = [
   },
   //#endregion
 
+  //#region  Bill
   {
     path: 'don-mua-hang',
-    component: CmsOrderComponent
+    component: CmsBillComponent
   },
+  {
+    path: `don-mua-hang/${FormModeText.VIEW}/:id`,
+    component: CmsBillViewComponent,
+    data: {
+      formMode: FormMode.View
+    }
+  },
+  //#endregion
 
   //#region  Guide
   {

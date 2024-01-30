@@ -7,6 +7,8 @@ import { LocalStorageKey } from 'src/app/shared/constants/localstorage-key.const
 import { Routing } from 'src/app/shared/constants/routing.constant';
 import { AuthStatus } from 'src/app/shared/enums/auth-status.enum';
 import { StringHelper } from 'src/app/shared/helpers/string.helper';
+import { MessageBox } from 'src/app/shared/message-box/message-box.component';
+import { Message } from 'src/app/shared/message-box/model/message';
 import { User } from 'src/app/shared/models/user/user';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { PublisherService } from 'src/app/shared/services/base/publisher.service';
@@ -125,6 +127,19 @@ export class CartComponent extends BaseComponent implements AfterViewInit {
       )
       .subscribe(resp => {
         if (resp.code == 'success') {
+          const courses = SharedService.CartItems.filter(x => !resp.data.purchasedIds.includes(x.id));
+          if (!courses.length) {
+            SharedService.CartItems = [];
+            localStorage.setItem(LocalStorageKey.CART_ITEMS, "");
+            MessageBox.information(new Message(this, { content: 'Các khóa học này bạn đã mua rồi' }));
+            return;
+          }
+          if (courses.length != SharedService.CartItems.length) {
+            SharedService.CartItems = courses;
+            localStorage.setItem(LocalStorageKey.CART_ITEMS, JSON.stringify(courses));
+            MessageBox.information(new Message(this, { content: 'Các khóa học đã mua sẽ tự động được loại bỏ!' }));
+          }
+
           this.router.navigateByUrl('/' + Routing.PAYMENT.path + '/' + resp.data.id);
         }
       })

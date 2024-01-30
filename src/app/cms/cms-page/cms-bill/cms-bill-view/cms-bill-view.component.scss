@@ -1,0 +1,45 @@
+::ng-deep .cms-bill-view-cpn {
+    position: relative;
+    height: 100%;
+
+    .progess-spinner-loading {
+        position: absolute !important;
+    }
+
+    .cms-features-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        height: 100%;
+        padding: 16px 36px;
+        border-top: 1px solid var(--greyish);
+
+        .base-button {
+            margin-left: 24px !important;
+        }
+    }
+
+    .courses {
+        table {
+            width: 100%;
+
+            img {
+                width: 120px;
+                height: 100px;
+            }
+
+
+            th,
+            td {
+                padding: 8px 16px;
+            }
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid var(--grey);
+            border-collapse: collapse;
+        }
+    }
+}

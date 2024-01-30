@@ -23,7 +23,7 @@ import { CmsCourseFormComponent } from './cms-course/cms-course-form/cms-course-
 import { CmsCourseComponent } from './cms-course/cms-course.component';
 import { CmsGuideComponent } from './cms-guide/cms-guide.component';
 import { CmsLessonComponent } from './cms-lesson/cms-lesson.component';
-import { CmsOrderComponent } from './cms-order/cms-order.component';
+import { CmsBillComponent } from './cms-bill/cms-bill.component';
 import { CmsPageRoutingModule } from './cms-page-routing.module';
 import { CmsReportComponent } from './cms-report/cms-report.component';
 import { CmsSocialComponent } from './cms-social/cms-social.component';
@@ -38,6 +38,7 @@ import { SelectorModule } from 'src/app/shared/components/micro/selector/selecto
 import { CmsUploadCourseImageModule } from '../cms-upload-course-image/cms-upload-course-image.module';
 import { CmsPdfModule } from '../cms-pdf/cms-pdf.module';
 import { CmsBillStatesModule } from '../cms-bill-states/cms-bill-states.module';
+import { CmsBillViewComponent } from './cms-bill/cms-bill-view/cms-bill-view.component';
 
 
 @NgModule({
@@ -50,7 +51,7 @@ import { CmsBillStatesModule } from '../cms-bill-states/cms-bill-states.module';
     CmsClassComponent,
     CmsLessonComponent,
     CmsSocialComponent,
-    CmsOrderComponent,
+    CmsBillComponent,
     CmsGuideComponent,
     CmsReportComponent,
     CmsClassFormComponent,
@@ -58,7 +59,8 @@ import { CmsBillStatesModule } from '../cms-bill-states/cms-bill-states.module';
     CmsUserFormComponent,
     CmsAdminFormComponent,
     CmsTicketFormComponent,
-    CmsLessonFormComponent
+    CmsLessonFormComponent,
+    CmsBillViewComponent
   ],
   imports: [
     CommonModule,

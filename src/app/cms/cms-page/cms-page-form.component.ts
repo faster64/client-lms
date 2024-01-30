@@ -1,20 +1,19 @@
 import { Directive, Injector, ViewChild } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
-import { BaseComponent } from "src/app/shared/components/base-component";
-import { FormMode } from "src/app/shared/enums/form-mode.enum";
-import { ColumnGrid } from "src/app/shared/models/grid/column-grid";
-import { BaseService } from "src/app/shared/services/base/base.service";
-import { CmsFeatureComponent } from "../cms-feature/cms-feature.component";
+import { Router } from "@angular/router";
 import { finalize, takeUntil } from "rxjs";
-import { PublisherService } from "src/app/shared/services/base/publisher.service";
+import { BaseComponent } from "src/app/shared/components/base-component";
+import { FormModeText } from "src/app/shared/constants/form-mode.constant";
+import { FormMode } from "src/app/shared/enums/form-mode.enum";
 import { MessageBox } from "src/app/shared/message-box/message-box.component";
 import { Message } from "src/app/shared/message-box/model/message";
+import { ServiceResult } from "src/app/shared/models/base/service-result";
+import { ColumnGrid } from "src/app/shared/models/grid/column-grid";
+import { BaseService } from "src/app/shared/services/base/base.service";
+import { PublisherService } from "src/app/shared/services/base/publisher.service";
 import { TranslationService } from "src/app/shared/services/translation/translation.service";
 import { SnackBar } from "src/app/shared/snackbar/snackbar.component";
 import { SnackBarParameter } from "src/app/shared/snackbar/snackbar.param";
-import { FormModeText } from "src/app/shared/constants/form-mode.constant";
-import { BaseModel } from "src/app/shared/models/base/base-model";
-import { ServiceResult } from "src/app/shared/models/base/service-result";
+import { CmsFeatureComponent } from "../cms-feature/cms-feature.component";
 
 @Directive()
 export class CmsFormComponent extends BaseComponent {

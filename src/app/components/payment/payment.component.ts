@@ -61,7 +61,7 @@ export class PaymentComponent extends BaseComponent {
   confirmPaid() {
     MessageBox.confirm(new Message(this, { content: 'Bạn đã thanh toán?' }, () => {
       this.billService
-        .confirm(this.bill.id)
+        .requestConfirm(this.bill.id)
         .pipe(
           takeUntil(this._onDestroySub),
           finalize(() => this.payBtn.finish())
