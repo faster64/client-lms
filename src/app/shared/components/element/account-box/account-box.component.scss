@@ -24,7 +24,7 @@
     width: 48px;
     height: 48px;
     margin-right: 8px;
-    border-radius: 48px;
+    border-radius: 50%;
     background-image: url(~/src/assets/img/header/bot-dance.gif);
     cursor: pointer;
 
@@ -91,5 +91,19 @@
         color: var(--red-05);
       }
     }
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .account-box-cpn {
+    .name {
+      display: none;
+    }
+  }
+
+  .avatar {
+    width: 36px;
+    height: 36px;
   }
 }

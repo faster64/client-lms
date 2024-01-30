@@ -69,7 +69,20 @@
     </div>
   </div>
 
-  <!-- <div class="nav-resp">
+  <div class="on-small" [ngClass]="opened ? 'opened' : ''">
+    <div class="wrapper">
+      <a class="logo" [routerLink]="Routing.HOME.path"></a>
+      <div class="menu bg-contain" (click)="opened = !opened"></div>
+    </div>
 
-  </div> -->
+    <div class="nav-wrapper" (click)="opened = !opened">
+      <div class="nav">
+        <a class="nav-item" [routerLink]="Routing.GUIDE.path" [ngClass]="Routing.GUIDE.path == path ? 'selected' : ''">
+          <div class="text">{{'header.navs.guide' | translate}}</div>
+          <div class="under-line"></div>
+        </a>
+      </div>
+    </div>
+
+  </div>
 </div>

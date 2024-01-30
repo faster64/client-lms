@@ -25,6 +25,8 @@ export class AppHeaderComponent implements OnInit {
 
   path = '';
 
+  opened = false;
+
   constructor(
     public router: Router,
     public activatedRoute: ActivatedRoute,
