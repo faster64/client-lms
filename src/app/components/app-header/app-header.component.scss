@@ -181,7 +181,6 @@
     position: relative;
     display: block !important;
     height: 100%;
-    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.12);
 
     .wrapper {
       position: fixed;
@@ -194,6 +193,7 @@
       height: var(--app-header-height);
       padding: 4px 16px;
       background-color: var(--white);
+      box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.12);
 
       .logo {
         width: 93px;
