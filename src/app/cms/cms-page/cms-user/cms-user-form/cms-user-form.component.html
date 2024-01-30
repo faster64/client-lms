@@ -27,8 +27,8 @@
 
             <div class="col-12 col-md-6 data-item">
                 <div class="label"> Lớp học<span class="required">*</span></div>
-                <app-class-selector #selector [value]="data.class.id" [readOnly]="formMode == FormMode.View"
-                    [height]="44" (onValueChanged)="data.class.id = $event.current">
+                <app-class-selector #selector [value]="data.classId" [readOnly]="formMode == FormMode.View"
+                    [height]="44" (onValueChanged)="data.classId = $event.current">
                 </app-class-selector>
             </div>
         </div>

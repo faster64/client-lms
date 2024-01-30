@@ -32,8 +32,8 @@
           </div>
           <div class="col-12 data-item">
             <div class="label">Lớp</div>
-            <app-class-selector #selector [value]="user.class ? user.class.id : '0'" [disabled]="viewMode"
-              (onValueChanged)="user.class.id = $event.current">
+            <app-class-selector #selector [value]="user.classId" [disabled]="viewMode"
+              (onValueChanged)="user.classId = $event.current">
             </app-class-selector>
           </div>
 

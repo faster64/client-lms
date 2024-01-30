@@ -34,7 +34,7 @@
 
       <div class="reg-item class">
         <div class="label">{{'auth.register.label_class' | translate}} <span class="required">*</span> </div>
-        <app-class-selector (onValueChanged)="request.classId = $event.current"></app-class-selector>
+        <app-class-selector [height]="40" (onValueChanged)="request.classId = $event.current"></app-class-selector>
       </div>
 
       <div class="reg-item password">
