@@ -1,0 +1,35 @@
+::ng-deep .my-courses-cpn {
+  padding: 36px var(--side-distance);
+
+  .my-courses-title {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    .icon {
+      width: var(--large-title-size);
+      height: var(--large-title-size);
+      margin-right: 12px;
+      background-image: url(~/src/assets/img/common/icon.png);
+    }
+    .text {
+      font-size: var(--large-title-size);
+      color: var(--main-color);
+      font-weight: 700;
+    }
+  }
+
+  .my-courses-content {
+    position: relative;
+    width: 100%;
+    height: calc(100% - 40px);
+
+    .progess-spinner-loading {
+      position: absolute !important;
+    }
+
+    .youtube {
+      position: relative;
+      height: 100%;
+    }
+  }
+}

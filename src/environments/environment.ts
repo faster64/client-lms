@@ -1,5 +1,5 @@
 export const environment = {
-  production: false,
+  production: true,
   organization: "lms",
   api_version: "v1.0",
   base_host: "https://localhost:7154/api",
