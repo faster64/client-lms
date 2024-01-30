@@ -137,7 +137,7 @@ export class CartComponent extends BaseComponent implements AfterViewInit {
           if (courses.length != SharedService.CartItems.length) {
             SharedService.CartItems = courses;
             localStorage.setItem(LocalStorageKey.CART_ITEMS, JSON.stringify(courses));
-            MessageBox.information(new Message(this, { content: 'Các khóa học đã mua sẽ tự động được loại bỏ!' }));
+            MessageBox.information(new Message(this, { content: 'Các khóa học mua rồi đã được tự động được loại bỏ khỏi giỏ hàng!' }));
           }
 
           this.router.navigateByUrl('/' + Routing.PAYMENT.path + '/' + resp.data.id);

@@ -109,14 +109,19 @@
 }
 
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 768px) {
   .login-cpn {
     .wrap {
+      border: none;
+
       .left {
         display: none;
       }
       .right {
         width: 100%;
+        .title-system {
+          display: none;
+        }
       }
     }
   }

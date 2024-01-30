@@ -89,14 +89,26 @@
   }
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 768px) {
   .register-cpn {
     .wrap {
+      border: none;
       .left {
         display: none;
       }
       .right {
         width: 100%;
+        .title-system {
+          display: none;
+        }
+
+        .reg-item {
+          width: 100%;
+          &.full-name, &.phone, &.password {
+            width: 100%;
+            margin-right: 0;
+          }
+        }
       }
     }
   }
