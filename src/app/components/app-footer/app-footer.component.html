@@ -12,8 +12,8 @@
           {{'footer.phone' | translate}}: {{social.phoneNumber}}
         </span>
 
-        <span class="loading-hook">
-          <skeleton-loading *ngIf="isLoading"></skeleton-loading>
+        <span class="loading-hook" *ngIf="isLoading">
+          <skeleton-loading></skeleton-loading>
         </span>
       </div>
     </div>
@@ -21,8 +21,8 @@
       <div class="icon"></div>
       <div class="text">
         <span>Email: {{social.email}}</span>
-        <span class="loading-hook">
-          <skeleton-loading *ngIf="isLoading"></skeleton-loading>
+        <span class="loading-hook" *ngIf="isLoading">
+          <skeleton-loading></skeleton-loading>
         </span>
       </div>
     </div>
