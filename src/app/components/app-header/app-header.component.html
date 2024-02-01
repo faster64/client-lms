@@ -47,8 +47,12 @@
   <div class="on-small unselectable" [ngClass]="opened ? 'opened' : ''">
     <div class="wrapper">
       <a class="logo" [routerLink]="Routing.HOME.path" (click)="opened = false"></a>
-      <div class="menu bg-contain" (click)="opened = true"></div>
-      <div class="close bg-contain" (click)="opened = false"></div>
+
+      <div class="right">
+        <div class="search bg-contain" (click)="openSearch()" *ngIf="SharedService.AtHome && !opened"></div>
+        <div class="menu bg-contain" (click)="opened = true"></div>
+        <div class="close bg-contain" (click)="opened = false"></div>
+      </div>
     </div>
 
     <div class="nav-wrapper">

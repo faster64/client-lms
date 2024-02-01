@@ -27,6 +27,7 @@
     height: calc(100% - 56px);
 
     .classes {
+      position: relative;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
