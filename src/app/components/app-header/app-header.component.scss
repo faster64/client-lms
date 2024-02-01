@@ -10,13 +10,13 @@
 
   .nav-line {
     position: absolute;
-    top: 40px;
+    top: var(--nav-line-top);
     left: var(--side-distance);
     right: var(--side-distance);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 80px;
+    height: var(--nav-line-height);
     padding: var(--header-padding);
     border-radius: 4px;
     background: var(--white);
@@ -140,6 +140,50 @@
   }
 }
 
+::ng-deep .search-course-mode {
+  position: fixed;
+  inset: 0;
+  display: none;
+  transition: all 1s;
+
+  .search-wrapper {
+    position: fixed;
+    top: var(--nav-line-top);
+    left: var(--side-distance);
+    right: var(--side-distance);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--nav-line-height);
+    padding: 4px 32px;
+    border-radius: 4px;
+    background: var(--white);
+
+    dx-text-box {
+      border: none !important;
+
+      input {
+        padding-right: 56px;
+      }
+    }
+  }
+
+  .close-btn {
+    position: fixed;
+    top: calc(var(--nav-line-top) + 30px);
+    right: calc(var(--side-distance) + 32px);
+    width: 20px;
+    height: 20px;
+    background-image: url(~/src/assets/img/header/close.svg);
+    cursor: pointer;
+  }
+
+  &.open-search {
+    display: block;
+    background-color: rgba($color: #000000, $alpha: .3);
+  }
+}
+
 .nav-item {
   .text {
     margin-bottom: 8px;
@@ -172,6 +216,7 @@
 }
 
 @media screen and (max-width: 992px) {
+
   .bg-line,
   .nav-line {
     display: none !important;
@@ -238,10 +283,12 @@
         .menu {
           display: none;
         }
+
         .close {
           display: block;
         }
       }
+
       .nav-wrapper {
         display: block;
 
@@ -269,6 +316,7 @@
           margin-right: 8px;
           background-image: url(~/src/assets/img/common/logout.svg);
         }
+
         .text {
           color: var(--red-05);
           font-weight: 600;

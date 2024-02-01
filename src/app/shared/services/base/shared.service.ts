@@ -9,6 +9,8 @@ import { LocalStorageKey } from '../../constants/localstorage-key.constant';
 })
 export class SharedService {
 
+  static AtHome = false;
+  static OpenSearch = false;
   static OnlineUsers = 0;
   static DeviceType = DeviceType.Desktop;
   static UnderMaintenanceMode = false;

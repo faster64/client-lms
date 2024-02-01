@@ -4,6 +4,7 @@ import { AppHeaderComponent } from './app-header.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { AccountBoxModule } from 'src/app/shared/components/element/account-box/account-box.module';
 import { RouterModule } from '@angular/router';
+import { DxTextBoxModule } from 'devextreme-angular';
 
 
 
@@ -15,7 +16,8 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     RouterModule,
     TranslateModule,
-    AccountBoxModule
+    AccountBoxModule,
+    DxTextBoxModule
   ],
   exports: [AppHeaderComponent]
 })

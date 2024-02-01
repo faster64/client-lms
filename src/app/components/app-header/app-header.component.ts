@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DxTextBoxComponent, DxTextBoxModule } from 'devextreme-angular';
 import { Routing } from 'src/app/shared/constants/routing.constant';
 import { AuthStatus } from 'src/app/shared/enums/auth-status.enum';
+import { StringHelper } from 'src/app/shared/helpers/string.helper';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { PublisherService } from 'src/app/shared/services/base/publisher.service';
 import { SharedService } from 'src/app/shared/services/base/shared.service';
@@ -24,6 +26,11 @@ export class AppHeaderComponent implements OnInit {
   path = '';
 
   opened = false;
+
+  searchKey = '';
+
+  @ViewChild("searchInstance")
+  searchInstance: DxTextBoxComponent;
 
   constructor(
     public router: Router,
@@ -55,5 +62,32 @@ export class AppHeaderComponent implements OnInit {
     SharedService.AdjustCarts();
     if (AuthService.CurrentStatus != AuthStatus.LoggedIn) {
     }
+  }
+
+  openSearch(event?) {
+    event?.stopPropagation();
+    event?.preventDefault();
+
+    SharedService.OpenSearch = true;
+    this.opened = false;
+
+    setTimeout(() => {
+      this.searchInstance.instance.focus();
+    }, 100);
+  }
+
+  stopEvent(event) {
+    event?.stopPropagation();
+    event?.preventDefault();
+  }
+
+  search() {
+    setTimeout(() => {
+      if (SharedService.OpenSearch) {
+        this.publisher.searchCourseEvent.emit(this.searchKey);
+        this.searchKey = '';
+        SharedService.OpenSearch = false;
+      }
+    }, 50);
   }
 }

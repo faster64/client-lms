@@ -12,6 +12,7 @@ export class PublisherService {
   routeChangeEvent = new EventEmitter<any>();
   updateCartEvent = new EventEmitter<any>();
   updateCmsHeaderLabelEvent = new EventEmitter<any>();
+  searchCourseEvent = new EventEmitter<any>();
 
   constructor() { }
 }

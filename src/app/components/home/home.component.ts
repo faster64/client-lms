@@ -2,6 +2,7 @@ import { Component, Injector } from '@angular/core';
 import { finalize, takeUntil } from 'rxjs';
 import { BaseComponent } from 'src/app/shared/components/base-component';
 import { SortModel } from 'src/app/shared/models/base/sort-model';
+import { PublisherService } from 'src/app/shared/services/base/publisher.service';
 import { CourseClientService } from 'src/app/shared/services/course/course-client.service';
 
 @Component({
@@ -21,7 +22,8 @@ export class HomeComponent extends BaseComponent {
 
   constructor(
     injector: Injector,
-    public courseClientService: CourseClientService
+    public courseClientService: CourseClientService,
+    public publisher: PublisherService
   ) {
     super(injector);
   }
@@ -33,6 +35,14 @@ export class HomeComponent extends BaseComponent {
     this.paginationRequest.size = this.count;
     this.paginationRequest.sort = new SortModel('createdDate', false);
     this.loadCourses();
+
+    this.publisher
+      .searchCourseEvent
+      .pipe(takeUntil(this._onDestroySub))
+      .subscribe(key => {
+        this.paginationRequest.query = key;
+        this.loadCourses(true);
+      });
   }
 
   calculateCount() {
@@ -44,8 +54,14 @@ export class HomeComponent extends BaseComponent {
     }
   }
 
-  loadCourses() {
+  loadCourses(searchMode?: boolean) {
+    if (searchMode) {
+      this.courses = [];
+    }
+
     this.isLoading = true;
+    this.current = 0;
+    this.total = 0;
     this.courseClientService
       .paging(this.paginationRequest)
       .pipe(

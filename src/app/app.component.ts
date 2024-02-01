@@ -9,6 +9,7 @@ import { AuthStatus } from './shared/enums/auth-status.enum';
 import { TranslationService } from './shared/services/translation/translation.service';
 import { Routing } from './shared/constants/routing.constant';
 import { HubConnectionService } from './shared/services/socket/hub-connection.service';
+import { SharedService } from './shared/services/base/shared.service';
 
 @Component({
   selector: 'app-root',
@@ -84,8 +85,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
           this.publisher.routeChangeEvent.emit();
           if (event.urlAfterRedirects == `/${Routing.HOME.path}`) {
+            SharedService.AtHome = true;
             document.documentElement.style.setProperty("--header-bg", "#305FE8");
           } else {
+            SharedService.AtHome = false;
             document.documentElement.style.setProperty("--header-bg", "#fff");
           }
         }

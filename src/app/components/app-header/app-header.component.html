@@ -17,8 +17,8 @@
       </a>
 
       <div class="wrap">
-        <div class="search" (click)="Utility.featureIsInDevelopment($event)"></div>
-        <div class="seperate-line"></div>
+        <div class="search" (click)="openSearch()" *ngIf="SharedService.AtHome"></div>
+        <div class="seperate-line" *ngIf="SharedService.AtHome"></div>
         <a class="login" [routerLink]="Routing.LOGIN.path">
           {{'header.features.login' | translate}}
         </a>
@@ -32,7 +32,7 @@
 
     <div class="nav-right authenticated" *ngIf="AuthService.CurrentStatus == AuthStatus.LoggedIn"
       (click)="opened = false">
-      <div class="search" (click)="Utility.featureIsInDevelopment($event)"></div>
+      <div class="search" (click)="openSearch()" *ngIf="SharedService.AtHome"></div>
 
       <a class="cart" [routerLink]="Routing.CART.path">
         <span class="item-count" *ngIf="SharedService.CartItems.length > 0">
@@ -62,7 +62,22 @@
   </div>
 </div>
 
+<div class="search-course-mode" [ngClass]="SharedService.OpenSearch ? 'open-search' : ''"
+  (click)="SharedService.OpenSearch = false">
+  <div class="search-wrapper" (click)="stopEvent($event)">
+    <dx-text-box #searchInstance mode="search" height="56" width="100%" placeholder="Nhập từ khóa tìm kiếm"
+      [showClearButton]="false" [(value)]="searchKey" (onEnterKey)="search()">
+    </dx-text-box>
+  </div>
+
+  <div class="close-btn bg-contain" (click)="SharedService.OpenSearch = false"></div>
+</div>
+
 <ng-template #nav>
+  <a class="nav-item small-item" (click)="openSearch($event)" href="#">
+    <div class="text">Tìm kiếm</div>
+  </a>
+
   <a class="nav-item" [routerLink]="Routing.HOME.path" [ngClass]="Routing.HOME.path == path ? 'selected' : ''"
     (click)="opened = false">
     <div class="text">{{'header.navs.home' | translate}}</div>
@@ -81,8 +96,8 @@
     <div class="under-line"></div>
   </a>
 
-  <a class="nav-item small-item" [routerLink]="Routing.CART.path" [ngClass]="Routing.CART.path == path ? 'selected' : ''"
-    (click)="opened = false">
+  <a class="nav-item small-item" [routerLink]="Routing.CART.path"
+    [ngClass]="Routing.CART.path == path ? 'selected' : ''" (click)="opened = false">
     <div class="text">Giỏ hàng (<strong>{{SharedService.CartItems.length}}</strong>)</div>
     <div class="under-line"></div>
   </a>

@@ -45,6 +45,8 @@
   --app-header-height: 120px;
   --app-cms-header-height: 80px;
   --header-padding: 16px 56px;
+  --nav-line-top: 40px;
+  --nav-line-height: 80px;
   --search-input-width: 320px;
   --banner-slide-height: 460px;
   --banner-slide-top-padding: 120px;
@@ -119,6 +121,7 @@
     --banner-white-line-height: 80px;
     --banner-slide-top-padding: 36px;
     --app-header-height: 80px;
+    --nav-line-top: 20px;
     --side-distance: 50px;
     --course-description-distance: 30px;
     --size: 12px;
