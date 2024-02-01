@@ -1,26 +1,30 @@
-<div class="course-cpn">
+<a class="course-cpn" [routerLink]=" '/' + Routing.COURSE_DETAIL.path + '/' + course.id">
 
-  <a class="course-banner" [routerLink]=" '/' + Routing.COURSE_DETAIL.path + '/' + course.id">
+  <div class="course-banner">
     <div class="course-img bg-cover" [ngStyle]="{backgroundImage: 'url(' + course.imageUrl + ')'}"></div>
     <div class="class">{{course.className}}</div>
     <div class="price">{{course.price | NumberFormatPipe}}</div>
-  </a>
+  </div>
 
-  <a class="course-name max-3-lines" [routerLink]=" '/' + Routing.COURSE_DETAIL.path + '/' + course.id">
+  <p class="course-name max-3-lines">
     {{course.name}}
-  </a>
-  <a class="course-description max-3-lines"
-    [routerLink]=" '/' + Routing.COURSE_DETAIL.path + '/' + course.id">{{course.shortDescription}}
-  </a>
+  </p>
+  <p class="course-description max-3-lines">{{course.shortDescription}}
+  </p>
 
   <div class="course-features" *ngIf="includeBtn">
     <base-button text="{{'course.features.add_to_cart' | translate}}" [width]="132" [height]="44"
       [buttonType]="ButtonType.STROKED" [color]="ButtonColor.BASIC" [finishImmediately]="true"
-      (onClick)="addToCart(true)">
+      (onClick)="addToCart($event, true)" *ngIf="!course.purchased">
     </base-button>
 
     <base-button class="buy-btn" text="{{'course.features.buy_now' | translate}}" [width]="112" [height]="44"
-      [finishImmediately]="true" (onClick)="buy()">
+      [finishImmediately]="true" (onClick)="buy($event)" *ngIf="!course.purchased">
     </base-button>
+
+    <div class="purchased" *ngIf="course.purchased">
+      <div class="icon bg-contain"></div>
+      <div class="text">Đã mua</div>
+    </div>
   </div>
-</div>
+</a>

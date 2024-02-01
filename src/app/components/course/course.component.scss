@@ -1,5 +1,6 @@
 ::ng-deep .course-cpn {
   position: relative;
+  display: block;
   width: 100%;
   height: 100%;
   padding: 16px;
@@ -80,6 +81,24 @@
 
     button {
       padding: 4px;
+    }
+
+    .purchased {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+
+      .icon {
+        width: 16px;
+        height: 16px;
+        margin-right: 8px;
+        background-image: url(~/src/assets/img/common/tick.svg);
+      }
+
+      .text {
+        color: var(--green-07);
+      }
     }
   }
 

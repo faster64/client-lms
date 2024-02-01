@@ -14,4 +14,5 @@ export class Course extends BaseModel {
   public status = CourseStatus.Release;
   public statusText = '';
   public releaseDate = new Date();
+  public purchased = false;
 }

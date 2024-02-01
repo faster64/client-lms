@@ -35,11 +35,17 @@ export class CourseComponent extends BaseComponent {
     // this.loginCallback = this.loginCallback.bind(this);
   }
 
-  buy() {
+  buy(event) {
+    event?.stopPropagation();
+    event?.preventDefault();
+
     this.authService.authenticate(() => this.loginCallback());
   }
 
-  addToCart(noti: boolean) {
+  addToCart(event, noti: boolean) {
+    event?.stopPropagation();
+    event?.preventDefault();
+
     let items: Course[] = [];
 
     try {
@@ -60,7 +66,7 @@ export class CourseComponent extends BaseComponent {
   }
 
   loginCallback() {
-    this.addToCart(false);
+    this.addToCart(null, false);
     this.router.navigateByUrl(this.Routing.CART.path);
   }
 }

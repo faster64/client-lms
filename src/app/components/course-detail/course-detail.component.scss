@@ -2,13 +2,17 @@
   position: relative;
   min-height: 640px;
   padding: 56px 0;
+
   .wrapper {
     height: 100%;
+
     .tox-tinymce {
       min-height: 400px;
       border: none !important;
 
-      .tox-editor-header, .tox-statusbar, .tox-bottom-anchorbar {
+      .tox-editor-header,
+      .tox-statusbar,
+      .tox-bottom-anchorbar {
         display: none !important;
       }
     }
@@ -18,12 +22,14 @@
       align-items: center;
       padding: 0 var(--side-distance);
       margin-bottom: 24px;
+
       .icon {
         width: var(--large-title-size);
         height: var(--large-title-size);
         margin-right: 12px;
         background-image: url(~/src/assets/img/common/icon.png);
       }
+
       .text {
         font-size: var(--large-title-size);
         color: var(--main-color);
@@ -52,12 +58,31 @@
       display: flex;
       align-items: center;
       padding: 0 var(--side-distance);
+
       base-button.buy-btn {
         margin-left: 16px;
       }
 
       button {
         padding: 4px;
+      }
+
+      .purchased {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+
+        .icon {
+          width: 16px;
+          height: 16px;
+          margin-right: 8px;
+          background-image: url(~/src/assets/img/common/tick.svg);
+        }
+
+        .text {
+          color: var(--green-07);
+        }
       }
     }
   }
