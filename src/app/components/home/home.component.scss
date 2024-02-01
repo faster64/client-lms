@@ -80,11 +80,20 @@
     }
   }
 
+  .on-search-mode {
+    padding: 16px var(--side-distance);
+    margin-top: 24px;
+    .search-title {
+      font-size: var(--medium-title-size);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+  }
+
   .app-ticket {
     height: 640px;
   }
 }
-
 
 @media screen and (max-width: 1600px) {
   .home-cpn {

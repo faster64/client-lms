@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DxTextBoxComponent, DxTextBoxModule } from 'devextreme-angular';
+import { DxTextBoxComponent } from 'devextreme-angular';
+import { LocalStorageKey } from 'src/app/shared/constants/localstorage-key.constant';
 import { Routing } from 'src/app/shared/constants/routing.constant';
 import { AuthStatus } from 'src/app/shared/enums/auth-status.enum';
-import { StringHelper } from 'src/app/shared/helpers/string.helper';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { PublisherService } from 'src/app/shared/services/base/publisher.service';
 import { SharedService } from 'src/app/shared/services/base/shared.service';
@@ -24,6 +24,8 @@ export class AppHeaderComponent implements OnInit {
   AuthStatus = AuthStatus;
 
   path = '';
+
+  hasCms = false;
 
   opened = false;
 
@@ -50,6 +52,7 @@ export class AppHeaderComponent implements OnInit {
 
   findModule() {
     setTimeout(() => {
+      this.hasCms = localStorage.getItem(LocalStorageKey.CMS) == 'true';
       this.path = (this.activatedRoute.snapshot as any)['_routerState']['url'].substring(1);
     }, 100);
   }

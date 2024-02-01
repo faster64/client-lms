@@ -2,14 +2,13 @@ import { Component, ElementRef, OnDestroy, OnInit, ViewChild, ViewContainerRef }
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { PublisherService } from './shared/services/base/publisher.service';
-import { AuthService } from './shared/services/auth/auth.service';
-import { isFakeMousedownFromScreenReader } from '@angular/cdk/a11y';
-import { AuthStatus } from './shared/enums/auth-status.enum';
-import { TranslationService } from './shared/services/translation/translation.service';
 import { Routing } from './shared/constants/routing.constant';
-import { HubConnectionService } from './shared/services/socket/hub-connection.service';
+import { AuthStatus } from './shared/enums/auth-status.enum';
+import { AuthService } from './shared/services/auth/auth.service';
+import { PublisherService } from './shared/services/base/publisher.service';
 import { SharedService } from './shared/services/base/shared.service';
+import { HubConnectionService } from './shared/services/socket/hub-connection.service';
+import { TranslationService } from './shared/services/translation/translation.service';
 
 @Component({
   selector: 'app-root',

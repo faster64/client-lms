@@ -134,6 +134,8 @@
 @media screen and (max-width: 768px) {
   :root {
     --banner-slide-height: 200px;
+    --large-title-size: 18px;
+    --large-sub-title-size: 14px;
   }
 }
 

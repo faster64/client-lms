@@ -19,6 +19,8 @@ import { finalize, of } from 'rxjs';
 import { SnackBar } from '../../snackbar/snackbar.component';
 import { RefreshTokenModel } from '../../models/auth/refresh-token-model';
 import { CommonConstant } from '../../constants/common.constant';
+import { AuthUtility } from '../../utility/auth-utility';
+import { ActionExponent } from '../../enums/exponent.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +31,10 @@ export class AuthService {
 
   private clearListSession = [];
 
-  private clearListLocal = [];
+  private clearListLocal = [
+    LocalStorageKey.CART_ITEMS,
+    LocalStorageKey.CMS,
+  ];
 
   public auth_base_host = environment.base_host + "/" + environment.api_version;
   public serviceName = '';
@@ -104,6 +109,7 @@ export class AuthService {
     config[LocalStorageKey.REFRESH_TOKEN] = refreshToken;
 
     localStorage.setItem('auth', JSON.stringify(config));
+    localStorage.setItem(LocalStorageKey.CMS, AuthUtility.checkPermission([ActionExponent.CMS]) + '');
   }
 
   login = (request: LoginRequest) => this.httpService.post<ServiceResult>(this.getUrl() + '/login', request);

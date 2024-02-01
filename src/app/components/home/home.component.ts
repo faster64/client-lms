@@ -20,6 +20,10 @@ export class HomeComponent extends BaseComponent {
 
   count = 4;
 
+  isSearchMode = false;
+
+  searchKey = '';
+
   constructor(
     injector: Injector,
     public courseClientService: CourseClientService,
@@ -56,7 +60,9 @@ export class HomeComponent extends BaseComponent {
 
   loadCourses(searchMode?: boolean) {
     if (searchMode) {
+      this.isSearchMode = true;
       this.courses = [];
+      this.paginationRequest.number = 0;
     }
 
     this.isLoading = true;
@@ -73,6 +79,10 @@ export class HomeComponent extends BaseComponent {
           this.courses = this.courses.concat(resp.data);
           this.current = this.courses.length;
           this.total = resp.total;
+
+          if (searchMode) {
+            window.scrollTo(0, 0);
+          }
         }
       })
   }

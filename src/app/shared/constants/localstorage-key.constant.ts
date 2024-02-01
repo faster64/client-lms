@@ -10,6 +10,7 @@ export class LocalStorageKey {
   public static readonly ROLE_NAME = 'role_name';
   public static readonly REFRESH_TOKEN = 'refresh_token';
   public static readonly EXP = 'exp';
+  public static readonly CMS = 'cms';
   public static readonly FULL_NAME = 'full_name';
   public static readonly CART_ITEMS = 'cart_items';
 }

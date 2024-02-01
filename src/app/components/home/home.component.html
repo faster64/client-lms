@@ -1,14 +1,21 @@
 <div class="home-cpn">
-  <div class="app-banner">
+  <div class="app-banner" *ngIf="!isSearchMode">
     <app-banner></app-banner>
   </div>
 
+  <div class="on-search-mode" *ngIf="isSearchMode">
+    <div class="search-title">Kết quả tìm kiếm</div>
+    <div class="result-title">
+      Có <strong>{{total}}</strong> kết quả tìm kiếm với từ khóa <strong>{{this.paginationRequest.query}}</strong>
+    </div>
+  </div>
+
   <div class="app-courses">
-    <div class="course-title">
+    <div class="course-title" *ngIf="!isSearchMode">
       <span>KHÓA HỌC TẠI</span> <span class="highlight">CÁNH BUỒM EDUCATION</span>
     </div>
 
-    <div class="course-sub-title">
+    <div class="course-sub-title" *ngIf="!isSearchMode">
       Khóa học hữu ích nhất mà Cánh Buồm Education dành tới bạn
     </div>
 

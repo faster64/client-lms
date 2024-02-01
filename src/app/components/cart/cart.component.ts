@@ -131,7 +131,7 @@ export class CartComponent extends BaseComponent implements AfterViewInit {
           if (!courses.length) {
             SharedService.CartItems = [];
             localStorage.setItem(LocalStorageKey.CART_ITEMS, "");
-            MessageBox.information(new Message(this, { content: 'Các khóa học này bạn đã mua rồi' }));
+            MessageBox.information(new Message(this, { content: courses.length > 1 ? 'Các khóa học này bạn đã mua rồi' : 'Khóa học này bạn đã mua rồi' }));
             return;
           }
           if (courses.length != SharedService.CartItems.length) {

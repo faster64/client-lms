@@ -74,7 +74,7 @@
 </div>
 
 <ng-template #nav>
-  <a class="nav-item small-item" (click)="openSearch($event)" href="#">
+  <a class="nav-item small-item" (click)="openSearch($event)" href="#" *ngIf="SharedService.AtHome">
     <div class="text">Tìm kiếm</div>
   </a>
 
@@ -109,7 +109,7 @@
   </a>
 
   <a class="nav-item" [routerLink]="Routing.CMS.path" [ngClass]="Routing.CMS.path == path ? 'selected' : ''"
-    *ngIf="AuthService.CurrentStatus == AuthStatus.LoggedIn" (click)="opened = false">
+    *ngIf="AuthService.CurrentStatus == AuthStatus.LoggedIn && hasCms" (click)="opened = false">
     <div class="text">CMS</div>
     <div class="under-line"></div>
   </a>
