@@ -21,12 +21,20 @@
         <app-course [course]="course" [includeBtn]="false"></app-course>
       </div>
 
+      <div class="loading-wrapper" *ngIf="isLoading">
+        <div class="course-loading">
+          <open-loading></open-loading>
+        </div>
+
+        <div class="course-loading">
+          <open-loading></open-loading>
+        </div>
+      </div>
+
       <div class="view-more" (click)="viewMore()" *ngIf="current < total">
         <div class="icon bg-contain"></div>
         <div class="text">{{'base_keys.view_more' | translate }}</div>
       </div>
-
-      <progess-spinner-loading *ngIf="isLoading"></progess-spinner-loading>
     </div>
   </div>
 </div>

@@ -62,6 +62,8 @@ export class MyCoursesComponent extends BaseComponent {
 
     this.selectedClassId = c.id;
     this.courses = [];
+    this.current = 0;
+    this.total = 0;
     this.paginationRequest.number = 0;
 
     this.loadCourses();
