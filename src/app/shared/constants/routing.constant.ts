@@ -28,6 +28,7 @@ export class Routing {
   public static readonly CONTACT = new RoutingConfig('lien-he', 'home');
   public static readonly MY_COURES = new RoutingConfig('khoa-hoc-cua-toi', 'home');
   public static readonly COURSE_DETAIL = new RoutingConfig('chi-tiet-khoa-hoc', 'course_detail');
+  public static readonly COURSE_LESSON = new RoutingConfig('bai-giang', 'course_lesson');
   public static readonly CART = new RoutingConfig('gio-hang', 'cart');
   public static readonly PAYMENT = new RoutingConfig('thanh-toan', 'payment');
 }

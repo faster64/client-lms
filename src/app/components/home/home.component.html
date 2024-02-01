@@ -5,8 +5,16 @@
 
   <div class="on-search-mode" *ngIf="isSearchMode">
     <div class="search-title">Kết quả tìm kiếm</div>
-    <div class="result-title">
+  <div class="result-title" *ngIf="!isLoading && courses.length">
       Có <strong>{{total}}</strong> kết quả tìm kiếm với từ khóa <strong>{{this.paginationRequest.query}}</strong>
+    </div>
+
+    <div class="not-found" *ngIf="!isLoading && !courses.length">
+      <div class="icon bg-contain"></div>
+      <div class="large-title">Xin lỗi, chúng tôi không tìm thấy kết quả trùng khớp với từ khóa
+        “{{paginationRequest.query}}”
+      </div>
+      <div class="sub-title">Hãy thử tìm kiếm cụm từ khác hoặc quay lại <a [href]="Routing.HOME.path">Trang chủ</a> </div>
     </div>
   </div>
 
@@ -33,6 +41,10 @@
           <open-loading></open-loading>
         </div>
       </div>
+
+      <p class="no-data-message" *ngIf="!isLoading && !courses.length && !isSearchMode">
+        Các khóa học sẽ sớm được cập nhật tại đây!
+      </p>
     </div>
 
     <div class="view-more" (click)="viewMore()" *ngIf="current < total">

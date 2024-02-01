@@ -18,7 +18,7 @@
 
     <div class="courses">
       <div class="course" *ngFor="let course of courses">
-        <app-course [course]="course" [includeBtn]="false"></app-course>
+        <app-course [course]="course" [includeBtn]="false" [toLesson]="true"></app-course>
       </div>
 
       <div class="loading-wrapper" *ngIf="isLoading">
@@ -35,6 +35,10 @@
         <div class="icon bg-contain"></div>
         <div class="text">{{'base_keys.view_more' | translate }}</div>
       </div>
+
+      <p class="no-data-message" *ngIf="!isLoading && !courses.length">
+        Chưa có khóa học nào
+      </p>
     </div>
   </div>
 </div>

@@ -24,6 +24,9 @@ export class CourseComponent extends BaseComponent {
   @Input()
   includeBtn = true;
 
+  @Input()
+  toLesson = false;
+
   constructor(
     injector: Injector,
     public publisher: PublisherService,

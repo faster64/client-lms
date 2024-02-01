@@ -26,6 +26,7 @@
     .course-wrapper {
       display: flex;
       flex-wrap: wrap;
+      min-height: 280px;
 
       .course {
         width: 25%;
@@ -54,6 +55,12 @@
             }
           }
         }
+      }
+
+      .no-data-message {
+        margin: 56px auto;
+        font-size: var(--medium-title-size);
+        font-weight: 600;
       }
     }
 
@@ -87,6 +94,30 @@
       font-size: var(--medium-title-size);
       font-weight: 700;
       margin-bottom: 12px;
+    }
+
+    .not-found {
+      .icon {
+        width: 320px;
+        height: 280px;
+        margin: 12px auto;
+        background-image: url(~/src/assets/img/common/not-found.png);
+      }
+
+      .large-title {
+        margin-bottom: 8px;
+        text-align: center;
+        font-weight: 600;
+        font-size: var(--medium-title-size);
+      }
+      .sub-title {
+        text-align: center;
+        font-size: var(--small-title-size);
+        a {
+          color: #007bff !important;
+          text-decoration: underline !important;
+        }
+      }
     }
   }
 
