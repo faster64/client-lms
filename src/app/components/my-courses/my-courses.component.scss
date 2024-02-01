@@ -4,7 +4,7 @@
   .my-courses-title {
     display: flex;
     align-items: center;
-    height: 40px;
+    height: 48px;
     margin-bottom: 8px;
 
     .icon {
@@ -24,7 +24,7 @@
   .my-courses-content {
     position: relative;
     width: 100%;
-    height: calc(100% - 48px);
+    height: calc(100% - 56px);
 
     .classes {
       display: flex;
@@ -129,6 +129,15 @@
 
 @media screen and (max-width: 992px) {
   .my-courses-cpn {
+    .classes {
+      flex-wrap: nowrap;
+      overflow: auto;
+
+      .class {
+        min-width: 100px;
+      }
+    }
+
     .courses {
       .course {
         width: 50%;
