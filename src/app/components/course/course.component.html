@@ -1,21 +1,22 @@
 <div class="course-cpn">
 
-  <a class="course-banner" [routerLink]="Routing.COURSE_DETAIL.path + '/' + course.id">
+  <a class="course-banner" [routerLink]=" '/' + Routing.COURSE_DETAIL.path + '/' + course.id">
     <div class="course-img bg-cover" [ngStyle]="{backgroundImage: 'url(' + course.imageUrl + ')'}"></div>
     <div class="class">{{course.className}}</div>
     <div class="price">{{course.price | NumberFormatPipe}}</div>
   </a>
 
-  <a class="course-name max-3-lines" [routerLink]="Routing.COURSE_DETAIL.path + '/' + course.id">
+  <a class="course-name max-3-lines" [routerLink]=" '/' + Routing.COURSE_DETAIL.path + '/' + course.id">
     {{course.name}}
   </a>
   <a class="course-description max-3-lines"
-    [routerLink]="Routing.COURSE_DETAIL.path + '/' + course.id">{{course.shortDescription}}
+    [routerLink]=" '/' + Routing.COURSE_DETAIL.path + '/' + course.id">{{course.shortDescription}}
   </a>
 
-  <div class="course-features">
+  <div class="course-features" *ngIf="includeBtn">
     <base-button text="{{'course.features.add_to_cart' | translate}}" [width]="132" [height]="44"
-      [buttonType]="ButtonType.STROKED" [color]="ButtonColor.BASIC" [finishImmediately]="true" (onClick)="addToCart(true)">
+      [buttonType]="ButtonType.STROKED" [color]="ButtonColor.BASIC" [finishImmediately]="true"
+      (onClick)="addToCart(true)">
     </base-button>
 
     <base-button class="buy-btn" text="{{'course.features.buy_now' | translate}}" [width]="112" [height]="44"

@@ -1,10 +1,32 @@
 <div class="my-courses-cpn">
   <div class="my-courses-title over-3-dots">
-      <div class="icon bg-contain"></div>
-      <div class="text">Danh sách khóa học</div>
+    <div class="icon bg-contain"></div>
+    <div class="text">Danh sách khóa học</div>
   </div>
 
   <div class="my-courses-content">
-    <progess-spinner-loading *ngIf="isLoading"></progess-spinner-loading>
+    <div class="classes">
+      <ng-container *ngIf="!loadingClass">
+        <div class="class" *ngFor="let class of classes" [ngClass]="selectedClassId == class.id ? 'selected' : ''"
+          (click)="filterClass(class)">
+          {{class.name}}
+        </div>
+      </ng-container>
+
+      <skeleton-loading *ngIf="loadingClass"></skeleton-loading>
+    </div>
+
+    <div class="courses">
+      <div class="course" *ngFor="let course of courses">
+        <app-course [course]="course" [includeBtn]="false"></app-course>
+      </div>
+
+      <div class="view-more" (click)="viewMore()" *ngIf="current < total">
+        <div class="icon bg-contain"></div>
+        <div class="text">{{'base_keys.view_more' | translate }}</div>
+      </div>
+
+      <progess-spinner-loading *ngIf="isLoading"></progess-spinner-loading>
+    </div>
   </div>
 </div>

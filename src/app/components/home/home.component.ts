@@ -29,9 +29,19 @@ export class HomeComponent extends BaseComponent {
   override initData(): void {
     super.initData();
 
+    this.calculateCount();
     this.paginationRequest.size = this.count;
     this.paginationRequest.sort = new SortModel('createdDate', false);
     this.loadCourses();
+  }
+
+  calculateCount() {
+    if (window.innerWidth > 1600) {
+      this.count = 4;
+    }
+    else if (window.innerWidth > 992 && window.innerWidth <= 1600) {
+      this.count = 3;
+    }
   }
 
   loadCourses() {
