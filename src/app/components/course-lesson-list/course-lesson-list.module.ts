@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { CourseLessonRoutingModule } from './course-lesson-routing.module';
-import { CourseLessonComponent } from './course-lesson.component';
 import { CourseLessonDetailComponent } from './course-lesson-detail/course-lesson-detail.component';
+import { CourseLessonListComponent } from './course-lesson-list.component';
+import { CourseLessonRoutingModule } from './course-lesson-list-routing.module';
 
 
 @NgModule({
   declarations: [
-    CourseLessonComponent,
+    CourseLessonListComponent,
     CourseLessonDetailComponent
   ],
   imports: [
@@ -16,4 +16,4 @@ import { CourseLessonDetailComponent } from './course-lesson-detail/course-lesso
     CourseLessonRoutingModule
   ]
 })
-export class CourseLessonModule { }
+export class CourseLessonListModule { }

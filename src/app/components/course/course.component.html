@@ -1,5 +1,5 @@
 <a class="course-cpn"
-  [routerLink]="'/' + (toLesson ? Routing.COURSE_LESSON.path : Routing.COURSE_DETAIL.path)+ '/' + course.id">
+  [routerLink]="'/' + (toLesson ? Routing.COURSE_LESSON_LIST.path : Routing.COURSE_DETAIL.path)+ '/' + course.id">
 
   <div class="course-banner">
     <div class="course-img bg-cover" [ngStyle]="{backgroundImage: 'url(' + course.imageUrl + ')'}"></div>

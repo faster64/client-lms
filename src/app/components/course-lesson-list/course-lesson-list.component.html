@@ -1,0 +1,24 @@
+<div class="course-lesson-cpn">
+  <div class="course-info">
+    <a class="back" [routerLink]="'/' + Routing.MY_COURES.path">
+      <div class="icon bg-contain"></div>
+    </a>
+    <div class="course-name over-3-dots">{{course.name}}</div>
+  </div>
+  <div class="lessons">
+
+    <div class="lesson" *ngFor="let lesson of lessons">
+      <div class="lesson-image bg-cover" [ngStyle]="{backgroundImage: 'url(' + lesson.imageUrl + ')'}"></div>
+      <div class="lesson-info-wrapper">
+        <div class="less-item lesson-name over-3-dots">{{lesson.name}}</div>
+        <div class="less-item lesson-description max-3-lines">{{lesson.description}}</div>
+
+        <div class="less-item btns">
+          <div class="learn">Học bài</div>
+          <div class="practice"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

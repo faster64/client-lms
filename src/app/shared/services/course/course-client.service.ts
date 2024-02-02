@@ -24,4 +24,15 @@ export class CourseClientService extends BaseService {
         url += `&${CommonConstant.ALLOW_NOTICE_WITH_SNACKBAR_DANGER}`;
         return this.http.get<ServiceResult>(url, this._baseOptions);
     }
+
+    getListLessonsPaging(courseId: string, paginationRequest: PaginationRequest) {
+        let url = `${this.url()}/${courseId}/lessons?page=${paginationRequest.number}&size=${paginationRequest.size}&query=${paginationRequest.query}`;
+
+        if (!StringHelper.isNullOrEmpty(paginationRequest.sort.fieldName)) {
+            url += (paginationRequest.sort.asc ? '&orderBy' : '&orderByDescending') + `=${paginationRequest.sort.fieldName}`;
+        }
+
+        url += `&${CommonConstant.ALLOW_NOTICE_WITH_SNACKBAR_DANGER}`;
+        return this.http.get<ServiceResult>(url, this._baseOptions);
+    }
 }
