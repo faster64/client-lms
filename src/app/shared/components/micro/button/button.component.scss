@@ -8,6 +8,7 @@
   button {
     width: 100%;
     height: 100%;
+    box-shadow: none;
 
     span {
       display: flex;
@@ -18,11 +19,12 @@
     }
 
     .base-btn-text {
-      font-weight: 400;
+      font-weight: 500;
     }
 
-    &:not(.mat-warn) {
-      // border: 1px solid var(--main-color);
+    &.mat-basic {
+      border: 1px solid var(--main-color);
+      color: var(--main-color);
     }
 
     &:disabled {

@@ -11,14 +11,36 @@
       <div class="lesson-image bg-cover" [ngStyle]="{backgroundImage: 'url(' + lesson.imageUrl + ')'}"></div>
       <div class="lesson-info-wrapper">
         <div class="less-item lesson-name over-3-dots">{{lesson.name}}</div>
-        <div class="less-item lesson-description max-3-lines">{{lesson.description}}</div>
+        <div class="less-item lesson-description">{{lesson.description}}</div>
 
         <div class="less-item btns">
-          <div class="learn">Học bài</div>
-          <div class="practice"></div>
+          <div class="learn">
+            <base-button text="Học bài" [height]="40" [width]="120"></base-button>
+          </div>
+          <div class="practice">
+            <base-button text="Làm bài tập" [height]="40" [width]="160" [buttonType]="ButtonType.RAISED" [color]="ButtonColor.BASIC"></base-button>
+          </div>
         </div>
       </div>
     </div>
 
+    <div class="view-more" (click)="viewMore()" *ngIf="current < total">
+      <div class="icon bg-contain"></div>
+      <div class="text">{{'base_keys.view_more' | translate }}</div>
+    </div>
+
+    <div class="loading-wrapper" *ngIf="isLoading">
+      <div class="lesson-loading">
+        <open-loading></open-loading>
+      </div>
+
+      <div class="lesson-loading">
+        <open-loading></open-loading>
+      </div>
+    </div>
+
+    <p class="no-data-message" *ngIf="!isLoading && !lessons.length">
+      Các bài giảng sẽ sớm xuất hiện tại đây!
+    </p>
   </div>
 </div>

@@ -51,6 +51,8 @@
   --banner-slide-height: 460px;
   --banner-slide-top-padding: 120px;
   --banner-white-line-height: 230px;
+  --lesson-item-height: 238px;
+  --lesson-image-width: 360px;
 
   /* visibility */
   --text-sidebar-visibility: visible;
