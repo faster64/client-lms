@@ -1,15 +1,18 @@
 .login-cpn {
   padding: 24px var(--side-distance);
+
   .title {
     display: flex;
     align-items: center;
     margin-bottom: 24px;
+
     .icon {
       width: var(--auth-title-size);
       height: var(--auth-title-size);
       margin-right: 12px;
       background-image: url(~/src/assets/img/auth/icon_login.png);
     }
+
     .text {
       color: var(--gray-800);
       font-size: var(--auth-title-size);
@@ -37,16 +40,19 @@
       width: 50%;
       height: 100%;
       padding: 16px;
+
       .title-system {
         display: flex;
         align-items: center;
         justify-content: space-between;
         margin-bottom: 24px;
+
         .text {
           color: var(--gray-800);
           font-size: 24px;
           font-weight: 600;
         }
+
         .logo {
           width: 93px;
           height: 48px;
@@ -58,14 +64,22 @@
       .email,
       .password {
         margin-bottom: 16px;
+
         .label {
           margin-bottom: 4px;
           font-weight: 500;
           font-size: var(--size);
+
           .required {
             color: var(--danger);
           }
         }
+      }
+
+      .error-message {
+        text-align: center;
+        margin: 12px;
+        color: var(--red-05);
       }
 
       .one-row {
@@ -73,12 +87,15 @@
         align-items: center;
         justify-content: space-between;
         margin-bottom: 16px;
+
         .remember-me {
           display: flex;
           align-items: center;
+
           input {
             margin-right: 8px;
           }
+
           label {
             margin-bottom: 0;
             font-size: var(--size);
@@ -97,6 +114,7 @@
       .have-no-account {
         margin-top: 16px;
         text-align: center;
+
         .register-now {
           margin-left: 4px;
           color: var(--main-color);
@@ -117,8 +135,10 @@
       .left {
         display: none;
       }
+
       .right {
         width: 100%;
+
         .title-system {
           display: none;
         }

@@ -24,6 +24,8 @@ import { SnackBarParameter } from 'src/app/shared/snackbar/snackbar.param';
 })
 export class LoginComponent extends BaseComponent implements AfterViewInit {
 
+  errorMsg = '';
+
   request = new LoginRequest();
 
   @ViewChild("email")
@@ -55,7 +57,7 @@ export class LoginComponent extends BaseComponent implements AfterViewInit {
 
   validate() {
     if (StringHelper.isNullOrEmpty(this.request.username)) {
-      SnackBar.warning(new SnackBarParameter(this, TranslationService.VALUES['auth']['login']['email_not_valid_msg']));
+      this.errorMsg = TranslationService.VALUES['auth']['login']['email_not_valid_msg'];
       this.emailInstance.instance.focus();
       this.emailInstance.instance.option("isValid", false);
       return false;
@@ -63,7 +65,7 @@ export class LoginComponent extends BaseComponent implements AfterViewInit {
     this.emailInstance.instance.option("isValid", true);
 
     if (StringHelper.isNullOrEmpty(this.request.password)) {
-      SnackBar.warning(new SnackBarParameter(this, TranslationService.VALUES['auth']['login']['password_must_not_empty_msg']));
+      this.errorMsg = TranslationService.VALUES['auth']['login']['password_must_not_empty_msg'];
       this.passwordInstance.instance.focus();
       this.passwordInstance.instance.option("isValid", false);
       return false;
@@ -74,6 +76,8 @@ export class LoginComponent extends BaseComponent implements AfterViewInit {
   }
 
   login() {
+    this.errorMsg = '';
+
     const valid = this.validate();
     if (!valid) {
       this.loginBtn.finish();
@@ -85,18 +89,21 @@ export class LoginComponent extends BaseComponent implements AfterViewInit {
         takeUntil(this._onDestroySub),
         finalize(() => this.loginBtn.finish())
       )
-      .subscribe(resp => {
-        if (resp.code == 'success') {
-          this.authService.saveAuthenticate(resp.data.accessToken, resp.data.refreshToken);
-          this.publisher.loggedInEvent.emit();
+      .subscribe(
+        resp => {
+          if (resp.code == 'success') {
+            this.authService.saveAuthenticate(resp.data.accessToken, resp.data.refreshToken);
+            this.publisher.loggedInEvent.emit();
 
-          if (this.data && this.data.callback) {
-            this.data.callback();
+            if (this.data && this.data.callback) {
+              this.data.callback();
+            }
+            else {
+              this.router.navigateByUrl(Routing.HOME.path);
+            }
           }
-          else {
-            this.router.navigateByUrl(Routing.HOME.path);
-          }
-        }
-      })
+        },
+        error => this.errorMsg = error.error.message
+      )
   }
 }

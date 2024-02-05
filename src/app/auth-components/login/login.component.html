@@ -17,6 +17,7 @@
           [(value)]="request.username" (onEnterKey)="loginBtn.clickExecute($event)">
         </dx-text-box>
       </div>
+
       <div class="password">
         <div class="label">{{'auth.login.label_password' | translate}} <span class="required">*</span> </div>
         <dx-text-box #password mode="password" placeholder="{{'auth.login.placeholder_password' | translate}}"
@@ -24,6 +25,10 @@
         </dx-text-box>
 
         <!-- <div class="view-password"></div> -->
+      </div>
+
+      <div class="error-message" *ngIf="errorMsg != ''">
+        {{errorMsg}}
       </div>
 
       <div class="one-row">

@@ -1,5 +1,5 @@
 import { Component, Injector } from '@angular/core';
-import { finalize, takeUntil } from 'rxjs';
+import { delay, finalize, takeUntil } from 'rxjs';
 import { BaseComponent } from 'src/app/shared/components/base-component';
 import { SortModel } from 'src/app/shared/models/base/sort-model';
 import { Course } from 'src/app/shared/models/course/course';
@@ -46,6 +46,7 @@ export class CourseLessonListComponent extends BaseComponent {
   }
 
   loadCourse() {
+    this.isLoadingCourse = true;
     this.courseClientService
       .byId(this.course.id)
       .pipe(

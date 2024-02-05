@@ -3,7 +3,10 @@
     <a class="back" [routerLink]="'/' + Routing.MY_COURES.path">
       <div class="icon bg-contain"></div>
     </a>
-    <div class="course-name over-3-dots">{{course.name}}</div>
+    <div class="course-name over-3-dots">
+      {{course.name}}
+      <skeleton-loading *ngIf="isLoadingCourse"></skeleton-loading>
+    </div>
   </div>
   <div class="lessons">
 
@@ -18,7 +21,8 @@
             <base-button text="Học bài" [height]="40" [width]="120"></base-button>
           </div>
           <div class="practice">
-            <base-button text="Làm bài tập" [height]="40" [width]="160" [buttonType]="ButtonType.RAISED" [color]="ButtonColor.BASIC"></base-button>
+            <base-button text="Làm bài tập" [height]="40" [width]="160" [buttonType]="ButtonType.RAISED"
+              [color]="ButtonColor.BASIC"></base-button>
           </div>
         </div>
       </div>

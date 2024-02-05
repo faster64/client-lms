@@ -112,7 +112,7 @@ export class AuthService {
     localStorage.setItem(LocalStorageKey.CMS, AuthUtility.checkPermission([ActionExponent.CMS]) + '');
   }
 
-  login = (request: LoginRequest) => this.httpService.post<ServiceResult>(this.getUrl() + '/login', request);
+  login = (request: LoginRequest) => this.httpService.post<ServiceResult>(this.getUrl() + `/login?${CommonConstant.DISALLOW_NOTICE}`, request);
 
   register = (request: RegisterRequest) => this.httpService.post<ServiceResult>(this.getUrl() + '/register', request);
 
@@ -170,15 +170,18 @@ export class AuthService {
       const screenWidth = window.innerWidth * 0.8;
       const screenHeight = window.innerHeight * 0.8;
 
+      const width = 1024;
+      const height = window.innerWidth > 768 ? 656 : 400;
+
       config = new MatDialogConfig();
-      config.minWidth = config.width = Math.min(screenWidth, 1024) + 'px';
-      config.minHeight = config.height = Math.min(screenHeight, 656) + 'px';
+      config.minWidth = config.width = Math.min(screenWidth, width) + 'px';
+      config.minHeight = config.height = Math.min(screenHeight, height) + 'px';
       config.autoFocus = false;
       config.position = { top: '0' };
       config.panelClass = ['slide-dialog'];
       config.data = {
         padding: '24px',
-        showTitle: false,
+        showTitle: true,
         showImage: window.innerWidth > BreakPoint.MD,
         callback: () => {
           this.dialogRef.close();
