@@ -10,6 +10,15 @@
           [readOnly]="formMode == FormMode.View" (onEnterKey)="save()">
         </dx-text-box>
       </div>
+
+      <div class="col-12 col-md-6 data-item">
+        <div class="label">
+          Số thứ tự <span class="required">*</span>
+        </div>
+        <dx-number-box #classInput placeholder="Nhập số thứ tự" [(value)]="data.order" [min]="1"
+          [readOnly]="formMode == FormMode.View" (onEnterKey)="save()">
+        </dx-number-box>
+      </div>
     </div>
 
     <div class="row" *ngIf="formMode == FormMode.View">

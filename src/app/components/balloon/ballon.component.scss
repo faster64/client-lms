@@ -1,5 +1,7 @@
 .balloon-cpn {
-  height: 200px;
+  min-height: 200px;
+  padding: 0 2px;
+  overflow: hidden;
   .balloon-item {
     display: flex;
     align-items: center;

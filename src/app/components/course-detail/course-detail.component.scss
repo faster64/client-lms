@@ -7,7 +7,7 @@
     height: 100%;
 
     .tox-tinymce {
-      min-height: 400px;
+      min-height: 280px;
       border: none !important;
 
       .tox-editor-header,
@@ -89,5 +89,15 @@
 
   .progess-spinner-loading {
     position: absolute !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .course-detail-cpn {
+    .course-name {
+      .icon {
+        display: none !important;
+      }
+    }
   }
 }

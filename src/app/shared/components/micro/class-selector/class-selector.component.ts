@@ -48,7 +48,7 @@ export class ClassSelectorComponent extends BaseComponent {
         if (resp.code == 'success') {
           this.classes = [];
           for (let i = 0; i < resp.data.length; i++) {
-            this.classes = resp.data.sort((a, b) => a.name.localeCompare(b.name));
+            this.classes = resp.data;
           }
         }
       })

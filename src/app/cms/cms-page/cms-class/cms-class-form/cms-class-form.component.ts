@@ -22,6 +22,7 @@ export class CmsClassFormComponent extends CmsFormComponent implements AfterView
   ngAfterViewInit(): void {
     if (this.formMode != FormMode.View) {
       this.classInput.instance.focus();
+      this.data.order = 1;
     }
   }
 

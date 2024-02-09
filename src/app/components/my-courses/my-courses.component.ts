@@ -83,7 +83,7 @@ export class MyCoursesComponent extends BaseComponent {
           all.id = '0';
           all.name = 'Tất cả';
 
-          this.classes = [all].concat(resp.data.sort((a, b) => a.name.localeCompare(b.name)));
+          this.classes = [all].concat(resp.data);
         }
       });
   }

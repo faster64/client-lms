@@ -144,5 +144,14 @@
         }
       }
     }
+
+    .title {
+      .icon {
+        display: none !important;
+      }
+      .text {
+        margin-left: 16px;
+      }
+    }
   }
 }

@@ -24,6 +24,7 @@ export class CmsClassComponent extends CmsGridComponent<Class> {
 
   override initColumns() {
     this.displayColumns = [];
+    this.displayColumns.push({ column: 'order', displayText: 'STT', width: 180 });
     this.displayColumns.push({ column: 'name', displayText: 'Tên lớp học', width: 300 });
   }
 }
