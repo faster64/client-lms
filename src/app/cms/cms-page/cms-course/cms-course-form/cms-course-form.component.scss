@@ -3,6 +3,9 @@
   height: 100%;
 
   .row.description {
+    .dx-quill-container {
+      min-height: 200px;
+    }
   }
 
   .progess-spinner-loading {

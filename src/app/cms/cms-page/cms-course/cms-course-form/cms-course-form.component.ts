@@ -60,12 +60,12 @@ export class CmsCourseFormComponent extends CmsFormComponent implements AfterVie
   override initConfig(): void {
     super.initConfig();
     this.path = Routing.CMS_COURSE.path;
-    this.data.status = CourseStatus.CommingSoon;
     this.service = this.injector.get(CourseService);
+    this.data.status = CourseStatus.Release;
     this.data.name = 'Khóa học ok';
     this.data.price = 12000000;
     this.data.shortDescription = '1';
-    this.data.description = '<p><strong style=\"font-size: 14pt;\">Giới thiệu:</strong></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><strong style=\"font-size: 14pt;\">Nội dung:</strong></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p>';
+    this.data.description = '';
   }
 
   override loaded = () => {
