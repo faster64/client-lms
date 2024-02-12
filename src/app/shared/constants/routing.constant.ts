@@ -25,10 +25,12 @@ export class Routing {
   public static readonly CHANGE_PASSWORD = new RoutingConfig('doi-mat-khau', 'change_password');
   public static readonly HOME = new RoutingConfig('', 'home');
   public static readonly GUIDE = new RoutingConfig('huong-dan-su-dung', 'guide');
-  public static readonly CONTACT = new RoutingConfig('lien-he', 'home');
+  public static readonly CONTACT = new RoutingConfig('#', 'home');
+  public static readonly INTRODUCTION = new RoutingConfig('#', 'introduction');
   public static readonly MY_COURES = new RoutingConfig('khoa-hoc-cua-toi', 'home');
   public static readonly COURSE_DETAIL = new RoutingConfig('chi-tiet-khoa-hoc', 'course_detail');
   public static readonly COURSE_LESSON_LIST = new RoutingConfig('danh-sach-bai-giang', 'course_lesson_list');
+  public static readonly COURSE_LESSON_TEST = new RoutingConfig('bai-kiem-tra', 'course_lesson_test');
   public static readonly CART = new RoutingConfig('gio-hang', 'cart');
   public static readonly PAYMENT = new RoutingConfig('thanh-toan', 'payment');
 }

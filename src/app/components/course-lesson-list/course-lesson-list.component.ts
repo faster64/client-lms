@@ -1,12 +1,11 @@
 import { Component, Injector } from '@angular/core';
-import { delay, finalize, takeUntil } from 'rxjs';
+import { finalize, takeUntil } from 'rxjs';
 import { BaseComponent } from 'src/app/shared/components/base-component';
 import { SortModel } from 'src/app/shared/models/base/sort-model';
 import { Course } from 'src/app/shared/models/course/course';
 import { Lesson } from 'src/app/shared/models/lesson/lesson';
 import { CourseClientService } from 'src/app/shared/services/course/course-client.service';
 import { LessonClientService } from 'src/app/shared/services/lesson/lesson-client.service';
-import { LessonService } from 'src/app/shared/services/lesson/lesson.service';
 
 @Component({
   selector: 'app-course-lesson-list',

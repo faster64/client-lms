@@ -45,7 +45,9 @@
           margin-left: 4px;
         }
 
-
+        a {
+          color: var(--white);
+        }
       }
 
       &.address {
@@ -58,6 +60,7 @@
         .icon {
           background-image: url(~/src/assets/img/footer/phone.png);
         }
+
       }
 
       &.email {

@@ -107,6 +107,14 @@ const routes: Routes = [
     }
   },
   {
+    path: Routing.COURSE_LESSON_TEST.path,
+    loadChildren: () => import('./components/course-lesson-test/course-lesson-test.module').then(m => m.CourseLessonTestModule),
+    canActivate: [BaseGuard],
+    resolve: {
+      resolver: BaseResolver,
+    }
+  },
+  {
     path: Routing.CART.path,
     loadChildren: () => import('./components/cart/cart.module').then(m => m.CartModule),
     canActivate: [BaseGuard],

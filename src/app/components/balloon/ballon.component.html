@@ -1,14 +1,18 @@
-<div class="balloon-cpn">
-  <div class="balloon-item phone" (click)="Utility.featureIsInDevelopment($event)">
+<div class="balloon-cpn" *ngIf="!isLoading && loadSuccess">
+
+  <a class="balloon-item phone" [href]="'tel:' + social.phoneNumber">
     <div class="icon bg-contain"></div>
-  </div>
-  <div class="balloon-item email" (click)="Utility.featureIsInDevelopment($event)">
+  </a>
+  <a class="balloon-item email" [href]="'mailto:' + social.email">
     <div class="icon bg-contain"></div>
-  </div>
-  <div class="balloon-item zalo" (click)="Utility.featureIsInDevelopment($event)">
+  </a>
+  <a class="balloon-item zalo" [href]="'https://zalo.me/' + social.zalo" target="_blank">
     <div class="icon bg-contain"></div>
-  </div>
+  </a>
   <div class="balloon-item scroll-to-top" (click)="scrollToTop()">
     <div class="icon bg-contain"></div>
   </div>
+
+  a
+
 </div>

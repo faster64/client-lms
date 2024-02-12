@@ -3,13 +3,17 @@
     <div class="logo"></div>
     <div class="info-item address">
       <div class="icon"></div>
-      <div class="text">Địa chỉ: 124/22/17 Đường Âu Cơ, Phường Tứ Liên, Quận Tây Hồ, Hà Nội</div>
+      <div class="text">
+        <a href="http://maps.google.com/?q=124/22/17 Đường Âu Cơ, Phường Tứ Liên, Quận Tây Hồ, Hà Nội" target="_blank">
+          Địa chỉ: 124/22/17 Đường Âu Cơ, Phường Tứ Liên, Quận Tây Hồ, Hà Nội
+        </a>
+      </div>
     </div>
     <div class="info-item phone">
       <div class="icon"></div>
       <div class="text">
         <span>
-          {{'footer.phone' | translate}}: {{social.phoneNumber}}
+          {{'footer.phone' | translate}}: <a [href]="'tel:' + social.phoneNumber">{{social.phoneNumber}}</a>
         </span>
 
         <span class="loading-hook" *ngIf="isLoading">
@@ -20,7 +24,7 @@
     <div class="info-item email">
       <div class="icon"></div>
       <div class="text">
-        <span>Email: {{social.email}}</span>
+        <span>Email: <a [href]="'mailto:' + social.email">{{social.email}}</a> </span>
         <span class="loading-hook" *ngIf="isLoading">
           <skeleton-loading></skeleton-loading>
         </span>
@@ -29,9 +33,9 @@
   </div>
   <div class="about-we block">
     <div class="title">{{'footer.about_we' | translate}}</div>
-    <a [routerLink]="Routing.HOME.path" class="about-item">{{'footer.intro' | translate}}</a>
+    <a href="#" class="about-item">{{'footer.intro' | translate}}</a>
     <a [routerLink]="Routing.MY_COURES.path" class="about-item">{{'footer.my_courses' | translate}}</a>
-    <a [routerLink]="Routing.CONTACT.path" class="about-item">{{'footer.contact' | translate}}</a>
+    <a href="#" class="about-item">{{'footer.contact' | translate}}</a>
   </div>
   <div class="social block">
     <div class="title">{{'footer.social_network_media' | translate}}</div>

@@ -1,0 +1,132 @@
+::ng-deep .course-lesson-test {
+  position: relative;
+  height: 100%;
+  min-height: 400px;
+  padding: 36px var(--side-distance);
+
+  .test-info {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    height: 60px;
+    margin-bottom: 12px;
+
+    .back {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      margin-right: 12px;
+      border-radius: 50%;
+      background-color: var(--main-color);
+      cursor: pointer;
+
+      .icon {
+        width: 16px;
+        height: 16px;
+        background-image: url(~/src/assets/img/common/back.svg);
+      }
+    }
+
+    .test-name {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: calc(100% - 36px);
+      font-size: var(--medium-title-size);
+      font-weight: 600;
+
+      .skeleton-loading {
+        inset: 16px 0;
+      }
+    }
+
+    .test-note {
+      width: 100%;
+    }
+  }
+
+  .progess-spinner-loading {
+    position: absolute !important;
+  }
+
+  .test-content {
+    height: calc(100% - 72px);
+
+    .left {
+      display: inline-block;
+      width: calc(100% - 280px);
+    }
+
+    .right {
+      display: inline-block;
+      width: 280px;
+
+      .legend {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .legend-item {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          .square {
+            width: 16px;
+            height: 16px;
+            margin-right: 4px;
+            border-radius: 2px;
+          }
+          .text {
+            width: calc(100% - 20px);
+          }
+        }
+
+        .current {
+          .square {
+            border: 1px solid var(--main-color);
+          }
+        }
+        .not {
+          .square {
+            background-color: var(--greyish);
+          }
+        }
+        .done {
+          .square {
+            background-color: var(--green-07);
+          }
+        }
+      }
+
+      .questions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        margin-top: 12px;
+
+        .question {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 56px;
+          height: 48px;
+          margin: 0 12px 12px 0;
+          border-radius: 2px;
+          background-color: var(--greyish);
+          font-weight: 600;
+          cursor: pointer;
+
+          &.current {
+            background-color: var(--white);
+            border: 1px solid var(--main-color);
+          }
+
+          &.done {
+            background-color: var(--green-07);
+          }
+        }
+      }
+    }
+  }
+}

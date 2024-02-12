@@ -83,6 +83,17 @@
           .learn {
             margin-right: 24px;
           }
+          .practice {
+            a {
+              display: flex;
+              align-items: center;
+              height: 40px;
+              padding: 4px 24px;
+              border: 1px solid var(--main-color);
+              border-radius: 4px;
+              color: var(--main-color);
+            }
+          }
         }
       }
 

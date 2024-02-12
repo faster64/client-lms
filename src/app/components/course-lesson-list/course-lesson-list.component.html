@@ -18,11 +18,10 @@
 
         <div class="less-item btns">
           <div class="learn">
-            <base-button text="Học bài" [height]="40" [width]="120"></base-button>
+            <base-button text="Học bài" [height]="40" [width]="120" [finishImmediately]="true" (onClick)="Utility.featureIsInDevelopment($event)"></base-button>
           </div>
           <div class="practice">
-            <base-button text="Làm bài tập" [height]="40" [width]="160" [buttonType]="ButtonType.RAISED"
-              [color]="ButtonColor.BASIC"></base-button>
+            <a [routerLink]="'/' + Routing.COURSE_LESSON_TEST.path + '/' + course.id + '/' + lesson.id">Làm bài tập</a>
           </div>
         </div>
       </div>
