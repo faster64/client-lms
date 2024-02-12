@@ -18,7 +18,7 @@ export class HomeComponent extends BaseComponent {
 
   total = 0;
 
-  count = 4;
+  count = 1;
 
   isSearchMode = false;
 

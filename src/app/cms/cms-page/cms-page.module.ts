@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-import { EditorModule } from '@tinymce/tinymce-angular';
 import { DxCheckBoxModule, DxDateBoxModule, DxNumberBoxModule, DxSelectBoxModule, DxTextAreaModule, DxTextBoxModule } from 'devextreme-angular';
 import { GridModule } from 'src/app/shared/components/element/grid/grid.module';
 import { BaseButtonModule } from 'src/app/shared/components/micro/button/button.module';
@@ -39,6 +38,7 @@ import { CmsUploadCourseImageModule } from '../cms-upload-course-image/cms-uploa
 import { CmsPdfModule } from '../cms-pdf/cms-pdf.module';
 import { CmsBillStatesModule } from '../cms-bill-states/cms-bill-states.module';
 import { CmsBillViewComponent } from './cms-bill/cms-bill-view/cms-bill-view.component';
+import { EditorModule } from 'src/app/shared/components/micro/editor/editor.module';
 
 
 @NgModule({
@@ -89,7 +89,8 @@ import { CmsBillViewComponent } from './cms-bill/cms-bill-view/cms-bill-view.com
     CmsUploadCourseImageModule,
     CmsPdfModule,
     PipesModule,
-    MatTooltipModule
+    MatTooltipModule,
+    EditorModule
   ]
 })
 export class CmsPageModule { }

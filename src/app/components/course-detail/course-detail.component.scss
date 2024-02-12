@@ -6,13 +6,9 @@
   .wrapper {
     height: 100%;
 
-    .tox-tinymce {
-      min-height: 280px;
+    dx-html-editor {
       border: none !important;
-
-      .tox-editor-header,
-      .tox-statusbar,
-      .tox-bottom-anchorbar {
+      .dx-htmleditor-toolbar-wrapper {
         display: none !important;
       }
     }

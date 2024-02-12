@@ -7,8 +7,6 @@ import { Course } from 'src/app/shared/models/course/course';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { PublisherService } from 'src/app/shared/services/base/publisher.service';
 import { CourseClientService } from 'src/app/shared/services/course/course-client.service';
-import { CourseService } from 'src/app/shared/services/course/course.service';
-import { TinyEditorService } from 'src/app/shared/services/tiny-editor/tiny-editor.service';
 import { SnackBar } from 'src/app/shared/snackbar/snackbar.component';
 import { SnackBarParameter } from 'src/app/shared/snackbar/snackbar.param';
 
@@ -19,17 +17,12 @@ import { SnackBarParameter } from 'src/app/shared/snackbar/snackbar.param';
 })
 export class CourseDetailComponent extends BaseComponent {
 
-  TinyEditorService = TinyEditorService;
-
   course = new Course();
-
-  config = this.tinyEditorService.autoResizeConfig();
 
   constructor(
     injector: Injector,
     public courseClientService: CourseClientService,
     public authService: AuthService,
-    public tinyEditorService: TinyEditorService,
     public publisher: PublisherService,
     public router: Router
   ) {

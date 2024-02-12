@@ -2,14 +2,13 @@ import { AfterViewInit, Component, Injector, ViewChild } from '@angular/core';
 import { DxNumberBoxComponent, DxTextAreaComponent, DxTextBoxComponent } from 'devextreme-angular';
 import { ClassSelectorComponent } from 'src/app/shared/components/micro/class-selector/class-selector.component';
 import { Routing } from 'src/app/shared/constants/routing.constant';
+import { CourseStatus } from 'src/app/shared/enums/course-status.enum';
 import { FormMode } from 'src/app/shared/enums/form-mode.enum';
 import { StringHelper } from 'src/app/shared/helpers/string.helper';
 import { CourseService } from 'src/app/shared/services/course/course.service';
 import { SnackBar } from 'src/app/shared/snackbar/snackbar.component';
 import { SnackBarParameter } from 'src/app/shared/snackbar/snackbar.param';
 import { CmsFormComponent } from '../../cms-page-form.component';
-import { CourseStatus } from 'src/app/shared/enums/course-status.enum';
-import { TinyEditorService } from 'src/app/shared/services/tiny-editor/tiny-editor.service';
 
 @Component({
   selector: 'app-cms-course-form',
@@ -20,13 +19,9 @@ export class CmsCourseFormComponent extends CmsFormComponent implements AfterVie
 
   statuses = CourseService.Statuses;
 
-  TinyEditorService = TinyEditorService;
-
   CourseStatus = CourseStatus;
 
   isLoadingEditor = true;
-
-  config = this.tinyEditorService.autoResizeConfig(() => this.isLoadingEditor = false);
 
   @ViewChild("code")
   code!: DxTextBoxComponent;
@@ -47,8 +42,7 @@ export class CmsCourseFormComponent extends CmsFormComponent implements AfterVie
   selector!: ClassSelectorComponent;
 
   constructor(
-    injector: Injector,
-    public tinyEditorService: TinyEditorService
+    injector: Injector
   ) {
     super(injector);
   }
@@ -71,7 +65,7 @@ export class CmsCourseFormComponent extends CmsFormComponent implements AfterVie
     this.data.name = 'Khóa học ok';
     this.data.price = 12000000;
     this.data.shortDescription = '1';
-    this.data.description = '1';
+    this.data.description = '<p><strong style=\"font-size: 14pt;\">Giới thiệu:</strong></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><strong style=\"font-size: 14pt;\">Nội dung:</strong></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p>';
   }
 
   override loaded = () => {
@@ -80,6 +74,8 @@ export class CmsCourseFormComponent extends CmsFormComponent implements AfterVie
   }
 
   override validate = () => {
+    console.log(this.data)
+
     if (!this.data.image || this.data.image == '') {
       SnackBar.warning(new SnackBarParameter(this, 'Vui lòng chọn hình ảnh khóa học'));
       return false;

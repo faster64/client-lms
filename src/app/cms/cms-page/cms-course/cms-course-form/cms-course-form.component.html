@@ -3,8 +3,8 @@
 
     <div class="row">
       <div class="col-12 data-item">
-        <app-cms-upload-course-image [url]="data.imageUrl" [readOnly]="formMode == FormMode.View" (upload)="uploaded($event)"
-          (remove)="removeImage()">
+        <app-cms-upload-course-image [url]="data.imageUrl" [readOnly]="formMode == FormMode.View"
+          (upload)="uploaded($event)" (remove)="removeImage()">
         </app-cms-upload-course-image>
       </div>
     </div>
@@ -70,9 +70,9 @@
     <div class="row description">
       <div class="col-12 data-item">
         <div class="label">Mô tả khóa học <span class="required">*</span></div>
-        <editor [apiKey]="TinyEditorService.Key" #tinymce class="editor-tiny" [(ngModel)]="data.description"
-          [init]="config" [disabled]="formMode == FormMode.View">
-        </editor>
+        <app-editor [valueContent]="data.description" [disable]="formMode == FormMode.View"
+          (change)="data.description = $event">
+        </app-editor>
       </div>
     </div>
 

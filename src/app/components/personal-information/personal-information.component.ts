@@ -1,4 +1,5 @@
 import { Component, Injector, ViewChild } from '@angular/core';
+import { DxTextBoxComponent } from 'devextreme-angular';
 import { finalize, takeUntil } from 'rxjs';
 import { BaseComponent } from 'src/app/shared/components/base-component';
 import { BaseButton } from 'src/app/shared/components/micro/button/button.component';
@@ -18,6 +19,9 @@ export class PersonalInformationComponent extends BaseComponent {
   user = new User();
 
   viewMode = true;
+
+  @ViewChild("name")
+  name: DxTextBoxComponent;
 
   @ViewChild("selector")
   selector: ClassSelectorComponent;
@@ -58,13 +62,20 @@ export class PersonalInformationComponent extends BaseComponent {
     this.user.avatarUrl = event.presignedUrls[0];
   }
 
+  update() {
+    this.viewMode = false;
+    setTimeout(() => {
+      this.name.instance.focus();
+    }, 50);
+  }
+
   save() {
     this.isLoading = true;
     this.userService
       .updateInformation(this.user)
       .pipe(
         takeUntil(this._onDestroySub),
-        finalize(() => {this.isLoading = false; this.saveBtn.finish()})
+        finalize(() => { this.isLoading = false; this.saveBtn.finish() })
       )
       .subscribe(resp => {
         if (resp.code == 'success') {

@@ -10,9 +10,8 @@
     <div class="course-image" [ngStyle]="{backgroundImage: 'url(' + course.imageUrl + ')'}"></div>
 
     <div class="course-description">
-      <editor [apiKey]="TinyEditorService.Key" #tinymce class="editor-tiny" [initialValue]="course.description"
-        [init]="config" [disabled]="true">
-      </editor>
+      <app-editor [valueContent]="course.description" [disable]="true">
+      </app-editor>
     </div>
 
     <div class="course-features">

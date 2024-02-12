@@ -18,7 +18,7 @@
         <div class="info-wrapper row">
           <div class="col-12 data-item">
             <div class="label">Họ và tên <span class="required">*</span></div>
-            <dx-text-box [(value)]="user.fullName" [disabled]="viewMode"></dx-text-box>
+            <dx-text-box #name [(value)]="user.fullName" [disabled]="viewMode"></dx-text-box>
           </div>
 
           <div class="col-12 data-item">
@@ -37,12 +37,12 @@
             </app-class-selector>
           </div>
 
-          <div class="update-btn" (click)="viewMode = false" *ngIf="viewMode">
+          <div class="update-btn" (click)="update()" *ngIf="viewMode">
             Chỉnh sửa thông tin
           </div>
 
           <div class="save-btn" *ngIf="!viewMode">
-            <base-button #saveBtn text=" Lưu thông tin chỉnh sửa" [disabled]="isLoading" [height]="38" [width]="240"
+            <base-button #saveBtn text=" Lưu thông tin chỉnh sửa" [color]="ButtonColor.SUCCESS" [disabled]="isLoading" [height]="38" [width]="240"
               (onClick)="save()">
             </base-button>
           </div>
