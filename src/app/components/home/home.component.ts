@@ -20,6 +20,8 @@ export class HomeComponent extends BaseComponent {
 
   count = 2;
 
+  initCount = 4;
+
   isSearchMode = false;
 
   searchKey = '';
@@ -36,7 +38,7 @@ export class HomeComponent extends BaseComponent {
     super.initData();
 
     this.calculateCount();
-    this.paginationRequest.size = this.count;
+    this.paginationRequest.size = this.initCount;
     this.paginationRequest.sort = new SortModel('createdDate', false);
     this.loadCourses();
 
@@ -51,9 +53,11 @@ export class HomeComponent extends BaseComponent {
 
   calculateCount() {
     if (window.innerWidth > 1600) {
+      this.initCount = 8;
       this.count = 4;
     }
     else if (window.innerWidth > 992 && window.innerWidth <= 1600) {
+      this.initCount = 6;
       this.count = 3;
     }
   }
@@ -89,6 +93,10 @@ export class HomeComponent extends BaseComponent {
 
   viewMore() {
     this.paginationRequest.number++;
+    if (this.initCount >= (this.paginationRequest.number + 1) * this.count) {
+      this.paginationRequest.size = this.count;
+      this.paginationRequest.number++;
+    }
     this.loadCourses();
   }
 }
