@@ -11,6 +11,12 @@
       .dx-htmleditor-toolbar-wrapper {
         display: none !important;
       }
+      .dx-quill-container {
+        img {
+          max-width: 100% !important;
+          max-height: 100% !important;
+        }
+      }
     }
 
     .course-name {
