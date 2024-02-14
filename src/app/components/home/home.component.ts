@@ -18,7 +18,7 @@ export class HomeComponent extends BaseComponent {
 
   total = 0;
 
-  count = 2;
+  viewMoreCount = 2;
 
   initCount = 4;
 
@@ -54,11 +54,11 @@ export class HomeComponent extends BaseComponent {
   calculateCount() {
     if (window.innerWidth > 1600) {
       this.initCount = 8;
-      this.count = 4;
+      this.viewMoreCount = 4;
     }
     else if (window.innerWidth > 992 && window.innerWidth <= 1600) {
       this.initCount = 6;
-      this.count = 3;
+      this.viewMoreCount = 3;
     }
   }
 
@@ -93,8 +93,9 @@ export class HomeComponent extends BaseComponent {
 
   viewMore() {
     this.paginationRequest.number++;
-    if (this.initCount >= (this.paginationRequest.number + 1) * this.count) {
-      this.paginationRequest.size = this.count;
+    this.paginationRequest.size = this.viewMoreCount;
+
+    if ((this.paginationRequest.number + 1) * this.paginationRequest.size <= this.courses.length) {
       this.paginationRequest.number++;
     }
     this.loadCourses();
