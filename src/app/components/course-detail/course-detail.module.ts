@@ -7,6 +7,7 @@ import { BaseLoadingModule } from 'src/app/shared/components/micro/loading/loadi
 import { BaseButtonModule } from 'src/app/shared/components/micro/button/button.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { EditorModule } from 'src/app/shared/components/micro/editor/editor.module';
+import { PipesModule } from 'src/app/shared/pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { EditorModule } from 'src/app/shared/components/micro/editor/editor.modu
     EditorModule,
     BaseLoadingModule,
     BaseButtonModule,
-    TranslateModule
+    TranslateModule,
+    PipesModule
   ]
 })
 export class CourseDetailModule { }

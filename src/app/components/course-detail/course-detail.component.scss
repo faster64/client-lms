@@ -56,6 +56,11 @@
       margin: 0 var(--course-description-distance) 24px var(--course-description-distance);
     }
 
+    .course-price {
+      padding: 0 var(--side-distance);
+      margin-bottom: 16px;
+    }
+
     .course-features {
       display: flex;
       align-items: center;

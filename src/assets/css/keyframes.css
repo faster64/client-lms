@@ -1,38 +1,66 @@
 @keyframes dim {
-    from {
-        opacity: 1;
-    }
+  from {
+    opacity: 1;
+  }
 
-    to {
-        opacity: 0.3;
-    }
+  to {
+    opacity: 0.3;
+  }
 }
 
 @keyframes online-blink {
-    100% {
-        transform: scale(2, 2);
-        opacity: 0;
-    }
+  100% {
+    transform: scale(2, 2);
+    opacity: 0;
+  }
 }
 
 @keyframes shine {
-    to {
-        background-position-x: -200%;
-    }
+  to {
+    background-position-x: -200%;
+  }
 }
 
 @keyframes fade {
-  from {opacity: 0.1}
-  to {opacity: 1}
+  from {
+    opacity: 0.1
+  }
+
+  to {
+    opacity: 1
+  }
 }
 
 @keyframes slip {
   from {
     transform: translateX(0);
   }
+
   to {
     transform: translateX(-2000px);
   }
 }
 
+@keyframes shake {
 
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}

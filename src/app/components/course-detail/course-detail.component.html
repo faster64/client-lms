@@ -14,6 +14,10 @@
       </app-editor>
     </div>
 
+    <div class="course-price">
+      Giá: <strong>{{course.price | NumberFormatPipe}} VND</strong>
+    </div>
+
     <div class="course-features">
       <base-button text="{{'course.features.add_to_cart' | translate}}" [width]="132" [height]="44"
         [buttonType]="ButtonType.STROKED" [color]="ButtonColor.BASIC" [finishImmediately]="true"

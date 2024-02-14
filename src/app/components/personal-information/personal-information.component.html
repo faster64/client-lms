@@ -18,21 +18,21 @@
         <div class="info-wrapper row">
           <div class="col-12 data-item">
             <div class="label">Họ và tên <span class="required">*</span></div>
-            <dx-text-box #name [(value)]="user.fullName" [disabled]="viewMode"></dx-text-box>
+            <dx-text-box #name [(value)]="user.fullName" [readOnly]="viewMode"></dx-text-box>
           </div>
 
           <div class="col-12 data-item">
             <div class="label">Email <span class="required">*</span></div>
-            <dx-text-box [(value)]="user.email" [disabled]="viewMode"></dx-text-box>
+            <dx-text-box [(value)]="user.email" [readOnly]="viewMode"></dx-text-box>
           </div>
 
           <div class="col-12 data-item">
             <div class="label">Số điện thoại <span class="required">*</span></div>
-            <dx-text-box [(value)]="user.phoneNumber" [disabled]="viewMode"></dx-text-box>
+            <dx-text-box [(value)]="user.phoneNumber" [readOnly]="viewMode"></dx-text-box>
           </div>
           <div class="col-12 data-item">
             <div class="label">Lớp</div>
-            <app-class-selector #selector [value]="user.classId" [disabled]="viewMode"
+            <app-class-selector #selector [value]="user.classId" [readOnly]="viewMode"
               (onValueChanged)="user.classId = $event.current">
             </app-class-selector>
           </div>

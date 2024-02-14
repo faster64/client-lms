@@ -12,6 +12,7 @@
     border-radius: 50%;
     cursor: pointer;
 
+
     .icon {
       width: 24px;
       height: 24px;
@@ -22,6 +23,7 @@
       .icon {
         background-image: url(~/src/assets/img/common/phone.svg);
       }
+
     }
     &.email {
       background-color: var(--red-05);
