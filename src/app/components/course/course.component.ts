@@ -27,6 +27,9 @@ export class CourseComponent extends BaseComponent {
   @Input()
   toLesson = false;
 
+  @Input()
+  highlightWord = '';
+
   constructor(
     injector: Injector,
     public publisher: PublisherService,

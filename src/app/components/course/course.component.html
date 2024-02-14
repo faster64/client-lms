@@ -7,8 +7,8 @@
     <div class="price">{{course.price | NumberFormatPipe}}</div>
   </div>
 
-  <p class="course-name max-3-lines">
-    {{course.name}}
+  <p class="course-name">
+    <app-highlight [value]="course.name" [highlightWord]="highlightWord"></app-highlight>
   </p>
   <p class="course-description max-3-lines">{{course.shortDescription}}
   </p>

@@ -5,6 +5,7 @@ import { BaseButtonModule } from 'src/app/shared/components/micro/button/button.
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
 import { PipesModule } from 'src/app/shared/pipes/pipes.module';
+import { HighlightModule } from 'src/app/shared/components/micro/highlight/highlight.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { PipesModule } from 'src/app/shared/pipes/pipes.module';
     RouterModule,
     BaseButtonModule,
     TranslateModule,
-    PipesModule
+    PipesModule,
+    HighlightModule
   ],
   exports: [CourseComponent]
 })
