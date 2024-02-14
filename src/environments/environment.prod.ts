@@ -4,6 +4,6 @@ export const environment = {
   api_version: "v1.0",
   base_host: "https://open-vn.pro/api",
   hub_url: "https://open-vn.pro/socket-message",
-  upload_url: "https://kernellocker.io.vn",
+  upload_url: "https://content.chaien.vn",
   default_language: 'vi-VN'
 };
