@@ -36,6 +36,8 @@ export class AuthService {
     LocalStorageKey.CMS,
   ];
 
+  private context: any;
+
   public auth_base_host = environment.base_host + "/" + environment.api_version;
   public serviceName = '';
   public controller = 'auth';
@@ -67,7 +69,12 @@ export class AuthService {
     window.location.href = `/${Routing.LOGIN.path}`;
   }
 
-  private getContext = () => LocalHelper.parse('auth');
+  private getContext = () => {
+    if (!this.context) {
+      this.context = LocalHelper.parse('auth');
+    }
+    return this.context;
+  };
 
   getProperty = (name: string) => this.getContext()[name] || '';
 
