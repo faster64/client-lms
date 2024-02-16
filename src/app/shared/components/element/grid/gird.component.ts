@@ -283,7 +283,7 @@ export class GirdComponent extends BaseGridComponent implements OnChanges {
 
   sortGrid(asc: boolean) {
     this.sort.emit({
-      fieldName: 'createdDate',
+      fieldName: 'created',
       asc: asc
     });
   }

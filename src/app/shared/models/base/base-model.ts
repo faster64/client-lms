@@ -2,9 +2,9 @@
 export class BaseModel {
   public id = "0";
 
-  public createdDate: Date = new Date();
+  public created: Date = new Date();
 
-  public lastModifiedDate?: Date = null;
+  public modified?: Date = null;
 
   constructor(obj?: object) {
     if (obj) {

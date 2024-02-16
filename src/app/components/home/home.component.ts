@@ -39,7 +39,7 @@ export class HomeComponent extends BaseComponent {
 
     this.calculateCount();
     this.paginationRequest.size = this.initCount;
-    this.paginationRequest.sort = new SortModel('createdDate', false);
+    this.paginationRequest.sort = new SortModel('created', false);
     this.loadCourses();
 
     this.publisher
