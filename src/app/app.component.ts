@@ -49,9 +49,6 @@ export class AppComponent implements OnInit, OnDestroy {
     // this.authService.setProperty('access_token', '');
     this.subcribeEvents();
     this.hubService.connectHub();
-    this.authService.authenticate((e) => {
-      console.log(e);
-    });
   }
 
   subcribeEvents() {
