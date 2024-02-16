@@ -8,9 +8,11 @@
 
     dx-html-editor {
       border: none !important;
+
       .dx-htmleditor-toolbar-wrapper {
         display: none !important;
       }
+
       .dx-quill-container {
         img {
           max-width: 100% !important;
@@ -22,6 +24,7 @@
     .course-name {
       display: flex;
       align-items: center;
+      flex-wrap: wrap;
       padding: 0 var(--side-distance);
       margin-bottom: 24px;
 
@@ -36,6 +39,13 @@
         font-size: var(--medium-title-size);
         color: var(--main-color);
         font-weight: 700;
+      }
+
+      .modified {
+        width: 100%;
+        margin-top: 8px;
+        font-size: 11px;
+        font-style: italic;
       }
     }
 

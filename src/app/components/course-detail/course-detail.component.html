@@ -3,6 +3,7 @@
     <div class="course-name">
       <div class="icon bg-contain"></div>
       <div class="text">{{course.name}}</div>
+      <div class="modified">Cập nhật: {{(course.modified || course.created) | DateVietnamPipe}}</div>
     </div>
 
     <div class="course-short-description">{{course.shortDescription}}</div>

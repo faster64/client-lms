@@ -178,7 +178,7 @@ export class BaseUploaderComponent {
     }
 
     this.next(events, batchSize, remain, () => {
-      this.urls = this.events.map(e => environment.upload_url + '/public/content/' + e.response.data);
+      this.urls = this.events.map(e => environment.upload_url + '/public/' + e.response.data);
       this.upload(this.events.map(e => e.response.data));
     });
   }

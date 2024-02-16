@@ -36,6 +36,8 @@ export class CmsFormComponent extends BaseComponent {
 
   publisher: PublisherService;
 
+  loadingSequence = false;
+
   @ViewChild("cmsFeature")
   cmsFeature: CmsFeatureComponent;
 

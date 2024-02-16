@@ -9,6 +9,7 @@ import { CourseService } from 'src/app/shared/services/course/course.service';
 import { SnackBar } from 'src/app/shared/snackbar/snackbar.component';
 import { SnackBarParameter } from 'src/app/shared/snackbar/snackbar.param';
 import { CmsFormComponent } from '../../cms-page-form.component';
+import { finalize, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-cms-course-form',
@@ -52,8 +53,23 @@ export class CmsCourseFormComponent extends CmsFormComponent implements AfterVie
   }
 
   ngAfterViewInit(): void {
-    if (this.formMode != FormMode.View) {
+    if (this.formMode == FormMode.Update) {
       this.code.instance.focus();
+    }
+    else if (this.formMode == FormMode.Add) {
+      this.loadingSequence = true;
+      this.name.instance.focus();
+      this.service
+        .getSequence()
+        .pipe(
+          takeUntil(this._onDestroySub),
+          finalize(() => this.loadingSequence = false)
+        )
+        .subscribe(resp => {
+          if (resp.code == 'success') {
+            this.data.code = resp.data;
+          }
+        });
     }
   }
 
@@ -62,10 +78,10 @@ export class CmsCourseFormComponent extends CmsFormComponent implements AfterVie
     this.path = Routing.CMS_COURSE.path;
     this.service = this.injector.get(CourseService);
     this.data.status = CourseStatus.Release;
-    this.data.name = 'Khóa học ok';
-    this.data.price = 12000000;
-    this.data.shortDescription = '1';
-    this.data.description = '';
+    // this.data.name = 'Auto increment';
+    // this.data.price = 2499000;
+    // this.data.shortDescription = 'Auto increment';
+    // this.data.description = '<strong>Auto increment</strong>';
   }
 
   override loaded = () => {
@@ -74,8 +90,6 @@ export class CmsCourseFormComponent extends CmsFormComponent implements AfterVie
   }
 
   override validate = () => {
-    console.log(this.data)
-
     if (!this.data.image || this.data.image == '') {
       SnackBar.warning(new SnackBarParameter(this, 'Vui lòng chọn hình ảnh khóa học'));
       return false;

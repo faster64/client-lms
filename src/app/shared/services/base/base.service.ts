@@ -73,4 +73,9 @@ export class BaseService {
   delete(ids: any[]) {
     return this.http.delete<ServiceResult>(this.url(), ids.map(id => id + ""), this._baseOptions);
   }
+
+  getSequence() {
+    const url = `${this.url()}/sequence`;
+    return this.http.get<ServiceResult>(url, this._baseOptions);
+  }
 }
