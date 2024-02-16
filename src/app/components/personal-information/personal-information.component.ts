@@ -20,6 +20,8 @@ export class PersonalInformationComponent extends BaseComponent {
 
   viewMode = true;
 
+  roles = '';
+
   @ViewChild("name")
   name: DxTextBoxComponent;
 
@@ -52,6 +54,7 @@ export class PersonalInformationComponent extends BaseComponent {
       .subscribe(resp => {
         if (resp.code == 'success') {
           this.user = resp.data;
+          this.roles = this.user.roles.map(x => x.name).join(', ');
           this.selector.getClassList();
         }
       })

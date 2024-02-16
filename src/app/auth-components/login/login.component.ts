@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, Inject, Injectable, Injector, ViewChild } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { DxTextBoxComponent } from 'devextreme-angular';
 import { finalize, takeUntil } from 'rxjs';
@@ -11,8 +11,6 @@ import { LoginRequest } from 'src/app/shared/models/auth/login-request';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { PublisherService } from 'src/app/shared/services/base/publisher.service';
 import { TranslationService } from 'src/app/shared/services/translation/translation.service';
-import { SnackBar } from 'src/app/shared/snackbar/snackbar.component';
-import { SnackBarParameter } from 'src/app/shared/snackbar/snackbar.param';
 
 @Injectable({
   providedIn: 'root'
@@ -51,9 +49,15 @@ export class LoginComponent extends BaseComponent implements AfterViewInit {
     this.emailInstance.instance.focus();
   }
 
-  register = () => this.router.navigateByUrl(Routing.REGISTER.path);
+  register = () => {
+    this.data?.close();
+    this.router.navigateByUrl(Routing.REGISTER.path);
+  }
 
-  forgotPassword = () => this.router.navigateByUrl(Routing.FORGOT_PASSWORD.path);
+  forgotPassword = () => {
+    this.data?.close();
+    this.router.navigateByUrl(Routing.FORGOT_PASSWORD.path);
+  }
 
   validate() {
     if (StringHelper.isNullOrEmpty(this.request.username)) {

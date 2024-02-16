@@ -1,4 +1,5 @@
-.login-cpn {
+.login-cpn,
+.login-popup-cpn {
   padding: 24px var(--side-distance);
 
   .title {
@@ -26,112 +27,118 @@
     height: 600px;
     border-radius: 16px;
     border: 1px solid var(--Gray-200, #e4e7ec);
+  }
 
-    .left {
-      width: 50%;
-      height: 100%;
-      border-top-left-radius: 16px;
-      border-bottom-left-radius: 16px;
-      background-image: url(~/src/assets/img/auth/login.png);
-      background-color: #fcfcfd;
+  .left {
+    width: 50%;
+    height: 100%;
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px;
+    background-image: url(~/src/assets/img/auth/login.png);
+    background-color: #fcfcfd;
+  }
+
+  .right {
+    width: 50%;
+    height: 100%;
+    padding: 16px;
+
+    .title-system {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+
+      .text {
+        color: var(--gray-800);
+        font-size: 24px;
+        font-weight: 600;
+      }
+
+      .logo {
+        width: 93px;
+        height: 48px;
+        background-image: url(~src/assets/img/logo.png);
+        cursor: pointer;
+      }
     }
 
-    .right {
-      width: 50%;
-      height: 100%;
-      padding: 16px;
+    .email,
+    .password {
+      margin-bottom: 16px;
 
-      .title-system {
+      .label {
+        margin-bottom: 4px;
+        font-weight: 500;
+        font-size: var(--size);
+
+        .required {
+          color: var(--danger);
+        }
+      }
+    }
+
+    .error-message {
+      text-align: center;
+      margin: 12px;
+      color: var(--red-05);
+    }
+
+    .one-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+
+      .remember-me {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        margin-bottom: 24px;
 
-        .text {
-          color: var(--gray-800);
-          font-size: 24px;
-          font-weight: 600;
+        input {
+          margin-right: 8px;
         }
 
-        .logo {
-          width: 93px;
-          height: 48px;
-          background-image: url(~src/assets/img/logo.png);
-          cursor: pointer;
-        }
-      }
-
-      .email,
-      .password {
-        margin-bottom: 16px;
-
-        .label {
-          margin-bottom: 4px;
-          font-weight: 500;
+        label {
+          margin-bottom: 0;
           font-size: var(--size);
-
-          .required {
-            color: var(--danger);
-          }
         }
       }
 
-      .error-message {
-        text-align: center;
-        margin: 12px;
-        color: var(--red-05);
+      .forgot-password {
+        color: var(--gray-800);
+        font-family: Montserrat;
+        font-size: var(--size);
+        font-weight: 600;
+        cursor: pointer;
       }
+    }
 
-      .one-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 16px;
+    .have-no-account {
+      margin-top: 16px;
+      text-align: center;
 
-        .remember-me {
-          display: flex;
-          align-items: center;
-
-          input {
-            margin-right: 8px;
-          }
-
-          label {
-            margin-bottom: 0;
-            font-size: var(--size);
-          }
-        }
-
-        .forgot-password {
-          color: var(--gray-800);
-          font-family: Montserrat;
-          font-size: var(--size);
-          font-weight: 600;
-          cursor: pointer;
-        }
-      }
-
-      .have-no-account {
-        margin-top: 16px;
-        text-align: center;
-
-        .register-now {
-          margin-left: 4px;
-          color: var(--main-color);
-          text-decoration: underline;
-          cursor: pointer;
-        }
+      .register-now {
+        margin-left: 4px;
+        color: var(--main-color);
+        text-decoration: underline;
+        cursor: pointer;
       }
     }
   }
 }
 
+.login-popup-cpn {
+  padding: 12px 24px;
+  .right {
+    width: 100%;
+    padding: 0;
+  }
+}
 
 @media screen and (max-width: 768px) {
   .login-cpn {
     .wrap {
       border: none;
-
       .left {
         display: none;
       }
@@ -151,6 +158,16 @@
       }
       .text {
         margin-left: 16px;
+      }
+    }
+  }
+
+  .login-popup-cpn {
+    .right {
+      .title-system {
+        .text {
+          font-size: 14px;
+        }
       }
     }
   }

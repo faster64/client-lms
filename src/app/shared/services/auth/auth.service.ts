@@ -179,25 +179,20 @@ export class AuthService {
 
     if (!config) {
       const screenWidth = window.innerWidth * 0.8;
-      const screenHeight = window.innerHeight * 0.8;
-
-      const width = 1024;
-      const height = window.innerWidth > 768 ? 656 : 400;
+      const width = 560;
 
       config = new MatDialogConfig();
       config.minWidth = config.width = Math.min(screenWidth, width) + 'px';
-      config.minHeight = config.height = Math.min(screenHeight, height) + 'px';
       config.autoFocus = false;
       config.position = { top: '0' };
       config.panelClass = ['slide-dialog'];
       config.data = {
         padding: '24px',
-        showTitle: true,
-        showImage: window.innerWidth > BreakPoint.MD,
         callback: () => {
           this.dialogRef.close();
           callback();
-        }
+        },
+        close: () => this.dialogRef.close()
       }
     }
 
