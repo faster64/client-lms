@@ -14,7 +14,7 @@ export class UnauthenticatedOnlyGuard implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    if (AuthService.CurrentStatus == AuthStatus.LoggedIn) {
+    if (AuthService.IsLogged()) {
       this.router.navigateByUrl(Routing.HOME.path);
       return false;
     }

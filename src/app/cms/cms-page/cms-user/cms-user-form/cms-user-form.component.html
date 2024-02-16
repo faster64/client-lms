@@ -51,7 +51,7 @@
             </div>
         </div>
 
-        <div class="row" *ngIf="formMode == FormMode.View">
+        <div class="row" *ngIf="false && formMode == FormMode.View">
             <div class="col-12 col-md-6 data-item">
                 <div class="label"> {{'base_keys.created_date' | translate}} </div>
                 <dx-date-box [(value)]="data.created" [readOnly]="true"></dx-date-box>

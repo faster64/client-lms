@@ -46,6 +46,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.prepareAuthContext();
+    // this.authService.setProperty('access_token', '');
     this.subcribeEvents();
     this.hubService.connectHub();
   }

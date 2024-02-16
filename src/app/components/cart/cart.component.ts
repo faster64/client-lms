@@ -51,7 +51,7 @@ export class CartComponent extends BaseComponent implements AfterViewInit {
     SharedService.AdjustCarts();
 
     this.total = SharedService.CartItems.reduce((a, b) => a + b.price, 0);
-    if (AuthService.CurrentStatus == AuthStatus.LoggedIn) {
+    if (AuthService.IsLogged()) {
       this.getInformation();
     }
   }

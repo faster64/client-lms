@@ -4,20 +4,19 @@ import {
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, throwError, timer } from 'rxjs';
 import { catchError, filter, retryWhen, switchMap, take } from 'rxjs/operators';
-import { StringHelper } from '../helpers/string.helper';
-import { AuthService } from '../services/auth/auth.service';
-import { TranslationService } from '../services/translation/translation.service';
-import { SharedService } from '../services/base/shared.service';
 import { CommonConstant } from '../constants/common.constant';
-import { SessionStorageKey } from '../constants/sessionstorage-key.constant';
 import { AuthStatus } from '../enums/auth-status.enum';
-import { SnackBar } from '../snackbar/snackbar.component';
-import { SnackBarParameter } from '../snackbar/snackbar.param';
-import { BaseResponse } from '../models/base/base-response';
+import { NotificationType } from '../enums/notification-type.enum';
+import { StringHelper } from '../helpers/string.helper';
 import { MessageBox } from '../message-box/message-box.component';
 import { Message } from '../message-box/model/message';
+import { BaseResponse } from '../models/base/base-response';
 import { Mark } from '../models/base/mark';
-import { NotificationType } from '../enums/notification-type.enum';
+import { AuthService } from '../services/auth/auth.service';
+import { SharedService } from '../services/base/shared.service';
+import { TranslationService } from '../services/translation/translation.service';
+import { SnackBar } from '../snackbar/snackbar.component';
+import { SnackBarParameter } from '../snackbar/snackbar.param';
 
 @Injectable()
 export class RequestHandlingInterceptor implements HttpInterceptor {
@@ -75,6 +74,10 @@ export class RequestHandlingInterceptor implements HttpInterceptor {
   }
 
   injectToken(request: HttpRequest<unknown>) {
+    if (!AuthService.IsLogged()) {
+      return request;
+    }
+
     const index = request.url.indexOf("://");
     const protocol = request.url.substring(0, index + 3);
     const path = request.url.substring(index + 3);
@@ -101,6 +104,7 @@ export class RequestHandlingInterceptor implements HttpInterceptor {
       url: protocol + (path as any).replaceAll('//', '/')
     });
   }
+
 
   handleUnauthorized(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     // 1 vài request ko refresh token

@@ -1,26 +1,25 @@
 import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { finalize, of } from 'rxjs';
 import { LoginComponent } from 'src/app/auth-components/login/login.component';
 import { StringHelper } from 'src/app/shared/helpers/string.helper';
 import { HttpService } from 'src/app/shared/services/base/http.service';
 import { PublisherService } from 'src/app/shared/services/base/publisher.service';
 import { environment } from 'src/environments/environment';
+import { BreakPoint } from '../../constants/break-point.constant';
+import { CommonConstant } from '../../constants/common.constant';
 import { LocalStorageKey } from '../../constants/localstorage-key.constant';
 import { Routing } from '../../constants/routing.constant';
 import { AuthStatus } from '../../enums/auth-status.enum';
+import { ActionExponent } from '../../enums/exponent.enum';
 import { LocalHelper } from '../../helpers/local.helper';
-import { BreakPoint } from '../../constants/break-point.constant';
+import { AuthResponse } from '../../models/auth/auth-response';
+import { LoginRequest } from '../../models/auth/login-request';
+import { RefreshTokenModel } from '../../models/auth/refresh-token-model';
 import { RegisterRequest } from '../../models/auth/register-request';
 import { ServiceResult } from '../../models/base/service-result';
-import { LoginRequest } from '../../models/auth/login-request';
-import { AuthResponse } from '../../models/auth/auth-response';
-import { finalize, of } from 'rxjs';
-import { SnackBar } from '../../snackbar/snackbar.component';
-import { RefreshTokenModel } from '../../models/auth/refresh-token-model';
-import { CommonConstant } from '../../constants/common.constant';
 import { AuthUtility } from '../../utility/auth-utility';
-import { ActionExponent } from '../../enums/exponent.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +27,8 @@ import { ActionExponent } from '../../enums/exponent.enum';
 export class AuthService {
 
   public static CurrentStatus = AuthStatus.Unknown;
+
+  public static IsLogged = () => AuthService.CurrentStatus == AuthStatus.LoggedIn;
 
   private clearListSession = [];
 
@@ -76,6 +77,7 @@ export class AuthService {
     return this.context;
   };
 
+
   getProperty = (name: string) => this.getContext()[name] || '';
 
   setProperty(name: string, value: any) {
@@ -110,6 +112,8 @@ export class AuthService {
   removeAccessToken = () => this.setProperty(LocalStorageKey.ACCESS_TOKEN, '');
 
   saveAuthenticate(accessToken: string, refreshToken: string) {
+    this.context = null;
+
     const config = StringHelper.parseJwt(accessToken);
     config[LocalStorageKey.AUTH_STATUS] = AuthService.CurrentStatus = AuthStatus.LoggedIn;
     config[LocalStorageKey.ACCESS_TOKEN] = accessToken;
