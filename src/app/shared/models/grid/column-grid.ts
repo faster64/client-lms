@@ -26,4 +26,6 @@ export class ColumnGrid {
   public showPassword? = false;
 
   public callback?: Function;
+
+  public filters?: any[] = [];
 }

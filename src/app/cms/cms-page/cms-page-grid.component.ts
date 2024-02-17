@@ -99,7 +99,6 @@ export class CmsGridComponent<T> extends BaseComponent {
   }
 
   sort(event) {
-    console.log(event);
     this.paginationRequest.sort = event;
     this.loadData();
   }

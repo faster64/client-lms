@@ -22,6 +22,8 @@ export class PersonalInformationComponent extends BaseComponent {
 
   roles = '';
 
+  isStudent = false;
+
   @ViewChild("name")
   name: DxTextBoxComponent;
 
@@ -55,7 +57,8 @@ export class PersonalInformationComponent extends BaseComponent {
         if (resp.code == 'success') {
           this.user = resp.data;
           this.roles = this.user.roles.map(x => x.name).join(', ');
-          this.selector.getClassList();
+          this.isStudent = this.user.roles && this.user.roles.length == 1 && this.user.roles[0].code == 'STUDENT';
+          this.selector?.getClassList();
         }
       })
   }

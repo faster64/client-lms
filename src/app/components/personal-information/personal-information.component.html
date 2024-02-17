@@ -31,14 +31,14 @@
             <dx-text-box [(value)]="user.phoneNumber" [readOnly]="viewMode"></dx-text-box>
           </div>
 
-          <div class="col-12 data-item">
+          <div class="col-12 data-item" *ngIf="isStudent">
             <div class="label">Lớp</div>
             <app-class-selector #selector [value]="user.classId" [readOnly]="viewMode"
               (onValueChanged)="user.classId = $event.current">
             </app-class-selector>
           </div>
 
-          <div class="col-12 data-item">
+          <div class="col-12 data-item" *ngIf="!isStudent">
             <div class="label">Vai trò</div>
             <dx-text-box [value]="roles" [disabled]="true"></dx-text-box>
           </div>

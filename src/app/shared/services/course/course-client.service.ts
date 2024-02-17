@@ -18,7 +18,7 @@ export class CourseClientService extends BaseService {
         let url = `${this.url()}/my-courses?classId=${classId}&page=${paginationRequest.number}&size=${paginationRequest.size}&query=${paginationRequest.query}`;
 
         if (!StringHelper.isNullOrEmpty(paginationRequest.sort.fieldName)) {
-            url += (paginationRequest.sort.asc ? '&orderBy' : '&orderByDescending') + `=${paginationRequest.sort.fieldName}`;
+            url += (paginationRequest.sort.asc ? '&asc' : '&desc') + `=${paginationRequest.sort.fieldName}`;
         }
 
         url += `&${CommonConstant.ALLOW_NOTICE_WITH_SNACKBAR_DANGER}`;
@@ -29,7 +29,7 @@ export class CourseClientService extends BaseService {
         let url = `${this.url()}/${courseId}/lessons?page=${paginationRequest.number}&size=${paginationRequest.size}&query=${paginationRequest.query}`;
 
         if (!StringHelper.isNullOrEmpty(paginationRequest.sort.fieldName)) {
-            url += (paginationRequest.sort.asc ? '&orderBy' : '&orderByDescending') + `=${paginationRequest.sort.fieldName}`;
+            url += (paginationRequest.sort.asc ? '&asc' : '&desc') + `=${paginationRequest.sort.fieldName}`;
         }
 
         url += `&${CommonConstant.ALLOW_NOTICE_WITH_SNACKBAR_DANGER}`;

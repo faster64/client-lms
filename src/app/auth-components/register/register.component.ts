@@ -78,7 +78,6 @@ export class RegisterComponent extends BaseComponent implements AfterViewInit {
         finalize(() => this.registerBtn.finish())
       )
       .subscribe(resp => {
-        console.log(resp);
         if (resp.code == 'success') {
           MessageBox.information(new Message(this, { content: 'Đăng ký tài khoản thành công. Đăng nhập ngay.' }, () => this.login()));
           this.request = new RegisterRequest();

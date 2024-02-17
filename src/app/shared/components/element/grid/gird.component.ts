@@ -28,6 +28,7 @@ export class GirdComponent extends BaseGridComponent implements OnChanges {
 
   checkedCount = 0;
 
+  menuData: any[] = [];
 
   @Input()
   displayColumn: ColumnGrid[] = [];

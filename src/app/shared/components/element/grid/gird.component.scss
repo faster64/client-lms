@@ -84,10 +84,19 @@
 
           .column {
             display: flex;
-            justify-content: space-between;
+            align-items: center;
+            // justify-content: space-between;
             background-color: var(--blue-01) !important;
             color: var(--gray-800);
             font-weight: 600;
+          }
+
+          .filter {
+            width: 16px;
+            height: 16px;
+            margin-left: 12px;
+            background-image: url(~/src/assets/img/common/filter.svg);
+            cursor: pointer;
           }
         }
 

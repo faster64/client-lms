@@ -80,7 +80,6 @@ export class BaseUploaderComponent {
   ) { }
 
   selected(fileEvent: FileEvent) {
-    console.log(fileEvent)
     const files = [...fileEvent.addedFiles].filter(x => !this.files.find(f => f.name == x.name));
 
     this.events = [];

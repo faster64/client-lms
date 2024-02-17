@@ -55,7 +55,7 @@ export class BaseService {
     let url = `${this.url()}/paging?page=${paginationRequest.number}&size=${paginationRequest.size}&query=${paginationRequest.query}`;
 
     if (!StringHelper.isNullOrEmpty(paginationRequest.sort.fieldName)) {
-      url += (paginationRequest.sort.asc ? '&orderBy' : '&orderByDescending') + `=${paginationRequest.sort.fieldName}`;
+      url += (paginationRequest.sort.asc ? '&asc' : '&desc') + `=${paginationRequest.sort.fieldName}`;
     }
 
     url += `&${CommonConstant.ALLOW_NOTICE_WITH_SNACKBAR_DANGER}`;

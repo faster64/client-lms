@@ -5,6 +5,7 @@ import { Ticket } from 'src/app/shared/models/ticket/ticket';
 import { PublisherService } from 'src/app/shared/services/base/publisher.service';
 import { TicketService } from 'src/app/shared/services/ticket/ticket.service';
 import { FieldType } from 'src/app/shared/enums/field-type.enum';
+import { TicketStatus } from 'src/app/shared/enums/ticket-status.enum';
 
 @Component({
   selector: 'app-cms-ticket',
@@ -31,6 +32,14 @@ export class CmsTicketComponent extends CmsGridComponent<Ticket> {
     this.displayColumns.push({ column: 'address', displayText: 'Địa chỉ', width: 200 });
     this.displayColumns.push({ column: 'question', displayText: 'Nội dung liên hệ', width: 280 });
     this.displayColumns.push({ column: 'sentDate', displayText: 'Ngày gửi', width: 140, type: FieldType.Date });
-    this.displayColumns.push({ column: 'status', displayText: 'Trạng thái', width: 220, type: FieldType.TicketState, callback: (item, e) => console.log(item, e) });
+    this.displayColumns.push(
+      {
+        column: 'status',
+        displayText: 'Trạng thái',
+        width: 220,
+        type: FieldType.TicketState,
+        filters: [TicketStatus.Responsed, TicketStatus.NotResponsed],
+        callback: (item, e) => console.log(item, e)
+      });
   }
 }

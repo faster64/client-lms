@@ -71,7 +71,7 @@ export class AppComponent implements OnInit, OnDestroy {
         }
 
         if (event instanceof NavigationEnd) {
-          this.progress = 80;
+          this.progress = 95;
           setTimeout(() => {
             clearInterval(this.iid);
             this.progress = 0;
