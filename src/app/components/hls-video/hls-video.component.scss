@@ -1,0 +1,11 @@
+.hls-video-cpn {
+  position: relative;
+  height: 100%;
+  min-height: 400px;
+  padding: 56px var(--side-distance);
+
+  video, .video-js  {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}

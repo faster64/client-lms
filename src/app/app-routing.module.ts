@@ -130,6 +130,14 @@ const routes: Routes = [
       resolver: BaseResolver,
     }
   },
+  {
+    path: 'hls',
+    loadChildren: () => import('./components/hls-video/hls-video.module').then(m => m.HlsVideoModule),
+    canActivate: [BaseGuard],
+    resolve: {
+      resolver: BaseResolver,
+    }
+  },
   // {
   //   path: "**",
   //   redirectTo: `/${Routing.HOME.path}`,
