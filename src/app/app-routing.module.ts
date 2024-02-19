@@ -131,6 +131,14 @@ const routes: Routes = [
     }
   },
   {
+    path: Routing.PAID_STATE.path,
+    loadChildren: () => import('./components/paid-state/paid-state-routing.module').then(m => m.PaidStateRoutingModule),
+    canActivate: [BaseGuard],
+    resolve: {
+      resolver: BaseResolver,
+    }
+  },
+  {
     path: 'hls',
     loadChildren: () => import('./components/hls-video/hls-video.module').then(m => m.HlsVideoModule),
     canActivate: [BaseGuard],

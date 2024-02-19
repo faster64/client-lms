@@ -24,12 +24,12 @@ export class UserService extends BaseService {
     this.controller = 'user';
   }
 
-  information() {
-    const url = this.url() + '/information';
+  getProfile() {
+    const url = this.url() + '/profile';
     return this.http.get<ServiceResult>(url);
   }
 
   updateInformation(entity: any) {
-    return this.http.put<ServiceResult>(this.url() + '/update-information', entity, this._baseOptions);
+    return this.http.put<ServiceResult>(this.url() + '/update-profile', entity, this._baseOptions);
   }
 }

@@ -33,6 +33,7 @@ export class Routing {
   public static readonly COURSE_LESSON_TEST = new RoutingConfig('bai-kiem-tra', 'course_lesson_test');
   public static readonly CART = new RoutingConfig('gio-hang', 'cart');
   public static readonly PAYMENT = new RoutingConfig('thanh-toan', 'payment');
+  public static readonly PAID_STATE = new RoutingConfig('trang-thai-don-hang', 'paid_state');
 }
 
 export const CommonRedirect = Routing.HOME.path;

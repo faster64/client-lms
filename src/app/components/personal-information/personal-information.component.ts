@@ -48,7 +48,7 @@ export class PersonalInformationComponent extends BaseComponent {
   load() {
     this.isLoading = true;
     this.userService
-      .information()
+      .getProfile()
       .pipe(
         takeUntil(this._onDestroySub),
         finalize(() => this.isLoading = false)

@@ -82,7 +82,7 @@
 
           <div class="pay-btn" *ngIf="AuthService.CurrentStatus == AuthStatus.LoggedIn">
             <base-button #payBtn text="Thanh toán VNPay" [height]="44"
-              [disabled]="!user || user.fullName == '' || user.phoneNumber == '' || user.email == ''" (onClick)="pay()">
+              [disabled]="!user || user.fullName == '' || user.phoneNumber == '' || user.email == '' || !SharedService.CartItems.length" (onClick)="pay()">
             </base-button>
           </div>
         </div>

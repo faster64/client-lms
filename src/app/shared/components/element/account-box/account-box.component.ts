@@ -39,7 +39,7 @@ export class AccountBoxComponent extends BaseComponent {
   getInformation() {
     this.isLoading = true;
     this.userService
-      .information()
+      .getProfile()
       .pipe(
         takeUntil(this._onDestroySub),
         finalize(() => this.isLoading = false)
