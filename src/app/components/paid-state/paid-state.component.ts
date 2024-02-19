@@ -1,5 +1,6 @@
 import { Component, Injector } from '@angular/core';
 import { BaseComponent } from 'src/app/shared/components/base-component';
+import { SharedService } from 'src/app/shared/services/base/shared.service';
 
 @Component({
   selector: 'app-paid-state',
@@ -25,7 +26,6 @@ export class PaidStateComponent extends BaseComponent {
 
   override ngOnInit(): void {
     super.ngOnInit();
-    console.log(this.activatedRoute.snapshot);
     this.vnp_Amount = this.activatedRoute.snapshot.queryParams['vnp_Amount'];
     this.vnp_BankCode = this.activatedRoute.snapshot.queryParams['vnp_BankCode'];
     this.vnp_BankTranNo = this.activatedRoute.snapshot.queryParams['vnp_BankTranNo'];
@@ -36,6 +36,9 @@ export class PaidStateComponent extends BaseComponent {
     this.vnp_TransactionNo = this.activatedRoute.snapshot.queryParams['vnp_TransactionNo'];
     this.vnp_TxnRef = this.activatedRoute.snapshot.queryParams['vnp_TxnRef'];
     this.vnp_SecureHash = this.activatedRoute.snapshot.queryParams['vnp_SecureHash'];
+    console.log(this.activatedRoute.snapshot);
+
+    SharedService.CartItems = [];
   }
 
 }

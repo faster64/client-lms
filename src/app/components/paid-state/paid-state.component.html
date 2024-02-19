@@ -1,6 +1,10 @@
 <div class="paid-state-cpn">
-  {{vnpResponseCode}}
   <div class="state success">
+    <div class="icon bg-contain"></div>
+    <div class="text">Thanh toán thành công</div>
+  </div>
+
+  <div class="state success" *ngIf="vnpResponseCode == '00'">
     <div class="icon bg-contain"></div>
     <div class="text">Thanh toán thành công</div>
   </div>
