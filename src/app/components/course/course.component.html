@@ -2,7 +2,7 @@
   [routerLink]="'/' + (toLesson ? Routing.COURSE_LESSON_LIST.path : Routing.COURSE_DETAIL.path)+ '/' + course.id">
 
   <div class="course-banner">
-    <div class="course-img" [ngStyle]="{backgroundImage: 'url(' + course.imageUrl + ')'}"></div>
+    <div class="course-img bg-contain" [ngStyle]="{backgroundImage: 'url(' + course.imageUrl + ')'}"></div>
     <div class="class">{{course.className}}</div>
     <div class="price">{{course.price | NumberFormatPipe}}</div>
   </div>
