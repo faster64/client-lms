@@ -5,6 +5,7 @@ import { DxTextBoxComponent } from 'devextreme-angular';
 import { finalize, takeUntil } from 'rxjs';
 import { BaseComponent } from 'src/app/shared/components/base-component';
 import { BaseButton } from 'src/app/shared/components/micro/button/button.component';
+import { PasswordInputComponent } from 'src/app/shared/components/micro/password-input/password-input.component';
 import { Routing } from 'src/app/shared/constants/routing.constant';
 import { StringHelper } from 'src/app/shared/helpers/string.helper';
 import { LoginRequest } from 'src/app/shared/models/auth/login-request';
@@ -30,7 +31,7 @@ export class LoginComponent extends BaseComponent implements AfterViewInit {
   emailInstance!: DxTextBoxComponent;
 
   @ViewChild("password")
-  passwordInstance!: DxTextBoxComponent;
+  passwordInstance!: PasswordInputComponent;
 
   @ViewChild("loginBtn")
   loginBtn!: BaseButton;
@@ -70,11 +71,11 @@ export class LoginComponent extends BaseComponent implements AfterViewInit {
 
     if (StringHelper.isNullOrEmpty(this.request.password)) {
       this.errorMsg = TranslationService.VALUES['auth']['login']['password_must_not_empty_msg'];
-      this.passwordInstance.instance.focus();
-      this.passwordInstance.instance.option("isValid", false);
+      this.passwordInstance.password.instance.focus();
+      this.passwordInstance.password.instance.option("isValid", false);
       return false;
     }
-    this.passwordInstance.instance.option("isValid", true);
+    this.passwordInstance.password.instance.option("isValid", true);
 
     return true;
   }

@@ -4,6 +4,7 @@ import { DxTextBoxComponent } from 'devextreme-angular';
 import { finalize, takeUntil } from 'rxjs';
 import { BaseComponent } from 'src/app/shared/components/base-component';
 import { BaseButton } from 'src/app/shared/components/micro/button/button.component';
+import { PasswordInputComponent } from 'src/app/shared/components/micro/password-input/password-input.component';
 import { SelectorComponent } from 'src/app/shared/components/micro/selector/selector.component';
 import { Routing } from 'src/app/shared/constants/routing.constant';
 import { StringHelper } from 'src/app/shared/helpers/string.helper';
@@ -39,10 +40,10 @@ export class RegisterComponent extends BaseComponent implements AfterViewInit {
   classInstance!: SelectorComponent;
 
   @ViewChild("password")
-  passwordInstance!: DxTextBoxComponent;
+  passwordInstance!: PasswordInputComponent;
 
   @ViewChild("confirmPassword")
-  confirmPasswordInstance!: DxTextBoxComponent;
+  confirmPasswordInstance!: PasswordInputComponent;
 
   @ViewChild("registerBtn")
   registerBtn!: BaseButton;
@@ -58,11 +59,11 @@ export class RegisterComponent extends BaseComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.fullnameInstance.instance.focus();
-    // this.request.fullname = 'Nguyễn Văn Cương';
-    // this.request.email = 'abc@gmail.com';
-    // this.request.phone = '0847884444';
-    // this.request.password = '123';
-    // this.request.confirmPassword = '123';
+    this.request.fullname = 'Nguyễn Văn Cương';
+    this.request.email = 'abc' + Math.random() * 100 + '@gmail.com';
+    this.request.phone = '0847884444';
+    this.request.password = '123';
+    this.request.confirmPassword = '123';
   }
 
 
@@ -77,16 +78,26 @@ export class RegisterComponent extends BaseComponent implements AfterViewInit {
         takeUntil(this._onDestroySub),
         finalize(() => this.registerBtn.finish())
       )
-      .subscribe(resp => {
-        if (resp.code == 'success') {
-          MessageBox.information(new Message(this, { content: 'Đăng ký tài khoản thành công. Đăng nhập ngay.' }, () => this.login()));
-          this.request = new RegisterRequest();
-        }
-      })
+      .subscribe(
+        resp => {
+          if (resp.code == 'success') {
+            const title = 'Đăng ký tài khoản thành công!';
+            const content = 'Bạn đã đăng ký thành công tài khoản tại Cánh Buồm Education. Hãy đăng nhập để trải nghiệm các khóa học của chúng tôi.';
+            MessageBox.lms(new Message(this, { title: title, content: content }, () => this.login()), true);
+            this.request = new RegisterRequest();
+          }
+        },
+        err => console.log(err)
+      )
   }
 
   validateColumn(column: string, i18n: string) {
-    const ref = this[`${column}Instance`] as DxTextBoxComponent;
+    let ref: DxTextBoxComponent;
+    if (column != 'password' && column != 'confirmPassword') {
+      ref = this[`${column}Instance`] as DxTextBoxComponent
+    } else {
+      ref = (this[`${column}Instance`] as PasswordInputComponent).password;
+    }
 
     if (StringHelper.isNullOrEmpty(this.request[column])) {
       SnackBar.warning(new SnackBarParameter(this, TranslationService.VALUES['auth']['register'][i18n]));
@@ -116,7 +127,7 @@ export class RegisterComponent extends BaseComponent implements AfterViewInit {
 
     if (this.request.password != this.request.confirmPassword) {
       SnackBar.warning(new SnackBarParameter(this, TranslationService.VALUES['auth']['register']['both_password_must_be_the_same']));
-      this.passwordInstance.instance.option("isValid", false);
+      this.confirmPasswordInstance.password.instance.option("isValid", false);
       return false;
     }
 

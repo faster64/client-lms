@@ -7,6 +7,7 @@ import { DxTextBoxModule } from 'devextreme-angular';
 import { BaseButtonModule } from 'src/app/shared/components/micro/button/button.module';
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login.component';
+import { PasswordInputModule } from 'src/app/shared/components/micro/password-input/password-input.module';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { LoginComponent } from './login.component';
     LoginRoutingModule,
     TranslateModule,
     BaseButtonModule,
-    DxTextBoxModule
+    DxTextBoxModule,
+    PasswordInputModule
   ]
 })
 export class LoginModule { }

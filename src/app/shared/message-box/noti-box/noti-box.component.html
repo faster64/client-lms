@@ -1,14 +1,30 @@
 <ng-container>
   <!-- title  -->
   <h2 mat-dialog-title cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle
-    *ngIf="message.data.title && message.data.title != ''">
+    *ngIf="message.data.title && message.data.title != '' && [MessageBoxType.Confirm, MessageBoxType.ConfirmDelete, MessageBoxType.Information, MessageBoxType.Html].includes(message.data.boxType)">
     <span>{{message.data.title}}</span>
   </h2>
 
   <!-- content -->
   <mat-dialog-content>
-    <span *ngIf="message.data.boxType != MessageBoxType.Html">{{message.data.content}}</span>
+    <div *ngIf="[MessageBoxType.LmsSuccess, MessageBoxType.LmsFailed].includes(message.data.boxType)" class="lms-wrap"
+      [ngClass]="message.data.boxType == MessageBoxType.LmsSuccess ? 'success' : 'failed'">
+      <div class="lms-icon bg-contain"></div>
+      <div class="title">
+        <span>{{message.data.title}}</span>
+      </div>
+      <div class="message-content">
+        <span>{{message.data.content}}</span>
+      </div>
+    </div>
+
+    <span
+      *ngIf="[MessageBoxType.Confirm, MessageBoxType.ConfirmDelete, MessageBoxType.Information].includes(message.data.boxType)">
+      {{message.data.content}}
+    </span>
+
     <div *ngIf="message.data.boxType == MessageBoxType.Html" [innerHTML]="message.data.content"></div>
+
   </mat-dialog-content>
 
   <!-- actions  -->
@@ -46,6 +62,22 @@
     cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
     <button mat-raised-button color="primary" [mat-dialog-close]="true" (click)="agree($event)">
       {{'message_box.agree' | translate}}
+    </button>
+  </mat-dialog-actions>
+
+  <!-- lms success  -->
+  <mat-dialog-actions align="center" *ngIf="message.data.boxType == MessageBoxType.LmsSuccess" cdkDrag
+    cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
+    <button mat-raised-button color="primary" [mat-dialog-close]="true" (click)="agree($event)">
+      {{'message_box.agree' | translate}}
+    </button>
+  </mat-dialog-actions>
+
+  <!-- lms failed  -->
+  <mat-dialog-actions align="center" *ngIf="message.data.boxType == MessageBoxType.LmsFailed" cdkDrag
+    cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
+    <button mat-raised-button color="primary" [mat-dialog-close]="true">
+      Thử lại
     </button>
   </mat-dialog-actions>
 

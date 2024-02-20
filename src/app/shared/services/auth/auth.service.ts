@@ -125,7 +125,7 @@ export class AuthService {
 
   login = (request: LoginRequest) => this.httpService.post<ServiceResult>(this.getUrl() + `/login?${CommonConstant.DISALLOW_NOTICE}`, request);
 
-  register = (request: RegisterRequest) => this.httpService.post<ServiceResult>(this.getUrl() + '/register', request);
+  register = (request: RegisterRequest) => this.httpService.post<ServiceResult>(this.getUrl() + `/register`, request);
 
   logout = (callback?: Function) => {
     const accessToken = this.getAccessToken();

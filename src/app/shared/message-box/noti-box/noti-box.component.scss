@@ -2,12 +2,14 @@
   .message-box {
     display: flex;
     justify-content: center;
+
     .mat-mdc-dialog-container {
       display: flex;
       justify-content: center;
       max-width: 100%;
       resize: both;
     }
+
     .mat-mdc-dialog-title {
       margin-bottom: 8px !important;
       font-size: 16px !important;
@@ -15,14 +17,50 @@
       font-weight: 600 !important;
       cursor: move;
     }
+
     .cdk-overlay-pane {
       // width: unset !important;
       // height: unset !important;
       max-width: 90% !important;
+    }
+
+    .lms-wrap {
+      &.success {
+        .lms-icon {
+          background-image: url(~/src/assets/img/popup/success.svg);
+        }
+      }
+
+      &.failed {
+        .lms-icon {
+          background-image: url(~/src/assets/img/popup/failed.svg);
+        }
+      }
+
+      .lms-icon {
+        width: 120px;
+        height: 120px;
+        margin: 0 auto 12px auto;
+      }
+
+      .title {
+        margin-bottom: 12px;
+        text-align: center;
+        font-weight: 600;
+        font-size: var(--small-title-size);
+      }
+
+      .message-content {
+        text-align: center;
+      }
     }
   }
 }
 
 ::ng-deep .cdk-overlay-container {
   z-index: var(--message-box) !important;
+}
+
+::ng-deep .mat-mdc-raised-button:not(:disabled) {
+  background-color: var(--main-color) !important;
 }

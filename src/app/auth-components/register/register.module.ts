@@ -7,6 +7,7 @@ import { BaseButtonModule } from 'src/app/shared/components/micro/button/button.
 import { ClassSelectorModule } from 'src/app/shared/components/micro/class-selector/class-selector.module';
 import { RegisterRoutingModule } from './register-routing.module';
 import { RegisterComponent } from './register.component';
+import { PasswordInputModule } from 'src/app/shared/components/micro/password-input/password-input.module';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { RegisterComponent } from './register.component';
     BaseButtonModule,
     ClassSelectorModule,
     DxTextBoxModule,
-    DxNumberBoxModule
+    DxNumberBoxModule,
+    PasswordInputModule
   ]
 })
 export class RegisterModule { }

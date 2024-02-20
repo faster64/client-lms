@@ -39,17 +39,17 @@
 
       <div class="reg-item password">
         <div class="label">{{'auth.register.label_password' | translate}} <span class="required">*</span> </div>
-        <dx-text-box #password mode="password" placeholder="{{'auth.register.placeholder_password' | translate}}"
-          height="40" [(value)]="request.password" (onEnterKey)="register()">
-        </dx-text-box>
+        <app-password-input #password [placeholder]="'auth.register.placeholder_password' | translate" [height]="40"
+          [value]="request.password" (onValueChanged)="request.password = $event.value" (onEnterKey)="register()">
+        </app-password-input>
       </div>
 
       <div class="reg-item confirm-password">
         <div class="label">{{'auth.register.label_confirm_password' | translate}} <span class="required">*</span> </div>
-        <dx-text-box #confirmPassword mode="password"
-          placeholder="{{'auth.register.placeholder_confirm_password' | translate}}" height="40"
-          [(value)]="request.confirmPassword" (onEnterKey)="register()">
-        </dx-text-box>
+        <app-password-input #confirmPassword [placeholder]="'auth.register.placeholder_confirm_password' | translate"
+          [height]="40" [value]="request.confirmPassword" (onValueChanged)="request.confirmPassword = $event.value"
+          (onEnterKey)="register()">
+        </app-password-input>
       </div>
 
       <div class="register-btn">
