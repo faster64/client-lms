@@ -1,0 +1,15 @@
+<div class="payment-state-cpn">
+    <div class="state success" *ngIf="!isLoading && vnp_ResponseCode == '00'">
+        <div class="icon bg-contain"></div>
+        <div class="text">Thanh toán thành công</div>
+        <a class="go-to-my-course" [routerLink]="'/' + Routing.MY_COURES.path">Đi tới khóa học của tôi</a>
+    </div>
+
+    <div class="state failed" *ngIf="!isLoading && vnp_ResponseCode != '00'">
+        <div class="icon bg-contain"></div>
+        <div class="text">Thanh toán thất bại</div>
+        <div class="message">Lý do: {{codes[vnp_ResponseCode]}}</div>
+    </div>
+
+    <progess-spinner-loading *ngIf="isLoading"></progess-spinner-loading>
+</div>

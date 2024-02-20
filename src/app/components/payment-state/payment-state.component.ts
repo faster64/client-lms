@@ -1,13 +1,17 @@
 import { Component, Injector } from '@angular/core';
+import { finalize, takeUntil } from 'rxjs';
 import { BaseComponent } from 'src/app/shared/components/base-component';
 import { SharedService } from 'src/app/shared/services/base/shared.service';
+import { VNPayService } from 'src/app/shared/services/bill/vnpay.service';
 
 @Component({
-  selector: 'app-paid-state',
-  templateUrl: './paid-state.component.html',
-  styleUrls: ['./paid-state.component.scss']
+  selector: 'app-payment-state',
+  templateUrl: './payment-state.component.html',
+  styleUrls: ['./payment-state.component.scss']
 })
-export class PaidStateComponent extends BaseComponent {
+export class PaymentStateComponent extends BaseComponent {
+
+  codes = {};
 
   vnp_Amount = '';
   vnp_BankCode = '';
@@ -15,30 +19,54 @@ export class PaidStateComponent extends BaseComponent {
   vnp_CardType = '';
   vnp_OrderInfo = '';
   vnp_PayDate = '';
-  vnpResponseCode = '';
+  vnp_ResponseCode = '';
   vnp_TransactionNo = '';
   vnp_TxnRef = '';
   vnp_SecureHash = '';
 
-  constructor(injector: Injector) {
+  constructor(
+    injector: Injector,
+    public vnpayService: VNPayService
+  ) {
     super(injector);
   }
 
   override ngOnInit(): void {
     super.ngOnInit();
+
+    this.getParams();
+    this.getCodes();
+    if (this.vnp_ResponseCode == '00' || this.vnp_ResponseCode == '07') {
+      SharedService.CartItems = [];
+    }
+  }
+
+  getParams() {
+    console.log(this.activatedRoute.snapshot);
     this.vnp_Amount = this.activatedRoute.snapshot.queryParams['vnp_Amount'];
     this.vnp_BankCode = this.activatedRoute.snapshot.queryParams['vnp_BankCode'];
     this.vnp_BankTranNo = this.activatedRoute.snapshot.queryParams['vnp_BankTranNo'];
     this.vnp_CardType = this.activatedRoute.snapshot.queryParams['vnp_CardType'];
     this.vnp_OrderInfo = this.activatedRoute.snapshot.queryParams['vnp_OrderInfo'];
     this.vnp_PayDate = this.activatedRoute.snapshot.queryParams['vnp_PayDate'];
-    this.vnpResponseCode = this.activatedRoute.snapshot.queryParams['vnp_ResponseCode'];
+    this.vnp_ResponseCode = this.activatedRoute.snapshot.queryParams['vnp_ResponseCode'];
     this.vnp_TransactionNo = this.activatedRoute.snapshot.queryParams['vnp_TransactionNo'];
     this.vnp_TxnRef = this.activatedRoute.snapshot.queryParams['vnp_TxnRef'];
     this.vnp_SecureHash = this.activatedRoute.snapshot.queryParams['vnp_SecureHash'];
-    console.log(this.activatedRoute.snapshot);
-
-    SharedService.CartItems = [];
   }
 
+  getCodes() {
+    this.isLoading = true;
+    this.vnpayService
+      .getCodes()
+      .pipe(
+        takeUntil(this._onDestroySub),
+        finalize(() => this.isLoading = false)
+      )
+      .subscribe(resp => {
+        if (resp.code == 'success') {
+          this.codes = resp.data;
+        }
+      })
+  }
 }

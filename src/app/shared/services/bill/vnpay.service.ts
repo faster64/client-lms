@@ -12,6 +12,11 @@ export class VNPayService extends BaseService {
     this.controller = 'vnpay';
   }
 
+  getCodes() {
+    const url = this.url() + `/vnpay-response-codes`;
+    return this.http.get<ServiceResult>(url);
+  }
+
   createUrl(data) {
     const url = this.url() + `/create`;
     return this.http.post<ServiceResult>(url, data);
