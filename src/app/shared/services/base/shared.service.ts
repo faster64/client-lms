@@ -38,8 +38,12 @@ export class SharedService {
 
     } catch (error) {
       console.log(error);
-      localStorage.removeItem(LocalStorageKey.CART_ITEMS);
-      SharedService.CartItems = [];
+      SharedService.ClearCart();
     }
+  }
+
+  public static ClearCart() {
+    SharedService.CartItems = [];
+    localStorage.setItem(LocalStorageKey.CART_ITEMS, "");
   }
 }

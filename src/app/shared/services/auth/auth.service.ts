@@ -171,6 +171,8 @@ export class AuthService {
       .pipe(finalize(() => this.refreshing = false));
   }
 
+  sendForgotPasswordCode = (email: string) => this.httpService.get<ServiceResult>(this.getUrl() + `/send-fp-code?u=${email}&${CommonConstant.DISALLOW_NOTICE}`);
+
   authenticate(callback: Function, config?: MatDialogConfig) {
     if (AuthService.CurrentStatus === AuthStatus.LoggedIn) {
       callback();

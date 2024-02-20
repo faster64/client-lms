@@ -1,5 +1,5 @@
 <div class="cms-sidebar-cpn">
-  <a class="logo bg-contain" [routerLink]="['/' + Routing.CMS.path]"></a>
+  <a class="logo bg-contain" [routerLink]="['/' + Routing.HOME.path]"></a>
   <div class="cms-list">
     <a class="cms-item" [routerLink]="['/' + item.path]" [ngClass]="[item.class, item.selected ? 'selected' : '']" *ngFor="let item of items"
       (click)="redirect(item)" [matTooltip]="showTooltip ? item.text : ''">

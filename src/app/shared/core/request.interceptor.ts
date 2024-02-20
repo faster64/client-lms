@@ -74,24 +74,20 @@ export class RequestHandlingInterceptor implements HttpInterceptor {
   }
 
   injectToken(request: HttpRequest<unknown>) {
-    if (!AuthService.IsLogged()) {
-      return request;
-    }
-
     const index = request.url.indexOf("://");
     const protocol = request.url.substring(0, index + 3);
     const path = request.url.substring(index + 3);
 
-    if (this.withoutTokens.includes(request.url))
+    if (this.withoutTokens.includes(request.url)) {
       return request.clone({
         url: protocol + (path as any).replaceAll('//', '/')
       });
+    }
 
     const header = {
       // 'Content-Type': 'application/json; charset=utf-8',
       // 'Accept': 'application/json',
       'Accept': '*/*',
-      'Authorization': `Bearer ${this.authService.getAccessToken()}`,
     };
 
     header['X-Client-Time'] = Date.now() + "";
@@ -99,6 +95,9 @@ export class RequestHandlingInterceptor implements HttpInterceptor {
     header['Accept-Language'] = this.culture();
     header['InternalKey'] = 'public';
 
+    if (AuthService.IsLogged()) {
+      header['Authorization'] = `Bearer ${this.authService.getAccessToken()}`;
+    }
     return request.clone({
       setHeaders: header,
       url: protocol + (path as any).replaceAll('//', '/')

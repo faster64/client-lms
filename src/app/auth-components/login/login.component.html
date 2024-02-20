@@ -70,9 +70,10 @@
 
     <div class="password">
       <div class="label">{{'auth.login.label_password' | translate}} <span class="required">*</span> </div>
-      <dx-text-box #password mode="password" placeholder="{{'auth.login.placeholder_password' | translate}}" height="40"
-        [(value)]="request.password" (onEnterKey)="loginBtn.clickExecute($event)">
-      </dx-text-box>
+      <app-password-input #password [placeholder]="'auth.login.placeholder_password' | translate" [height]="40"
+        [value]="request.password" (onValueChanged)="request.password = $event.value"
+        (onEnterKey)="loginBtn.clickExecute($event)">
+      </app-password-input>
 
       <!-- <div class="view-password"></div> -->
     </div>

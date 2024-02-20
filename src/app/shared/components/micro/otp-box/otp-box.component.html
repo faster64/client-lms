@@ -1,0 +1,8 @@
+<div class="otp-box-cpn">
+  <div class="enter-otp-field">
+    <ng-otp-input
+      [config]="{ length: length, allowNumbersOnly: allowNumbersOnly, isPasswordInput: isPasswordInput, disableAutoFocus: disableAutoFocus, placeholder: placeholder}"
+      (onInputChange)="onChange($event)" [draggable]="true">
+    </ng-otp-input>
+  </div>
+</div>

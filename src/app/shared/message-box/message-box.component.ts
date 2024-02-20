@@ -33,15 +33,13 @@ export class MessageBox implements OnInit {
    */
   private static initConfig(boxType: MessageBoxType) {
     const isLms = [MessageBoxType.LmsFailed, MessageBoxType.LmsSuccess].includes(boxType);
-    console.log(isLms, isLms ? 640 : 440)
-
     const width = Math.min(isLms ? 640 : 440, window.innerWidth * 0.8) + 'px';
 
     this._config = new MatDialogConfig();
     this._config.minWidth = this._config.maxWidth = this._config.width = width;
     this._config.minHeight = '120px';
     this._config.maxHeight = window.innerHeight * 0.8 + 'px';
-    this._config.position = { top: '50px' };
+    this._config.position = { top: isLms ? '200px' : '50px' };
     this._config.panelClass = ['message-box'];
   }
 
@@ -49,9 +47,7 @@ export class MessageBox implements OnInit {
    * Chuẩn bị config để open dialog
    */
   private static prepareConfig(message: Message, boxType: MessageBoxType) {
-    if (!this._config) {
-      MessageBox.initConfig(boxType);
-    }
+    MessageBox.initConfig(boxType);
     const config = this._config;
 
     if (!message.data) {

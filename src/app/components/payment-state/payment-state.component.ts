@@ -36,8 +36,9 @@ export class PaymentStateComponent extends BaseComponent {
 
     this.getParams();
     this.getCodes();
+    console.log(this.vnp_ResponseCode);
     if (this.vnp_ResponseCode == '00' || this.vnp_ResponseCode == '07') {
-      SharedService.CartItems = [];
+      SharedService.ClearCart();
     }
   }
 

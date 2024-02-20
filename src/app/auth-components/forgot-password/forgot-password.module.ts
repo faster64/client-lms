@@ -6,6 +6,9 @@ import { ForgotPasswordComponent } from './forgot-password.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { BaseButtonModule } from 'src/app/shared/components/micro/button/button.module';
 import { DxTextBoxModule } from 'devextreme-angular';
+import { BaseLoadingModule } from 'src/app/shared/components/micro/loading/loading.module';
+import { OtpBoxModule } from 'src/app/shared/components/micro/otp-box/otp-box.module';
+import { PipesModule } from 'src/app/shared/pipes/pipes.module';
 
 
 @NgModule({
@@ -17,7 +20,10 @@ import { DxTextBoxModule } from 'devextreme-angular';
     ForgotPasswordRoutingModule,
     TranslateModule,
     BaseButtonModule,
-    DxTextBoxModule
+    DxTextBoxModule,
+    BaseLoadingModule,
+    OtpBoxModule,
+    PipesModule
   ]
 })
 export class ForgotPasswordModule { }

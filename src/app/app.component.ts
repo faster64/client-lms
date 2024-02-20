@@ -94,7 +94,9 @@ export class AppComponent implements OnInit, OnDestroy {
             SharedService.AtHome = false;
             document.documentElement.style.setProperty("--header-bg", "#fff");
           }
-          window.scrollTo(0, 0);
+          setTimeout(() => {
+            window.scrollTo(0, 0);
+          }, 100);
         }
       });
   }

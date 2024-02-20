@@ -135,7 +135,7 @@ export class CartComponent extends BaseComponent implements AfterViewInit {
       .subscribe(
         resp => {
           if (resp.code == 'success') {
-            window.open(resp.data);
+            window.location.href = resp.data;
             // this.router.navigateByUrl('/' + Routing.PAYMENT.path + '/' + resp.data.id);
           }
         },
