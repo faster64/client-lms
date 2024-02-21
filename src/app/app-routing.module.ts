@@ -5,6 +5,7 @@ import { BaseGuard } from './shared/guards/base.guard';
 import { CmsGuard } from './shared/guards/cms.guard';
 import { UnauthenticatedOnlyGuard } from './shared/guards/unauthenticated-only.guard';
 import { BaseResolver } from './shared/resolvers/base.resolver';
+import { AuthenticatedOnlyGuard } from './shared/guards/authenticated-only.guard';
 
 const routes: Routes = [
   {
@@ -43,9 +44,16 @@ const routes: Routes = [
     }
   },
   {
+    path: Routing.CHANGE_PASSWORD.path,
+    loadChildren: () => import('./auth-components/change-password/change-password.module').then(m => m.ChangePasswordModule),
+    resolve: {
+      resolver: BaseResolver,
+    }
+  },
+  {
     path: Routing.PERSONAL_INFORMATION.path,
     loadChildren: () => import('./components/personal-information/personal-information.module').then(m => m.PersonalInformationModule),
-    canActivate: [BaseGuard],
+    canActivate: [AuthenticatedOnlyGuard],
     resolve: {
       resolver: BaseResolver,
     }
@@ -85,7 +93,7 @@ const routes: Routes = [
   {
     path: Routing.MY_COURES.path,
     loadChildren: () => import('./components/my-courses/my-courses.module').then(m => m.MyCoursesModule),
-    canActivate: [BaseGuard],
+    canActivate: [AuthenticatedOnlyGuard],
     resolve: {
       resolver: BaseResolver,
     }
@@ -93,7 +101,7 @@ const routes: Routes = [
   {
     path: Routing.COURSE_DETAIL.path,
     loadChildren: () => import('./components/course-detail/course-detail.module').then(m => m.CourseDetailModule),
-    canActivate: [BaseGuard],
+    canActivate: [AuthenticatedOnlyGuard],
     resolve: {
       resolver: BaseResolver,
     }
@@ -101,7 +109,7 @@ const routes: Routes = [
   {
     path: Routing.COURSE_LESSON_LIST.path,
     loadChildren: () => import('./components/course-lesson-list/course-lesson-list.module').then(m => m.CourseLessonListModule),
-    canActivate: [BaseGuard],
+    canActivate: [AuthenticatedOnlyGuard],
     resolve: {
       resolver: BaseResolver,
     }
@@ -109,7 +117,7 @@ const routes: Routes = [
   {
     path: Routing.COURSE_LESSON_TEST.path,
     loadChildren: () => import('./components/course-lesson-test/course-lesson-test.module').then(m => m.CourseLessonTestModule),
-    canActivate: [BaseGuard],
+    canActivate: [AuthenticatedOnlyGuard],
     resolve: {
       resolver: BaseResolver,
     }
@@ -133,7 +141,7 @@ const routes: Routes = [
   {
     path: Routing.PAYMENT_STATE.path,
     loadChildren: () => import('./components/payment-state/payment-state.module').then(m => m.PaymentStateModule),
-    canActivate: [BaseGuard],
+    canActivate: [AuthenticatedOnlyGuard],
     resolve: {
       resolver: BaseResolver,
     }
@@ -141,7 +149,7 @@ const routes: Routes = [
   {
     path: 'hls',
     loadChildren: () => import('./components/hls-video/hls-video.module').then(m => m.HlsVideoModule),
-    canActivate: [BaseGuard],
+    canActivate: [AuthenticatedOnlyGuard],
     resolve: {
       resolver: BaseResolver,
     }

@@ -128,7 +128,7 @@ export class BaseButton implements OnInit, AfterViewInit, OnDestroy {
    * Execute when click button
    */
   clickExecute(e: any) {
-    if (!this.isFinished)
+    if (!this.isFinished || this.disabled)
       return;
 
     const hasPermission = AuthUtility.checkPermission(this.actionExponents);

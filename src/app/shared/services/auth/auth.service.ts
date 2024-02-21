@@ -131,7 +131,7 @@ export class AuthService {
     const accessToken = this.getAccessToken();
     if (!StringHelper.isNullOrEmpty(accessToken)) {
       this.httpService
-        .get<AuthResponse>(`${this.getUrl()}/logout`)
+        .post<AuthResponse>(`${this.getUrl()}/logout`, null)
         .pipe(
           finalize(() => {
             this.clearAuth();
@@ -171,7 +171,13 @@ export class AuthService {
       .pipe(finalize(() => this.refreshing = false));
   }
 
-  sendForgotPasswordCode = (email: string) => this.httpService.get<ServiceResult>(this.getUrl() + `/send-fp-code?u=${email}&${CommonConstant.DISALLOW_NOTICE}`);
+  sendForgotPasswordCode = (email: string) => this.httpService.post<ServiceResult>(this.getUrl() + `/send-fp-code?u=${email}&${CommonConstant.DISALLOW_NOTICE}`, null);
+
+  checkFpCode = (email: string, code: string) => this.httpService.post<ServiceResult>(this.getUrl() + `/check-fp-code?u=${email}&c=${code}&${CommonConstant.DISALLOW_NOTICE}`, null);
+
+  changePassword = (data) => this.httpService.put<ServiceResult>(this.getUrl() + `/change-password?${CommonConstant.DISALLOW_NOTICE}`, data);
+
+  changePasswordByCode = (data) => this.httpService.put<ServiceResult>(this.getUrl() + `/change-password-by-code?${CommonConstant.DISALLOW_NOTICE}`, data);
 
   authenticate(callback: Function, config?: MatDialogConfig) {
     if (AuthService.CurrentStatus === AuthStatus.LoggedIn) {

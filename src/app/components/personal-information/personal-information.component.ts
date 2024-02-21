@@ -57,8 +57,10 @@ export class PersonalInformationComponent extends BaseComponent {
         if (resp.code == 'success') {
           this.user = resp.data;
           this.roles = this.user.roles.map(x => x.name).join(', ');
-          this.isStudent = this.user.roles && this.user.roles.length == 1 && this.user.roles[0].code == 'STUDENT';
-          this.selector?.getClassList();
+          this.isStudent = this.user.roles && this.user.roles.length == 1 && this.user.roles[0].code == 'student';
+          setTimeout(() => {
+            this.selector?.getClassList();
+          }, 100);
         }
       })
   }

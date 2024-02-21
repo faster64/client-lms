@@ -11,12 +11,12 @@
 
 <mat-menu #menu="matMenu">
   <div class="account-management-content" style="padding: 12px 24px">
-    <a class="amc-item information" [routerLink]="Routing.PERSONAL_INFORMATION.path">
+    <a class="amc-item information" [routerLink]="'/' + Routing.PERSONAL_INFORMATION.path">
       <div class="icon"></div>
       <div class="text">Thông tin cá nhân</div>
     </a>
 
-    <a class="amc-item change-password" (click)="Utility.featureIsInDevelopment($event)">
+    <a class="amc-item change-password" [routerLink]="'/' + Routing.CHANGE_PASSWORD.path">
       <div class="icon"></div>
       <div class="text">Đổi mật khẩu</div>
     </a>

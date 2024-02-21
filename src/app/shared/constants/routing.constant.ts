@@ -21,8 +21,8 @@ export class Routing {
   public static readonly LOGIN = new RoutingConfig('dang-nhap', 'login');
   public static readonly REGISTER = new RoutingConfig('dang-ky', 'register');
   public static readonly FORGOT_PASSWORD = new RoutingConfig('quen-mat-khau', 'forgot_password');
-  public static readonly PERSONAL_INFORMATION = new RoutingConfig('thong-tin-ca-nhan', 'personal_information');
   public static readonly CHANGE_PASSWORD = new RoutingConfig('doi-mat-khau', 'change_password');
+  public static readonly PERSONAL_INFORMATION = new RoutingConfig('thong-tin-ca-nhan', 'personal_information');
   public static readonly HOME = new RoutingConfig('', 'home');
   public static readonly GUIDE = new RoutingConfig('huong-dan-su-dung', 'guide');
   public static readonly CONTACT = new RoutingConfig('#', 'home');

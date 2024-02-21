@@ -14,7 +14,8 @@
           </thead>
 
           <tbody>
-            <tr class="course" *ngFor="let course of SharedService.CartItems; index as i">
+            <tr class="course" [ngClass]="course.purchased ? 'purchased' : ''"
+              *ngFor="let course of SharedService.CartItems; index as i">
               <td class="information">
                 <a class="prod" [routerLink]="'/' +  Routing.COURSE_DETAIL.path + '/' + course.id" target="_blank">
                   <img [src]="course.imageUrl">
@@ -25,7 +26,7 @@
                 </a>
               </td>
               <td class="price">
-                {{course.price | NumberFormatPipe}}
+                {{(!course.purchased ? (course.price | NumberFormatPipe) : 'Đã mua')}}
               </td>
               <td class="features">
                 <div class="remove" (click)="removeItem(i)">
@@ -36,7 +37,8 @@
           </tbody>
         </table>
 
-        <div class="no-data" style="margin: 48px 0; text-align: center; font-weight: 600;" *ngIf="SharedService.CartItems.length == 0">
+        <div class="no-data" style="margin: 48px 0; text-align: center; font-weight: 600;"
+          *ngIf="SharedService.CartItems.length == 0">
           Chưa có sản phẩm nào trong giỏ
         </div>
       </div>
@@ -66,7 +68,7 @@
 
           <div class="method">
             <div class="icon bg-contain"></div>
-            <div class="text">Quét mã VNPay</div>
+            <div class="text">VNPay</div>
           </div>
 
           <div class="total">
@@ -82,7 +84,8 @@
 
           <div class="pay-btn" *ngIf="AuthService.CurrentStatus == AuthStatus.LoggedIn">
             <base-button #payBtn text="Thanh toán VNPay" [height]="44"
-              [disabled]="!user || user.fullName == '' || user.phoneNumber == '' || user.email == '' || !SharedService.CartItems.length" (onClick)="pay()">
+              [disabled]="!user || user.fullName == '' || user.phoneNumber == '' || user.email == '' || !SharedService.CartItems.length"
+              (onClick)="pay()">
             </base-button>
           </div>
         </div>

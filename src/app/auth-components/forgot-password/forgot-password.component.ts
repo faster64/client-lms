@@ -103,8 +103,28 @@ export class ForgotPasswordComponent extends BaseComponent implements AfterViewI
   }
 
   verify() {
-    console.log(this.otp);
-    MessageBox.lms(new Message(this, { title: 'Xác thực thất bại!', content: 'Mã xác nhận mà bạn đã nhập không chính xác. Vui lòng kiểm tra lại mã chúng tôi gửi trong email và đảm bảo rằng bạn đã nhập đúng.' }), false);
-    this.verifyBtn.finish();
+    const title = 'Xác thực thất bại!';
+    const msg = 'Mã xác nhận mà bạn đã nhập không chính xác. Vui lòng kiểm tra lại mã chúng tôi gửi trong email và đảm bảo rằng bạn đã nhập đúng.';
+    this.isLoading = true;
+    this.authService
+      .checkFpCode(this.emailValue, this.otp)
+      .pipe(
+        takeUntil(this._onDestroySub),
+        finalize(() => {
+          this.isLoading = false;
+          this.verifyBtn.finish();
+        })
+      )
+      .subscribe(
+        resp => {
+          if (resp.code == 'success' && resp.data == true) {
+            this.router.navigateByUrl(`/${Routing.CHANGE_PASSWORD.path}?type=2&email=${this.emailValue}&code=${this.otp}`);
+          }
+          else {
+            MessageBox.lms(new Message(this, { title: title, content: msg }), false);
+          }
+        },
+        err => MessageBox.lms(new Message(this, { title: title, content: msg }), false)
+      );
   }
 }

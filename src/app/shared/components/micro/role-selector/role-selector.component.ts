@@ -47,7 +47,7 @@ export class RoleSelectorComponent extends BaseComponent {
         if (resp.code == 'success') {
           this.roles = [];
           for (let i = 0; i < resp.data.length; i++) {
-            this.roles = resp.data.filter(x => x.code != 'STUDENT');
+            this.roles = resp.data.filter(x => x.code != 'student');
           }
         }
       })

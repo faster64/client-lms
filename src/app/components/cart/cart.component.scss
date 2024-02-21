@@ -95,6 +95,14 @@
             }
           }
         }
+
+        .course.purchased {
+
+          .information,
+          .price {
+            opacity: 0.5;
+          }
+        }
       }
     }
 

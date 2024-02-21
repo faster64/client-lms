@@ -14,6 +14,7 @@ import { User } from 'src/app/shared/models/user/user';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { PublisherService } from 'src/app/shared/services/base/publisher.service';
 import { SharedService } from 'src/app/shared/services/base/shared.service';
+import { CartService } from 'src/app/shared/services/bill/cart.service';
 import { VNPayService } from 'src/app/shared/services/bill/vnpay.service';
 import { UserService } from 'src/app/shared/services/user/user.service';
 import { SnackBar } from 'src/app/shared/snackbar/snackbar.component';
@@ -31,7 +32,10 @@ export class CartComponent extends BaseComponent implements AfterViewInit {
   AuthStatus = AuthStatus;
 
   total = 0;
+
   user = new User();
+
+  checking = false;
 
   @ViewChild("payBtn")
   payBtn: BaseButton;
@@ -42,7 +46,8 @@ export class CartComponent extends BaseComponent implements AfterViewInit {
     public authService: AuthService,
     public userService: UserService,
     public vnpayService: VNPayService,
-    public router: Router
+    public cartService: CartService,
+    public router: Router,
   ) {
     super(injector);
   }
@@ -54,6 +59,7 @@ export class CartComponent extends BaseComponent implements AfterViewInit {
     this.total = SharedService.CartItems.reduce((a, b) => a + b.price, 0);
     if (AuthService.IsLogged()) {
       this.getInformation();
+      this.check();
     }
   }
 
@@ -77,17 +83,46 @@ export class CartComponent extends BaseComponent implements AfterViewInit {
       });
   }
 
+  check() {
+    if (!SharedService.CartItems || !SharedService.CartItems.length) {
+      return;
+    }
+
+    this.checking = true;
+    this.cartService
+      .check(SharedService.CartItems.map(x => x.id))
+      .pipe(
+        takeUntil(this._onDestroySub),
+        finalize(() => this.checking = false)
+      )
+      .subscribe(resp => {
+        if (resp.code == 'success') {
+          if (resp.data.purchasedIds && resp.data.purchasedIds.length) {
+            for (let i = 0; i < SharedService.CartItems.length; i++) {
+              const course = SharedService.CartItems[i];
+              if (resp.data.purchasedIds.includes(course.id)) {
+                course.purchased = true;
+              }
+            }
+            this.total = resp.data.totalPrice;
+            MessageBox.information(new Message(this, { content: 'Thông tin giỏ hàng đã thay đổi. Vui lòng kiểm tra lại' }));
+          }
+        }
+      });
+  }
+
   login() {
     this.authService.authenticate(() => {
       this.getInformation();
-    })
+      this.check();
+    });
   }
 
   removeItem(index) {
     SharedService.CartItems.splice(index, 1);
     localStorage.setItem(LocalStorageKey.CART_ITEMS, JSON.stringify(SharedService.CartItems));
 
-    this.total = SharedService.CartItems.reduce((a, b) => a + b.price, 0);
+    this.total = SharedService.CartItems.filter(x => !x.purchased).reduce((a, b) => a + b.price, 0);
     this.publisher.updateCartEvent.emit();
   }
 
@@ -115,14 +150,15 @@ export class CartComponent extends BaseComponent implements AfterViewInit {
     }
 
     const data = {
-      type: VNPayType.VnBank,
+      // type: VNPayType.VnBank,
       fullName: this.user.fullName,
       phoneNumber: this.user.phoneNumber,
       email: this.user.email,
-      courseIds: SharedService.CartItems.map(x => x.id)
+      courseIds: SharedService.CartItems.filter(x => !x.purchased).map(x => x.id)
     };
     if (!data.courseIds.length) {
       MessageBox.information(new Message(this, { content: 'Giỏ hàng đang trống' }));
+      this.payBtn.finish();
       return;
     }
 

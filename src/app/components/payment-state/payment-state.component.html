@@ -8,7 +8,7 @@
     <div class="state failed" *ngIf="!isLoading && vnp_ResponseCode != '00'">
         <div class="icon bg-contain"></div>
         <div class="text">Thanh toán thất bại</div>
-        <div class="message">Lý do: {{codes[vnp_ResponseCode]}}</div>
+        <div class="message">{{codes[vnp_ResponseCode]}}</div>
     </div>
 
     <progess-spinner-loading *ngIf="isLoading"></progess-spinner-loading>
