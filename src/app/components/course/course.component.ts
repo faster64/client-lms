@@ -5,6 +5,7 @@ import { LoginComponent } from 'src/app/auth-components/login/login.component';
 import { BaseComponent } from 'src/app/shared/components/base-component';
 import { ButtonColor, ButtonType } from 'src/app/shared/constants/button.constant';
 import { LocalStorageKey } from 'src/app/shared/constants/localstorage-key.constant';
+import { Routing } from 'src/app/shared/constants/routing.constant';
 import { Course } from 'src/app/shared/models/course/course';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { PublisherService } from 'src/app/shared/services/base/publisher.service';
@@ -19,7 +20,7 @@ import { SnackBarParameter } from 'src/app/shared/snackbar/snackbar.param';
 export class CourseComponent extends BaseComponent {
 
   @Input()
-  course: any = {};
+  course = new Course();
 
   @Input()
   includeBtn = true;
@@ -74,5 +75,11 @@ export class CourseComponent extends BaseComponent {
   loginCallback() {
     this.addToCart(null, false);
     this.router.navigateByUrl(this.Routing.CART.path);
+  }
+
+  access(event) {
+    event?.stopPropagation();
+    event?.preventDefault();
+    this.router.navigateByUrl('/' + Routing.COURSE_LESSON_LIST.path + '/' + this.course.id);
   }
 }

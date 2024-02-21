@@ -1,10 +1,11 @@
-<a class="course-cpn"
+<a class="course-cpn" [ngClass]="course.price == 0 ? 'free' : (course.purchased ? 'purchased' : '')"
   [routerLink]="'/' + (toLesson ? Routing.COURSE_LESSON_LIST.path : Routing.COURSE_DETAIL.path)+ '/' + course.id">
 
   <div class="course-banner">
     <div class="course-img bg-cover" [ngStyle]="{backgroundImage: 'url(' + course.imageUrl + ')'}"></div>
     <div class="class">{{course.className}}</div>
-    <div class="price">{{course.price | NumberFormatPipe}}</div>
+    <div class="price">{{ course.price == 0 ? 'Miễn phí' : (course.purchased ? 'Đã mua' : course.price |
+      NumberFormatPipe)}}</div>
   </div>
 
   <p class="course-name">
@@ -16,16 +17,15 @@
   <div class="course-features" *ngIf="includeBtn">
     <base-button text="{{'course.features.add_to_cart' | translate}}" [width]="132" [height]="44"
       [buttonType]="ButtonType.STROKED" [color]="ButtonColor.BASIC" [finishImmediately]="true"
-      (onClick)="addToCart($event, true)" *ngIf="true || !course.purchased">
+      (onClick)="addToCart($event, true)" *ngIf="!course.purchased">
     </base-button>
 
     <base-button class="buy-btn" text="{{'course.features.buy_now' | translate}}" [width]="112" [height]="44"
       [finishImmediately]="true" (onClick)="buy($event)" *ngIf="!course.purchased">
     </base-button>
 
-    <div class="purchased" *ngIf="course.purchased">
-      <div class="icon bg-contain"></div>
-      <div class="text">Đã mua</div>
-    </div>
+    <base-button class="access-btn" text="Truy cập khóa học" [height]="44" [finishImmediately]="true"
+      (onClick)="access($event)" *ngIf="course.purchased">
+    </base-button>
   </div>
 </a>

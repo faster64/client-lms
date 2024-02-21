@@ -43,7 +43,7 @@
       display: flex;
       align-items: center;
       height: 32px;
-      padding: 4px 8px;
+      padding: 4px 12px;
       background-color: var(--yellow-color);
       color: var(--white);
     }
@@ -57,11 +57,13 @@
     font-size: var(--small-title-size);
     font-weight: 600;
     cursor: pointer;
+
     .hl-cpn {
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
+
       span.highlight {
         background-color: yellow;
       }
@@ -91,22 +93,8 @@
       padding: 4px;
     }
 
-    .purchased {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-
-      .icon {
-        width: 16px;
-        height: 16px;
-        margin-right: 8px;
-        background-image: url(~/src/assets/img/common/tick.svg);
-      }
-
-      .text {
-        color: var(--green-07);
-      }
+    .access-btn {
+      width: 100% !important;
     }
   }
 
@@ -116,6 +104,18 @@
 
   &:hover {
     background-color: var(--gray-100);
+  }
+
+  &.free {
+    .price {
+      background-color: var(--green-07);
+    }
+  }
+
+  &.purchased {
+    .price {
+      background-color: var(--red-05);
+    }
   }
 }
 
