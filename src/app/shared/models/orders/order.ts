@@ -1,10 +1,10 @@
-import { BillStatus } from "../../enums/bill-status.enum";
+import { OrderStatus } from "../../enums/order-status.enum";
 import { BaseModel } from "../base/base-model";
 import { Course } from "../course/course";
 
-export class Bill extends BaseModel {
+export class Order extends BaseModel {
     public courses: Course[] = [];
     public totalPrice = 0;
-    public status = BillStatus.Unpaid;
+    public status = OrderStatus.Unpaid;
     public purchasedDate = new Date();
 }

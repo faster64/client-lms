@@ -13,7 +13,7 @@ export class Routing {
   public static readonly CMS_CLASS = new RoutingConfig(`${Routing.CMS.path}/lop-hoc`, 'cms_class');
   public static readonly CMS_LESSON = new RoutingConfig(`${Routing.CMS.path}/bai-giang`, 'cms_lesson');
   public static readonly CMS_SOCIAL = new RoutingConfig(`${Routing.CMS.path}/mang-xa-hoi`, 'cms_social');
-  public static readonly CMS_BILL = new RoutingConfig(`${Routing.CMS.path}/don-mua-hang`, 'cms_order');
+  public static readonly CMS_ORDER = new RoutingConfig(`${Routing.CMS.path}/don-mua-hang`, 'cms_order');
   public static readonly CMS_GUIDE = new RoutingConfig(`${Routing.CMS.path}/huong-dan-su-dung`, 'cms_guide');
   public static readonly CMS_REPORT = new RoutingConfig(`${Routing.CMS.path}/bao-cao-thong-ke`, 'cms_report');
 

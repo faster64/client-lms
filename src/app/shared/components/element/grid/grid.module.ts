@@ -12,7 +12,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { CmsUserStatesModule } from 'src/app/cms/cms-user-states/cms-user-states.module';
 import { CmsTicketStatesModule } from 'src/app/cms/cms-ticket-states/cms-ticket-states.module';
 import { CmsPdfModule } from 'src/app/cms/cms-pdf/cms-pdf.module';
-import { CmsBillStatesModule } from 'src/app/cms/cms-bill-states/cms-bill-states.module';
+import { CmsOrderStatesModule } from 'src/app/cms/cms-order-states/cms-order-states.module';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,7 @@ import { CmsBillStatesModule } from 'src/app/cms/cms-bill-states/cms-bill-states
     BaseLoadingModule,
     CmsUserStatesModule,
     CmsTicketStatesModule,
-    CmsBillStatesModule,
+    CmsOrderStatesModule,
     CmsPdfModule
   ],
   exports: [GirdComponent]

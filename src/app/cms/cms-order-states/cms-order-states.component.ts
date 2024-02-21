@@ -1,17 +1,17 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { BaseComponent } from 'src/app/shared/components/base-component';
-import { BillStatus } from 'src/app/shared/enums/bill-status.enum';
-import { BillService } from 'src/app/shared/services/bill/bill.service';
+import { OrderStatus } from 'src/app/shared/enums/order-status.enum';
+import { OrderService } from 'src/app/shared/services/order/order.service';
 
 @Component({
-  selector: 'app-cms-bill-states',
-  templateUrl: './cms-bill-states.component.html',
-  styleUrls: ['./cms-bill-states.component.scss']
+  selector: 'app-cms-order-states',
+  templateUrl: './cms-order-states.component.html',
+  styleUrls: ['./cms-order-states.component.scss']
 })
-export class CmsBillStatesComponent extends BaseComponent {
+export class CmsOrderStatesComponent extends BaseComponent {
 
   @Input()
-  state = BillStatus.Unpaid;
+  state = OrderStatus.Unpaid;
 
   @Input()
   disabled = false;
@@ -22,7 +22,7 @@ export class CmsBillStatesComponent extends BaseComponent {
   @Output()
   onChanged = new EventEmitter();
 
-  states = BillService.States;
+  states = OrderService.States;
 
   current: any = {};
 

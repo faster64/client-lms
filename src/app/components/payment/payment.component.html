@@ -9,7 +9,7 @@
             <div class="total-price">
                 <p>Số tiền cần thanh toán</p>
                 <p class="value">
-                    {{bill.totalPrice | NumberFormatPipe}} đ
+                    {{order.totalPrice | NumberFormatPipe}} đ
                     <skeleton-loading *ngIf="isLoading"></skeleton-loading>
                 </p>
             </div>

@@ -5,12 +5,12 @@ import { BaseComponent } from 'src/app/shared/components/base-component';
 import { BaseButton } from 'src/app/shared/components/micro/button/button.component';
 import { LocalStorageKey } from 'src/app/shared/constants/localstorage-key.constant';
 import { Routing } from 'src/app/shared/constants/routing.constant';
-import { BillStatus } from 'src/app/shared/enums/bill-status.enum';
+import { OrderStatus } from 'src/app/shared/enums/order-status.enum';
 import { MessageBox } from 'src/app/shared/message-box/message-box.component';
 import { Message } from 'src/app/shared/message-box/model/message';
-import { Bill } from 'src/app/shared/models/bills/bill';
+import { Order } from 'src/app/shared/models/orders/order';
 import { SharedService } from 'src/app/shared/services/base/shared.service';
-import { BillService } from 'src/app/shared/services/bill/bill.service';
+import { OrderService } from 'src/app/shared/services/order/order.service';
 
 @Component({
   selector: 'app-payment',
@@ -19,14 +19,14 @@ import { BillService } from 'src/app/shared/services/bill/bill.service';
 })
 export class PaymentComponent extends BaseComponent {
 
-  bill = new Bill();
+  order = new Order();
 
   @ViewChild("payBtn")
   payBtn: BaseButton;
 
   constructor(
     injector: Injector,
-    public billService: BillService,
+    public orderService: OrderService,
     public router: Router
   ) {
     super(injector);
@@ -34,22 +34,22 @@ export class PaymentComponent extends BaseComponent {
 
   override initData(): void {
     super.initData();
-    this.bill.id = this.activatedRoute.snapshot.params['id'];
+    this.order.id = this.activatedRoute.snapshot.params['id'];
     this.load();
   }
 
   load() {
     this.isLoading = true;
-    this.billService
-      .byId(this.bill.id)
+    this.orderService
+      .byId(this.order.id)
       .pipe(
         takeUntil(this._onDestroySub),
         finalize(() => this.isLoading = false)
       )
       .subscribe(resp => {
         if (resp.code == 'success') {
-          this.bill = resp.data;
-          if (this.bill.status == BillStatus.Paid) {
+          this.order = resp.data;
+          if (this.order.status == OrderStatus.Paid) {
             MessageBox
               .information(new Message(this, { content: 'Đơn hàng này đã được thanh toán trước đó!' }))
               .subscribe(() => this.router.navigateByUrl(Routing.CART.path));
@@ -60,8 +60,8 @@ export class PaymentComponent extends BaseComponent {
 
   confirmPaid() {
     MessageBox.confirm(new Message(this, { content: 'Bạn đã thanh toán?' }, () => {
-      this.billService
-        .requestConfirm(this.bill.id)
+      this.orderService
+        .requestConfirm(this.order.id)
         .pipe(
           takeUntil(this._onDestroySub),
           finalize(() => this.payBtn.finish())

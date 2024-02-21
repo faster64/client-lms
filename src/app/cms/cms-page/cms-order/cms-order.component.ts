@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
 import { FieldType } from 'src/app/shared/enums/field-type.enum';
-import { Bill } from 'src/app/shared/models/bills/bill';
+import { Order } from 'src/app/shared/models/orders/order';
 import { PublisherService } from 'src/app/shared/services/base/publisher.service';
-import { BillService } from 'src/app/shared/services/bill/bill.service';
+import { OrderService } from 'src/app/shared/services/order/order.service';
 import { CmsGridComponent } from '../cms-page-grid.component';
 
 @Component({
-  selector: 'app-cms-bill',
-  templateUrl: './cms-bill.component.html',
-  styleUrls: ['./cms-bill.component.scss']
+  selector: 'app-cms-order',
+  templateUrl: './cms-order.component.html',
+  styleUrls: ['./cms-order.component.scss']
 })
-export class CmsBillComponent extends CmsGridComponent<Bill> {
+export class CmsOrderComponent extends CmsGridComponent<Order> {
 
   override ngOnInit(): void {
     this.injector.get(PublisherService).updateCmsHeaderLabelEvent.emit('Quản lý đơn mua hàng');
@@ -18,7 +18,7 @@ export class CmsBillComponent extends CmsGridComponent<Bill> {
   }
 
   override initConfig(): void {
-    this.service = this.injector.get(BillService);
+    this.service = this.injector.get(OrderService);
   }
 
   override initColumns() {
@@ -29,7 +29,7 @@ export class CmsBillComponent extends CmsGridComponent<Bill> {
     this.displayColumns.push({ column: 'phoneNumber', displayText: 'Số điện thoại', width: 160 });
     this.displayColumns.push({ column: 'email', displayText: 'Email', width: 180 });
     this.displayColumns.push({ column: 'purchasedDate', displayText: 'Ngày mua hàng', width: 160, type: FieldType.Date });
-    this.displayColumns.push({ column: 'status', displayText: 'Trạng thái đơn hàng', width: 220, type: FieldType.BillState });
+    this.displayColumns.push({ column: 'status', displayText: 'Trạng thái đơn hàng', width: 220, type: FieldType.OrderState });
   }
 
   override filterResponse = (data) => {

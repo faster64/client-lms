@@ -72,7 +72,7 @@ export class CmsSidebarComponent extends BaseComponent {
       {
         text: 'Đơn mua hàng',
         class: 'order',
-        path: Routing.CMS_BILL.path,
+        path: Routing.CMS_ORDER.path,
       },
       {
         text: 'Hướng dẫn sử dụng',

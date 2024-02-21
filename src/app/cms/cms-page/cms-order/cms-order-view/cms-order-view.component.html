@@ -1,4 +1,4 @@
-<div class="cms-bill-view-cpn">
+<div class="cms-order-view-cpn">
 
     <div class="cms-content-middle">
         <div class="row">
@@ -46,8 +46,8 @@
         <div class="row">
             <div class="col-12 col-md-6 data-item">
                 <div class="label">Trạng thái đơn hàng</div>
-                <app-cms-bill-states *ngIf="!isLoading" [state]="data.status" [disabled]="true" [showDropdown]="false">
-                </app-cms-bill-states>
+                <app-cms-order-states *ngIf="!isLoading" [state]="data.status" [disabled]="true" [showDropdown]="false">
+                </app-cms-order-states>
             </div>
         </div>
 
@@ -85,12 +85,12 @@
         </base-button>
 
         <base-button #confirmBtn text="Xác nhận thanh toán" [color]="ButtonColor.SUCCESS" [width]="208" [height]="36"
-            (onClick)="save()" *ngIf="data.status == BillStatus.WaitConfirm">
+            (onClick)="save()" *ngIf="data.status == OrderStatus.WaitConfirm">
         </base-button>
 
         <base-button #deleteBtn text="{{'base_keys.delete' | translate}}" [width]="128" [height]="36"
             [color]="ButtonColor.WARN" (onClick)="delete()" [finishImmediately]="true"
-            *ngIf="data.status != BillStatus.Paid">
+            *ngIf="data.status != OrderStatus.Paid">
         </base-button>
     </div>
 

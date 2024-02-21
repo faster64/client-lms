@@ -2,21 +2,21 @@ import { Injectable } from '@angular/core';
 import { BaseService } from '../base/base.service';
 import { HttpService } from '../base/http.service';
 import { ServiceResult } from '../../models/base/service-result';
-import { BillStatus } from '../../enums/bill-status.enum';
+import { OrderStatus } from '../../enums/order-status.enum';
 @Injectable({
   providedIn: 'root'
 })
-export class BillService extends BaseService {
+export class OrderService extends BaseService {
 
   public static States = [
-    { id: BillStatus.Unpaid, text: "Chưa thanh toán" },
-    { id: BillStatus.WaitConfirm, text: "Chờ xác nhận" },
-    { id: BillStatus.Paid, text: "Đã thanh toán" },
+    { id: OrderStatus.Unpaid, text: "Chưa thanh toán" },
+    { id: OrderStatus.WaitConfirm, text: "Chờ xác nhận" },
+    { id: OrderStatus.Paid, text: "Đã thanh toán" },
   ]
 
   constructor(httpService: HttpService) {
     super(httpService);
-    this.controller = 'bill';
+    this.controller = 'order';
   }
 
   check(data) {

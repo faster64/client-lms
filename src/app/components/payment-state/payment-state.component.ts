@@ -2,7 +2,7 @@ import { Component, Injector } from '@angular/core';
 import { finalize, takeUntil } from 'rxjs';
 import { BaseComponent } from 'src/app/shared/components/base-component';
 import { SharedService } from 'src/app/shared/services/base/shared.service';
-import { VNPayService } from 'src/app/shared/services/bill/vnpay.service';
+import { VNPayService } from 'src/app/shared/services/order/vnpay.service';
 
 @Component({
   selector: 'app-payment-state',
