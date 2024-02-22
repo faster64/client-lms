@@ -2,6 +2,9 @@ import { Component, Injector } from '@angular/core';
 import { Router } from '@angular/router';
 import { BaseComponent } from 'src/app/shared/components/base-component';
 import { Routing } from 'src/app/shared/constants/routing.constant';
+import { ActionExponent } from 'src/app/shared/enums/exponent.enum';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
+import { AuthUtility } from 'src/app/shared/utility/auth-utility';
 
 @Component({
   selector: 'app-cms-sidebar',
@@ -14,14 +17,18 @@ export class CmsSidebarComponent extends BaseComponent {
 
   items = [];
 
+  isSuperAdmin = false;
+
   constructor(
     injector: Injector,
-    public router: Router
+    public router: Router,
+    public authService: AuthService
   ) {
     super(injector);
   }
 
   override ngOnInit(): void {
+    this.isSuperAdmin = AuthUtility.checkPermission([ActionExponent.SA]);
     super.ngOnInit();
     this.findModule();
   }
@@ -48,12 +55,17 @@ export class CmsSidebarComponent extends BaseComponent {
         text: 'Quản lý tài khoản người dùng',
         class: 'user',
         path: Routing.CMS_USER.path,
-      },
-      {
+      }];
+
+    if (this.isSuperAdmin) {
+      this.items.push({
         text: 'Quản lý tài khoản quản trị',
         class: 'admin',
         path: Routing.CMS_ADMIN.path,
-      },
+      });
+    }
+
+    this.items.push(...[
       {
         text: 'Quản lý lớp học',
         class: 'class',
@@ -84,7 +96,7 @@ export class CmsSidebarComponent extends BaseComponent {
         class: 'report',
         path: Routing.CMS_REPORT.path,
       },
-    ];
+    ]);
 
     for (let i = 0; i < this.items.length; i++) {
       this.items[i].style = {

@@ -92,7 +92,7 @@
           <tbody>
             <tr *ngFor="let history of data.paymentHistories">
               <td>
-                {{history.created | DateVietnamPipe}}
+                {{history.created | DateTimeVietnamPipe}}
               </td>
               <td>
                 {{history.vnpTransactionNo}}
