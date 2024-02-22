@@ -18,7 +18,7 @@
 
     <div class="courses">
       <div class="course" *ngFor="let course of courses">
-        <app-course [course]="course" [includeBtn]="false" [toLesson]="true"></app-course>
+        <app-course [course]="course" [showPrice]="false" [includeBtn]="false" [toLesson]="true"></app-course>
       </div>
 
       <div class="loading-wrapper" *ngIf="isLoading">

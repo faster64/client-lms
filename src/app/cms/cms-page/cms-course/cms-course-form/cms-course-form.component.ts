@@ -91,32 +91,32 @@ export class CmsCourseFormComponent extends CmsFormComponent implements AfterVie
 
   override validate = () => {
     if (!this.data.image || this.data.image == '') {
-      SnackBar.warning(new SnackBarParameter(this, 'Vui lòng chọn hình ảnh khóa học'));
+      SnackBar.warning(new SnackBarParameter(this, 'Cảnh báo', 'Vui lòng chọn hình ảnh khóa học'));
       return false;
     }
 
     if (StringHelper.isNullOrEmpty(this.data.name)) {
-      SnackBar.warning(new SnackBarParameter(this, 'Vui lòng nhập tên khóa học'));
+      SnackBar.warning(new SnackBarParameter(this, 'Cảnh báo', 'Vui lòng nhập tên khóa học'));
       return false;
     }
 
     if (StringHelper.isNullOrEmpty(this.data.shortDescription)) {
-      SnackBar.warning(new SnackBarParameter(this, 'Vui lòng nhập mô tả ngắn'));
+      SnackBar.warning(new SnackBarParameter(this, 'Cảnh báo', 'Vui lòng nhập mô tả ngắn'));
       return false;
     }
 
     if (StringHelper.isNullOrEmpty(this.data.description)) {
-      SnackBar.warning(new SnackBarParameter(this, 'Vui lòng nhập mô tả'));
+      SnackBar.warning(new SnackBarParameter(this, 'Cảnh báo', 'Vui lòng nhập mô tả'));
       return false;
     }
 
     if (StringHelper.isNullOrEmpty(this.data.price)) {
-      SnackBar.warning(new SnackBarParameter(this, 'Vui lòng nhập giá khóa học'));
+      SnackBar.warning(new SnackBarParameter(this, 'Cảnh báo', 'Vui lòng nhập giá khóa học'));
       return false;
     }
 
     if (StringHelper.isNullOrEmpty(this.data.classId)) {
-      SnackBar.warning(new SnackBarParameter(this, 'Vui lòng nhập lớp'));
+      SnackBar.warning(new SnackBarParameter(this, 'Cảnh báo', 'Vui lòng nhập lớp'));
       return false;
     }
 

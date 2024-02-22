@@ -24,7 +24,7 @@ export class CmsGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
     const hasPermission = AuthUtility.checkPermission([ActionExponent.CMS]);
     if (!hasPermission) {
-      SnackBar.danger(new SnackBarParameter(this, TranslationService.VALUES['errors']['not_permission']));
+      SnackBar.danger(new SnackBarParameter(this, 'Lỗi', TranslationService.VALUES['errors']['not_permission']));
       this.router.navigateByUrl(Routing.HOME.path);
       return false;
     }

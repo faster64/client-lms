@@ -100,7 +100,7 @@ export class RegisterComponent extends BaseComponent implements AfterViewInit {
     }
 
     if (StringHelper.isNullOrEmpty(this.request[column])) {
-      SnackBar.warning(new SnackBarParameter(this, TranslationService.VALUES['auth']['register'][i18n]));
+      SnackBar.warning(new SnackBarParameter(this, 'Cảnh báo', TranslationService.VALUES['auth']['register'][i18n]));
       ref.instance.focus();
       ref.instance.option("isValid", false);
       return false;
@@ -126,7 +126,7 @@ export class RegisterComponent extends BaseComponent implements AfterViewInit {
     if (!valid) return false;
 
     if (this.request.password != this.request.confirmPassword) {
-      SnackBar.warning(new SnackBarParameter(this, TranslationService.VALUES['auth']['register']['both_password_must_be_the_same']));
+      SnackBar.warning(new SnackBarParameter(this, 'Cảnh báo', TranslationService.VALUES['auth']['register']['both_password_must_be_the_same']));
       this.confirmPasswordInstance.password.instance.option("isValid", false);
       return false;
     }

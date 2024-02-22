@@ -14,6 +14,8 @@
       />
     </div>
 
+    <!-- <app-pdf-viewer *ngIf="guide.fileName && guide.fileName != '' && (!guide.linkYoutube || guide.linkYoutube == '')" [src]="guide.fileUrl"></app-pdf-viewer> -->
+
     <div class="youtube" *ngIf="guide.linkYoutube && guide.linkYoutube != '' && (!guide.fileName || guide.fileName == '')">
       <iframe [src]="guide.linkYoutube | safe" frameborder="0" allowfullscreen
         style="position:absolute; inset: 0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden;"

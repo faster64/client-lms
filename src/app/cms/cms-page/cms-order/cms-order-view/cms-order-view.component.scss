@@ -33,6 +33,14 @@
             th,
             td {
                 padding: 8px 16px;
+
+                &.success {
+                  color: var(--green-07);
+                }
+
+                &.failed {
+                  color: var(--red-05);
+                }
             }
         }
 

@@ -55,7 +55,7 @@ export class CmsOrderViewComponent extends CmsFormComponent implements AfterView
         )
         .subscribe(resp => {
           if (resp.code == 'success') {
-            SnackBar.success(new SnackBarParameter(this, 'Xác nhận thành công'));
+            SnackBar.success(new SnackBarParameter(this, 'Thông báo', 'Xác nhận thành công'));
             this.loadData();
           }
         });

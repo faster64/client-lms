@@ -9,6 +9,8 @@ import { StringHelper } from 'src/app/shared/helpers/string.helper';
 import { MessageBox } from 'src/app/shared/message-box/message-box.component';
 import { Message } from 'src/app/shared/message-box/model/message';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
+import { SnackBar } from 'src/app/shared/snackbar/snackbar.component';
+import { SnackBarParameter } from 'src/app/shared/snackbar/snackbar.param';
 
 @Component({
   selector: 'app-change-password',
@@ -100,7 +102,7 @@ export class ChangePasswordComponent extends BaseComponent implements AfterViewI
       .subscribe(
         resp => {
           if (resp.code == 'success') {
-            MessageBox.lms(new Message(this, { title: 'Thay đổi mật khẩu thành công!', content: 'Mật khẩu đã của bạn đã được thay đổi' }), true);
+            SnackBar.success(new SnackBarParameter(this, 'Thay đổi mật khẩu thành công!', 'Mật khẩu đã của bạn đã được thay đổi'));
             this.oldPassword = '';
             this.password = '';
             this.confirmPassword = '';
@@ -109,7 +111,7 @@ export class ChangePasswordComponent extends BaseComponent implements AfterViewI
             }
           }
         },
-        err => MessageBox.lms(new Message(this, { title: 'Xác thực thất bại!', content: err.error.message }), false)
+        err => SnackBar.danger(new SnackBarParameter(this, 'Xác thực thất bại!', err.error.message, SnackBar.forever))
       );
   }
 }

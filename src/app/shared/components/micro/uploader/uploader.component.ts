@@ -122,7 +122,7 @@ export class BaseUploaderComponent {
 
   upload(fileNames: string[]) {
     if (this.auto && this.isFetching) {
-      SnackBar.warning(new SnackBarParameter(this, 'File đang được tải lên, vui lòng đợi'));
+      SnackBar.warning(new SnackBarParameter(this, 'Lỗi', 'File đang được tải lên, vui lòng đợi'));
       return;
     }
 

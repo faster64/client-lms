@@ -29,27 +29,27 @@ export class TicketComponent extends BaseComponent {
 
   validate() {
     if (StringHelper.isNullOrEmpty(this.ticket.fullName)) {
-      SnackBar.warning(new SnackBarParameter(this, 'Vui lòng nhập họ và tên'));
+      SnackBar.warning(new SnackBarParameter(this, 'Cảnh báo', 'Vui lòng nhập họ và tên'));
       return false;
     }
     if (StringHelper.isNullOrEmpty(this.ticket.phoneNumber)) {
-      SnackBar.warning(new SnackBarParameter(this, 'Vui lòng nhập số điện thoại'));
+      SnackBar.warning(new SnackBarParameter(this, 'Cảnh báo', 'Vui lòng nhập số điện thoại'));
       return false;
     }
     if (StringHelper.isNullOrEmpty(this.ticket.email)) {
-      SnackBar.warning(new SnackBarParameter(this, 'Vui lòng nhập email'));
+      SnackBar.warning(new SnackBarParameter(this, 'Cảnh báo', 'Vui lòng nhập email'));
       return false;
     }
     if (StringHelper.isNullOrEmpty(this.ticket.classId) || this.ticket.classId == '0') {
-      SnackBar.warning(new SnackBarParameter(this, 'Vui lòng chọn lớp'));
+      SnackBar.warning(new SnackBarParameter(this, 'Cảnh báo', 'Vui lòng chọn lớp'));
       return false;
     }
     if (StringHelper.isNullOrEmpty(this.ticket.address)) {
-      SnackBar.warning(new SnackBarParameter(this, 'Vui lòng nhập địa chỉ'));
+      SnackBar.warning(new SnackBarParameter(this, 'Cảnh báo', 'Vui lòng nhập địa chỉ'));
       return false;
     }
     if (StringHelper.isNullOrEmpty(this.ticket.question)) {
-      SnackBar.warning(new SnackBarParameter(this, 'Vui lòng nhập nội dung'));
+      SnackBar.warning(new SnackBarParameter(this, 'Cảnh báo', 'Vui lòng nhập nội dung'));
       return false;
     }
     return true;
@@ -71,7 +71,7 @@ export class TicketComponent extends BaseComponent {
       .subscribe(resp => {
         if (resp.code == 'success') {
           this.ticket = new Ticket();
-          SnackBar.success(new SnackBarParameter(this, 'Gửi thông tin thành công'));
+          SnackBar.success(new SnackBarParameter(this, 'Thông báo', 'Gửi thông tin thành công'));
         }
       })
   }

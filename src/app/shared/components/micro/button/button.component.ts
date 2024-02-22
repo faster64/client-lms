@@ -169,6 +169,7 @@ export class BaseButton implements OnInit, AfterViewInit, OnDestroy {
    */
   notPermissionNotify() {
     const snackBarParameter = new SnackBarParameter();
+    snackBarParameter.title = 'Lỗi';
     snackBarParameter.message = TranslationService.VALUES['errors']['not_permission'];
     snackBarParameter.duration = 2000;
 

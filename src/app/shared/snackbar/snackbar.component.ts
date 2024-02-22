@@ -3,6 +3,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subject } from 'rxjs';
 import { SnackBarParameter } from './snackbar.param';
 
+export class NotificationMessageElement {
+  public title: HTMLElement;
+  public text: HTMLElement;
+}
+
 @Component({
   selector: 'snackbar',
   template: '',
@@ -23,11 +28,24 @@ export class SnackBar implements OnInit, OnDestroy {
   ngOnInit(): void {
   }
 
+  private static getHook() {
+    return document.getElementById("notification-hook");
+  }
+
+  private static getMessageBox(): NotificationMessageElement {
+    const title = (document.querySelector("#notification-hook .message .title") as HTMLElement);
+    const text = (document.querySelector("#notification-hook .message .text") as HTMLElement);
+    return {
+      title: title,
+      text: text
+    }
+  }
+
   private static openMessage(parameter: SnackBarParameter, className: string) {
     clearTimeout(this.timeoutId);
 
-    const hook = document.getElementById("notification-hook");
-    const messageBox = (document.querySelector("#notification-hook .message") as HTMLElement);
+    const hook = SnackBar.getHook();
+    const messageBox = SnackBar.getMessageBox();
     let timeout = 0;
 
     if (hook.classList.contains("opened")) {
@@ -45,7 +63,7 @@ export class SnackBar implements OnInit, OnDestroy {
     }, timeout);
   }
 
-  private static open(hook: HTMLElement, messageBox: HTMLElement, parameter: SnackBarParameter, className: string) {
+  private static open(hook: HTMLElement, box: NotificationMessageElement, parameter: SnackBarParameter, className: string) {
     hook.style.visibility = "visible";
     hook.style.right = "40px";
     hook.style.opacity = "1";
@@ -55,23 +73,28 @@ export class SnackBar implements OnInit, OnDestroy {
     hook.classList.remove("in-progress");
     hook.classList.add(className);
     hook.classList.add("opened");
-    messageBox.innerText = parameter.message;
+
+
+    box.title.innerText = parameter.title;
+    box.text.innerText = parameter.message;
 
     if (parameter.callback) {
       hook.addEventListener("click", () => parameter.callback());
     } else {
       hook.addEventListener("click", () => {
-        this.internalClose(hook, messageBox, parameter, className);
+        this.internalClose(hook, box, parameter, className);
       });
     }
   }
 
-  private static internalClose(hook: HTMLElement, messageBox: HTMLElement, parameter: SnackBarParameter, className: string) {
+  private static internalClose(hook: HTMLElement, box: NotificationMessageElement, parameter: SnackBarParameter, className: string) {
     hook.style.visibility = "hidden";
     hook.style.right = "-400px";
     hook.classList.remove(className);
     hook.classList.remove("opened");
-    messageBox.innerText = "";
+
+    box.title.innerText = "";
+    box.text.innerText = "";
 
     if (parameter.callback) {
       (hook as any).removeAllListeners();
@@ -79,39 +102,39 @@ export class SnackBar implements OnInit, OnDestroy {
   }
 
   public static close() {
-    const hook = document.getElementById("notification-hook");
-    const messageBox = (document.querySelector("#notification-hook .message") as HTMLElement);
+    const hook = SnackBar.getHook();
+    const messageBox = SnackBar.getMessageBox();
 
-    this.internalClose(hook, messageBox, new SnackBarParameter(null, ""), "success");
-    this.internalClose(hook, messageBox, new SnackBarParameter(null, ""), "warning");
-    this.internalClose(hook, messageBox, new SnackBarParameter(null, ""), "danger");
-    this.internalClose(hook, messageBox, new SnackBarParameter(null, ""), "in-progress");
+    this.internalClose(hook, messageBox, new SnackBarParameter(null, '', ''), "success");
+    this.internalClose(hook, messageBox, new SnackBarParameter(null, '', ''), "warning");
+    this.internalClose(hook, messageBox, new SnackBarParameter(null, '', ''), "danger");
+    this.internalClose(hook, messageBox, new SnackBarParameter(null, '', ''), "in-progress");
   }
 
   public static closeSuccess() {
-    const hook = document.getElementById("notification-hook");
-    const messageBox = (document.querySelector("#notification-hook .message") as HTMLElement);
+    const hook = SnackBar.getHook();
+    const messageBox = SnackBar.getMessageBox();
 
     this.internalClose(hook, messageBox, new SnackBarParameter(null, ""), "success");
   }
 
   public static closeWarning() {
-    const hook = document.getElementById("notification-hook");
-    const messageBox = (document.querySelector("#notification-hook .message") as HTMLElement);
+    const hook = SnackBar.getHook();
+    const messageBox = SnackBar.getMessageBox();
 
     this.internalClose(hook, messageBox, new SnackBarParameter(null, ""), "warning");
   }
 
   public static closeDanger() {
-    const hook = document.getElementById("notification-hook");
-    const messageBox = (document.querySelector("#notification-hook .message") as HTMLElement);
+    const hook = SnackBar.getHook();
+    const messageBox = SnackBar.getMessageBox();
 
     this.internalClose(hook, messageBox, new SnackBarParameter(null, ""), "danger");
   }
 
   public static closeInProgress() {
-    const hook = document.getElementById("notification-hook");
-    const messageBox = (document.querySelector("#notification-hook .message") as HTMLElement);
+    const hook = SnackBar.getHook();
+    const messageBox = SnackBar.getMessageBox();
 
     this.internalClose(hook, messageBox, new SnackBarParameter(null, ""), "in-progress");
   }

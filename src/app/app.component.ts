@@ -9,8 +9,8 @@ import { PublisherService } from './shared/services/base/publisher.service';
 import { SharedService } from './shared/services/base/shared.service';
 import { HubConnectionService } from './shared/services/socket/hub-connection.service';
 import { TranslationService } from './shared/services/translation/translation.service';
-import { MessageBox } from './shared/message-box/message-box.component';
-import { Message } from './shared/message-box/model/message';
+import { SnackBar } from './shared/snackbar/snackbar.component';
+import { SnackBarParameter } from './shared/snackbar/snackbar.param';
 
 @Component({
   selector: 'app-root',
@@ -51,7 +51,6 @@ export class AppComponent implements OnInit, OnDestroy {
     // this.authService.setProperty('access_token', '');
     this.subcribeEvents();
     this.hubService.connectHub();
-    // MessageBox.lms(new Message(this, { title: 'Đăng ký tài khoản thành công!', content: 'Bạn đã đăng ký thành công tài khoản tại Cánh Buồm Education. Hãy đăng nhập để trải nghiệm các khóa học của chúng tôi !' }));
   }
 
   subcribeEvents() {

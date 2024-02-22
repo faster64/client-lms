@@ -93,7 +93,7 @@ export class CmsSocialComponent extends BaseComponent implements AfterViewInit {
       )
       .subscribe(resp => {
         if (resp.code == 'success') {
-          SnackBar.success(new SnackBarParameter(this, TranslationService.VALUES['data_messages']['save_success_msg']));
+          SnackBar.success(new SnackBarParameter(this, 'Thông báo', TranslationService.VALUES['data_messages']['save_success_msg']));
           this.updateMode = false;
           this.load(false);
         }

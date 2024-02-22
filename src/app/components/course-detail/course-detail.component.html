@@ -30,8 +30,9 @@
       </base-button>
 
       <div class="purchased" *ngIf="course.purchased">
-        <div class="icon bg-contain"></div>
-        <div class="text">Đã mua</div>
+        <base-button class="access-btn" text="Truy cập khóa học" [height]="44" [finishImmediately]="true"
+          (onClick)="access($event)" *ngIf="course.purchased">
+        </base-button>
       </div>
     </div>
   </div>

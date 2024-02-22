@@ -164,7 +164,7 @@ export class CmsLessonFormComponent extends CmsFormComponent implements AfterVie
 
   removeAns(exercise: Exercise, index) {
     if (exercise.anwsers.length <= 1) {
-      SnackBar.warning(new SnackBarParameter(this, 'Phải có ít nhất 1 đáp án'));
+      SnackBar.warning(new SnackBarParameter(this, 'Cảnh báo', 'Phải có ít nhất 1 đáp án'));
       return;
     }
     exercise.anwsers.splice(index, 1);

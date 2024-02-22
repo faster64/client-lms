@@ -33,7 +33,8 @@ export class HubConnectionService {
       .withUrl(environment.hub_url, {
         accessTokenFactory: () => this.authService.getAccessToken(),
         withCredentials: false,
-        timeout: 120000
+        timeout: 120000,
+        // transport: signalR.HttpTransportType.WebSockets
       })
       .withAutomaticReconnect([0, 1000, 2000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 8000])
       .configureLogging(signalR.LogLevel.Information)
@@ -84,18 +85,18 @@ export class HubConnectionService {
     this.connection.onreconnecting(() => {
       console.warn("Kết nối tới máy chủ bị gián đoạn, đang thử kết nối lại...");
       if (AppComponent.Mode == 'cms')
-        SnackBar.warning(new SnackBarParameter(this, "Mất kết nối tới máy chủ, đang thử kết nối lại...", SnackBar.forever));
+        SnackBar.warning(new SnackBarParameter(this, "Lỗi", "Mất kết nối tới máy chủ, đang thử kết nối lại...", SnackBar.forever));
 
     });
     this.connection.onreconnected(() => {
       console.log("Kết nối tới máy chủ được phục hồi");
       if (AppComponent.Mode == 'cms')
-        SnackBar.success(new SnackBarParameter(this, "Kết nối tới máy chủ được phục hồi", 2000));
+        SnackBar.success(new SnackBarParameter(this, "Lỗi", "Kết nối tới máy chủ được phục hồi", 2000));
     });
     this.connection.onclose((error) => {
       console.log("Không thể kết nối tới máy chủ");
       if (AppComponent.Mode == 'cms')
-        SnackBar.danger(new SnackBarParameter(this, "Không thể kết nối tới máy chủ", SnackBar.forever));
+        SnackBar.danger(new SnackBarParameter(this, "Lỗi", "Không thể kết nối tới máy chủ", SnackBar.forever));
     });
   }
 

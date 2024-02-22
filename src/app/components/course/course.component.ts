@@ -31,6 +31,9 @@ export class CourseComponent extends BaseComponent {
   @Input()
   highlightWord = '';
 
+  @Input()
+  showPrice = true;
+
   constructor(
     injector: Injector,
     public publisher: PublisherService,
@@ -68,7 +71,7 @@ export class CourseComponent extends BaseComponent {
     this.publisher.updateCartEvent.emit();
 
     if (noti) {
-      SnackBar.success(new SnackBarParameter(this, 'Thêm vào giỏ thành công'));
+      SnackBar.success(new SnackBarParameter(this, 'Thông báo', 'Thêm vào giỏ thành công'));
     }
   }
 

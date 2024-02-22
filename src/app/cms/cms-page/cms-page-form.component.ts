@@ -109,7 +109,7 @@ export class CmsFormComponent extends BaseComponent {
     if (resp.code == 'success') {
       const id = this.formMode == FormMode.Add ? resp.data : this.id;
       const message = TranslationService.VALUES['data_messages'][this.formMode == FormMode.Add ? 'save_success_msg' : 'update_success_msg'];
-      SnackBar.success(new SnackBarParameter(this, message));
+      SnackBar.success(new SnackBarParameter(this, 'Thông báo', message));
 
       this.router.navigateByUrl(`/${this.path}/${FormModeText.VIEW}/${id}`);
     }
@@ -149,7 +149,7 @@ export class CmsFormComponent extends BaseComponent {
         )
         .subscribe(resp => {
           if (resp.code == 'success') {
-            SnackBar.success(new SnackBarParameter(this, TranslationService.VALUES['data_messages']['delete_success_msg']));
+            SnackBar.success(new SnackBarParameter(this, 'Thông báo', TranslationService.VALUES['data_messages']['delete_success_msg']));
             this.cancel();
           }
         });

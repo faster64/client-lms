@@ -66,7 +66,7 @@ export class Utility {
     }
     finally {
       // MessageBox.information(new Message(this, { content: TranslationService.VALUES['COMMON']['FEATURE_IS_IN_DEVELOPMENT'] }));
-      SnackBar.warning(new SnackBarParameter(this, TranslationService.VALUES['warnings']['feature_is_in_development'], 2000));
+      SnackBar.warning(new SnackBarParameter(this, 'Thông báo', TranslationService.VALUES['warnings']['feature_is_in_development'], 2000));
     }
   }
 

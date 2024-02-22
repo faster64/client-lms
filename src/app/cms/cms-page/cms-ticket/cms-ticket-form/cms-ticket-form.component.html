@@ -9,13 +9,13 @@
     <div class="row">
       <div class="col-12 col-md-6 data-item">
         <div class="label"> Họ và tên</div>
-        <dx-text-box [(value)]="data.fullName" [disabled]="true" [height]="44">
+        <dx-text-box [(value)]="data.fullName" [readOnly]="true" [height]="44">
         </dx-text-box>
       </div>
 
       <div class="col-12 col-md-6 data-item">
         <div class="label"> Số điện thoại</div>
-        <dx-text-box [(value)]="data.phoneNumber" [disabled]="true" [height]="44">
+        <dx-text-box [(value)]="data.phoneNumber" [readOnly]="true" [height]="44">
         </dx-text-box>
       </div>
     </div>
@@ -23,13 +23,13 @@
     <div class="row">
       <div class="col-12 col-md-6 data-item">
         <div class="label"> Email</div>
-        <dx-text-box [(value)]="data.email" [disabled]="true" [height]="44">
+        <dx-text-box [(value)]="data.email" [readOnly]="true" [height]="44">
         </dx-text-box>
       </div>
 
       <div class="col-12 col-md-6 data-item">
         <div class="label"> Lớp</div>
-        <app-class-selector #selector [value]="data.classId" [disabled]="true" [height]="44"
+        <app-class-selector #selector [value]="data.classId" [readOnly]="true" [height]="44"
           (onValueChanged)="data.classId = $event.current">
         </app-class-selector>
       </div>
@@ -38,7 +38,7 @@
     <div class="row">
       <div class="col-12 data-item">
         <div class="label"> Địa chỉ</div>
-        <dx-text-box [(value)]="data.address" [disabled]="true" [height]="44">
+        <dx-text-box [(value)]="data.address" [readOnly]="true" [height]="44">
         </dx-text-box>
       </div>
     </div>
@@ -46,7 +46,7 @@
     <div class="row">
       <div class="col-12 data-item">
         <div class="label"> Nội dung liên hệ</div>
-        <dx-text-area [(value)]="data.question" [disabled]="true" [minHeight]="80" [maxHeight]="400">
+        <dx-text-area [(value)]="data.question" [readOnly]="true" [minHeight]="80" [maxHeight]="400">
         </dx-text-area>
       </div>
     </div>
@@ -58,7 +58,7 @@
     <div class="row">
       <div class="col-12 data-item">
         <div class="label"> Nội dung phản hồi <span class="required">*</span> </div>
-        <dx-text-area #response [(value)]="data.response" [disabled]="data.status == TicketStatus.Responsed"
+        <dx-text-area #response [(value)]="data.response" [readOnly]="data.status == TicketStatus.Responsed"
           [minHeight]="200" [maxHeight]="400">
         </dx-text-area>
       </div>

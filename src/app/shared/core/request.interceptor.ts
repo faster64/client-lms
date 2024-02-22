@@ -91,7 +91,7 @@ export class RequestHandlingInterceptor implements HttpInterceptor {
     };
 
     header['X-Client-Time'] = Date.now() + "";
-    header['X-Client-Offset'] = new Date().getTimezoneOffset() * 60000 + "";
+    // header['X-Client-Offset'] = new Date().getTimezoneOffset() * 60000 + "";
     header['Accept-Language'] = this.culture();
     header['InternalKey'] = 'public';
 
@@ -142,7 +142,7 @@ export class RequestHandlingInterceptor implements HttpInterceptor {
   private refreshInvalid(error) {
     const currentStatus = this.authService.getCurrentStatus();
     if (currentStatus == AuthStatus.LoggedIn) {
-      SnackBar.danger(new SnackBarParameter(null, TranslationService.VALUES['errors']['session_expried'], 2000));
+      SnackBar.danger(new SnackBarParameter(null, 'Lỗi', TranslationService.VALUES['errors']['session_expried'], 2000));
     }
     this.authService.moveOut(false);
     return throwError(error);
@@ -155,7 +155,7 @@ export class RequestHandlingInterceptor implements HttpInterceptor {
         return this.handleUnauthorized(request, next);
 
       case HttpStatusCode.Forbidden:
-        SnackBar.danger(new SnackBarParameter(null, response.message));
+        SnackBar.danger(new SnackBarParameter(null, 'Lỗi', response.message));
         break;
 
       case HttpStatusCode.ServiceUnavailable:
@@ -180,10 +180,10 @@ export class RequestHandlingInterceptor implements HttpInterceptor {
         MessageBox.information(new Message(null, { content: message }));
         break;
       case NotificationType.SnackBarWarning:
-        SnackBar.warning(new SnackBarParameter(null, message));
+        SnackBar.warning(new SnackBarParameter(null, 'Cảnh báo', message));
         break;
       default:
-        SnackBar.danger(new SnackBarParameter(null, message));
+        SnackBar.danger(new SnackBarParameter(null, 'Lỗi', message));
         break;
     }
   }

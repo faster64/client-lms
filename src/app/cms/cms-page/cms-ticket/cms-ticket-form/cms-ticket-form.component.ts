@@ -68,7 +68,7 @@ export class CmsTicketFormComponent extends CmsFormComponent implements AfterVie
       return false;
     }
     if (StringHelper.isNullOrEmpty(this.data.response)) {
-      SnackBar.warning(new SnackBarParameter(this, 'Nội dung phản hồi không được để trống'));
+      SnackBar.warning(new SnackBarParameter(this, 'Cảnh báo', 'Nội dung phản hồi không được để trống'));
       this.saveBtn.finish();
       this.response.instance.focus();
       return false;
@@ -79,7 +79,7 @@ export class CmsTicketFormComponent extends CmsFormComponent implements AfterVie
 
   override afterSave(resp: ServiceResult): void {
     if (resp.code == 'success') {
-      SnackBar.success(new SnackBarParameter(this, 'Phản hồi thành công'));
+      SnackBar.success(new SnackBarParameter(this, 'Thông báo', 'Phản hồi thành công'));
       this.saveBtn.finish();
       this.loadData();
     }

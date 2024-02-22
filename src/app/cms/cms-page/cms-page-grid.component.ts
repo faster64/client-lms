@@ -142,7 +142,7 @@ export class CmsGridComponent<T> extends BaseComponent {
         )
         .subscribe(resp => {
           if (resp.code == 'success') {
-            SnackBar.success(new SnackBarParameter(this, TranslationService.VALUES['data_messages']['delete_success_msg']));
+            SnackBar.success(new SnackBarParameter(this, 'Thông báo', TranslationService.VALUES['data_messages']['delete_success_msg']));
             this.grid.uncheckAll();
             this.loadData();
           }

@@ -88,7 +88,7 @@ export class PersonalInformationComponent extends BaseComponent {
       .subscribe(resp => {
         if (resp.code == 'success') {
           this.viewMode = true;
-          SnackBar.success(new SnackBarParameter(this, 'Cập nhật thành công'));
+          SnackBar.success(new SnackBarParameter(this, 'Cập nhật thông tin cá nhân thành công!', 'Bạn vừa hoàn tất quá trình cập nhật thông tin cá nhân tại Cánh Buồm Education. Chúng tôi sẵn sàng hỗ trợ bạn trong hành trình học tập của mình.'));
           this.load();
         }
       });

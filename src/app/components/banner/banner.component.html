@@ -25,9 +25,17 @@
     </div>
 
     <div class="intro">
+      <div class="dots">
+        <ng-container *ngFor="let url of banner.imageUrls; index as i">
+          <div class="dot" [ngClass]="currentIndex == i ? 'current' : ''"></div>
+        </ng-container>
+      </div>
+
       <div class="text">
         {{banner.subTitle}}
       </div>
+
+      <div class="plus">++++++</div>
     </div>
   </div>
 </div>

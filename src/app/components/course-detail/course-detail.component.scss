@@ -63,7 +63,8 @@
     }
 
     .course-description {
-      margin: 0 var(--course-description-distance) 24px var(--course-description-distance);
+      margin: 0 var(--course-description-distance) 24px
+        var(--course-description-distance);
     }
 
     .course-price {
@@ -85,20 +86,8 @@
       }
 
       .purchased {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-
-        .icon {
-          width: 16px;
-          height: 16px;
-          margin-right: 8px;
-          background-image: url(~/src/assets/img/common/tick.svg);
-        }
-
-        .text {
-          color: var(--green-07);
+        button {
+          padding: 0 24px;
         }
       }
     }

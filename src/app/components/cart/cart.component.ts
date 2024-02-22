@@ -126,15 +126,15 @@ export class CartComponent extends BaseComponent implements AfterViewInit {
 
   validate() {
     if (StringHelper.isNullOrEmpty(this.user.fullName)) {
-      SnackBar.warning(new SnackBarParameter(this, 'Vui lòng nhập họ tên'));
+      SnackBar.warning(new SnackBarParameter(this, 'Cảnh báo', 'Vui lòng nhập họ tên'));
       return false;
     }
     if (StringHelper.isNullOrEmpty(this.user.email)) {
-      SnackBar.warning(new SnackBarParameter(this, 'Vui lòng nhập email'));
+      SnackBar.warning(new SnackBarParameter(this, 'Cảnh báo', 'Vui lòng nhập email'));
       return false;
     }
     if (StringHelper.isNullOrEmpty(this.user.phoneNumber)) {
-      SnackBar.warning(new SnackBarParameter(this, 'Vui lòng nhập số điện thoại'));
+      SnackBar.warning(new SnackBarParameter(this, 'Cảnh báo', 'Vui lòng nhập số điện thoại'));
       return false;
     }
     return true;

@@ -5,10 +5,10 @@ import { finalize, takeUntil } from 'rxjs';
 import { BaseComponent } from 'src/app/shared/components/base-component';
 import { BaseButton } from 'src/app/shared/components/micro/button/button.component';
 import { Routing } from 'src/app/shared/constants/routing.constant';
-import { MessageBox } from 'src/app/shared/message-box/message-box.component';
-import { Message } from 'src/app/shared/message-box/model/message';
+import { StringHelper } from 'src/app/shared/helpers/string.helper';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { SnackBar } from 'src/app/shared/snackbar/snackbar.component';
+import { SnackBarParameter } from 'src/app/shared/snackbar/snackbar.param';
 
 @Component({
   selector: 'app-forgot-password',
@@ -17,7 +17,7 @@ import { SnackBar } from 'src/app/shared/snackbar/snackbar.component';
 })
 export class ForgotPasswordComponent extends BaseComponent implements AfterViewInit {
 
-  emailValue = 'cuongnguyen.ftdev@gmail.com';
+  emailValue = '';
 
   error = '';
 
@@ -51,6 +51,10 @@ export class ForgotPasswordComponent extends BaseComponent implements AfterViewI
   login = () => this.router.navigateByUrl(Routing.LOGIN.path);
 
   send() {
+    if(StringHelper.isNullOrEmpty(this.emailValue)) {
+
+    }
+
     this.error = '';
     this.isLoading = true;
     this.authService
@@ -71,11 +75,12 @@ export class ForgotPasswordComponent extends BaseComponent implements AfterViewI
         },
         err => {
           if (err.error.code == 'not_found_email') {
-            MessageBox.lms(new Message(this, { title: 'Email không chính xác!', content: err.error.message }), false);
+            SnackBar.danger(new SnackBarParameter(this, 'Email không chính xác!', err.error.message, 5000))
+            // MessageBox.lms(new Message(this, { title: 'Email không chính xác!', content: err.error.message }), false);
           }
           else {
             if (this.step == 2) {
-              MessageBox.information(new Message(this, { content: 'Gửi mã thất bại. Vui lòng thử lại' }));
+              SnackBar.danger(new SnackBarParameter(this, 'Lỗi', 'Gửi mã thất bại. Vui lòng thử lại'));
               return;
             }
             this.error = err.error.message;
@@ -121,10 +126,10 @@ export class ForgotPasswordComponent extends BaseComponent implements AfterViewI
             this.router.navigateByUrl(`/${Routing.CHANGE_PASSWORD.path}?type=2&email=${this.emailValue}&code=${this.otp}`);
           }
           else {
-            MessageBox.lms(new Message(this, { title: title, content: msg }), false);
+            SnackBar.danger(new SnackBarParameter(this, title, msg, 5000));
           }
         },
-        err => MessageBox.lms(new Message(this, { title: title, content: msg }), false)
+        err => SnackBar.danger(new SnackBarParameter(this, title, msg, 5000))
       );
   }
 }

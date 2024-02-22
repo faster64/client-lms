@@ -13,7 +13,7 @@ export class BannerComponent extends BaseComponent implements AfterViewInit {
 
   banner = new Banner();
 
-  time = 4000;
+  time = 2000;
 
   currentIndex = 0;
 

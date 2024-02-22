@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { finalize, takeUntil } from 'rxjs';
 import { BaseComponent } from 'src/app/shared/components/base-component';
 import { LocalStorageKey } from 'src/app/shared/constants/localstorage-key.constant';
+import { Routing } from 'src/app/shared/constants/routing.constant';
 import { Course } from 'src/app/shared/models/course/course';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { PublisherService } from 'src/app/shared/services/base/publisher.service';
@@ -67,12 +68,18 @@ export class CourseDetailComponent extends BaseComponent {
     this.publisher.updateCartEvent.emit();
 
     if (noti) {
-      SnackBar.success(new SnackBarParameter(this, 'Thêm vào giỏ thành công'));
+      SnackBar.success(new SnackBarParameter(this, 'Thông báo', 'Thêm vào giỏ thành công'));
     }
   }
 
   buy() {
     this.authService.authenticate(() => this.loginCallback());
+  }
+
+  access(event) {
+    event?.stopPropagation();
+    event?.preventDefault();
+    this.router.navigateByUrl('/' + Routing.COURSE_LESSON_LIST.path + '/' + this.course.id);
   }
 
   loginCallback() {
