@@ -77,6 +77,33 @@
                 </table>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-12 data-item payment-histories">
+                <div class="label">Lịch sử giao dịch</div>
+                <table>
+                    <thead>
+                        <th>Thời gian</th>
+                        <th>Code</th>
+                        <th>Trạng thái</th>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let history of data.paymentHistories">
+                            <td>
+                                {{history.created | DateTimeVietnamPipe}}
+                            </td>
+                            <td>
+                                {{history.vnpResponseCode}}
+                            </td>
+                            <td>
+                                {{history.explain}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
     <div class="cms-features-bottom">

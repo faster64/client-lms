@@ -63,21 +63,18 @@ export class AppComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this._onDestroySub))
       .subscribe(async (event: any) => {
         if (event instanceof NavigationStart) {
-          this.progress = 50;
+          this.progress = 70;
           this.iid = setInterval(() => {
-            if (this.progress >= 90) {
-              clearInterval(this.iid);
-              return;
+            if (this.progress < 90) {
+              this.progress += 1;
             }
-            this.progress += 1;
           }, 20);
         }
 
         if (event instanceof NavigationEnd) {
-          this.progress = 95;
           setTimeout(() => {
-            clearInterval(this.iid);
             this.progress = 0;
+            clearInterval(this.iid);
           }, 300);
 
           if (event.urlAfterRedirects.startsWith(`/${Routing.CMS.path}`)) {

@@ -1,15 +1,15 @@
 import { AfterViewInit, Component, Injector, ViewChild } from '@angular/core';
-import { CmsFormComponent } from '../../cms-page-form.component';
-import { FormMode } from 'src/app/shared/enums/form-mode.enum';
-import { Routing } from 'src/app/shared/constants/routing.constant';
-import { OrderService } from 'src/app/shared/services/order/order.service';
-import { OrderStatus } from 'src/app/shared/enums/order-status.enum';
 import { finalize, takeUntil } from 'rxjs';
 import { BaseButton } from 'src/app/shared/components/micro/button/button.component';
-import { SnackBar } from 'src/app/shared/snackbar/snackbar.component';
-import { SnackBarParameter } from 'src/app/shared/snackbar/snackbar.param';
+import { Routing } from 'src/app/shared/constants/routing.constant';
+import { FormMode } from 'src/app/shared/enums/form-mode.enum';
+import { OrderStatus } from 'src/app/shared/enums/order-status.enum';
 import { MessageBox } from 'src/app/shared/message-box/message-box.component';
 import { Message } from 'src/app/shared/message-box/model/message';
+import { OrderService } from 'src/app/shared/services/order/order.service';
+import { SnackBar } from 'src/app/shared/snackbar/snackbar.component';
+import { SnackBarParameter } from 'src/app/shared/snackbar/snackbar.param';
+import { CmsFormComponent } from '../../cms-page-form.component';
 
 @Component({
   selector: 'app-cms-order-view',
