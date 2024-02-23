@@ -20,7 +20,7 @@ import { StringHelper } from 'src/app/shared/helpers/string.helper';
 })
 export class CmsLessonFormComponent extends CmsFormComponent implements AfterViewInit {
 
-  mode = 'docs';
+  mode = 'exercise';
 
   courses: Course[] = [];
 

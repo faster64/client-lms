@@ -140,7 +140,8 @@
           <div class="wrapper" (click)="openAttachment(exercise.imageUrl)">
             <div class="icon bg-contain"></div>
             <div class="name over-3-dots">{{exercise.image}}</div>
-            <div class="remove bg-contain" (click)="removeImageAttachment($event, exercise)" *ngIf="formMode != FormMode.View"></div>
+            <div class="remove bg-contain" (click)="removeImageAttachment($event, exercise)"
+              *ngIf="formMode != FormMode.View"></div>
           </div>
         </div>
 
@@ -148,7 +149,8 @@
           <div class="wrapper" (click)="openAttachment(exercise.audioUrl)">
             <div class="icon bg-contain"></div>
             <div class="name over-3-dots">{{exercise.audio}}</div>
-            <div class="remove bg-contain" (click)="removeAudioAttachment($event, exercise)" *ngIf="formMode != FormMode.View"></div>
+            <div class="remove bg-contain" (click)="removeAudioAttachment($event, exercise)"
+              *ngIf="formMode != FormMode.View"></div>
           </div>
         </div>
 
