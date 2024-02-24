@@ -1,17 +1,17 @@
 import { AfterViewInit, Component, Injector, ViewChild } from '@angular/core';
-import { CmsFormComponent } from '../../cms-page-form.component';
-import { FormMode } from 'src/app/shared/enums/form-mode.enum';
-import { Routing } from 'src/app/shared/constants/routing.constant';
-import { LessonService } from 'src/app/shared/services/lesson/lesson.service';
-import { Course } from 'src/app/shared/models/course/course';
-import { CourseService } from 'src/app/shared/services/course/course.service';
 import { finalize, takeUntil } from 'rxjs';
 import { BaseUploaderComponent } from 'src/app/shared/components/micro/uploader/uploader.component';
+import { Routing } from 'src/app/shared/constants/routing.constant';
+import { FormMode } from 'src/app/shared/enums/form-mode.enum';
 import { QuestionType } from 'src/app/shared/enums/question.enum';
+import { StringHelper } from 'src/app/shared/helpers/string.helper';
+import { Course } from 'src/app/shared/models/course/course';
 import { Exercise } from 'src/app/shared/models/lesson/exercise';
+import { CourseService } from 'src/app/shared/services/course/course.service';
+import { LessonService } from 'src/app/shared/services/lesson/lesson.service';
 import { SnackBar } from 'src/app/shared/snackbar/snackbar.component';
 import { SnackBarParameter } from 'src/app/shared/snackbar/snackbar.param';
-import { StringHelper } from 'src/app/shared/helpers/string.helper';
+import { CmsFormComponent } from '../../cms-page-form.component';
 
 @Component({
   selector: 'app-cms-lesson-form',
@@ -197,4 +197,5 @@ export class CmsLessonFormComponent extends CmsFormComponent implements AfterVie
   openAttachment(url) {
     window.open(url, '_blank');
   }
+
 }

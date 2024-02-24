@@ -84,6 +84,6 @@ a {
   /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 }
 
-.dx-texteditor.dx-state-readonly {
+.dx-texteditor.dx-state-readonly, .dx-htmleditor.dx-state-readonly {
   border-style: solid !important;
 }

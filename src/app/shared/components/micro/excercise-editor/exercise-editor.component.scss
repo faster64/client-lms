@@ -1,0 +1,28 @@
+::ng-deep .base-exercise-editor {
+  .dx-state-readonly {
+    .dx-htmleditor-toolbar-wrapper {
+      display: none !important;
+    }
+  }
+
+  .dx-state-disabled {
+    background-color: var(--greyish) !important;
+  }
+
+  .dx-htmleditor-toolbar-wrapper {
+    display: none;
+    padding: 0 5px;
+
+    .dx-toolbar-text-auto-hide .dx-button .dx-icon {
+      width: 12px !important;
+      height: 12px !important;
+      font-size: 12px !important;
+    }
+  }
+
+  .dx-state-focused {
+    .dx-htmleditor-toolbar-wrapper {
+      display: block;
+    }
+  }
+}

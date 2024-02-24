@@ -1,5 +1,6 @@
 <div class="base-editor">
-  <dx-html-editor [readOnly]="disable" [value]="valueContent" (onValueChanged)="onValueChanged($event)" [spellcheck]="false">
+  <dx-html-editor #editor [readOnly]="readonly" [disabled]="disable" [value]="valueContent" [placeholder]="disable ? '' : placeholder"
+    [spellcheck]="false" (onValueChanged)="onValueChanged($event)">
 
     <dxo-toolbar [multiline]="false">
       <dxi-item name="undo"></dxi-item>
@@ -20,7 +21,7 @@
         ]" [options]="{ inputAttr: { 'aria-label': 'Font family' } }">
       </dxi-item>
       <dxi-item name="separator"></dxi-item>
-      <dxi-item name="bold"></dxi-item>
+      <dxi-item name="bold" [options]="{ focusStateEnabled: false }"></dxi-item>
       <dxi-item name="italic"></dxi-item>
       <dxi-item name="strike"></dxi-item>
       <dxi-item name="underline"></dxi-item>

@@ -12,4 +12,5 @@ export class Exercise extends BaseModel {
   public audioUrl = '';
   public note = '';
   public hint = '';
+  public hasAttachment = false;
 }

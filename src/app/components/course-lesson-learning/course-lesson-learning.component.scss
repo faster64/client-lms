@@ -1,0 +1,64 @@
+::ng-deep .course-lesson-learning {
+  position: relative;
+  height: 100%;
+  min-height: 400px;
+  padding: 36px var(--side-distance);
+
+  .lesson-info {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    height: 60px;
+    margin-bottom: 12px;
+
+    .back {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      margin-right: 12px;
+      border-radius: 50%;
+      background-color: var(--main-color);
+      cursor: pointer;
+
+      .icon {
+        width: 16px;
+        height: 16px;
+        background-image: url(~/src/assets/img/common/back.svg);
+      }
+    }
+
+    .lesson-name {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: calc(100% - 156px);
+      font-size: var(--medium-title-size);
+      font-weight: 600;
+
+      .skeleton-loading {
+        inset: 16px 0;
+      }
+    }
+
+    .practice {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 120px;
+      height: 36px;
+      border-radius: 4px;
+      background-color: var(--main-color);
+      color: var(--white);
+    }
+  }
+
+  .progess-spinner-loading {
+    position: absolute !important;
+  }
+
+  .lesson-content {
+    height: calc(100% - 72px);
+  }
+}

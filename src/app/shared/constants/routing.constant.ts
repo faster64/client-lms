@@ -30,6 +30,7 @@ export class Routing {
   public static readonly MY_COURES = new RoutingConfig('khoa-hoc-cua-toi', 'home');
   public static readonly COURSE_DETAIL = new RoutingConfig('chi-tiet-khoa-hoc', 'course_detail');
   public static readonly COURSE_LESSON_LIST = new RoutingConfig('danh-sach-bai-giang', 'course_lesson_list');
+  public static readonly COURSE_LESSON_LEARNING = new RoutingConfig('hoc-bai', 'course_lesson_learning');
   public static readonly COURSE_LESSON_TEST = new RoutingConfig('bai-kiem-tra', 'course_lesson_test');
   public static readonly CART = new RoutingConfig('gio-hang', 'cart');
   public static readonly PAYMENT = new RoutingConfig('thanh-toan', 'payment');

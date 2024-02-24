@@ -4,7 +4,8 @@
   <div class="course-banner">
     <div class="course-img bg-cover" [ngStyle]="{backgroundImage: 'url(' + course.imageUrl + ')'}"></div>
     <div class="class">{{course.className}}</div>
-    <div class="price" *ngIf="showPrice">{{ course.price == 0 ? 'Miễn phí' : (course.purchased ? 'Đã mua' : course.price |
+    <div class="price" *ngIf="showPrice">{{ course.price == 0 ? 'Miễn phí' : (course.purchased ? 'Đã mua' : course.price
+      |
       NumberFormatPipe)}}</div>
   </div>
 
@@ -26,6 +27,11 @@
 
     <base-button class="access-btn" text="Truy cập khóa học" [height]="44" [finishImmediately]="true"
       (onClick)="access($event)" *ngIf="course.purchased">
+    </base-button>
+  </div>
+
+  <div class="course-features" *ngIf="!includeBtn">
+    <base-button class="access-btn" text="Vào học" [height]="44" [finishImmediately]="true">
     </base-button>
   </div>
 </a>

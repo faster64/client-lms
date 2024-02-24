@@ -43,6 +43,8 @@
           font-weight: 600;
 
           .required {
+            display: inline-block;
+            margin-left: 4px;
             color: var(--danger);
           }
         }

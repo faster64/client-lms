@@ -1,0 +1,27 @@
+<div class="course-lesson-learning">
+  <div class="lesson-info">
+    <a class="back" [routerLink]="'/' + Routing.COURSE_LESSON_LIST.path + '/' + this.course.id ">
+      <div class="icon bg-contain"></div>
+    </a>
+    <div class="lesson-name over-3-dots">
+      {{lesson.name}}
+    </div>
+
+    <a class="practice" [routerLink]="'/' + Routing.COURSE_LESSON_TEST.path + '/' + course.id + '/' + lesson.id">Làm bài
+      tập
+    </a>
+  </div>
+
+  <div class="lesson-content">
+    <div class="pdf" *ngIf="lesson.fileName && lesson.fileName != ''">
+      <embed [src]="lesson.fileUrl | safe" type="application/pdf" frameBorder="0" scrolling="auto" width="100%"
+        height="660px" />
+    </div>
+
+    <div class="no-data" style="margin: 56px; text-align: center; font-weight: 600;" *ngIf="!lesson.fileName || lesson.fileName == ''">
+      Tài liệu sẽ sớm xuất hiện tại đây!
+    </div>
+  </div>
+
+  <progess-spinner-loading *ngIf="isLoading"></progess-spinner-loading>
+</div>

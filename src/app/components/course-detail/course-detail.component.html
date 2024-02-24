@@ -11,7 +11,7 @@
     <div class="course-image" [ngStyle]="{backgroundImage: 'url(' + course.imageUrl + ')'}"></div>
 
     <div class="course-description">
-      <app-editor [valueContent]="course.description" [disable]="true">
+      <app-editor [valueContent]="course.description" [readonly]="true">
       </app-editor>
     </div>
 

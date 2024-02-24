@@ -70,7 +70,7 @@
     <div class="row description">
       <div class="col-12 data-item">
         <div class="label">Mô tả khóa học <span class="required">*</span></div>
-        <app-editor [valueContent]="data.description" [disable]="formMode == FormMode.View"
+        <app-editor [valueContent]="data.description" [readonly]="formMode == FormMode.View"
           (change)="data.description = $event">
         </app-editor>
       </div>

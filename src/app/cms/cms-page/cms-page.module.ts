@@ -39,6 +39,7 @@ import { CmsTicketFormComponent } from './cms-ticket/cms-ticket-form/cms-ticket-
 import { CmsTicketComponent } from './cms-ticket/cms-ticket.component';
 import { CmsUserFormComponent } from './cms-user/cms-user-form/cms-user-form.component';
 import { CmsUserComponent } from './cms-user/cms-user.component';
+import { ExerciseEditorModule } from 'src/app/shared/components/micro/excercise-editor/exercise-editor.module';
 
 
 @NgModule({
@@ -84,13 +85,13 @@ import { CmsUserComponent } from './cms-user/cms-user.component';
     SelectorModule,
     BaseUploaderModule,
     EditorModule,
+    ExerciseEditorModule,
     CmsUserStatesModule,
     CmsOrderStatesModule,
     CmsUploadCourseImageModule,
     CmsPdfModule,
     PipesModule,
     MatTooltipModule,
-    EditorModule
   ]
 })
 export class CmsPageModule { }

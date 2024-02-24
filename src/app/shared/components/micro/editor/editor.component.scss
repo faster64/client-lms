@@ -1,0 +1,11 @@
+::ng-deep .base-editor {
+  .dx-state-readonly {
+    .dx-htmleditor-toolbar-wrapper {
+      display: none !important;
+    }
+  }
+
+  .dx-state-disabled {
+    background-color: var(--grey) !important;
+  }
+}

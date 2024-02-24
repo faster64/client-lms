@@ -85,13 +85,13 @@ export class HubConnectionService {
     this.connection.onreconnecting(() => {
       console.warn("Kết nối tới máy chủ bị gián đoạn, đang thử kết nối lại...");
       if (AppComponent.Mode == 'cms')
-        SnackBar.warning(new SnackBarParameter(this, "Lỗi", "Mất kết nối tới máy chủ, đang thử kết nối lại...", SnackBar.forever));
+        SnackBar.warning(new SnackBarParameter(this, "Cảnh báo", "Mất kết nối tới máy chủ, đang thử kết nối lại...", SnackBar.forever));
 
     });
     this.connection.onreconnected(() => {
       console.log("Kết nối tới máy chủ được phục hồi");
       if (AppComponent.Mode == 'cms')
-        SnackBar.success(new SnackBarParameter(this, "Lỗi", "Kết nối tới máy chủ được phục hồi", 2000));
+        SnackBar.success(new SnackBarParameter(this, "Thông báo", "Kết nối tới máy chủ được phục hồi", 2000));
     });
     this.connection.onclose((error) => {
       console.log("Không thể kết nối tới máy chủ");

@@ -18,7 +18,7 @@
 
         <div class="less-item btns">
           <div class="learn">
-            <base-button text="Học bài" [height]="40" [width]="120" [finishImmediately]="true" (onClick)="Utility.featureIsInDevelopment($event)"></base-button>
+            <a [routerLink]="'/' + Routing.COURSE_LESSON_LEARNING.path + '/' + course.id + '/' + lesson.id">Học bài</a>
           </div>
           <div class="practice">
             <a [routerLink]="'/' + Routing.COURSE_LESSON_TEST.path + '/' + course.id + '/' + lesson.id">Làm bài tập</a>

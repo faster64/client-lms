@@ -1,5 +1,5 @@
 <div class="course-lesson-test">
-  <div class="test-info">
+  <div class="test-info" *ngIf="!isLoading">
     <a class="back" [routerLink]="'/' + Routing.COURSE_LESSON_LIST.path + '/' + this.course.id ">
       <div class="icon bg-contain"></div>
     </a>
@@ -11,9 +11,90 @@
     </div>
   </div>
 
-  <div class="test-content">
-    <div class="left"></div>
-    <div class="right table-questions">
+  <div class="test-content" *ngIf="!isLoading">
+    <div class="left" *ngIf="lesson.exercises && lesson.exercises.length">
+      <!-- {{lesson.exercises[currentExerciseIndex].typeText}} -->
+
+      <!-- câu hỏi  -->
+      <div class="question">
+        <div class="order">
+          <strong>Câu {{currentExerciseIndex + 1}}:</strong>
+        </div>
+
+        <div class="text" [innerHTML]="lesson.exercises[currentExerciseIndex].questionJson || ''"></div>
+      </div>
+
+      <!-- tệp -->
+      <div class="attachments" *ngIf="lesson.exercises[currentExerciseIndex].hasAttachment">
+        <div class="attachment-item image"
+          *ngIf="lesson.exercises[currentExerciseIndex].image && lesson.exercises[currentExerciseIndex].image != ''">
+          <img [src]="lesson.exercises[currentExerciseIndex].imageUrl" alt="Ảnh bài tập">
+        </div>
+
+        <div class="attachment-item audio"
+          *ngIf="lesson.exercises[currentExerciseIndex].audio && lesson.exercises[currentExerciseIndex].audio != ''">
+          <audio controls *ngIf="showAudio">
+            <source [src]="lesson.exercises[currentExerciseIndex].audioUrl" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+      </div>
+
+      <!-- đáp án  -->
+      <div class="anwsers">
+        <!-- điền khuyết  -->
+        <div class="wrapper" *ngIf="lesson.exercises[currentExerciseIndex].type == QuestionType.DIEN_KHUYET">
+          <div class="ans-item" style="margin-bottom: 12px;"
+            *ngFor="let ans of lesson.exercises[currentExerciseIndex].anwsers; index as j">
+            <dx-text-box placeholder="Nhập đán án" [height]="40"
+              [(value)]="practiceTests[currentExerciseIndex].anwsers[j]"
+              (onValueChanged)="buildAnswer(currentExerciseIndex)">
+            </dx-text-box>
+          </div>
+        </div>
+
+        <!-- gạch dưới or khoanh tròn -->
+        <div class="wrapper"
+          *ngIf="[QuestionType.GACH_DUOI, QuestionType.KHOANH_TRON].includes(lesson.exercises[currentExerciseIndex].type)">
+          <div class="ans-item"
+            style="display: flex; align-items: center; padding: 8px; margin-bottom: 12px; border: 1px solid var(--greyish); border-radius: 4px;"
+            *ngFor="let ans of lesson.exercises[currentExerciseIndex].anwsers; index as j">
+            <div class="checkbox" style="margin-right: 24px;">
+              <dx-check-box [height]="28" [(value)]="practiceTests[currentExerciseIndex].anwsers[j]"
+                (onValueChanged)="buildAnswer(currentExerciseIndex)">
+              </dx-check-box>
+            </div>
+            <div class="text">
+              {{ans.text}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="btns">
+        <base-button text="Quay lại" [finishImmediately]="true" [color]="ButtonColor.BASIC" [height]="44"
+          style="margin-right: 24px;" (onClick)="changeExercise(currentExerciseIndex - 1)"
+          *ngIf="currentExerciseIndex > 0">
+        </base-button>
+
+        <base-button text="Câu hỏi tiếp theo" [finishImmediately]="true" [height]="44"
+          (onClick)="changeExercise(currentExerciseIndex + 1)"
+          *ngIf="currentExerciseIndex < (lesson.exercises.length - 1)">
+        </base-button>
+
+        <base-button text="Kết thúc bài làm & kiểm tra kết quả" [finishImmediately]="true" [height]="44"
+          (onClick)="completed()" *ngIf="currentExerciseIndex  == lesson.exercises.length - 1">
+        </base-button>
+      </div>
+    </div>
+
+    <div class="left" *ngIf="!lesson.exercises || !lesson.exercises.length">
+      <span style="display: block; margin-top: 56px; text-align: center; font-weight: 600;">Các bài tập sẽ sớm xuất hiện
+        tại đây!</span>
+    </div>
+
+    <!-- bảng câu hỏi  -->
+    <div class="right table-questions" *ngIf="lesson.exercises && lesson.exercises.length">
 
       <div class="title">
         <h3>Bảng câu hỏi</h3>
@@ -35,13 +116,14 @@
       </div>
 
       <div class="questions">
-        <div class="question" *ngFor="let q of lesson.exercises; index as i" [ngClass]="i == 0 ? 'current' : ''">
-          {{i < 10 ? '0' + (i + 1) : i + 1}}
+        <div class="question" *ngFor="let q of lesson.exercises; index as i"
+          [ngClass]="(practiceTests[i].anwserJson && practiceTests[i].anwserJson != '') ? 'done' : (i == currentExerciseIndex ? 'current' : '')"
+          (click)="changeExercise(i)">
+          {{i < 10 ? '0' + (i + 1) : i + 1}} </div>
         </div>
       </div>
+
     </div>
 
+    <progess-spinner-loading *ngIf="isLoading"></progess-spinner-loading>
   </div>
-
-  <progess-spinner-loading *ngIf="isLoading"></progess-spinner-loading>
-</div>

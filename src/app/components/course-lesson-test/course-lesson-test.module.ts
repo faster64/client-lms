@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { CourseLessonTestRoutingModule } from './course-lesson-test-routing.module';
 import { CourseLessonTestComponent } from './course-lesson-test.component';
 import { BaseLoadingModule } from 'src/app/shared/components/micro/loading/loading.module';
+import { DxCheckBoxModule, DxTextBoxModule } from 'devextreme-angular';
+import { BaseButtonModule } from 'src/app/shared/components/micro/button/button.module';
 
 
 @NgModule({
@@ -13,7 +15,10 @@ import { BaseLoadingModule } from 'src/app/shared/components/micro/loading/loadi
   imports: [
     CommonModule,
     CourseLessonTestRoutingModule,
-    BaseLoadingModule
+    BaseLoadingModule,
+    BaseButtonModule,
+    DxCheckBoxModule,
+    DxTextBoxModule
   ]
 })
 export class CourseLessonTestModule { }

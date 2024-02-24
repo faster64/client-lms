@@ -115,6 +115,14 @@ const routes: Routes = [
     }
   },
   {
+    path: Routing.COURSE_LESSON_LEARNING.path,
+    loadChildren: () => import('./components/course-lesson-learning/course-lesson-learning.module').then(m => m.CourseLessonLearningModule),
+    canActivate: [AuthenticatedOnlyGuard],
+    resolve: {
+      resolver: BaseResolver,
+    }
+  },
+  {
     path: Routing.COURSE_LESSON_TEST.path,
     loadChildren: () => import('./components/course-lesson-test/course-lesson-test.module').then(m => m.CourseLessonTestModule),
     canActivate: [AuthenticatedOnlyGuard],

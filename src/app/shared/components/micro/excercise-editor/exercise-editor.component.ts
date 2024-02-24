@@ -2,11 +2,11 @@ import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core
 import { DxHtmlEditorComponent } from 'devextreme-angular';
 
 @Component({
-  selector: 'app-editor',
-  templateUrl: './editor.component.html',
-  styleUrls: ['./editor.component.scss']
+  selector: 'app-exercise-editor',
+  templateUrl: './exercise-editor.component.html',
+  styleUrls: ['./exercise-editor.component.scss']
 })
-export class EditorComponent {
+export class ExerciseEditorComponent {
 
   @Input()
   valueContent = '';
