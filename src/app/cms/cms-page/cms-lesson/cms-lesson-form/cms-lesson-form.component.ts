@@ -63,7 +63,7 @@ export class CmsLessonFormComponent extends CmsFormComponent implements AfterVie
 
   override loaded = () => {
     for (let i = 0; i < this.data.exercises.length; i++) {
-      this.data.exercises[i].anwsers = JSON.parse(this.data.exercises[i].anwserJson);
+      this.data.exercises[i].answers = JSON.parse(this.data.exercises[i].answerJson);
     }
     this.getCourses();
   }
@@ -72,9 +72,9 @@ export class CmsLessonFormComponent extends CmsFormComponent implements AfterVie
     for (let i = 0; i < this.data.exercises.length; i++) {
       const ex = this.data.exercises[i] as Exercise;
       if (ex.type == QuestionType.DIEN_KHUYET || ex.type == QuestionType.SAP_XEP) {
-        ex.anwsers = ex.anwsers.filter(x => !StringHelper.isNullOrEmpty(x));
+        ex.answers = ex.answers.filter(x => !StringHelper.isNullOrEmpty(x));
       }
-      ex.anwserJson = JSON.stringify(ex.anwsers);
+      ex.answerJson = JSON.stringify(ex.answers);
     }
   }
 
@@ -122,11 +122,11 @@ export class CmsLessonFormComponent extends CmsFormComponent implements AfterVie
 
   questionTypeChanged(exercise: Exercise) {
     if (exercise.type == QuestionType.GACH_DUOI || exercise.type == QuestionType.KHOANH_TRON) {
-      exercise.anwsers = [{ text: '', value: false }, { text: '', value: false }, { text: '', value: false }, { text: '', value: false }];
+      exercise.answers = [{ text: '', value: false }, { text: '', value: false }, { text: '', value: false }, { text: '', value: false }];
     } else if (exercise.type == QuestionType.DIEN_KHUYET) {
-      exercise.anwsers = [""];
+      exercise.answers = [""];
     } else {
-      exercise.anwsers = [""];
+      exercise.answers = [""];
     }
   }
 
@@ -134,40 +134,40 @@ export class CmsLessonFormComponent extends CmsFormComponent implements AfterVie
     this.data.exercises.push(
       {
         type: QuestionType.DIEN_KHUYET,
-        anwsers: [""]
+        answers: [""]
       },
     );
-    // setTimeout(() => {
-    //   var content = document.querySelector('.cms-content-middle');
-    //   content.scrollTo(0, (content as any).clientHeight);
-    // }, 100);
+    setTimeout(() => {
+      var content = document.querySelector('.cms-content-middle');
+      window.scrollTo(0, 0);
+    }, 100);
   }
 
   removeQuestion(index) {
     this.data.exercises.splice(index, 1);
   }
 
-  addAnwser(index) {
-    this.data.exercises[index].anwsers.push("");
+  addanswer(index) {
+    this.data.exercises[index].answers.push("");
   }
 
-  addTagAnwser(index) {
-    this.data.exercises[index].anwsers.push("");
+  addTaganswer(index) {
+    this.data.exercises[index].answers.push("");
   }
 
   onAnsChanged(exercise: Exercise, index, event) {
-    exercise.anwsers[index] = event.value;
+    exercise.answers[index] = event.value;
     setTimeout(() => {
-      exercise.anwsers.push("");
+      exercise.answers.push("");
     }, 200);
   }
 
   removeAns(exercise: Exercise, index) {
-    if (exercise.anwsers.length <= 1) {
+    if (exercise.answers.length <= 1) {
       SnackBar.warning(new SnackBarParameter(this, 'Cảnh báo', 'Phải có ít nhất 1 đáp án'));
       return;
     }
-    exercise.anwsers.splice(index, 1);
+    exercise.answers.splice(index, 1);
   }
 
   imageSelected(event, exercise: Exercise) {

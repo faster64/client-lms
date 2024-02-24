@@ -4,8 +4,8 @@ export class Exercise extends BaseModel {
   public lessonId = '0';
   public type = 0;
   public questionJson = '';
-  public anwserJson = '';
-  public anwsers = [];
+  public answerJson = '';
+  public answers = [];
   public image = '';
   public imageUrl = '';
   public audio = '';

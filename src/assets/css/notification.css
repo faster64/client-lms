@@ -8,7 +8,7 @@
   justify-content: flex-start;
   width: 420px;
   max-width: 80%;
-  height: 100px;
+  height: 120px;
   max-height: 200px;
   /* border-radius: 4px; */
   background-color: var(--white);
@@ -38,7 +38,7 @@
     left: 16px;
     bottom: 0;
     right: 16px;
-    padding: 6px 12px;
+    padding: 10px 12px;
     color: #333;
     font-size: 12px;
     letter-spacing: 1px;

@@ -93,7 +93,7 @@ export class CourseLessonTestComponent extends BaseComponent {
     setInterval(() => {
       console.log('saving draft...', this.practiceTests);
       this.testingService
-        .saveDraft(this.lesson.id, { exerciseDrafts: this.practiceTests })
+        .saveDraft(this.lesson.id, { answerDrafts: this.practiceTests })
         .subscribe();
     }, 60000);
   }
@@ -104,19 +104,19 @@ export class CourseLessonTestComponent extends BaseComponent {
         const ex = this.lesson.exercises[i];
         const prac = new PracticeTest();
         prac.exerciseId = ex.id;
-        prac.anwserJson = '';
-        prac.anwsers = [];
+        prac.answerJson = '';
+        prac.answers = [];
         prac.index = i;
 
         switch (ex.type) {
           case QuestionType.DIEN_KHUYET:
-            ex.anwsers = JSON.parse(ex.anwserJson);
-            prac.anwsers = Array(ex.anwsers.length).fill('');
+            ex.answers = JSON.parse(ex.answerJson);
+            prac.answers = Array(ex.answers.length).fill('');
             break;
           case QuestionType.GACH_DUOI:
           case QuestionType.KHOANH_TRON:
-            ex.anwsers = JSON.parse(ex.anwserJson);
-            prac.anwsers = Array(ex.anwsers.length).fill(false);
+            ex.answers = JSON.parse(ex.answerJson);
+            prac.answers = Array(ex.answers.length).fill(false);
             break;
           case QuestionType.SAP_XEP:
             ex.questionJson = 'Sắp xếp các từ sau thành câu hoàn chỉnh';
@@ -152,20 +152,20 @@ export class CourseLessonTestComponent extends BaseComponent {
     const prac = this.practiceTests[index];
     switch (this.lesson.exercises[index].type) {
       case QuestionType.DIEN_KHUYET:
-        if (prac.anwsers.findIndex(x => !StringHelper.isNullOrEmpty(x)) == -1) {
-          prac.anwserJson = '';
+        if (prac.answers.findIndex(x => !StringHelper.isNullOrEmpty(x)) == -1) {
+          prac.answerJson = '';
         }
         else {
-          prac.anwserJson = JSON.stringify(prac.anwsers);
+          prac.answerJson = JSON.stringify(prac.answers);
         }
         break;
       case QuestionType.GACH_DUOI:
       case QuestionType.KHOANH_TRON:
-        if (prac.anwsers.findIndex(x => x == true) == -1) {
-          prac.anwserJson = '';
+        if (prac.answers.findIndex(x => x == true) == -1) {
+          prac.answerJson = '';
         }
         else {
-          prac.anwserJson = JSON.stringify(prac.anwsers);
+          prac.answerJson = JSON.stringify(prac.answers);
         }
         break;
       case QuestionType.SAP_XEP:
@@ -175,13 +175,13 @@ export class CourseLessonTestComponent extends BaseComponent {
   }
 
   completed() {
-    const possibleComplete = this.practiceTests.findIndex(x => !StringHelper.isNullOrEmpty(x.anwserJson)) != -1;
+    const possibleComplete = this.practiceTests.findIndex(x => !StringHelper.isNullOrEmpty(x.answerJson)) != -1;
     if (!possibleComplete) {
       SnackBar.danger(new SnackBarParameter(this, 'Lỗi', 'Vui lòng làm bài trước khi kiểm tra kết quả'));
       return;
     }
 
-    const uncompleted = this.practiceTests.findIndex(x => StringHelper.isNullOrEmpty(x.anwserJson)) != -1;
+    const uncompleted = this.practiceTests.findIndex(x => StringHelper.isNullOrEmpty(x.answerJson)) != -1;
     if (uncompleted) {
       MessageBox.confirm(new Message(this, { content: 'Bạn chưa hoàn thành đầy đủ bài tập. Bạn có chắc chắn muốn kết thúc?' }, () => {
         console.log('confirm');

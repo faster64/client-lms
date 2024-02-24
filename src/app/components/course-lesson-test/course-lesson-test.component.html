@@ -41,13 +41,13 @@
       </div>
 
       <!-- đáp án  -->
-      <div class="anwsers">
+      <div class="answers">
         <!-- điền khuyết  -->
         <div class="wrapper" *ngIf="lesson.exercises[currentExerciseIndex].type == QuestionType.DIEN_KHUYET">
           <div class="ans-item" style="margin-bottom: 12px;"
-            *ngFor="let ans of lesson.exercises[currentExerciseIndex].anwsers; index as j">
+            *ngFor="let ans of lesson.exercises[currentExerciseIndex].answers; index as j">
             <dx-text-box placeholder="Nhập đán án" [height]="40"
-              [(value)]="practiceTests[currentExerciseIndex].anwsers[j]"
+              [(value)]="practiceTests[currentExerciseIndex].answers[j]"
               (onValueChanged)="buildAnswer(currentExerciseIndex)">
             </dx-text-box>
           </div>
@@ -58,9 +58,9 @@
           *ngIf="[QuestionType.GACH_DUOI, QuestionType.KHOANH_TRON].includes(lesson.exercises[currentExerciseIndex].type)">
           <div class="ans-item"
             style="display: flex; align-items: center; padding: 8px; margin-bottom: 12px; border: 1px solid var(--greyish); border-radius: 4px;"
-            *ngFor="let ans of lesson.exercises[currentExerciseIndex].anwsers; index as j">
+            *ngFor="let ans of lesson.exercises[currentExerciseIndex].answers; index as j">
             <div class="checkbox" style="margin-right: 24px;">
-              <dx-check-box [height]="28" [(value)]="practiceTests[currentExerciseIndex].anwsers[j]"
+              <dx-check-box [height]="28" [(value)]="practiceTests[currentExerciseIndex].answers[j]"
                 (onValueChanged)="buildAnswer(currentExerciseIndex)">
               </dx-check-box>
             </div>
@@ -117,7 +117,7 @@
 
       <div class="questions">
         <div class="question" *ngFor="let q of lesson.exercises; index as i"
-          [ngClass]="(practiceTests[i].anwserJson && practiceTests[i].anwserJson != '') ? 'done' : (i == currentExerciseIndex ? 'current' : '')"
+          [ngClass]="(practiceTests[i].answerJson && practiceTests[i].answerJson != '') ? 'done' : (i == currentExerciseIndex ? 'current' : '')"
           (click)="changeExercise(i)">
           {{i < 10 ? '0' + (i + 1) : i + 1}} </div>
         </div>
