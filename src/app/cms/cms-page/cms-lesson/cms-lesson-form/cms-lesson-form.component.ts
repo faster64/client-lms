@@ -20,7 +20,7 @@ import { CmsFormComponent } from '../../cms-page-form.component';
 })
 export class CmsLessonFormComponent extends CmsFormComponent implements AfterViewInit {
 
-  mode = 'exercise';
+  mode = 'docs';
 
   courses: Course[] = [];
 
