@@ -1,14 +1,12 @@
 import { Component, Injector } from '@angular/core';
-import { finalize, switchMap, takeUntil } from 'rxjs';
+import { finalize, takeUntil } from 'rxjs';
 import { BaseComponent } from 'src/app/shared/components/base-component';
 import { QuestionType } from 'src/app/shared/enums/question.enum';
-import { StringHelper } from 'src/app/shared/helpers/string.helper';
 import { MessageBox } from 'src/app/shared/message-box/message-box.component';
 import { Message } from 'src/app/shared/message-box/model/message';
 import { Course } from 'src/app/shared/models/course/course';
 import { Lesson } from 'src/app/shared/models/lesson/lesson';
-import { PracticeTest } from 'src/app/shared/models/lesson/practice-test';
-import { TestingDraft } from 'src/app/shared/models/lesson/testing-draft';
+import { TestingFormData } from 'src/app/shared/models/lesson/testing-form-data';
 import { LessonClientService } from 'src/app/shared/services/lesson/lesson-client.service';
 import { TestingService } from 'src/app/shared/services/lesson/testing-service';
 import { SnackBar } from 'src/app/shared/snackbar/snackbar.component';
@@ -27,9 +25,7 @@ export class CourseLessonTestComponent extends BaseComponent {
 
   lesson = new Lesson();
 
-  practiceTests: PracticeTest[] = [];
-
-  draft: TestingDraft = null;
+  formData = new TestingFormData();
 
   currentExerciseIndex = 0;
 
@@ -50,9 +46,9 @@ export class CourseLessonTestComponent extends BaseComponent {
     this.lesson.id = this.activatedRoute.snapshot.params['lessonId'];
     this.load();
 
-    window.onbeforeunload = function () {
-      return confirm("Confirm refresh");
-    };
+    // window.onbeforeunload = function () {
+    //   return confirm("Confirm refresh");
+    // };
   }
 
   override ngOnDestroy(): void {
@@ -62,18 +58,6 @@ export class CourseLessonTestComponent extends BaseComponent {
 
   load() {
     this.isLoading = true;
-    // this.testingService
-    //   .getDraft(this.lesson.id)
-    //   .pipe(
-    //     takeUntil(this._onDestroySub),
-    //     switchMap(resp => {
-    //       if (resp.code == 'success') {
-    //         this.draft = resp.data;
-    //       }
-    //       return this.lessonClientService.getLessonById(this.lesson.id, this.course.id)
-    //     }),
-    //     finalize(() => this.isLoading = false)
-    //   );
     this.lessonClientService
       .getLessonById(this.lesson.id, this.course.id)
       .pipe(
@@ -83,54 +67,39 @@ export class CourseLessonTestComponent extends BaseComponent {
       .subscribe(resp => {
         if (resp.code == 'success') {
           this.lesson = resp.data;
-          this.setExercises();
-          // this.saveDraftInterval();
+          this.setupFormData();
         }
       })
   }
 
-  saveDraftInterval() {
-    setInterval(() => {
-      console.log('saving draft...', this.practiceTests);
-      this.testingService
-        .saveDraft(this.lesson.id, { answerDrafts: this.practiceTests })
-        .subscribe();
-    }, 60000);
-  }
+  setupFormData() {
+    this.formData.lessonId = this.lesson.id;
+    this.formData.exerciseWithAnswers = [];
 
-  setExercises() {
     if (this.lesson && this.lesson.exercises && this.lesson.exercises.length) {
       for (let i = 0; i < this.lesson.exercises.length; i++) {
         const ex = this.lesson.exercises[i];
-        const prac = new PracticeTest();
-        prac.exerciseId = ex.id;
-        prac.answerJson = '';
-        prac.answers = [];
-        prac.index = i;
-
         switch (ex.type) {
           case QuestionType.DIEN_KHUYET:
-            ex.answers = JSON.parse(ex.answerJson);
-            prac.answers = Array(ex.answers.length).fill('');
             break;
           case QuestionType.GACH_DUOI:
           case QuestionType.KHOANH_TRON:
-            ex.answers = JSON.parse(ex.answerJson);
-            prac.answers = Array(ex.answers.length).fill(false);
             break;
           case QuestionType.SAP_XEP:
             ex.questionJson = 'Sắp xếp các từ sau thành câu hoàn chỉnh';
             break;
         }
 
-        this.practiceTests.push(prac);
+        this.formData.exerciseWithAnswers.push({
+          exercise: ex,
+          answer: {
+            answerJson: '',
+            answerArray: Array(ex.answers.length),
+            exerciseId: ex.id
+          },
+        });
       }
     }
-    // if (this.draft) {
-    //   this.practiceTests = JSON.parse(JSON.stringify(this.draft));
-    // }
-
-    console.log(this.practiceTests);
   }
 
   changeExercise(index) {
@@ -144,52 +113,32 @@ export class CourseLessonTestComponent extends BaseComponent {
       this.showAudio = true;
       window.scrollTo(0, 0);
     }, 100);
-
-    console.log(this.practiceTests);
   }
 
-  buildAnswer(index) {
-    const prac = this.practiceTests[index];
-    switch (this.lesson.exercises[index].type) {
-      case QuestionType.DIEN_KHUYET:
-        if (prac.answers.findIndex(x => !StringHelper.isNullOrEmpty(x)) == -1) {
-          prac.answerJson = '';
-        }
-        else {
-          prac.answerJson = JSON.stringify(prac.answers);
-        }
-        break;
-      case QuestionType.GACH_DUOI:
-      case QuestionType.KHOANH_TRON:
-        if (prac.answers.findIndex(x => x == true) == -1) {
-          prac.answerJson = '';
-        }
-        else {
-          prac.answerJson = JSON.stringify(prac.answers);
-        }
-        break;
-      case QuestionType.SAP_XEP:
-        break;
+  validateBeforeCompleted(): boolean {
+    const possibleComplete = false;
+    if (!possibleComplete) {
+      SnackBar.danger(new SnackBarParameter(this, 'Lỗi', 'Vui lòng làm bài trước khi kiểm tra kết quả'));
+      return false;
     }
-    console.log(prac);
+    return true;
   }
 
   completed() {
-    const possibleComplete = this.practiceTests.findIndex(x => !StringHelper.isNullOrEmpty(x.answerJson)) != -1;
-    if (!possibleComplete) {
-      SnackBar.danger(new SnackBarParameter(this, 'Lỗi', 'Vui lòng làm bài trước khi kiểm tra kết quả'));
+    if (!this.validateBeforeCompleted()) {
       return;
     }
 
-    const uncompleted = this.practiceTests.findIndex(x => StringHelper.isNullOrEmpty(x.answerJson)) != -1;
-    if (uncompleted) {
-      MessageBox.confirm(new Message(this, { content: 'Bạn chưa hoàn thành đầy đủ bài tập. Bạn có chắc chắn muốn kết thúc?' }, () => {
+    const uncompleteds = [];
+    if (uncompleteds.length > 0) {
+      MessageBox.confirm(new Message(this, { content: `Vẫn còn ${uncompleteds.length} câu bạn chưa làm. Bạn có chắc chắn muốn kết thúc?` }, () => {
         console.log('confirm');
       }));
       return;
     }
+  }
 
-    console.log(this.practiceTests);
-    console.log(JSON.stringify(this.practiceTests));
+  answerChanged(index, event) {
+    console.log(index, event);
   }
 }

@@ -6,6 +6,7 @@ export class Exercise extends BaseModel {
   public questionJson = '';
   public answerJson = '';
   public answers = [];
+  public multiCorrectAnswers = false;
   public image = '';
   public imageUrl = '';
   public audio = '';

@@ -96,6 +96,24 @@
 
       .answers {
         min-height: 40px;
+
+        .wrapper {
+          .ans-item {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            border: 1px solid var(--greyish);
+            border-radius: 4px;
+          }
+
+          &.t-1 {
+            .ans-item {
+              border: none;
+            }
+          }
+        }
       }
 
       .btns {

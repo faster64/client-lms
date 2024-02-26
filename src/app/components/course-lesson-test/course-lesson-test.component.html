@@ -42,33 +42,47 @@
 
       <!-- đáp án  -->
       <div class="answers">
-        <!-- điền khuyết  -->
-        <div class="wrapper" *ngIf="lesson.exercises[currentExerciseIndex].type == QuestionType.DIEN_KHUYET">
-          <div class="ans-item" style="margin-bottom: 12px;"
-            *ngFor="let ans of lesson.exercises[currentExerciseIndex].answers; index as j">
-            <dx-text-box placeholder="Nhập đán án" [height]="40"
-              [(value)]="practiceTests[currentExerciseIndex].answers[j]"
-              (onValueChanged)="buildAnswer(currentExerciseIndex)">
-            </dx-text-box>
-          </div>
-        </div>
+        <ng-container *ngFor="let ewa of formData.exerciseWithAnswers; index as i">
+          <div class="wrapper" [ngClass]="'t-' + ewa.exercise.type" *ngIf="i == currentExerciseIndex">
 
-        <!-- gạch dưới or khoanh tròn -->
-        <div class="wrapper"
-          *ngIf="[QuestionType.GACH_DUOI, QuestionType.KHOANH_TRON].includes(lesson.exercises[currentExerciseIndex].type)">
-          <div class="ans-item"
-            style="display: flex; align-items: center; padding: 8px; margin-bottom: 12px; border: 1px solid var(--greyish); border-radius: 4px;"
-            *ngFor="let ans of lesson.exercises[currentExerciseIndex].answers; index as j">
-            <div class="checkbox" style="margin-right: 24px;">
-              <dx-check-box [height]="28" [(value)]="practiceTests[currentExerciseIndex].answers[j]"
-                (onValueChanged)="buildAnswer(currentExerciseIndex)">
-              </dx-check-box>
-            </div>
-            <div class="text">
-              {{ans.text}}
-            </div>
+            <!-- điền khuyết  -->
+            <ng-container *ngIf="ewa.exercise.type == QuestionType.DIEN_KHUYET">
+              <div class="ans-item" *ngFor="let ans of ewa.exercise.answers; index as j">
+                {{ewa.answer.answerArray | json}}
+                <dx-text-box placeholder="Nhập đán án" [height]="40" [width]="320"
+                  (onValueChanged)="answerChanged(currentExerciseIndex, $event)">
+                </dx-text-box>
+              </div>
+            </ng-container>
+
+            <!-- gạch dưới or khoanh tròn -->
+            <ng-container *ngIf="[QuestionType.GACH_DUOI, QuestionType.KHOANH_TRON].includes(ewa.exercise.type)">
+              <div class="ans-item" *ngFor="let ans of ewa.exercise.answers; index as j">
+
+                {{ewa.answer.answerArray | json}}
+                <!-- nhiều đáp án -->
+                <ng-container *ngIf="ewa.exercise.multiCorrectAnswers">
+                  <div class="checkbox" style="margin-right: 24px;" *ngIf="!ans.multiCorrectAnswers">
+                    <dx-check-box [height]="28">
+                    </dx-check-box>
+                  </div>
+
+                  <div class="text"> {{ans.text}} </div>
+                </ng-container>
+
+                <!-- 1 đáp án -->
+                <ng-container *ngIf="!ewa.exercise.multiCorrectAnswers">
+                  <input type="radio" [id]="'id-' + j" name="ans-one" style="width: 20px; height: 20px;">
+
+                  <label [for]="'id-' + j" style="margin-bottom: 0; margin-left: 12px;"> {{ans.text}} </label><br>
+                </ng-container>
+
+              </div>
+            </ng-container>
+
           </div>
-        </div>
+        </ng-container>
+
       </div>
 
       <div class="btns">
@@ -116,8 +130,8 @@
       </div>
 
       <div class="questions">
-        <div class="question" *ngFor="let q of lesson.exercises; index as i"
-          [ngClass]="(practiceTests[i].answerJson && practiceTests[i].answerJson != '') ? 'done' : (i == currentExerciseIndex ? 'current' : '')"
+        <div class="question" *ngFor="let ewa of formData.exerciseWithAnswers; index as i"
+          [ngClass]="(ewa.answer.answerJson && ewa.answer.answerJson != '') ? 'done' : (i == currentExerciseIndex ? 'current' : '')"
           (click)="changeExercise(i)">
           {{i < 10 ? '0' + (i + 1) : i + 1}} </div>
         </div>
