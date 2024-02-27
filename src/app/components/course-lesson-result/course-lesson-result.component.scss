@@ -55,7 +55,8 @@
       flex-wrap: wrap;
       .exercise {
         width: 25%;
-        height: 212px;
+        min-height: 212px;
+        max-height: 400px;
         padding: 8px;
         margin-bottom: 12px;
         &.correct {
@@ -80,6 +81,8 @@
           height: 100%;
           padding: 12px;
           border-radius: 8px;
+          overflow: hidden;
+
           .answer {
             margin: 12px 0;
           }
@@ -116,6 +119,16 @@
     .test-content {
       .exercise {
         width: 50%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .course-lesson-result-cpn {
+    .test-content {
+      .exercise {
+        width: 100%;
       }
     }
   }

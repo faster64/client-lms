@@ -70,7 +70,6 @@ export class CourseLessonTestComponent extends BaseComponent {
       .subscribe(resp => {
         if (resp.code == 'success') {
           if (resp.data) {
-            console.log(resp.data);
             this.router.navigateByUrl(`/${Routing.COURSE_LESSON_RESULT.path}/${this.course.id}/${this.lesson.id}`);
           }
           else {
@@ -125,7 +124,6 @@ export class CourseLessonTestComponent extends BaseComponent {
           });
         }
 
-        console.log(array);
         this.formData.exerciseWithAnswers.push({
           exercise: ex,
           answer: {
@@ -222,7 +220,6 @@ export class CourseLessonTestComponent extends BaseComponent {
       const ewa = this.formData.exerciseWithAnswers[i];
       this.buildOneAnswer(ewa);
     }
-    console.log(this.formData);
   }
 
   submit() {

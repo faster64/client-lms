@@ -161,3 +161,22 @@
     }
   }
 }
+
+
+@media screen and (max-width: 992px) {
+  .course-lesson-cpn {
+    .lessons {
+      .lesson {
+        flex-wrap: wrap;
+        .lesson-image {
+          width: 100%;
+          height: 220px;
+        }
+        .lesson-info-wrapper {
+          width: 100%;
+          height: calc(100% - 220px);
+        }
+      }
+    }
+  }
+}

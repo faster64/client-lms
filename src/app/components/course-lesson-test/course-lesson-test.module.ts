@@ -7,6 +7,7 @@ import { BaseLoadingModule } from 'src/app/shared/components/micro/loading/loadi
 import { DxCheckBoxModule, DxRadioGroupModule, DxTextBoxModule } from 'devextreme-angular';
 import { BaseButtonModule } from 'src/app/shared/components/micro/button/button.module';
 import { FormsModule } from '@angular/forms';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { FormsModule } from '@angular/forms';
     BaseButtonModule,
     DxCheckBoxModule,
     DxRadioGroupModule,
-    DxTextBoxModule
+    DxTextBoxModule,
+    MatTooltipModule
   ]
 })
 export class CourseLessonTestModule { }

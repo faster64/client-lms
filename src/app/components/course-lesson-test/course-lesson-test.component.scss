@@ -231,3 +231,26 @@
     }
   }
 }
+
+@media screen and (max-width: 992px) {
+  .course-lesson-test-cpn {
+    .test-content {
+      flex-wrap: wrap;
+      flex-direction: column-reverse;
+      .left,
+      .right {
+        width: 100% !important;
+        margin-bottom: 24px;
+      }
+
+      .right {
+        .legend {
+          justify-content: flex-start;
+          .legend-item {
+            margin-right: 24px;
+          }
+        }
+      }
+    }
+  }
+}
