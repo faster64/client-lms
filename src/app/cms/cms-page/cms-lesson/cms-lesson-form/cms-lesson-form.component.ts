@@ -3,7 +3,7 @@ import { finalize, takeUntil } from 'rxjs';
 import { BaseUploaderComponent } from 'src/app/shared/components/micro/uploader/uploader.component';
 import { Routing } from 'src/app/shared/constants/routing.constant';
 import { FormMode } from 'src/app/shared/enums/form-mode.enum';
-import { QuestionType } from 'src/app/shared/enums/question.enum';
+import { ExerciseType } from 'src/app/shared/enums/exercise.enum';
 import { StringHelper } from 'src/app/shared/helpers/string.helper';
 import { Course } from 'src/app/shared/models/course/course';
 import { Exercise } from 'src/app/shared/models/lesson/exercise';
@@ -28,7 +28,7 @@ export class CmsLessonFormComponent extends CmsFormComponent implements AfterVie
 
   LessonService = LessonService;
 
-  QuestionType = QuestionType;
+  QuestionType = ExerciseType;
 
   @ViewChild("attachmentUploader")
   attachmentUploader: BaseUploaderComponent;
@@ -71,7 +71,7 @@ export class CmsLessonFormComponent extends CmsFormComponent implements AfterVie
   override beforeSave(): void {
     for (let i = 0; i < this.data.exercises.length; i++) {
       const ex = this.data.exercises[i] as Exercise;
-      if (ex.type == QuestionType.DIEN_KHUYET || ex.type == QuestionType.SAP_XEP) {
+      if (ex.type == ExerciseType.DIEN_KHUYET || ex.type == ExerciseType.SAP_XEP) {
         ex.answers = ex.answers.filter(x => !StringHelper.isNullOrEmpty(x));
       }
       ex.answerJson = JSON.stringify(ex.answers);
@@ -121,9 +121,9 @@ export class CmsLessonFormComponent extends CmsFormComponent implements AfterVie
   }
 
   questionTypeChanged(exercise: Exercise) {
-    if (exercise.type == QuestionType.GACH_DUOI || exercise.type == QuestionType.KHOANH_TRON) {
+    if (exercise.type == ExerciseType.GACH_DUOI || exercise.type == ExerciseType.KHOANH_TRON) {
       exercise.answers = [{ text: '', value: false }, { text: '', value: false }, { text: '', value: false }, { text: '', value: false }];
-    } else if (exercise.type == QuestionType.DIEN_KHUYET) {
+    } else if (exercise.type == ExerciseType.DIEN_KHUYET) {
       exercise.answers = [""];
     } else {
       exercise.answers = [""];
@@ -133,7 +133,7 @@ export class CmsLessonFormComponent extends CmsFormComponent implements AfterVie
   addQuestion() {
     this.data.exercises.push(
       {
-        type: QuestionType.DIEN_KHUYET,
+        type: ExerciseType.DIEN_KHUYET,
         answers: [""]
       },
     );

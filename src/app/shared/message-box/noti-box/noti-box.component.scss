@@ -61,6 +61,6 @@
   z-index: var(--message-box) !important;
 }
 
-::ng-deep .mat-mdc-raised-button:not(:disabled) {
+::ng-deep .cdk-overlay-container .mat-mdc-dialog-actions .mat-mdc-raised-button:not(:disabled) {
   background-color: var(--main-color) !important;
 }

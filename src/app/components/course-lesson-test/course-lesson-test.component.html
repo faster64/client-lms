@@ -25,7 +25,7 @@
       </div>
 
       <!-- tệp -->
-      <div class="attachments" *ngIf="lesson.exercises[currentExerciseIndex].hasAttachment">
+      <div class="attachments" *ngIf="lesson.exercises[currentExerciseIndex].hasAttachment && false">
         <div class="attachment-item image"
           *ngIf="lesson.exercises[currentExerciseIndex].image && lesson.exercises[currentExerciseIndex].image != ''">
           <img [src]="lesson.exercises[currentExerciseIndex].imageUrl" alt="Ảnh bài tập">
@@ -45,38 +45,52 @@
         <ng-container *ngFor="let ewa of formData.exerciseWithAnswers; index as i">
           <div class="wrapper" [ngClass]="'t-' + ewa.exercise.type" *ngIf="i == currentExerciseIndex">
 
-            <!-- điền khuyết  -->
-            <ng-container *ngIf="ewa.exercise.type == QuestionType.DIEN_KHUYET">
+            <!-- điền khuyết -->
+            <ng-container *ngIf="ewa.exercise.type == ExerciseType.DIEN_KHUYET">
               <div class="ans-item" *ngFor="let ans of ewa.exercise.answers; index as j">
-                {{ewa.answer.answerArray | json}}
-                <dx-text-box placeholder="Nhập đán án" [height]="40" [width]="320"
-                  (onValueChanged)="answerChanged(currentExerciseIndex, $event)">
+                <dx-text-box placeholder="Nhập đán án" [height]="40" [width]="320" [(value)]="ewa.answer.answerArray[j]"
+                  (onValueChanged)="buildOneAnswer(ewa)">
                 </dx-text-box>
               </div>
             </ng-container>
 
             <!-- gạch dưới or khoanh tròn -->
-            <ng-container *ngIf="[QuestionType.GACH_DUOI, QuestionType.KHOANH_TRON].includes(ewa.exercise.type)">
+            <ng-container *ngIf="[ExerciseType.GACH_DUOI, ExerciseType.KHOANH_TRON].includes(ewa.exercise.type)">
               <div class="ans-item" *ngFor="let ans of ewa.exercise.answers; index as j">
 
-                {{ewa.answer.answerArray | json}}
                 <!-- nhiều đáp án -->
                 <ng-container *ngIf="ewa.exercise.multiCorrectAnswers">
                   <div class="checkbox" style="margin-right: 24px;" *ngIf="!ans.multiCorrectAnswers">
-                    <dx-check-box [height]="28">
+                    <dx-check-box [height]="28" [(value)]="ewa.answer.answerArray[j]"
+                      (onValueChanged)="buildOneAnswer(ewa)">
                     </dx-check-box>
                   </div>
 
-                  <div class="text"> {{ans.text}} </div>
+                  <span class="text"> {{ans.text}} </span>
                 </ng-container>
 
                 <!-- 1 đáp án -->
                 <ng-container *ngIf="!ewa.exercise.multiCorrectAnswers">
-                  <input type="radio" [id]="'id-' + j" name="ans-one" style="width: 20px; height: 20px;">
+                  <input type="radio" style="width: 20px; height: 20px; margin-right: 24px;" name="ans-group"
+                    [checked]="ewa.answer.answerArray[j]" (change)="radioChanged(ewa, j)">
 
-                  <label [for]="'id-' + j" style="margin-bottom: 0; margin-left: 12px;"> {{ans.text}} </label><br>
+                  <span class="text"> {{ans.text}} </span>
                 </ng-container>
 
+              </div>
+            </ng-container>
+
+            <!-- sắp xếp -->
+            <ng-container *ngIf="ewa.exercise.type == ExerciseType.SAP_XEP">
+              <div class="student-ans-line">
+                <div class="sta-item" *ngFor="let ans of ewa.answer.studentAnswerArray; index as j"
+                  (click)="sapxep_remove(ewa, j)">
+                  {{ans.value}}
+                </div>
+              </div>
+              <div class="random-item" [ngClass]="ans.disabled ? 'disabled' : ''"
+                *ngFor="let ans of ewa.answer.answerArray; index as j" (click)="sapxep_choose(ewa, j)">
+                {{ans.value}}
               </div>
             </ng-container>
 
@@ -86,18 +100,17 @@
       </div>
 
       <div class="btns">
-        <base-button text="Quay lại" [finishImmediately]="true" [color]="ButtonColor.BASIC" [height]="44"
-          style="margin-right: 24px;" (onClick)="changeExercise(currentExerciseIndex - 1)"
-          *ngIf="currentExerciseIndex > 0">
+        <base-button text="Quay lại" [class]="'back'" [finishImmediately]="true" [color]="ButtonColor.BASIC"
+          [height]="44" (onClick)="changeExercise(currentExerciseIndex - 1)" *ngIf="currentExerciseIndex > 0">
         </base-button>
 
-        <base-button text="Câu hỏi tiếp theo" [finishImmediately]="true" [height]="44"
+        <base-button text="Câu hỏi tiếp theo" class="'next'" [finishImmediately]="true" [height]="44"
           (onClick)="changeExercise(currentExerciseIndex + 1)"
           *ngIf="currentExerciseIndex < (lesson.exercises.length - 1)">
         </base-button>
 
         <base-button text="Kết thúc bài làm & kiểm tra kết quả" [finishImmediately]="true" [height]="44"
-          (onClick)="completed()" *ngIf="currentExerciseIndex  == lesson.exercises.length - 1">
+          (onClick)="submit()" *ngIf="currentExerciseIndex == lesson.exercises.length - 1">
         </base-button>
       </div>
     </div>

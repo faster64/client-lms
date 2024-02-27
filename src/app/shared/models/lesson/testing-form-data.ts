@@ -16,4 +16,5 @@ export class Answer {
   public exerciseId = '';
   public answerJson = '';
   public answerArray = [];
+  public studentAnswerArray = []; // SAP_XEP only
 }

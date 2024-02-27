@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from '../base/base.service';
 import { HttpService } from '../base/http.service';
-import { QuestionType } from '../../enums/question.enum';
+import { ExerciseType } from '../../enums/exercise.enum';
 @Injectable({
   providedIn: 'root'
 })
@@ -9,19 +9,19 @@ export class LessonService extends BaseService {
 
   public static QuestionTypes = [
     {
-      id: QuestionType.DIEN_KHUYET,
+      id: ExerciseType.DIEN_KHUYET,
       text: 'Mẫu câu điền khuyết'
     },
     {
-      id: QuestionType.GACH_DUOI,
+      id: ExerciseType.GACH_DUOI,
       text: 'Mẫu câu có đáp án đúng gạch dưới'
     },
     {
-      id: QuestionType.KHOANH_TRON,
+      id: ExerciseType.KHOANH_TRON,
       text: 'Mẫu câu có đáp án đúng khoanh tròn'
     },
     {
-      id: QuestionType.SAP_XEP,
+      id: ExerciseType.SAP_XEP,
       text: 'Mẫu câu sắp xếp từ thành câu'
     }
   ]

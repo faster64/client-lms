@@ -64,9 +64,11 @@
         display: flex;
         align-items: flex-start;
         margin-bottom: 24px;
+
         .order {
           width: 56px;
         }
+
         .text {
           width: calc(100% - 56px);
         }
@@ -74,6 +76,7 @@
 
       .attachments {
         margin-bottom: 24px;
+
         .attachment-item {
           img {
             max-width: 100%;
@@ -98,6 +101,8 @@
         min-height: 40px;
 
         .wrapper {
+          margin-bottom: 24px;
+
           .ans-item {
             display: flex;
             align-items: center;
@@ -106,6 +111,30 @@
             margin-bottom: 12px;
             border: 1px solid var(--greyish);
             border-radius: 4px;
+          }
+
+          .random-item,
+          .sta-item {
+            display: inline-block;
+            min-width: 64px;
+            height: 48px;
+            line-height: 48px;
+            padding: 0px 24px;
+            margin-right: 24px;
+            margin-bottom: 12px;
+            border: 1px solid var(--greyish);
+            border-radius: 4px;
+            cursor: pointer;
+
+            &.random-item.disabled {
+              background-color: var(--greyish);
+              color: var(--greyish);
+            }
+          }
+
+          .student-ans-line {
+            margin-bottom: 12px;
+            border-bottom: 1px solid var(--greyish);
           }
 
           &.t-1 {
@@ -119,6 +148,10 @@
       .btns {
         display: flex;
         align-items: center;
+
+        base-button {
+          margin-right: 24px;
+        }
       }
     }
 
@@ -129,16 +162,19 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+
         .legend-item {
           display: flex;
           flex-wrap: wrap;
           align-items: center;
+
           .square {
             width: 16px;
             height: 16px;
             margin-right: 4px;
             border-radius: 2px;
           }
+
           .text {
             width: calc(100% - 20px);
           }
@@ -149,11 +185,13 @@
             border: 1px solid var(--main-color);
           }
         }
+
         .not {
           .square {
             background-color: var(--greyish);
           }
         }
+
         .done {
           .square {
             background-color: var(--green-07);
