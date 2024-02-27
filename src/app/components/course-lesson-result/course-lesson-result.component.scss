@@ -1,0 +1,122 @@
+::ng-deep .course-lesson-result-cpn {
+  position: relative;
+  height: 100%;
+  min-height: 400px;
+  padding: 36px var(--side-distance);
+
+  .test-info {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    height: 60px;
+    margin-bottom: 12px;
+
+    .back {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      margin-right: 12px;
+      border-radius: 50%;
+      background-color: var(--main-color);
+      cursor: pointer;
+
+      .icon {
+        width: 16px;
+        height: 16px;
+        background-image: url(~/src/assets/img/common/back.svg);
+      }
+    }
+
+    .test-name {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: calc(100% - 36px);
+      font-size: var(--medium-title-size);
+      font-weight: 600;
+
+      .skeleton-loading {
+        inset: 16px 0;
+      }
+    }
+
+    .test-note {
+      width: 100%;
+    }
+  }
+
+  .test-content {
+    height: calc(100% - 72px);
+    .wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      .exercise {
+        width: 25%;
+        height: 212px;
+        padding: 8px;
+        margin-bottom: 12px;
+        &.correct {
+          .inner {
+            background-color: var(--green-01);
+            .icon {
+              background-image: url(~/src/assets/img/lesson/correct.svg);
+            }
+          }
+        }
+        &.incorrect {
+          .inner {
+            background-color: var(--red-01);
+            .icon {
+              background-image: url(~/src/assets/img/lesson/incorrect.svg);
+            }
+          }
+        }
+
+        .inner {
+          position: relative;
+          height: 100%;
+          padding: 12px;
+          border-radius: 8px;
+          .answer {
+            margin: 12px 0;
+          }
+
+          .icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 16px;
+            height: 16px;
+          }
+        }
+      }
+    }
+  }
+
+  .progess-spinner-loading {
+    position: absolute !important;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .course-lesson-result-cpn {
+    .test-content {
+      .exercise {
+        width: 33%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .course-lesson-result-cpn {
+    .test-content {
+      .exercise {
+        width: 50%;
+      }
+    }
+  }
+}

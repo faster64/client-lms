@@ -32,6 +32,8 @@ export class Routing {
   public static readonly COURSE_LESSON_LIST = new RoutingConfig('danh-sach-bai-giang', 'course_lesson_list');
   public static readonly COURSE_LESSON_LEARNING = new RoutingConfig('hoc-bai', 'course_lesson_learning');
   public static readonly COURSE_LESSON_TEST = new RoutingConfig('bai-kiem-tra', 'course_lesson_test');
+  public static readonly COURSE_LESSON_CONGRATULATION = new RoutingConfig('chuc-mung-bai-kiem-tra', 'course_lesson_congratulation');
+  public static readonly COURSE_LESSON_RESULT = new RoutingConfig('ket-qua-kiem-tra', 'course_lesson_result');
   public static readonly CART = new RoutingConfig('gio-hang', 'cart');
   public static readonly PAYMENT = new RoutingConfig('thanh-toan', 'payment');
   public static readonly PAYMENT_STATE = new RoutingConfig('trang-thai-don-hang', 'payment_state');

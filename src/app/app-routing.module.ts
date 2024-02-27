@@ -131,6 +131,22 @@ const routes: Routes = [
     }
   },
   {
+    path: Routing.COURSE_LESSON_CONGRATULATION.path,
+    loadChildren: () => import('./components/course-lesson-congratulation/course-lesson-congratulation.module').then(m => m.CourseLessonCongratulationModule),
+    canActivate: [AuthenticatedOnlyGuard],
+    resolve: {
+      resolver: BaseResolver,
+    }
+  },
+  {
+    path: Routing.COURSE_LESSON_RESULT.path,
+    loadChildren: () => import('./components/course-lesson-result/course-lesson-result.module').then(m => m.CourseLessonResultModule),
+    canActivate: [AuthenticatedOnlyGuard],
+    resolve: {
+      resolver: BaseResolver,
+    }
+  },
+  {
     path: Routing.CART.path,
     loadChildren: () => import('./components/cart/cart.module').then(m => m.CartModule),
     canActivate: [BaseGuard],

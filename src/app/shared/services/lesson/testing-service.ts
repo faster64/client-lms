@@ -15,7 +15,12 @@ export class TestingService extends BaseService {
 
   getDraft(lessonId) {
     const url = `${this.url()}/draft?lessonId=${lessonId}`;
-    return this.http.get<ServiceResult>(url, this._baseOptions);
+    return this.http.get<ServiceResult>(url);
+  }
+
+  getTesting(lessonId) {
+    const url = `${this.url()}/result?lessonId=${lessonId}`;
+    return this.http.get<ServiceResult>(url);
   }
 
   submit(data: TestingFormData) {

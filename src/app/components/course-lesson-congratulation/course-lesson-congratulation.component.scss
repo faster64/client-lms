@@ -1,10 +1,11 @@
-::ng-deep .course-lesson-learning-cpn {
+::ng-deep .course-lesson-congratulation-cpn {
   position: relative;
   height: 100%;
   min-height: 400px;
   padding: 36px var(--side-distance);
 
-  .lesson-info {
+  .test-info {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -29,11 +30,11 @@
       }
     }
 
-    .lesson-name {
+    .test-name {
       position: relative;
       display: flex;
       align-items: center;
-      width: calc(100% - 156px);
+      width: calc(100% - 36px);
       font-size: var(--medium-title-size);
       font-weight: 600;
 
@@ -42,23 +43,52 @@
       }
     }
 
-    .practice {
+    .test-note {
+      width: 100%;
+    }
+  }
+
+  .test-content {
+    height: calc(100% - 72px);
+
+    .image {
+      max-width: 100%;
+      width: 400px;
+      height: 320px;
+      margin: 12px auto 24px auto;
+      background-image: url(~/src/assets/img/lesson/congratulation.png);
+    }
+
+    .congratulation {
+      width: 100%;
+      text-align: center;
+      font-size: var(--small-title-size);
+    }
+
+    .result {
+      width: 100%;
+      margin: 12px 0 24px 0;
+      text-align: center;
+      span {
+        font-weight: 600;
+        color: var(--main-color);
+      }
+    }
+
+    .btns {
       display: flex;
       align-items: center;
-      justify-content: center;
-      width: 120px;
-      height: 36px;
-      border-radius: 4px;
-      background-color: var(--main-color);
-      color: var(--white);
+      width: 100%;
+      padding-top: 12px;
+      border-top: 1px solid var(--greyish);
+
+      base-button {
+        margin-right: 12px;
+      }
     }
   }
 
   .progess-spinner-loading {
     position: absolute !important;
-  }
-
-  .lesson-content {
-    height: calc(100% - 72px);
   }
 }

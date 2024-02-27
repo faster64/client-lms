@@ -1,0 +1,84 @@
+<div class="course-lesson-result-cpn">
+
+  <div class="test-info" *ngIf="!isLoading">
+    <a class="back" [routerLink]="'/' + Routing.COURSE_LESSON_LIST.path + '/' + this.course.id ">
+      <div class="icon bg-contain"></div>
+    </a>
+    <div class="test-name over-3-dots">
+      {{lesson ? lesson.testName : ''}}
+    </div>
+    <div class="test-note over-3-dots">
+      <strong>Ghi chú:</strong> {{lesson ? lesson.testDescription : ''}}
+    </div>
+
+    <skeleton-loading *ngIf="isLoadingLesson"></skeleton-loading>
+  </div>
+
+  <div class="test-content">
+    <div class="wrapper">
+      <div class="exercise" [ngClass]="item.isCorrect ? 'correct': 'incorrect'"
+        *ngFor="let item of result.items; index as i">
+        <div class="inner">
+
+          <div class="order"><strong>Câu {{i + 1}}:</strong></div>
+
+          <div class="answer">
+            Câu trả lời:
+
+            <!-- điền khuyết  -->
+            <ng-container *ngIf="item.exercise.type == ExerciseType.DIEN_KHUYET">
+              <span *ngFor="let ans of item.dienKhuyet">
+                <strong style="margin: 0 6px;">{{ans.student}}</strong>
+              </span>
+            </ng-container>
+
+            <!-- gạch dưới  -->
+            <ng-container *ngIf="item.exercise.type == ExerciseType.GACH_DUOI">
+              <strong style="margin: 0 6px;">{{item.gachDuoi.student}}</strong>
+            </ng-container>
+
+            <!-- khoanh tròn  -->
+            <ng-container *ngIf="item.exercise.type == ExerciseType.KHOANH_TRON">
+              <strong style="margin: 0 6px;">{{item.khoanhTron.student}}</strong>
+            </ng-container>
+
+            <!-- sắp xếp  -->
+            <ng-container *ngIf="item.exercise.type == ExerciseType.SAP_XEP">
+              <strong style="margin: 0 6px;">{{item.sapXep.student}}</strong>
+            </ng-container>
+          </div>
+
+          <div class="result" *ngIf="!item.isCorrect || true">
+            Đáp án:
+
+            <!-- điền khuyết  -->
+            <ng-container *ngIf="item.exercise.type == ExerciseType.DIEN_KHUYET">
+              <span *ngFor="let ans of item.dienKhuyet">
+                <strong style="margin: 0 6px;">{{ans.correct}}</strong>
+              </span>
+            </ng-container>
+
+            <!-- gạch dưới  -->
+            <ng-container *ngIf="item.exercise.type == ExerciseType.GACH_DUOI">
+              <strong style="margin: 0 6px;">{{item.gachDuoi.correct}}</strong>
+            </ng-container>
+
+            <!-- khoanh tròn  -->
+            <ng-container *ngIf="item.exercise.type == ExerciseType.KHOANH_TRON">
+              <strong style="margin: 0 6px;">{{item.khoanhTron.correct}}</strong>
+            </ng-container>
+
+            <!-- sắp xếp  -->
+            <ng-container *ngIf="item.exercise.type == ExerciseType.SAP_XEP">
+              <strong style="margin: 0 6px;">{{item.sapXep.correct}}</strong>
+            </ng-container>
+          </div>
+
+          <div class="icon bg-contain"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <progess-spinner-loading *ngIf="isLoading"></progess-spinner-loading>
+</div>

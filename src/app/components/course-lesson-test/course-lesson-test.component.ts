@@ -1,6 +1,8 @@
 import { Component, Injector } from '@angular/core';
+import { Router } from '@angular/router';
 import { finalize, takeUntil } from 'rxjs';
 import { BaseComponent } from 'src/app/shared/components/base-component';
+import { Routing } from 'src/app/shared/constants/routing.constant';
 import { ExerciseType } from 'src/app/shared/enums/exercise.enum';
 import { StringHelper } from 'src/app/shared/helpers/string.helper';
 import { MessageBox } from 'src/app/shared/message-box/message-box.component';
@@ -10,8 +12,6 @@ import { Lesson } from 'src/app/shared/models/lesson/lesson';
 import { ExerciseWithAnswer, TestingFormData } from 'src/app/shared/models/lesson/testing-form-data';
 import { LessonClientService } from 'src/app/shared/services/lesson/lesson-client.service';
 import { TestingService } from 'src/app/shared/services/lesson/testing-service';
-import { SnackBar } from 'src/app/shared/snackbar/snackbar.component';
-import { SnackBarParameter } from 'src/app/shared/snackbar/snackbar.param';
 import { Utility } from 'src/app/shared/utility/utility';
 
 @Component({
@@ -35,6 +35,7 @@ export class CourseLessonTestComponent extends BaseComponent {
 
   constructor(
     injector: Injector,
+    public router: Router,
     public lessonClientService: LessonClientService,
     public testingService: TestingService
   ) {
@@ -46,16 +47,37 @@ export class CourseLessonTestComponent extends BaseComponent {
 
     this.course.id = this.activatedRoute.snapshot.params['courseId'];
     this.lesson.id = this.activatedRoute.snapshot.params['lessonId'];
-    this.load();
+    this.check();
 
-    // window.onbeforeunload = function () {
-    //   return confirm("Confirm refresh");
-    // };
+    window.onbeforeunload = function () {
+      return confirm("Confirm refresh");
+    };
   }
 
   override ngOnDestroy(): void {
     super.ngOnDestroy();
     window.onbeforeunload = null;
+  }
+
+  check() {
+    this.isLoading = true;
+    this.testingService
+      .getTesting(this.lesson.id)
+      .pipe(
+        takeUntil(this._onDestroySub),
+        finalize(() => this.isLoading = false)
+      )
+      .subscribe(resp => {
+        if (resp.code == 'success') {
+          if (resp.data) {
+            console.log(resp.data);
+            this.router.navigateByUrl(`/${Routing.COURSE_LESSON_RESULT.path}/${this.course.id}/${this.lesson.id}`);
+          }
+          else {
+            this.load();
+          }
+        }
+      });
   }
 
   load() {
@@ -225,7 +247,9 @@ export class CourseLessonTestComponent extends BaseComponent {
         finalize(() => this.isLoading = false)
       )
       .subscribe(resp => {
-        console.log(resp);
+        if (resp.code == 'success') {
+          this.router.navigateByUrl(`/${Routing.COURSE_LESSON_CONGRATULATION.path}/${this.course.id}/${this.lesson.id}`);
+        }
       });
   }
 }

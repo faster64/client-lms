@@ -1,13 +1,13 @@
-<div class="course-lesson-test">
+<div class="course-lesson-test-cpn">
   <div class="test-info" *ngIf="!isLoading">
     <a class="back" [routerLink]="'/' + Routing.COURSE_LESSON_LIST.path + '/' + this.course.id ">
       <div class="icon bg-contain"></div>
     </a>
     <div class="test-name over-3-dots">
-      {{lesson.testName}}
+      {{lesson ? lesson.testName : ''}}
     </div>
     <div class="test-note over-3-dots">
-      <strong>Ghi chú:</strong> {{lesson.testDescription}}
+      <strong>Ghi chú:</strong> {{lesson ? lesson.testDescription : ''}}
     </div>
   </div>
 
@@ -25,7 +25,7 @@
       </div>
 
       <!-- tệp -->
-      <div class="attachments" *ngIf="lesson.exercises[currentExerciseIndex].hasAttachment && false">
+      <div class="attachments" *ngIf="lesson.exercises[currentExerciseIndex].hasAttachment">
         <div class="attachment-item image"
           *ngIf="lesson.exercises[currentExerciseIndex].image && lesson.exercises[currentExerciseIndex].image != ''">
           <img [src]="lesson.exercises[currentExerciseIndex].imageUrl" alt="Ảnh bài tập">
