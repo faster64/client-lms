@@ -48,10 +48,10 @@ export class CmsLessonFormComponent extends CmsFormComponent implements AfterVie
     if (this.formMode != FormMode.View) {
       this.data.exercises = [];
       this.addQuestion();
-      this.data.name = 'Bài giảng về tình cảm';
-      this.data.description = 'Bài giảng này đẳng cấp lắm, mua ngay!';
-      this.data.testName = 'Bài kiểm tra về tình yêuuu';
-      this.data.testDescription = 'tình yêuuu';
+      // this.data.name = 'Bài giảng về tình cảm';
+      // this.data.description = 'Bài giảng này đẳng cấp lắm, mua ngay!';
+      // this.data.testName = 'Bài kiểm tra về tình yêuuu';
+      // this.data.testDescription = 'tình yêuuu';
     }
   }
 
