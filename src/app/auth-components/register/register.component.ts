@@ -59,11 +59,11 @@ export class RegisterComponent extends BaseComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.fullnameInstance.instance.focus();
-    this.request.fullname = 'Nguyễn Văn Cương';
-    this.request.email = 'abc' + Math.random() * 100 + '@gmail.com';
-    this.request.phone = '0847884444';
-    this.request.password = '123';
-    this.request.confirmPassword = '123';
+    // this.request.fullname = 'Nguyễn Văn Cương';
+    // this.request.email = 'abc' + Math.random() * 100 + '@gmail.com';
+    // this.request.phone = '0847884444';
+    // this.request.password = '123';
+    // this.request.confirmPassword = '123';
   }
 
 
