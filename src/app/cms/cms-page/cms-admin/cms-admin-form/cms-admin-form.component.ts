@@ -34,11 +34,6 @@ export class CmsAdminFormComponent extends CmsFormComponent implements AfterView
     if (this.formMode != FormMode.View) {
       this.fullname.instance.focus();
     }
-
-    this.data.fullName = 'Trần Gà ' + this.Utility.randomInRange(1, 1000);
-    this.data.phoneNumber = '0868554' + this.Utility.randomInRange(1, 9) + this.Utility.randomInRange(1, 9) + this.Utility.randomInRange(1, 9);
-    this.data.email = 'daga' + this.Utility.randomInRange(1, 1000) + '@gmail.com';
-    this.data.password = '123';
   }
 
   override initConfig(): void {

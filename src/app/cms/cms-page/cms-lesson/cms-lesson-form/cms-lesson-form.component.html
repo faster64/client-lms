@@ -123,14 +123,15 @@
         <!-- Upload file  -->
         <div class="col-2 col-md-1 attachment">
           <div class="choose-file">
-            <uploader #imageUploader mode="exercise-image" [auto]="true" [disabled]="formMode == FormMode.View"
+            <uploader #imageUploader mode="exercise-image" [multiple]="false" [auto]="true" [disabled]="formMode == FormMode.View"
               (onChanged)="imageSelected($event, exercise)">
             </uploader>
           </div>
         </div>
+
         <div class="col-2 col-md-1 attachment">
           <div class="choose-file">
-            <uploader #audioUploader mode="exercise-audio" [auto]="true" [disabled]="formMode == FormMode.View"
+            <uploader #audioUploader mode="exercise-audio" [multiple]="false" [auto]="true" [disabled]="formMode == FormMode.View"
               (onChanged)="audioSelected($event, exercise)">
             </uploader>
           </div>

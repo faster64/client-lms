@@ -40,6 +40,7 @@ import { CmsTicketComponent } from './cms-ticket/cms-ticket.component';
 import { CmsUserFormComponent } from './cms-user/cms-user-form/cms-user-form.component';
 import { CmsUserComponent } from './cms-user/cms-user.component';
 import { ExerciseEditorModule } from 'src/app/shared/components/micro/excercise-editor/exercise-editor.module';
+import { StudentGridReportComponent } from './cms-report/student-grid-report/student-grid-report.component';
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import { ExerciseEditorModule } from 'src/app/shared/components/micro/excercise-
     CmsAdminFormComponent,
     CmsTicketFormComponent,
     CmsLessonFormComponent,
-    CmsOrderViewComponent
+    CmsOrderViewComponent,
+    StudentGridReportComponent
   ],
   imports: [
     CommonModule,

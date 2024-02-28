@@ -6,12 +6,13 @@
     <div class="test-name over-3-dots">
       {{lesson ? lesson.testName : ''}}
     </div>
-    <div class="test-note over-3-dots">
-      <strong>Ghi chú:</strong> {{lesson ? lesson.testDescription : ''}}
-    </div>
   </div>
 
   <div class="test-content" *ngIf="!isLoading">
+    <div class="test-note">
+      <strong>Ghi chú:</strong> {{lesson ? lesson.testDescription : ''}}
+    </div>
+
     <div class="left" *ngIf="lesson.exercises && lesson.exercises.length">
       <!-- {{lesson.exercises[currentExerciseIndex].typeText}} -->
 
@@ -21,7 +22,7 @@
           <strong>Câu {{currentExerciseIndex + 1}}:</strong>
         </div>
 
-        <div class="text over-3-dots" [innerHTML]="lesson.exercises[currentExerciseIndex].questionJson || ''">
+        <div class="text" [innerHTML]="lesson.exercises[currentExerciseIndex].questionJson || ''">
         </div>
       </div>
 
@@ -151,7 +152,12 @@
         </div>
       </div>
 
+      <div class="test-note-2">
+        <strong>Ghi chú:</strong> {{lesson ? lesson.testDescription : ''}}
+      </div>
+
     </div>
+
 
     <progess-spinner-loading *ngIf="isLoading"></progess-spinner-loading>
   </div>

@@ -41,10 +41,6 @@
         inset: 16px 0;
       }
     }
-
-    .test-note {
-      width: 100%;
-    }
   }
 
   .progess-spinner-loading {
@@ -53,12 +49,25 @@
 
   .test-content {
     display: flex;
+    flex-wrap: wrap;
     align-items: flex-start;
     height: calc(100% - 72px);
 
+    .test-note, .test-note-2 {
+      width: 100%;
+      padding-bottom: 4px;
+      margin-bottom: 32px;
+      border-bottom: 1px solid var(--greyish);
+    }
+
+    .test-note-2 {
+      display: none;
+    }
+
     .left {
       width: calc(100% - 280px);
-      padding-right: 24px;
+      padding-right: 12px;
+      border-right: 1px solid var(--greyish);
 
       .question {
         display: flex;
@@ -78,7 +87,9 @@
         margin-bottom: 24px;
 
         .attachment-item {
-          img {
+          img, audio {
+            // display: block;
+            // margin: 0 auto;
             max-width: 100%;
             max-height: 100%;
           }
@@ -89,6 +100,8 @@
 
           &.audio {
             height: 60px;
+            display: block;
+            margin: 0 auto;
           }
 
           &:not(:last-child) {
@@ -133,6 +146,7 @@
           }
 
           .student-ans-line {
+            min-height: 60px;
             margin-bottom: 12px;
             border-bottom: 1px solid var(--greyish);
           }
@@ -157,6 +171,7 @@
 
     .right {
       width: 280px;
+      padding-left: 12px;
 
       .legend {
         display: flex;
@@ -235,12 +250,23 @@
 @media screen and (max-width: 992px) {
   .course-lesson-test-cpn {
     .test-content {
-      flex-wrap: wrap;
       flex-direction: column-reverse;
+
+      .test-note {
+        display: none;
+      }
+
+      .test-note-2 {
+        display: block;
+      }
+
       .left,
       .right {
         width: 100% !important;
         margin-bottom: 24px;
+        border: none;
+        padding-right: 0;
+        padding-left: 0;
       }
 
       .right {

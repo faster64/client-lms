@@ -59,7 +59,6 @@ export class BaseUploaderComponent {
   @Input()
   auto = false;
 
-
   @Output()
   onChanged = new EventEmitter();
 
