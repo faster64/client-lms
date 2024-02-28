@@ -7,6 +7,9 @@ import { CmsFormComponent } from '../../cms-page-form.component';
 import { ClassSelectorComponent } from 'src/app/shared/components/micro/class-selector/class-selector.component';
 import { UserClientService } from 'src/app/shared/services/user/user-client.service';
 import { UserState } from 'src/app/shared/enums/user-state.enum';
+import { StringHelper } from 'src/app/shared/helpers/string.helper';
+import { SnackBar } from 'src/app/shared/snackbar/snackbar.component';
+import { SnackBarParameter } from 'src/app/shared/snackbar/snackbar.param';
 
 @Component({
   selector: 'app-cms-user-form',
@@ -55,6 +58,14 @@ export class CmsUserFormComponent extends CmsFormComponent implements AfterViewI
     }
     return data;
   }
+
+  override validate = () => {
+    if (StringHelper.isNullOrEmpty(this.data.password)) {
+      SnackBar.danger(new SnackBarParameter(this, 'Lỗi', 'Mật khẩu không được để trống'));
+      return false;
+    }
+    return true;
+  };
 
   override beforeSave(): void {
     this.data.isClient = true;

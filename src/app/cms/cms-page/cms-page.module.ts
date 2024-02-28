@@ -41,6 +41,7 @@ import { CmsUserFormComponent } from './cms-user/cms-user-form/cms-user-form.com
 import { CmsUserComponent } from './cms-user/cms-user.component';
 import { ExerciseEditorModule } from 'src/app/shared/components/micro/excercise-editor/exercise-editor.module';
 import { StudentGridReportComponent } from './cms-report/student-grid-report/student-grid-report.component';
+import { PasswordInputModule } from 'src/app/shared/components/micro/password-input/password-input.module';
 
 
 @NgModule({
@@ -94,6 +95,7 @@ import { StudentGridReportComponent } from './cms-report/student-grid-report/stu
     CmsPdfModule,
     PipesModule,
     MatTooltipModule,
+    PasswordInputModule
   ]
 })
 export class CmsPageModule { }

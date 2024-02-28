@@ -7,6 +7,9 @@ import { UserAdminService } from 'src/app/shared/services/user/user-admin.servic
 import { UserService } from 'src/app/shared/services/user/user.service';
 import { CmsFormComponent } from '../../cms-page-form.component';
 import { RoleSelectorComponent } from 'src/app/shared/components/micro/role-selector/role-selector.component';
+import { StringHelper } from 'src/app/shared/helpers/string.helper';
+import { SnackBar } from 'src/app/shared/snackbar/snackbar.component';
+import { SnackBarParameter } from 'src/app/shared/snackbar/snackbar.param';
 
 @Component({
   selector: 'app-cms-admin-form',
@@ -46,6 +49,14 @@ export class CmsAdminFormComponent extends CmsFormComponent implements AfterView
     this.selector.value = (this.data.roles && this.data.roles.length) ? this.data.roles[0].roleId : '0';
     this.selector.get();
   }
+
+  override validate = () => {
+    if (StringHelper.isNullOrEmpty(this.data.password)) {
+      SnackBar.danger(new SnackBarParameter(this, 'Lỗi', 'Mật khẩu không được để trống'));
+      return false;
+    }
+    return true;
+  };
 
   override beforeSave(): void {
     this.data.isClient = false;

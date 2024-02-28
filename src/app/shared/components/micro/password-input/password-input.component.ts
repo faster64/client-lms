@@ -19,6 +19,12 @@ export class PasswordInputComponent {
   @Input()
   height = 40;
 
+  @Input()
+  readOnly = false;
+
+  @Input()
+  disabled = false;
+
   @Output()
   onEnterKey = new EventEmitter();
 
