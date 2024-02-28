@@ -91,6 +91,7 @@
   .on-search-mode {
     padding: 16px var(--side-distance);
     margin-top: 24px;
+
     .search-title {
       font-size: var(--medium-title-size);
       font-weight: 700;
@@ -111,9 +112,11 @@
         font-weight: 600;
         font-size: var(--medium-title-size);
       }
+
       .sub-title {
         text-align: center;
         font-size: var(--small-title-size);
+
         a {
           color: #007bff !important;
           text-decoration: underline !important;
@@ -156,6 +159,7 @@
 }
 
 @media screen and (max-width: 576px) {
+
   // ::ng-deep {
   .home-cpn {
     .app-courses {
@@ -187,6 +191,7 @@
         .loading-wrapper {
           flex-wrap: wrap;
           height: 152px;
+
           .course-loading {
             width: 100%;
             height: 60px;

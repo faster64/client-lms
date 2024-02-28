@@ -110,11 +110,6 @@ export class CmsCourseFormComponent extends CmsFormComponent implements AfterVie
       return false;
     }
 
-    if (StringHelper.isNullOrEmpty(this.data.price)) {
-      SnackBar.warning(new SnackBarParameter(this, 'Cảnh báo', 'Vui lòng nhập giá khóa học'));
-      return false;
-    }
-
     if (StringHelper.isNullOrEmpty(this.data.classId)) {
       SnackBar.warning(new SnackBarParameter(this, 'Cảnh báo', 'Vui lòng nhập lớp'));
       return false;

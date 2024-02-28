@@ -6,6 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
 import { PipesModule } from 'src/app/shared/pipes/pipes.module';
 import { HighlightModule } from 'src/app/shared/components/micro/highlight/highlight.module';
+import { BaseLoadingModule } from 'src/app/shared/components/micro/loading/loading.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { HighlightModule } from 'src/app/shared/components/micro/highlight/highl
     BaseButtonModule,
     TranslateModule,
     PipesModule,
-    HighlightModule
+    HighlightModule,
+    BaseLoadingModule
   ],
   exports: [CourseComponent]
 })

@@ -25,7 +25,7 @@ export class CourseClientService extends BaseService {
         return this.http.get<ServiceResult>(url, this._baseOptions);
     }
 
-    getListLessonsPaging(courseId: string, paginationRequest: PaginationRequest) {
+    public getListLessonsPaging(courseId: string, paginationRequest: PaginationRequest) {
         let url = `${this.url()}/${courseId}/lessons?page=${paginationRequest.number}&size=${paginationRequest.size}&query=${paginationRequest.query}`;
 
         if (!StringHelper.isNullOrEmpty(paginationRequest.sort.fieldName)) {
@@ -34,5 +34,10 @@ export class CourseClientService extends BaseService {
 
         url += `&${CommonConstant.ALLOW_NOTICE_WITH_SNACKBAR_DANGER}`;
         return this.http.get<ServiceResult>(url, this._baseOptions);
+    }
+
+    public takeFreeCourse(courseId: string) {
+        let url = `${this.url()}/take-free-course?id=${courseId}`;
+        return this.http.post<ServiceResult>(url, null);
     }
 }

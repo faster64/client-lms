@@ -1,6 +1,7 @@
 import { Component, Injector, Input } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { finalize, takeUntil } from 'rxjs';
 import { LoginComponent } from 'src/app/auth-components/login/login.component';
 import { BaseComponent } from 'src/app/shared/components/base-component';
 import { ButtonColor, ButtonType } from 'src/app/shared/constants/button.constant';
@@ -9,6 +10,7 @@ import { Routing } from 'src/app/shared/constants/routing.constant';
 import { Course } from 'src/app/shared/models/course/course';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { PublisherService } from 'src/app/shared/services/base/publisher.service';
+import { CourseClientService } from 'src/app/shared/services/course/course-client.service';
 import { SnackBar } from 'src/app/shared/snackbar/snackbar.component';
 import { SnackBarParameter } from 'src/app/shared/snackbar/snackbar.param';
 
@@ -39,7 +41,8 @@ export class CourseComponent extends BaseComponent {
     public publisher: PublisherService,
     public authService: AuthService,
     public dialogRef: MatDialogRef<LoginComponent>,
-    public router: Router
+    public router: Router,
+    public courseClientService: CourseClientService
   ) {
     super(injector);
     // this.loginCallback = this.loginCallback.bind(this);
@@ -83,6 +86,24 @@ export class CourseComponent extends BaseComponent {
   access(event) {
     event?.stopPropagation();
     event?.preventDefault();
-    this.router.navigateByUrl('/' + Routing.COURSE_LESSON_LIST.path + '/' + this.course.id);
+    this.authService.authenticate(() => {
+      if (this.course.purchased) {
+        this.router.navigateByUrl('/' + Routing.COURSE_LESSON_LIST.path + '/' + this.course.id);
+      }
+      else if (this.course.price == 0) {
+        this.isLoading = true;
+        this.courseClientService
+          .takeFreeCourse(this.course.id)
+          .pipe(
+            takeUntil(this._onDestroySub),
+            finalize(() => this.isLoading = false)
+          )
+          .subscribe(resp => {
+            if (resp.code == 'success') {
+              this.router.navigateByUrl('/' + Routing.COURSE_LESSON_LIST.path + '/' + this.course.id);
+            }
+          });
+      }
+    });
   }
 }
