@@ -6,6 +6,7 @@ import { PublisherService } from 'src/app/shared/services/base/publisher.service
 import { TicketService } from 'src/app/shared/services/ticket/ticket.service';
 import { FieldType } from 'src/app/shared/enums/field-type.enum';
 import { TicketStatus } from 'src/app/shared/enums/ticket-status.enum';
+import { StringHelper } from 'src/app/shared/helpers/string.helper';
 
 @Component({
   selector: 'app-cms-ticket',
@@ -38,7 +39,7 @@ export class CmsTicketComponent extends CmsGridComponent<Ticket> {
         displayText: 'Trạng thái',
         width: 220,
         type: FieldType.TicketState,
-        filters: [TicketStatus.Responsed, TicketStatus.NotResponsed],
+        filters: [{ id: TicketStatus.Responsed, text: 'Đã phản hồi' }, { id: TicketStatus.NotResponsed, text: 'Chưa phản hồi' }],
         callback: (item, e) => console.log(item, e)
       });
   }

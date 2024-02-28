@@ -6,6 +6,7 @@ import { PublisherService } from 'src/app/shared/services/base/publisher.service
 import { UserService } from 'src/app/shared/services/user/user.service';
 import { CmsGridComponent } from '../cms-page-grid.component';
 import { UserClientService } from 'src/app/shared/services/user/user-client.service';
+import { StringHelper } from 'src/app/shared/helpers/string.helper';
 
 @Component({
   selector: 'app-cms-user',
@@ -32,7 +33,14 @@ export class CmsUserComponent extends CmsGridComponent<User> {
     this.displayColumns.push({ column: 'className', displayText: 'Lớp', width: 120 });
     this.displayColumns.push({ column: 'password', displayText: 'Mật khẩu', width: 140 });
     this.displayColumns.push({ column: 'created', displayText: 'Ngày tạo', width: 140, type: FieldType.Date });
-    this.displayColumns.push({ column: 'state', displayText: 'Trạng thái tài khoản', width: 220, type: FieldType.AccountState, callback: (item, e) => console.log(item, e) });
+    this.displayColumns.push({
+      column: 'state',
+      displayText: 'Trạng thái tài khoản',
+      width: 220,
+      type: FieldType.AccountState,
+      filters: [{ id: UserState.Active, text: 'Đang hoạt động' }, { id: UserState.Inactive, text: 'Ngừng hoạt động' }],
+      callback: (item, e) => console.log(item, e)
+    });
   }
 
   override filterResponse = (data) => {

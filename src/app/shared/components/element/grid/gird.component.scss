@@ -302,6 +302,27 @@
 }
 
 ::ng-deep {
+  .filter-grid-menu {
+    padding: 4px;
+
+    .data-item {
+      padding: 4px 8px;
+      border-radius: 2px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: var(--grey);
+      }
+
+      &.selected {
+        background-color: var(--greyish);
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+::ng-deep {
   @media screen and (max-width: 576px) {
     .mat-mdc-paginator-container {
       flex-wrap: nowrap !important;

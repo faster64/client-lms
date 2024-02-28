@@ -22,6 +22,8 @@ export class BaseService {
 
   public controller = "";
 
+  public pagingEndpoint = "paging";
+
   _baseOptions!: HttpOption;
 
   constructor(public http: HttpService) {
@@ -52,10 +54,16 @@ export class BaseService {
   }
 
   paging(paginationRequest: PaginationRequest): Observable<ServiceResult> {
-    let url = `${this.url()}/paging?page=${paginationRequest.number}&size=${paginationRequest.size}&query=${paginationRequest.query}`;
+    let url = `${this.url()}/${this.pagingEndpoint}?page=${paginationRequest.number}&size=${paginationRequest.size}&query=${paginationRequest.query}`;
 
     if (!StringHelper.isNullOrEmpty(paginationRequest.sort.fieldName)) {
       url += (paginationRequest.sort.asc ? '&asc' : '&desc') + `=${paginationRequest.sort.fieldName}`;
+    }
+
+    if (paginationRequest.params && paginationRequest.params.length) {
+      for (let i = 0; i < paginationRequest.params.length; i++) {
+        url += `&${paginationRequest.params[i].field}=${paginationRequest.params[i].value}`
+      }
     }
 
     url += `&${CommonConstant.ALLOW_NOTICE_WITH_SNACKBAR_DANGER}`;

@@ -9,5 +9,11 @@ export class PaginationRequest {
 
   public sort = new SortModel('', false);
 
+  public params: FilterParam[] = [];
+}
+
+export class FilterParam {
+  public field = '';
+  public value = '';
 }
 

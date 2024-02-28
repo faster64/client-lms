@@ -52,7 +52,7 @@
           <div class="column column-header" [ngClass]="[col.column, col.class || '']" [ngStyle]="setWidth(col)"
             *ngFor="let col of displayColumn; index as i">
             <span class="text">{{col.displayText}}</span>
-            <span class="filter bg-contain" [matMenuTriggerFor]="filterMenu" (click)="menuData = col.filters"
+            <span class="filter bg-contain" [matMenuTriggerFor]="filterMenu" (click)="mapFilter(col)"
               *ngIf="col.filters && col.filters.length">
             </span>
           </div>
@@ -175,7 +175,7 @@
 
 <mat-menu #filterMenu="matMenu">
   <div class="filter-grid-menu">
-    <div class="data-item" *ngFor="let item of menuData">
+    <div class="data-item" [ngClass]="i == menuDataIndex ? 'selected' : ''" *ngFor="let item of menuData.filters; index as i" (click)="fieldFilter(menuData.field, item, i)">
       {{item.text}}
     </div>
   </div>

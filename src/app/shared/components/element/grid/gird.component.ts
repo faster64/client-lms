@@ -28,7 +28,9 @@ export class GirdComponent extends BaseGridComponent implements OnChanges {
 
   checkedCount = 0;
 
-  menuData: any[] = [];
+  menuData = { field: '', filters: [] };
+
+  menuDataIndex = -1;
 
   @Input()
   displayColumn: ColumnGrid[] = [];
@@ -95,6 +97,9 @@ export class GirdComponent extends BaseGridComponent implements OnChanges {
 
   @Output()
   onSearch = new EventEmitter();
+
+  @Output()
+  onFieldFilter = new EventEmitter();
 
   @ViewChild('gridContentBody')
   gridContentBody!: ElementRef;
@@ -291,6 +296,24 @@ export class GirdComponent extends BaseGridComponent implements OnChanges {
 
   changePage(event: any) {
     this.changePageEvent.emit(event);
+  }
+
+  fieldFilter(field, item, index: number) {
+    if (this.menuDataIndex == index) {
+      this.menuDataIndex = -1;
+      this.onFieldFilter.emit({ field: '' });
+    }
+    else {
+      this.menuDataIndex = index;
+      this.onFieldFilter.emit({ field: field, id: item.id, text: item.text });
+    }
+  }
+
+  mapFilter(col: ColumnGrid) {
+    this.menuData = {
+      field: col.column,
+      filters: col.filters
+    }
   }
 
   removeDiacritics(str: string) {

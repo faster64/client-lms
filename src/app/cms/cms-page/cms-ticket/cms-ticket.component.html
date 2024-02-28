@@ -3,7 +3,7 @@
       <app-gird #grid [data]="dataSource" [displayColumn]="displayColumns" [enabledAdd]="false" [enabledUpdate]="false" [current]="current" [total]="total"
           [isLoading]="false" [searchKeys]="searchKeys" (rowDblClick)="view($event)" (onView)="view($event)"
           (onAdd)="add()" (onUpdate)="update($event)" (onDelete)="delete($event)" (onDeleteMulti)="delete(null)"
-          (onSearch)="search($event)" (sort)="sort($event)" (changePageEvent)="changePage($event)">
+          (onSearch)="search($event)" (sort)="sort($event)" (changePageEvent)="changePage($event)" (onFieldFilter)="filter($event)">
       </app-gird>
 
       <progess-spinner-loading *ngIf="isLoading"></progess-spinner-loading>

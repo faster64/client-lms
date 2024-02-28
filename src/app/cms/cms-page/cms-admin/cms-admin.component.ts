@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { CmsGridComponent } from '../cms-page-grid.component';
-import { User } from 'src/app/shared/models/user/user';
-import { PublisherService } from 'src/app/shared/services/base/publisher.service';
-import { UserClientService } from 'src/app/shared/services/user/user-client.service';
-import { UserAdminService } from 'src/app/shared/services/user/user-admin.service';
 import { FieldType } from 'src/app/shared/enums/field-type.enum';
 import { UserState } from 'src/app/shared/enums/user-state.enum';
+import { User } from 'src/app/shared/models/user/user';
+import { PublisherService } from 'src/app/shared/services/base/publisher.service';
+import { UserAdminService } from 'src/app/shared/services/user/user-admin.service';
+import { CmsGridComponent } from '../cms-page-grid.component';
 
 @Component({
   selector: 'app-cms-admin',
@@ -31,7 +30,14 @@ export class CmsAdminComponent extends CmsGridComponent<User> {
     this.displayColumns.push({ column: 'email', displayText: 'Email', width: 180 });
     this.displayColumns.push({ column: 'password', displayText: 'Mật khẩu', width: 140 });
     this.displayColumns.push({ column: 'created', displayText: 'Ngày tạo', width: 140, type: FieldType.Date });
-    this.displayColumns.push({ column: 'state', displayText: 'Trạng thái tài khoản', width: 220, type: FieldType.AccountState, callback: (item, e) => console.log(item, e) });
+    this.displayColumns.push({
+      column: 'state',
+      displayText: 'Trạng thái tài khoản',
+      width: 220,
+      type: FieldType.AccountState,
+      filters: [{ id: UserState.Active, text: 'Đang hoạt động' }, { id: UserState.Inactive, text: 'Ngừng hoạt động' }],
+      callback: (item, e) => console.log(item, e)
+    });
   }
 
   override filterResponse = (data) => {
