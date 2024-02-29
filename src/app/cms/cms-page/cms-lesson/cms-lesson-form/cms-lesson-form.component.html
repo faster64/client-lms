@@ -123,16 +123,16 @@
         <!-- Upload file  -->
         <div class="col-2 col-md-1 attachment">
           <div class="choose-file">
-            <uploader #imageUploader mode="exercise-image" [multiple]="false" [auto]="true" [disabled]="formMode == FormMode.View"
-              (onChanged)="imageSelected($event, exercise)">
+            <uploader #imageUploader mode="exercise-image" [multiple]="false" [auto]="true"
+              [disabled]="formMode == FormMode.View" (onChanged)="imageSelected($event, exercise)">
             </uploader>
           </div>
         </div>
 
         <div class="col-2 col-md-1 attachment">
           <div class="choose-file">
-            <uploader #audioUploader mode="exercise-audio" [multiple]="false" [auto]="true" [disabled]="formMode == FormMode.View"
-              (onChanged)="audioSelected($event, exercise)">
+            <uploader #audioUploader mode="exercise-audio" [multiple]="false" [auto]="true"
+              [disabled]="formMode == FormMode.View" (onChanged)="audioSelected($event, exercise)">
             </uploader>
           </div>
         </div>
@@ -182,7 +182,9 @@
                 {{ii == 0 ? 'A' : ii == 1 ? 'B' : ii == 2 ? 'C' : 'D'}}
               </div>
               <div class="ans-text">
-                <dx-text-box [readOnly]="formMode == FormMode.View" [(value)]="exercise.answers[ii].text"></dx-text-box>
+                <app-exercise-editor [valueContent]="exercise.answers[ii].text" [readonly]="formMode == FormMode.View"
+                  [height]="44" (change)="exercise.answers[ii].text = $event">
+                </app-exercise-editor>
               </div>
             </div>
           </div>

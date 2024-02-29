@@ -53,7 +53,8 @@
     align-items: flex-start;
     height: calc(100% - 72px);
 
-    .test-note, .test-note-2 {
+    .test-note,
+    .test-note-2 {
       width: 100%;
       padding-bottom: 4px;
       margin-bottom: 32px;
@@ -87,7 +88,9 @@
         margin-bottom: 24px;
 
         .attachment-item {
-          img, audio {
+
+          img,
+          audio {
             // display: block;
             // margin: 0 auto;
             max-width: 100%;
@@ -124,6 +127,10 @@
             margin-bottom: 12px;
             border: 1px solid var(--greyish);
             border-radius: 4px;
+
+            p {
+              margin: 0;
+            }
           }
 
           .random-item,
@@ -272,6 +279,7 @@
       .right {
         .legend {
           justify-content: flex-start;
+
           .legend-item {
             margin-right: 24px;
           }

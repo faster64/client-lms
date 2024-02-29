@@ -4,6 +4,8 @@ import { finalize, takeUntil } from 'rxjs';
 import { BaseComponent } from 'src/app/shared/components/base-component';
 import { Routing } from 'src/app/shared/constants/routing.constant';
 import { ExerciseType } from 'src/app/shared/enums/exercise.enum';
+import { MessageBox } from 'src/app/shared/message-box/message-box.component';
+import { Message } from 'src/app/shared/message-box/model/message';
 import { Course } from 'src/app/shared/models/course/course';
 import { Lesson } from 'src/app/shared/models/lesson/lesson';
 import { TestingResult } from 'src/app/shared/models/lesson/tesing-result';
@@ -79,4 +81,22 @@ export class CourseLessonResultComponent extends BaseComponent {
       })
   }
 
+  remake() {
+    MessageBox.confirm(new Message(this, {
+      content: 'Kết quả kiểm tra này sẽ bị xóa và tạo lại bài kiểm tra mới. Bạn có chắc chắn không?'
+    }, () => {
+      this.isLoading = true;
+      this.testingService
+        .remake(this.lesson.id)
+        .pipe(
+          takeUntil(this._onDestroySub),
+          finalize(() => this.isLoading = false)
+        )
+        .subscribe(resp => {
+          if (resp.code == 'success') {
+            this.router.navigateByUrl(`/${Routing.COURSE_LESSON_TEST.path}/${this.course.id}/${this.lesson.id}`);
+          }
+        });
+    }));
+  }
 }

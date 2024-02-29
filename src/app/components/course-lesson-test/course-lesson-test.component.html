@@ -68,7 +68,7 @@
                     </dx-check-box>
                   </div>
 
-                  <span class="text"> {{ans.text}} </span>
+                  <div class="text" [innerHTML]="ans.text"></div>
                 </ng-container>
 
                 <!-- 1 đáp án -->
@@ -76,7 +76,7 @@
                   <input type="radio" style="width: 20px; height: 20px; margin-right: 24px;" name="ans-group"
                     [checked]="ewa.answer.answerArray[j]" (change)="radioChanged(ewa, j)">
 
-                  <span class="text"> {{ans.text}} </span>
+                  <div class="text" [innerHTML]="ans.text"></div>
                 </ng-container>
 
               </div>

@@ -27,4 +27,9 @@ export class TestingService extends BaseService {
     const url = `${this.url()}/submit`;
     return this.http.post<ServiceResult>(url, data);
   }
+
+  remake(lessonId) {
+    const url = `${this.url()}/remake?lessonId=${lessonId}`;
+    return this.http.post<ServiceResult>(url, null);
+  }
 }
