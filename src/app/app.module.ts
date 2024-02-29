@@ -21,6 +21,9 @@ import { RequestHandlingInterceptor } from './shared/core/request.interceptor';
 import { CmsSidebarModule } from './cms/cms-sidebar/cms-sidebar.module';
 import { CmsHeaderModule } from './cms/cms-header/cms-header.module';
 import { BalloonModule } from './components/balloon/balloon.module';
+import { BannerModule } from './components/banner/banner.module';
+import { TicketModule } from './components/ticket/ticket.module';
+import { AboutWeModule } from './components/about-we/about-we.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -50,6 +53,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     CmsHeaderModule,
     AppHeaderModule,
     AppFooterModule,
+    BannerModule,
+    TicketModule,
+    AboutWeModule,
     BalloonModule
   ],
   providers: [

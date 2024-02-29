@@ -1,21 +1,27 @@
 .about-we-cpn {
-  padding: 56px var(--side-distance);
+  max-width: 1320px;
+
   .title {
     margin-bottom: 24px;
-    color: #e8edfc;
+    color: var(--blue-01);
     -webkit-text-stroke-width: 1.5;
     -webkit-text-stroke-color: var(--main-color);
+    font-family: Montserrat;
+    font-style: normal;
     font-size: var(--large-title-size);
     font-weight: 700;
+    line-height: normal;
     letter-spacing: -0.8px;
   }
 
   .wrap {
     display: flex;
     align-items: center;
+
     .left {
       width: 50%;
       padding-right: 8px;
+
       .label {
         margin-bottom: 16px;
         color: var(--gray-800);
@@ -34,13 +40,14 @@
 
 @media screen and (max-width: 992px) {
   .about-we-cpn {
-    padding: 28px var(--side-distance);
     .wrap {
       flex-wrap: wrap;
+
       .left {
         width: 100%;
         margin-bottom: 8px;
       }
+
       .right {
         width: 100%;
       }

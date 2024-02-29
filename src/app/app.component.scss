@@ -4,13 +4,37 @@
   max-width: 100%;
   scroll-behavior: smooth;
 
+  .container,
+  .header-container {
+    padding: 0;
+  }
+
+  .app-container {
+    max-width: 1320px;
+  }
+
   .app-header {
-    position: sticky;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: var(--app-header-height);
-    z-index: var(--header-index);
+    // position: sticky;
+    // top: 0;
+    // left: 0;
+    // right: 0;
+    background-color: var(--main-color);
+    padding: 0 !important;
+  }
+
+  .app-banner {
+    position: relative;
+    background-color: var(--main-color);
+
+    .blue {
+      height: var(--banner-blue-height);
+      background-color: var(--main-color);
+    }
+
+    .white {
+      height: var(--banner-white-height);
+      background-color: var(--white);
+    }
   }
 
   .app-content {
@@ -20,8 +44,18 @@
     scroll-behavior: smooth;
   }
 
+  .app-ticket {
+    padding: 24px 0;
+    background-color: var(--yellow-color);
+  }
+
+  .app-about-we {
+    padding: 56px 0;
+  }
+
   .app-footer {
     height: 355px;
+    background-color: var(--footer-bg);
   }
 
   .app-balloon {
@@ -95,11 +129,19 @@
   width: auto;
 }
 
+@media screen and (max-width: 1400px) {
+  ::ng-deep .container {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+}
+
 @media screen and (max-width: 992px) {
   #app {
     .app-footer {
       height: auto;
     }
+
     .app-balloon {
       bottom: 32px;
     }

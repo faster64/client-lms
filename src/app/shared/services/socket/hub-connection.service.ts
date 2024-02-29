@@ -2,15 +2,15 @@ import { Injectable } from '@angular/core';
 import * as signalR from '@microsoft/signalr';
 import { HubConnection, HubConnectionBuilder, HubConnectionState } from '@microsoft/signalr';
 import { Observable, from, of } from 'rxjs';
+import { AppComponent } from 'src/app/app.component';
 import { environment } from 'src/environments/environment';
+import { MessageBox } from '../../message-box/message-box.component';
 import { SnackBar } from '../../snackbar/snackbar.component';
 import { SnackBarParameter } from '../../snackbar/snackbar.param';
 import { AuthService } from '../auth/auth.service';
 import { PublisherService } from '../base/publisher.service';
 import { SocketMessage } from './socket-message';
 import { SocketType } from './socket-type.enum';
-import { MessageBox } from '../../message-box/message-box.component';
-import { AppComponent } from 'src/app/app.component';
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +36,7 @@ export class HubConnectionService {
         timeout: 120000,
         // transport: signalR.HttpTransportType.WebSockets
       })
-      .withAutomaticReconnect([0, 1000, 2000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 8000])
+      .withAutomaticReconnect([2000, 4000, 8000, 16000, 32000, 32000, 32000, 32000, 32000, 32000, 32000, 32000, 32000, 32000, 64000])
       .configureLogging(signalR.LogLevel.Information)
       .build();
 

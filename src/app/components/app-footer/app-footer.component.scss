@@ -1,8 +1,7 @@
 ::ng-deep .app-footer-cpn {
   display: flex;
   height: 100%;
-  padding: 56px var(--side-distance);
-  background-color: var(--footer-bg);
+  padding: 56px 0;
 
   .common-info {
     margin-right: 100px;
@@ -123,7 +122,6 @@
 @media screen and (max-width: 992px) {
   .app-footer-cpn {
     flex-wrap: wrap;
-    padding: 16px var(--side-distance);
 
     .block {
       flex-basis: 100%;

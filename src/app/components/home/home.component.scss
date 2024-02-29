@@ -1,6 +1,8 @@
 ::ng-deep .home-cpn {
+  max-width: 1320px;
+
   .app-courses {
-    padding: 16px var(--side-distance);
+    margin: 24px 0;
 
     .course-title {
       margin-bottom: 12px;

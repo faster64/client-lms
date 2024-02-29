@@ -1,23 +1,18 @@
 .app-header-cpn {
-  position: absolute;
-  inset: 0;
   background-color: var(--header-bg);
+  z-index: var(--header-index);
 
   .bg-line {
-    height: 80px;
+    height: 56px;
     background-color: var(--main-color);
   }
 
   .nav-line {
-    position: absolute;
-    top: var(--nav-line-top);
-    left: var(--side-distance);
-    right: var(--side-distance);
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: var(--nav-line-height);
-    padding: var(--header-padding);
+    padding: var(--app-header-padding);
     border-radius: 4px;
     background: var(--white);
     box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.12);
@@ -216,6 +211,7 @@
 }
 
 @media screen and (max-width: 992px) {
+
   .bg-line,
   .nav-line {
     display: none !important;
@@ -227,10 +223,10 @@
     height: 100%;
 
     .wrapper {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      // position: fixed;
+      // top: 0;
+      // left: 0;
+      // right: 0;
       display: flex;
       align-items: center;
       justify-content: space-between;

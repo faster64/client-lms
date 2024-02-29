@@ -85,6 +85,7 @@ export class AppComponent implements OnInit, OnDestroy {
           this.publisher.routeChangeEvent.emit();
           if (event.urlAfterRedirects == `/${Routing.HOME.path}`) {
             SharedService.AtHome = true;
+            AppComponent.Mode = 'home';
             document.documentElement.style.setProperty("--header-bg", "#305FE8");
           } else {
             SharedService.AtHome = false;

@@ -2,17 +2,41 @@
   <mat-progress-bar mode="determinate" [value]="progress"
     *ngIf="progress > 0 && AppComponent.Mode == 'cms'"></mat-progress-bar>
 
-  <ng-container *ngIf="AppComponent.Mode == 'user'">
+  <ng-container *ngIf="AppComponent.Mode == 'user' || AppComponent.Mode == 'home'">
     <div class="app-header">
-      <app-header></app-header>
+      <div class="app-container container header-container">
+        <app-header></app-header>
+      </div>
+    </div>
+
+    <div class="app-banner" *ngIf="AppComponent.Mode == 'home'">
+      <div class="blue"></div>
+      <div class="white"></div>
+      <app-banner></app-banner>
     </div>
 
     <div #appContent class="app-content">
-      <router-outlet></router-outlet>
+      <div class="app-container container">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+
+    <div class="app-ticket" *ngIf="AppComponent.Mode == 'home'">
+      <div class="app-container container">
+        <app-ticket></app-ticket>
+      </div>
+    </div>
+
+    <div class="app-about-we" *ngIf="AppComponent.Mode == 'home'">
+      <div class="app-container container">
+        <app-about-we></app-about-we>
+      </div>
     </div>
 
     <div class="app-footer">
-      <app-footer></app-footer>
+      <div class="app-container container">
+        <app-footer></app-footer>
+      </div>
     </div>
 
     <div class="app-balloon">

@@ -1,7 +1,6 @@
 .ticket-cpn {
   height: 100%;
-  padding: 24px var(--side-distance);
-  background-color: var(--yellow-color);
+  max-width: 1320px;
 
   .content {
     display: flex;
@@ -12,9 +11,11 @@
     .right {
       width: 50%;
       height: 100%;
+      min-height: 100%;
     }
 
     .left {
+      height: 600px;
       background-image: url(~/src/assets/img/contact/image.png);
     }
 
@@ -71,8 +72,6 @@
 
 @media screen and (max-width: 992px) {
   .ticket-cpn {
-    padding: 28px var(--side-distance);
-
     .content {
       .left {
         display: none;
