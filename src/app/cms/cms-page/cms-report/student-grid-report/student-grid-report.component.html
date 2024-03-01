@@ -19,10 +19,6 @@
 
         <!-- header  -->
         <div class="table-header">
-          <div class="column column-header sticky" [ngStyle]="{minWidth: '56px', maxWidth: '56px', width: '56px'}">
-            <dx-check-box #checkAll (click)="onCheckAll($event)"></dx-check-box>
-          </div>
-
           <div class="column column-header" [ngClass]="[col.column, col.class || '']" [ngStyle]="setWidth(col)"
             *ngFor="let col of displayColumn; index as i">
             <span class="text">{{col.displayText}}</span>
@@ -32,12 +28,13 @@
         <!-- body -->
         <div class="table-body">
 
+          <div class="total-record">
+            <span>TỔNG: {{total | NumberFormatPipe}} HỌC SINH</span>
+          </div>
+
           <div *ngIf="!isLoading && data && data.length">
             <div class="row-item" [ngClass]="checkedList[i] ? 'checked' : ''" *ngFor="let item of data; index as i"
               (click)="rowClick.emit(item)" (dblclick)="rowDblClick.emit(item)">
-              <div class="column column-body sticky" [ngStyle]="{minWidth: '56px', maxWidth: '56px', width: '56px'}">
-                <dx-check-box [value]="checkedList[i]" (onValueChanged)="onCheck($event, i)"></dx-check-box>
-              </div>
 
               <div class="column column-body"
                 [ngClass]="[col.column, col.class || '', col.type == FieldType.Password ? 'password-field' : '']"

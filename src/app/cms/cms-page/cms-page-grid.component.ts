@@ -1,8 +1,7 @@
 import { Directive, Injector, ViewChild } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
+import { Router } from "@angular/router";
 import { finalize, takeUntil } from "rxjs";
 import { BaseComponent } from "src/app/shared/components/base-component";
-import { BaseGridComponent } from "src/app/shared/components/element/grid/base-grid-component";
 import { GirdComponent } from "src/app/shared/components/element/grid/gird.component";
 import { FormModeText } from "src/app/shared/constants/form-mode.constant";
 import { StringHelper } from "src/app/shared/helpers/string.helper";
@@ -11,7 +10,6 @@ import { Message } from "src/app/shared/message-box/model/message";
 import { ServiceResult } from "src/app/shared/models/base/service-result";
 import { ColumnGrid } from "src/app/shared/models/grid/column-grid";
 import { BaseService } from "src/app/shared/services/base/base.service";
-import { PublisherService } from "src/app/shared/services/base/publisher.service";
 import { TranslationService } from "src/app/shared/services/translation/translation.service";
 import { SnackBar } from "src/app/shared/snackbar/snackbar.component";
 import { SnackBarParameter } from "src/app/shared/snackbar/snackbar.param";
@@ -90,6 +88,7 @@ export class CmsGridComponent<T> extends BaseComponent {
           this.dataSource = resp.data;
           this.current = this.dataSource.length;
           this.total = resp.total;
+          console.log(resp)
         }
       });
   }
