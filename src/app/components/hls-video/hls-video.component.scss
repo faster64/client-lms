@@ -2,9 +2,10 @@
   position: relative;
   height: 100%;
   min-height: 400px;
-  padding: 56px var(--side-distance);
+  padding: 56px 0;
 
-  video, .video-js  {
+  video,
+  .video-js {
     max-width: 100%;
     max-height: 100%;
   }

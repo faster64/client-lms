@@ -1,6 +1,6 @@
 .login-cpn,
 .login-popup-cpn {
-  padding: 24px var(--side-distance);
+  padding: 24px 0;
 
   .title {
     display: flex;
@@ -129,6 +129,7 @@
 
 .login-popup-cpn {
   padding: 12px 24px;
+
   .right {
     width: 100%;
     padding: 0;
@@ -139,6 +140,7 @@
   .login-cpn {
     .wrap {
       border: none;
+
       .left {
         display: none;
       }
@@ -156,6 +158,7 @@
       .icon {
         display: none !important;
       }
+
       .text {
         margin-left: 16px;
       }

@@ -1,4 +1,5 @@
-.ticket-cpn {
+::ng-deep .ticket-cpn {
+  position: relative;
   height: 100%;
   max-width: 1320px;
 
@@ -67,6 +68,10 @@
         }
       }
     }
+  }
+
+  .progess-spinner-loading {
+    position: absolute !important;
   }
 }
 

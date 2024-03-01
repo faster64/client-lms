@@ -32,14 +32,17 @@
   --medium-title-size: 20px;
   --large-sub-title-size: 21px;
   --large-title-size: 40px;
-  --banner-sub-title-size: 24px;
-  --banner-title-size: 32px;
+  --banner-middle-size: 32px;
+  --banner-bottom-size: 24px;
   --auth-title-size: 28px;
 
   /* spacing  */
   --app-header-height: 136px;
   --app-cms-header-height: 80px;
   --app-header-padding: 16px 56px;
+  --app-header-blue-height: 56px;
+  --nav-line-top: 40px;
+  --nav-line-height: 80px;
   --sidebar-width: 264px;
   --sidebar-padding: 24px;
   --side-distance: 300px;
@@ -49,11 +52,10 @@
   --banner-slide-top-padding: 150px;
   --course-description-distance: 280px;
   --cms-content-padding: 16px 36px 0 36px;
-  --nav-line-top: 40px;
-  --nav-line-height: 80px;
   --search-input-width: 320px;
   --lesson-item-height: 238px;
   --lesson-image-width: 360px;
+  --testing-table-width: 300px;
 
   /* visibility */
   --text-sidebar-visibility: visible;
@@ -62,7 +64,8 @@
   --grid-sticky: 100;
   --banner-title-index: 100;
   --header-index: 990;
-  --balloon-index: 990;
+  --balloon-index: 991;
+  --search-box-index: 991;
   --mat-progress-bar: 1000;
   --loading-index: 1001;
   --message-box: 2000;
@@ -73,8 +76,8 @@
 @media screen and (max-width: 1600px) {
   :root {
     --side-distance: 120px;
-    --banner-blue-height: 380px;
-    --banner-white-height: 160px;
+    /* --banner-blue-height: 380px;
+    --banner-white-height: 160px; */
     --banner-slide-top-padding: 60px;
     --course-description-distance: 100px;
     --size: 15px;
@@ -87,8 +90,8 @@
 @media screen and (max-width: 1400px) {
   :root {
     --side-distance: 100px;
-    --banner-blue-height: 320px;
-    --banner-white-height: 120px;
+    /* --banner-blue-height: 320px;
+    --banner-white-height: 120px; */
     --banner-slide-top-padding: 48px;
     --course-description-distance: 80px;
     --size: 14px;
@@ -100,9 +103,12 @@
 @media screen and (max-width: 1200px) {
   :root {
     --side-distance: 80px;
-    --banner-blue-height: 280px;
-    --banner-white-height: 120px;
+    /* --banner-blue-height: 280px;
+    --banner-white-height: 120px; */
+    --header-padding: 16px 36px;
     --banner-slide-top-padding: 48px;
+    --banner-middle-size: 24px;
+    /* --banner-bottom-size: 16px; */
     --course-description-distance: 60px;
     --sidebar-width: 60px;
     --sidebar-padding: 8px;
@@ -112,18 +118,18 @@
     --medium-title-size: 15px;
     --large-title-size: 24px;
     --large-sub-title-size: 15px;
-    --banner-title-size: 20px;
-    --banner-sub-title-size: 16px;
-    --header-padding: 16px 36px;
   }
 }
 
 @media screen and (max-width: 992px) {
   :root {
-    --banner-blue-height: 240px;
-    --banner-white-height: 80px;
-    --banner-slide-top-padding: 36px;
     --app-header-height: 80px;
+    --app-header-blue-height: 0px;
+    /* --banner-blue-height: 240px;
+    --banner-white-height: 80px; */
+    /* --banner-middle-size: 16px;
+    --banner-bottom-size: 14px; */
+    --banner-slide-top-padding: 36px;
     --lesson-item-height: 400px;
     --nav-line-top: 20px;
     --side-distance: 50px;
@@ -131,14 +137,12 @@
     --size: 12px;
     --medium-title-size: 14px;
     --header-padding: 16px 24px;
-    --banner-title-size: 16px;
-    --banner-sub-title-size: 14px;
   }
 }
 
 @media screen and (max-width: 768px) {
   :root {
-    --banner-blue-height: 200px;
+    /* --banner-blue-height: 200px; */
     --large-title-size: 18px;
     --large-sub-title-size: 14px;
   }

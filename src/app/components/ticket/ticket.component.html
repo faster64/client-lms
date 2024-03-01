@@ -10,48 +10,50 @@
         <div class="info-item full-name">
           <div class="label">{{'ticket.full_name' | translate}} <span class="required">*</span> </div>
           <div class="value">
-            <dx-text-box placeholder="{{'ticket.placeholder_full_name' | translate}}" height="40"
-              [(value)]="ticket.fullName"></dx-text-box>
+            <dx-text-box #fullName placeholder="{{'ticket.placeholder_full_name' | translate}}" [height]="44"
+              [(value)]="ticket.fullName" [disabled]="isLoading"></dx-text-box>
           </div>
         </div>
         <div class="info-item phone">
           <div class="label">{{'ticket.phone' | translate}} <span class="required">*</span> </div>
           <div class="value">
-            <dx-text-box placeholder="{{'ticket.placeholder_phone' | translate}}" height="40"
-              [(value)]="ticket.phoneNumber"></dx-text-box>
+            <dx-text-box #phoneNumber placeholder="{{'ticket.placeholder_phone' | translate}}" [height]="44"
+              [(value)]="ticket.phoneNumber" [disabled]="isLoading"></dx-text-box>
           </div>
         </div>
         <div class="info-item email">
           <div class="label">{{'ticket.email' | translate}} <span class="required">*</span> </div>
           <div class="value">
-            <dx-text-box placeholder="{{'ticket.placeholder_email' | translate}}" height="40"
-              [(value)]="ticket.email"></dx-text-box>
+            <dx-text-box #email placeholder="{{'ticket.placeholder_email' | translate}}" [height]="44"
+              [(value)]="ticket.email" [disabled]="isLoading"></dx-text-box>
           </div>
         </div>
         <div class="info-item class">
           <div class="label">{{'ticket.class' | translate}} <span class="required">*</span> </div>
           <div class="value">
-            <app-class-selector [height]="40" (onValueChanged)="ticket.classId = $event.current"></app-class-selector>
+            <app-class-selector #class [height]="44" [disabled]="isLoading"
+              (onValueChanged)="ticket.classId = $event.current"></app-class-selector>
           </div>
         </div>
         <div class="info-item address">
           <div class="label">{{'ticket.address' | translate}} <span class="required">*</span> </div>
           <div class="value">
-            <dx-text-box placeholder="{{'ticket.placeholder_address' | translate}}" height="40"
-              [(value)]="ticket.address"></dx-text-box>
+            <dx-text-box #address placeholder="{{'ticket.placeholder_address' | translate}}" [height]="44"
+              [(value)]="ticket.address" [disabled]="isLoading"></dx-text-box>
           </div>
         </div>
         <div class="info-item content-txt">
           <div class="label">{{'ticket.content' | translate}} <span class="required">*</span> </div>
           <div class="value">
-            <dx-text-area placeholder="{{'ticket.placeholder_content' | translate}}" height="100"
-              [(value)]="ticket.question"></dx-text-area>
+            <dx-text-area #content placeholder="{{'ticket.placeholder_content' | translate}}" [height]="100"
+              [(value)]="ticket.question" [disabled]="isLoading"></dx-text-area>
           </div>
         </div>
       </div>
 
       <div class="send-btn">
-        <base-button #sendBtn text="{{'ticket.send' | translate}}" [height]="40" (onClick)="send()"></base-button>
+        <base-button #sendBtn text="{{'ticket.send' | translate}}" [disabled]="isLoading" [height]="44"
+          (onClick)="send()"></base-button>
       </div>
     </div>
   </div>

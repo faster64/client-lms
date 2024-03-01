@@ -1,9 +1,9 @@
 .app-header-cpn {
-  background-color: var(--header-bg);
+  background-color: var(--main-color);
   z-index: var(--header-index);
 
   .bg-line {
-    height: 56px;
+    height: var(--app-header-blue-height);
     background-color: var(--main-color);
   }
 
@@ -140,17 +140,17 @@
   inset: 0;
   display: none;
   transition: all 1s;
+  z-index: var(--search-box-index);
 
   .search-wrapper {
-    position: fixed;
-    top: var(--nav-line-top);
-    left: var(--side-distance);
-    right: var(--side-distance);
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    max-width: 1320px;
     height: var(--nav-line-height);
-    padding: 4px 32px;
+    padding: 0 32px !important;
+    margin-top: var(--app-header-blue-height);
     border-radius: 4px;
     background: var(--white);
 
@@ -161,16 +161,17 @@
         padding-right: 56px;
       }
     }
-  }
 
-  .close-btn {
-    position: fixed;
-    top: calc(var(--nav-line-top) + 30px);
-    right: calc(var(--side-distance) + 32px);
-    width: 20px;
-    height: 20px;
-    background-image: url(~/src/assets/img/header/close.svg);
-    cursor: pointer;
+    .close-btn {
+      position: absolute;
+      top: 50%;
+      right: 32px;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+      background-image: url(~/src/assets/img/header/close.svg);
+      cursor: pointer;
+    }
   }
 
   &.open-search {
@@ -246,7 +247,24 @@
         display: flex;
         align-items: center;
 
-        .search,
+        .feature-wrap {
+          display: flex;
+          align-items: center;
+
+          .search,
+          .cart {
+            width: 24px;
+            height: 24px;
+            margin-right: 20px;
+            background-image: url(~/src/assets/img/common/search.svg);
+            cursor: pointer;
+          }
+
+          .cart {
+            background-image: url(~/src/assets/img/header/cart.png);
+          }
+        }
+
         .menu,
         .close {
           width: 24px;
@@ -259,11 +277,6 @@
           display: none;
           background-image: url(~src/assets/img/common/close.svg);
         }
-
-        .search {
-          margin-right: 20px;
-          background-image: url(~/src/assets/img/common/search.svg);
-        }
       }
     }
 
@@ -275,6 +288,7 @@
       bottom: 0;
       display: none;
       background: transparent;
+      z-index: var(--header-index);
 
       .nav {
         height: var(--app-header-height);

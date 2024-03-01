@@ -101,7 +101,7 @@ const routes: Routes = [
   {
     path: Routing.COURSE_DETAIL.path,
     loadChildren: () => import('./components/course-detail/course-detail.module').then(m => m.CourseDetailModule),
-    canActivate: [AuthenticatedOnlyGuard],
+    canActivate: [BaseGuard],
     resolve: {
       resolver: BaseResolver,
     }

@@ -49,7 +49,10 @@
       <a class="logo" [href]="Routing.HOME.path"></a>
 
       <div class="right">
-        <div class="search bg-contain" (click)="openSearch()" *ngIf="SharedService.AtHome && !opened"></div>
+        <div class="feature-wrap">
+          <div class="search bg-contain" (click)="openSearch()" *ngIf="SharedService.AtHome && !opened"></div>
+          <div class="cart bg-contain" [routerLink]="Routing.CART.path"></div>
+        </div>
         <div class="menu bg-contain" (click)="opened = true"></div>
         <div class="close bg-contain" (click)="opened = false"></div>
       </div>
@@ -68,13 +71,13 @@
 
 <div class="search-course-mode" [ngClass]="SharedService.OpenSearch ? 'open-search' : ''"
   (click)="SharedService.OpenSearch = false">
-  <div class="search-wrapper" (click)="stopEvent($event)">
+  <div class="search-wrapper container" (click)="stopEvent($event)">
     <dx-text-box #searchInstance mode="search" height="56" width="100%" placeholder="Nhập từ khóa tìm kiếm"
       [showClearButton]="false" [(value)]="searchKey" (onEnterKey)="search()">
     </dx-text-box>
-  </div>
 
-  <div class="close-btn bg-contain" (click)="SharedService.OpenSearch = false"></div>
+    <div class="close-btn bg-contain" (click)="SharedService.OpenSearch = false"></div>
+  </div>
 </div>
 
 <ng-template #nav>

@@ -9,7 +9,7 @@
       </div>
     </div>
 
-    <div class="app-banner" *ngIf="AppComponent.Mode == 'home'">
+    <div class="app-banner" *ngIf="AppComponent.Mode == 'home' && !isSearchMode">
       <div class="blue"></div>
       <div class="white"></div>
       <app-banner></app-banner>
@@ -21,13 +21,13 @@
       </div>
     </div>
 
-    <div class="app-ticket" *ngIf="AppComponent.Mode == 'home'">
+    <div class="app-ticket" *ngIf="AppComponent.Mode == 'home' && !isSearchMode">
       <div class="app-container container">
         <app-ticket></app-ticket>
       </div>
     </div>
 
-    <div class="app-about-we" *ngIf="AppComponent.Mode == 'home'">
+    <div class="app-about-we" *ngIf="AppComponent.Mode == 'home' && !isSearchMode">
       <div class="app-container container">
         <app-about-we></app-about-we>
       </div>

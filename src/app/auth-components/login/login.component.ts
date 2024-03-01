@@ -12,6 +12,8 @@ import { LoginRequest } from 'src/app/shared/models/auth/login-request';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { PublisherService } from 'src/app/shared/services/base/publisher.service';
 import { TranslationService } from 'src/app/shared/services/translation/translation.service';
+import { SnackBar } from 'src/app/shared/snackbar/snackbar.component';
+import { SnackBarParameter } from 'src/app/shared/snackbar/snackbar.param';
 
 @Injectable({
   providedIn: 'root'
@@ -85,6 +87,7 @@ export class LoginComponent extends BaseComponent implements AfterViewInit {
 
     const valid = this.validate();
     if (!valid) {
+      SnackBar.danger(new SnackBarParameter(this, 'Lỗi', this.errorMsg, 2000));
       this.loginBtn.finish();
       return;
     }
@@ -108,7 +111,10 @@ export class LoginComponent extends BaseComponent implements AfterViewInit {
             }
           }
         },
-        error => this.errorMsg = error.error.message
+        error => {
+          this.errorMsg = error.error.message;
+          SnackBar.danger(new SnackBarParameter(this, 'Đăng nhập thất bại!', this.errorMsg));
+        }
       )
   }
 }

@@ -1,8 +1,9 @@
-import { Component, EventEmitter, Injector, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Injector, Input, Output, ViewChild } from '@angular/core';
 import { ClassService } from 'src/app/shared/services/class/class.service';
 import { BaseComponent } from '../../base-component';
 import { finalize, takeUntil } from 'rxjs';
 import { Class } from 'src/app/shared/models/class/class';
+import { DxSelectBoxComponent } from 'devextreme-angular';
 
 @Component({
   selector: 'app-class-selector',

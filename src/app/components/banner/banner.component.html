@@ -1,39 +1,26 @@
-<div class="banner-cpn container">
-  <div class="hero-slide" *ngIf="!isLoading">
-    <div class="large-title">
-      <div class="yellow-block"></div>
-      <div class="text">
-        {{banner.title}}
-      </div>
+<div class="banner-cpn container" *ngIf="!isLoading">
+  <div class="image-container">
+    <img [src]="url" *ngFor="let url of banner.imageUrls">
+  </div>
+
+  <div class="middle-line">
+    <div class="yellow-block"></div>
+    <div class="text">
+      {{banner.title}}
+    </div>
+  </div>
+
+  <div class="bottom-line">
+    <div class="dots">
+      <ng-container *ngFor="let url of banner.imageUrls; index as i">
+        <div class="dot" [ngClass]="currentIndex == i ? 'current' : ''"></div>
+      </ng-container>
     </div>
 
-    <div class="image-container">
-
-      <img [src]="url" *ngFor="let url of banner.imageUrls">
-
-      <!-- <div class="bg-image bg-cover" *ngFor="let url of banner.imageUrls"
-        [ngStyle]="{backgroundImage: 'url(' + url + ')'}">
-      </div> -->
-
-      <div class="dots">
-        <div class="dot" *ngFor="let url of banner.imageUrls; index as i">
-          <div class="inner-dot" *ngIf="currentIndex == i"></div>
-        </div>
-      </div>
+    <div class="text">
+      {{banner.subTitle}}
     </div>
 
-    <div class="intro">
-      <div class="dots">
-        <ng-container *ngFor="let url of banner.imageUrls; index as i">
-          <div class="dot" [ngClass]="currentIndex == i ? 'current' : ''"></div>
-        </ng-container>
-      </div>
-
-      <div class="text">
-        {{banner.subTitle}}
-      </div>
-
-      <div class="plus">++++++</div>
-    </div>
+    <div class="plus">++++++</div>
   </div>
 </div>

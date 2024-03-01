@@ -11,6 +11,8 @@ import { HubConnectionService } from './shared/services/socket/hub-connection.se
 import { TranslationService } from './shared/services/translation/translation.service';
 import { SnackBar } from './shared/snackbar/snackbar.component';
 import { SnackBarParameter } from './shared/snackbar/snackbar.param';
+import { MessageBox } from './shared/message-box/message-box.component';
+import { Message } from './shared/message-box/model/message';
 
 @Component({
   selector: 'app-root',
@@ -30,6 +32,8 @@ export class AppComponent implements OnInit, OnDestroy {
   lostConnection = false;
 
   iid: any;
+
+  isSearchMode = false;
 
   @ViewChild("app", { read: ViewContainerRef, static: true })
   containerRef!: ViewContainerRef;
@@ -51,10 +55,18 @@ export class AppComponent implements OnInit, OnDestroy {
     // this.authService.setProperty('access_token', '');
     this.subcribeEvents();
     this.hubService.connectHub();
+
+    // MessageBox.confirm(new Message(this, { title: 'asdsadsa', content: 'https://gitlab.citigo.com.vn/employee/kiot-viet-booking-time-sheet-core-service/-/merge_requests https://gitlab.citigo.com.vn/employee/kiot-viet-booking-time-sheet-core-service/-/merge_requests https://gitlab.citigo.com.vn/employee/kiot-viet-booking-time-sheet-core-service/-/merge_requests' }))
   }
 
   subcribeEvents() {
     this.routeChangeListener();
+    this.publisher
+      .searchCourseEvent
+      .pipe(takeUntil(this._onDestroySub))
+      .subscribe(key => {
+        this.isSearchMode = true;
+      });
   }
 
   routeChangeListener() {

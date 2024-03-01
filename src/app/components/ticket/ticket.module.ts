@@ -16,7 +16,7 @@ import { TicketComponent } from './ticket.component';
     DxTextBoxModule,
     DxTextAreaModule,
     BaseButtonModule,
-    ClassSelectorModule
+    ClassSelectorModule,
   ],
   exports: [TicketComponent]
 })

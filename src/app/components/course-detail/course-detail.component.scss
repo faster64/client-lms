@@ -21,7 +21,7 @@
       display: flex;
       align-items: center;
       flex-wrap: wrap;
-      padding: 0 var(--side-distance);
+      padding: 0;
       margin-bottom: 24px;
 
       .icon {
@@ -46,32 +46,35 @@
     }
 
     .course-short-description {
-      padding: 0 var(--side-distance);
+      padding: 0;
       margin-bottom: 24px;
     }
 
     .course-image {
       min-height: 400px;
-      margin: 24px var(--side-distance);
+      margin: 24px 0;
       background-repeat: no-repeat;
       background-position: left;
       background-size: contain;
     }
 
     .course-description {
-      margin: 0 var(--course-description-distance) 24px
-        var(--course-description-distance);
+      margin: 0 0 24px 0;
+
+      .dx-htmleditor-content {
+        padding: 12px 0;
+      }
     }
 
     .course-price {
-      padding: 0 var(--side-distance);
+      padding: 0;
       margin-bottom: 16px;
     }
 
     .course-features {
       display: flex;
       align-items: center;
-      padding: 0 var(--side-distance);
+      padding: 0;
 
       base-button.buy-btn {
         margin-left: 16px;
