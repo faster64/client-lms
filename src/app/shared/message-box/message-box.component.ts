@@ -36,7 +36,7 @@ export class MessageBox implements OnInit {
 
     this._config = new MatDialogConfig();
     this._config.minWidth = Math.min(isLms ? 640 : 440, window.innerWidth * 0.8) + 'px';;
-    this._config.maxWidth = Math.min(800, window.innerWidth * 0.8) + 'px';
+    this._config.maxWidth = Math.min(isLms ? 640 : 560, window.innerWidth * 0.8) + 'px';
     this._config.minHeight = '120px';
     this._config.maxHeight = window.innerHeight * 0.8 + 'px';
     this._config.position = { top: isLms ? '200px' : '50px' };
