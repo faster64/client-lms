@@ -34,7 +34,8 @@
   --large-title-size: 40px;
   --banner-middle-size: 32px;
   --banner-bottom-size: 24px;
-  --auth-title-size: 28px;
+  --auth-sub-title-size: 32px;
+  --course-name-size: 32px;
 
   /* spacing  */
   --app-header-height: 136px;
@@ -110,6 +111,7 @@
     --banner-middle-size: 24px;
     /* --banner-bottom-size: 16px; */
     --course-description-distance: 60px;
+    --course-name-size: 24px;
     --sidebar-width: 60px;
     --sidebar-padding: 8px;
     --text-sidebar-visibility: hidden;
@@ -134,6 +136,7 @@
     --nav-line-top: 20px;
     --side-distance: 50px;
     --course-description-distance: 30px;
+    --course-name-size: 20px;
     --size: 12px;
     --medium-title-size: 14px;
     --header-padding: 16px 24px;

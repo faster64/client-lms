@@ -25,14 +25,14 @@
       margin-bottom: 24px;
 
       .icon {
-        width: var(--medium-title-size);
-        height: var(--medium-title-size);
+        width: var(--large-title-size);
+        height: var(--large-title-size);
         margin-right: 12px;
         background-image: url(~/src/assets/img/common/icon.png);
       }
 
       .text {
-        font-size: var(--medium-title-size);
+        font-size: var(--large-title-size);
         color: var(--main-color);
         font-weight: 700;
       }

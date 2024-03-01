@@ -3,6 +3,25 @@
   padding: 36px 0;
 
   .guide-title {
+    display: flex;
+    align-items: center;
+    height: 56px;
+    margin-bottom: 8px;
+
+    .icon {
+      width: var(--large-title-size);
+      height: var(--large-title-size);
+      margin-right: 12px;
+      background-image: url(~/src/assets/img/common/icon.png);
+    }
+
+    .text {
+      font-size: var(--large-title-size);
+      font-weight: 700;
+    }
+  }
+
+  .guide-sub-title {
     height: 40px;
     font-weight: 600;
   }
@@ -10,7 +29,7 @@
   .guide-content {
     position: relative;
     width: 100%;
-    height: calc(100% - 40px);
+    height: calc(100% - 104px);
 
     .progess-spinner-loading {
       position: absolute !important;

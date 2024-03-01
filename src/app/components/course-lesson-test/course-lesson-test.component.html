@@ -50,7 +50,7 @@
             <!-- điền khuyết -->
             <ng-container *ngIf="ewa.exercise.type == ExerciseType.DIEN_KHUYET">
               <div class="ans-item" *ngFor="let ans of ewa.exercise.answers; index as j">
-                <dx-text-box placeholder="Nhập đán án" [height]="40" [width]="320" [(value)]="ewa.answer.answerArray[j]"
+                <dx-text-box placeholder="Nhập đán án" [height]="44" [width]="320" [(value)]="ewa.answer.answerArray[j]"
                   (onValueChanged)="buildOneAnswer(ewa)">
                 </dx-text-box>
               </div>

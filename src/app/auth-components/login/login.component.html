@@ -13,14 +13,14 @@
 
       <div class="email">
         <div class="label">{{'auth.login.label_email' | translate}} <span class="required">*</span> </div>
-        <dx-text-box #email placeholder="{{'auth.login.placeholder_email' | translate}}" height="40"
+        <dx-text-box #email placeholder="{{'auth.login.placeholder_email' | translate}}" height="48"
           [(value)]="request.username" (onEnterKey)="loginBtn.clickExecute($event)">
         </dx-text-box>
       </div>
 
       <div class="password">
         <div class="label">{{'auth.login.label_password' | translate}} <span class="required">*</span> </div>
-        <app-password-input #password [placeholder]="'auth.login.placeholder_password' | translate" [height]="40"
+        <app-password-input #password [placeholder]="'auth.login.placeholder_password' | translate" [height]="48"
           [value]="request.password" (onValueChanged)="request.password = $event.value"
           (onEnterKey)="loginBtn.clickExecute($event)">
         </app-password-input>
@@ -63,14 +63,14 @@
 
     <div class="email">
       <div class="label">{{'auth.login.label_email' | translate}} <span class="required">*</span> </div>
-      <dx-text-box #email placeholder="{{'auth.login.placeholder_email' | translate}}" height="40"
+      <dx-text-box #email placeholder="{{'auth.login.placeholder_email' | translate}}" height="48"
         [(value)]="request.username" (onEnterKey)="loginBtn.clickExecute($event)">
       </dx-text-box>
     </div>
 
     <div class="password">
       <div class="label">{{'auth.login.label_password' | translate}} <span class="required">*</span> </div>
-      <app-password-input #password [placeholder]="'auth.login.placeholder_password' | translate" [height]="40"
+      <app-password-input #password [placeholder]="'auth.login.placeholder_password' | translate" [height]="48"
         [value]="request.password" (onValueChanged)="request.password = $event.value"
         (onEnterKey)="loginBtn.clickExecute($event)">
       </app-password-input>
