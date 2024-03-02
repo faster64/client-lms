@@ -51,7 +51,12 @@
       <div class="right">
         <div class="feature-wrap">
           <div class="search bg-contain" (click)="openSearch()" *ngIf="SharedService.AtHome && !opened"></div>
-          <div class="cart bg-contain" [routerLink]="Routing.CART.path"></div>
+
+          <div class="cart bg-contain" [routerLink]="Routing.CART.path">
+            <span class="item-count" *ngIf="SharedService.CartItems.length > 0">
+              {{SharedService.CartItems.length > 9 ? '9+' : SharedService.CartItems.length}}
+            </span>
+          </div>
         </div>
         <div class="menu bg-contain" (click)="opened = true"></div>
         <div class="close bg-contain" (click)="opened = false"></div>

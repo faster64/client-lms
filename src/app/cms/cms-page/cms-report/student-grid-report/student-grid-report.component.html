@@ -20,7 +20,7 @@
         <!-- header  -->
         <div class="table-header">
           <div class="column column-header" [ngClass]="[col.column, col.class || '']" [ngStyle]="setWidth(col)"
-            *ngFor="let col of displayColumn; index as i">
+            *ngFor="let col of displayColumns; index as i">
             <span class="text">{{col.displayText}}</span>
           </div>
         </div>
@@ -33,12 +33,11 @@
           </div>
 
           <div *ngIf="!isLoading && data && data.length">
-            <div class="row-item" [ngClass]="checkedList[i] ? 'checked' : ''" *ngFor="let item of data; index as i"
-              (click)="rowClick.emit(item)" (dblclick)="rowDblClick.emit(item)">
+            <div class="row-item" *ngFor="let item of data; index as i">
 
               <div class="column column-body"
                 [ngClass]="[col.column, col.class || '', col.type == FieldType.Password ? 'password-field' : '']"
-                [ngStyle]="setWidth(col)" *ngFor="let col of displayColumn; index as i">
+                [ngStyle]="setWidth(col)" *ngFor="let col of displayColumns; index as i">
                 <ng-container [ngSwitch]="col.type" *ngIf="item[col.column]">
 
                   <!-- Nếu là link    -->

@@ -5,8 +5,6 @@ import { FormMode } from 'src/app/shared/enums/form-mode.enum';
 import { CmsAdminFormComponent } from './cms-admin/cms-admin-form/cms-admin-form.component';
 import { CmsAdminComponent } from './cms-admin/cms-admin.component';
 import { CmsBannerComponent } from './cms-banner/cms-banner.component';
-import { CmsOrderViewComponent } from './cms-order/cms-order-view/cms-order-view.component';
-import { CmsOrderComponent } from './cms-order/cms-order.component';
 import { CmsClassFormComponent } from './cms-class/cms-class-form/cms-class-form.component';
 import { CmsClassComponent } from './cms-class/cms-class.component';
 import { CmsCourseFormComponent } from './cms-course/cms-course-form/cms-course-form.component';
@@ -14,12 +12,14 @@ import { CmsCourseComponent } from './cms-course/cms-course.component';
 import { CmsGuideComponent } from './cms-guide/cms-guide.component';
 import { CmsLessonFormComponent } from './cms-lesson/cms-lesson-form/cms-lesson-form.component';
 import { CmsLessonComponent } from './cms-lesson/cms-lesson.component';
-import { CmsReportComponent } from './cms-report/cms-report.component';
+import { CmsOrderViewComponent } from './cms-order/cms-order-view/cms-order-view.component';
+import { CmsOrderComponent } from './cms-order/cms-order.component';
 import { CmsSocialComponent } from './cms-social/cms-social.component';
 import { CmsTicketFormComponent } from './cms-ticket/cms-ticket-form/cms-ticket-form.component';
 import { CmsTicketComponent } from './cms-ticket/cms-ticket.component';
 import { CmsUserFormComponent } from './cms-user/cms-user-form/cms-user-form.component';
 import { CmsUserComponent } from './cms-user/cms-user.component';
+import { StudentGridReportComponent } from './cms-report/student-grid-report/student-grid-report.component';
 
 const routes: Routes = [
   {
@@ -219,7 +219,7 @@ const routes: Routes = [
 
   {
     path: 'bao-cao-thong-ke',
-    component: CmsReportComponent
+    component: StudentGridReportComponent
   },
 ];
 

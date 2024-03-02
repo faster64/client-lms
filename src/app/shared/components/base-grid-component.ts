@@ -1,4 +1,4 @@
-import { AfterViewInit, Directive, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from "@angular/core";
+import { AfterViewInit, Directive, EventEmitter, Input, OnDestroy, OnInit, Output } from "@angular/core";
 import { Subject } from "rxjs";
 import { PaginationRequest } from "../../models/base/pagination-request";
 import { BaseService } from "../services/base/base.service";
