@@ -1,91 +1,78 @@
 ::ng-deep .ticket-cpn {
-  position: relative;
-  height: 100%;
-  max-width: 1320px;
-
-  .content {
-    display: flex;
-    align-items: center;
+    position: relative;
     height: 100%;
-
-    .left,
-    .right {
-      width: 50%;
-      height: 100%;
-      min-height: 100%;
-    }
-
-    .left {
-      height: 600px;
-      background-image: url(~/src/assets/img/contact/image.png);
-    }
-
-    .right {
-      padding-left: 16px;
-
-      .title {
-        color: var(--white);
-        font-size: var(--large-title-size);
-        font-weight: 700;
-        text-transform: uppercase;
-      }
-
-      .sub-title {
-        margin-bottom: 16px;
-        color: var(--white);
-        font-size: var(--large-sub-title-size);
-        font-weight: 400;
-        line-height: 36px;
-      }
-
-      .wrap-info {
-        .info-item {
-          margin-bottom: 24px;
-
-          .label {
-            font-weight: 500;
-            margin-bottom: 4px;
-
-            .required {
-              color: var(--danger);
-            }
-          }
-
-          &.full-name,
-          &.phone,
-          &.email,
-          &.class {
-            display: inline-block;
+    max-width: 1320px;
+    .content {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        .left,
+        .right {
             width: 50%;
-          }
-
-          &.full-name,
-          &.email {
-            .value {
-              width: calc(100% - 16px);
-            }
-          }
+            height: 100%;
+            min-height: 100%;
         }
-      }
+        .left {
+            height: 616px;
+            background-image: url(~/src/assets/img/contact/image.png);
+        }
+        .right {
+            padding-left: 16px;
+            .title {
+                color: var(--white);
+                font-size: var(--large-title-size);
+                font-weight: 700;
+                text-transform: uppercase;
+            }
+            .sub-title {
+                margin-bottom: 16px;
+                color: var(--white);
+                font-size: var(--large-sub-title-size);
+                font-weight: 400;
+                line-height: 36px;
+            }
+            .wrap-info {
+                .info-item {
+                    margin-bottom: 24px;
+                    .label {
+                        font-weight: 500;
+                        margin-bottom: 4px;
+                        .required {
+                            color: var(--danger);
+                        }
+                    }
+                    &.full-name,
+                    &.phone,
+                    &.email,
+                    &.class {
+                        display: inline-block;
+                        width: 50%;
+                    }
+                    &.full-name,
+                    &.email {
+                        .value {
+                            width: calc(100% - 16px);
+                        }
+                    }
+                }
+            }
+        }
     }
-  }
-
-  .progess-spinner-loading {
-    position: absolute !important;
-  }
+    .progess-spinner-loading {
+        position: absolute !important;
+    }
 }
 
 @media screen and (max-width: 992px) {
-  .ticket-cpn {
-    .content {
-      .left {
-        display: none;
-      }
-
-      .right {
-        width: 100%;
-        padding: 0;
-      }
+    .ticket-cpn {
+        .content {
+            .left {
+                display: none;
+            }
+            .right {
+                width: 100%;
+                padding: 0;
+            }
+        }
     }
-  }
 }

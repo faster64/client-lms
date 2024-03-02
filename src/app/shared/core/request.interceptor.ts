@@ -62,15 +62,17 @@ export class RequestHandlingInterceptor implements HttpInterceptor {
   }
 
   culture() {
-    let result = window.navigator.language;
-    switch (result) {
-      case "vi":
-        return "vi-VN";
-      case "en":
-        return "en-US";
-      default:
-        return result;
-    }
+    return "vi-VN";
+
+    // let result = window.navigator.language;
+    // switch (result) {
+    //   case "vi":
+    //     return "vi-VN";
+    //   case "en":
+    //     return "en-US";
+    //   default:
+    //     return result;
+    // }
   }
 
   injectToken(request: HttpRequest<unknown>) {

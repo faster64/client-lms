@@ -87,7 +87,7 @@ export class LoginComponent extends BaseComponent implements AfterViewInit {
 
     const valid = this.validate();
     if (!valid) {
-      SnackBar.danger(new SnackBarParameter(this, 'Lỗi', this.errorMsg, 2000));
+      SnackBar.danger(new SnackBarParameter(this, 'Đăng nhập thất bại!', this.errorMsg, 2000));
       this.loginBtn.finish();
       return;
     }

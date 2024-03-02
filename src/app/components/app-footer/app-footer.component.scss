@@ -1,145 +1,122 @@
 ::ng-deep .app-footer-cpn {
-  display: flex;
-  height: 100%;
-  padding: 56px 0;
-
-  .common-info {
-    margin-right: 100px;
-
-    .logo {
-      width: 93px;
-      height: 48px;
-      margin-bottom: 24px;
-      flex-shrink: 0;
-      background-image: url(~/src/assets/img/logo.png);
-      cursor: pointer;
+    display: flex;
+    height: 100%;
+    padding: 56px 0;
+    .common-info {
+        margin-right: 130px;
+        .logo {
+            width: 93px;
+            height: 48px;
+            margin-bottom: 24px;
+            flex-shrink: 0;
+            background-image: url(~/src/assets/img/logo.png);
+            cursor: pointer;
+        }
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+            .icon {
+                width: 24px;
+                height: 24px;
+                margin-right: 8px;
+            }
+            .text {
+                display: flex;
+                align-items: center;
+                width: calc(100% - 32px);
+                color: var(--white);
+                font-size: var(--size);
+                font-style: normal;
+                font-weight: 400;
+                line-height: 28px;
+                .loading-hook {
+                    position: relative;
+                    display: inline-block;
+                    width: 120px;
+                    height: 16px;
+                    margin-left: 4px;
+                }
+                a {
+                    color: var(--white);
+                }
+            }
+            &.address {
+                .icon {
+                    background-image: url(~/src/assets/img/footer/address.png);
+                }
+            }
+            &.phone {
+                .icon {
+                    background-image: url(~/src/assets/img/footer/phone.png);
+                }
+            }
+            &.email {
+                .icon {
+                    background-image: url(~/src/assets/img/footer/email.png);
+                }
+            }
+        }
     }
-
-    .info-item {
-      display: flex;
-      align-items: center;
-      margin-bottom: 16px;
-
-      .icon {
-        width: 24px;
-        height: 24px;
-        margin-right: 8px;
-      }
-
-      .text {
-        display: flex;
-        align-items: center;
-        width: calc(100% - 32px);
-        color: var(--white);
-        font-size: var(--size);
-        font-style: normal;
-        font-weight: 400;
-        line-height: 28px;
-
-        .loading-hook {
-          position: relative;
-          display: inline-block;
-          width: 120px;
-          height: 16px;
-          margin-left: 4px;
+    .about-we,
+    .social {
+        margin-top: 72px;
+        .title {
+            margin-bottom: 24px;
+            color: var(--white);
+            font-size: var(--medium-title-size);
+            font-weight: 600;
         }
-
-        a {
-          color: var(--white);
+    }
+    .about-we {
+        margin-right: 130px;
+        .about-item {
+            display: block;
+            margin-bottom: 16px;
+            color: var(--white);
+            font-size: var(--size);
+            font-weight: 400;
+            line-height: 28px;
+            cursor: pointer;
+            &:hover {
+                text-decoration: underline;
+            }
         }
-      }
-
-      &.address {
+    }
+    .social {
         .icon {
-          background-image: url(~/src/assets/img/footer/address.png);
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            &.youtube {
+                margin-right: 24px;
+                background-image: url(~/src/assets/img/footer/youtube.png);
+            }
+            &.facebook {
+                background-image: url(~/src/assets/img/footer/facebook.png);
+            }
         }
-      }
-
-      &.phone {
-        .icon {
-          background-image: url(~/src/assets/img/footer/phone.png);
-        }
-
-      }
-
-      &.email {
-        .icon {
-          background-image: url(~/src/assets/img/footer/email.png);
-        }
-      }
     }
-  }
-
-  .about-we,
-  .social {
-    margin-top: 72px;
-
-    .title {
-      margin-bottom: 24px;
-      color: var(--white);
-      font-size: var(--medium-title-size);
-      font-weight: 600;
-    }
-  }
-
-  .about-we {
-    margin-right: 100px;
-
-    .about-item {
-      display: block;
-      margin-bottom: 16px;
-      color: var(--white);
-      font-size: var(--size);
-      font-weight: 400;
-      line-height: 28px;
-      cursor: pointer;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
-
-  .social {
-    .icon {
-      display: inline-block;
-      width: 24px;
-      height: 24px;
-      cursor: pointer;
-
-      &.youtube {
-        margin-right: 24px;
-        background-image: url(~/src/assets/img/footer/youtube.png);
-      }
-
-      &.facebook {
-        background-image: url(~/src/assets/img/footer/facebook.png);
-      }
-    }
-  }
 }
 
 @media screen and (max-width: 992px) {
-  .app-footer-cpn {
-    flex-wrap: wrap;
-
-    .block {
-      flex-basis: 100%;
-      margin-right: 0;
+    .app-footer-cpn {
+        flex-wrap: wrap;
+        .block {
+            flex-basis: 100%;
+            margin-right: 0;
+        }
+        .about-we,
+        .social {
+            margin-top: 24px;
+            .title {
+                margin-bottom: 8px;
+            }
+        }
+        .about-item,
+        .info-item {
+            margin-bottom: 4px !important;
+        }
     }
-
-    .about-we,
-    .social {
-      margin-top: 24px;
-
-      .title {
-        margin-bottom: 8px;
-      }
-    }
-
-    .about-item,
-    .info-item {
-      margin-bottom: 4px !important;
-    }
-  }
 }
