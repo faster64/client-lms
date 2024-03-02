@@ -149,6 +149,9 @@
     /* --banner-blue-height: 200px; */
     --large-title-size: 18px;
     --large-sub-title-size: 14px;
+    /* --banner-blue-height: 400px; */
+    /* --banner-white-height: 200px; */
+    /* --banner-slide-height: 364px; */
   }
 }
 
@@ -159,5 +162,8 @@
     --course-description-distance: 0px;
     --size: 12px;
     --header-padding: 12px 16px;
+    /* --banner-blue-height: 360px; */
+    /* --banner-white-height: 200px; */
+    /* --banner-slide-height: 360px; */
   }
 }

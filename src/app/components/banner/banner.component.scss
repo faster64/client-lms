@@ -134,3 +134,13 @@
     }
   }
 }
+
+@media screen and (max-width: 768px) {
+  .banner-cpn {
+    .image-container {
+      img {
+        object-fit: cover;
+      }
+    }
+  }
+}
