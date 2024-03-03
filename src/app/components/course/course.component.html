@@ -40,9 +40,9 @@
 
   <div class="process" *ngIf="showProcess">
     <div class="line">
-      <div class="inline" [ngStyle]="{right: (100 - processPercent) + '%'}"></div>
+      <div class="inline" [ngStyle]="{right: (100 - (course.completedPercent || 0)) + '%'}"></div>
     </div>
-    <div class="percent">{{processPercent}}%</div>
+    <div class="percent">{{(course.completedPercent || 0)}}%</div>
   </div>
 
   <progess-spinner-loading *ngIf="isLoading"></progess-spinner-loading>

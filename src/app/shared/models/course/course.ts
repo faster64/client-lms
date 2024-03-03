@@ -15,4 +15,5 @@ export class Course extends BaseModel {
   public statusText = '';
   public releaseDate = new Date();
   public purchased = false;
+  public completedPercent = 70;
 }

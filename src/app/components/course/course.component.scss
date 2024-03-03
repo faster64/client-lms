@@ -110,7 +110,7 @@
     justify-content: flex-start;
     .line {
       position: relative;
-      width: calc(100% - 56px);
+      width: calc(100% - 60px);
       height: 8px;
       border-radius: 2px;
       background-color: var(--gray-200);
@@ -124,10 +124,10 @@
       }
     }
     .percent {
-      width: 35px;
-      margin-left: 21px;
+      width: 60px;
       color: var(--gray-800);
       font-weight: 600;
+      text-align: right;
     }
   }
 
