@@ -144,11 +144,11 @@
 }
 
 
-@media screen and (max-width: 1600px) {
+@media screen and (max-width: 1200px) {
   .my-courses-cpn {
     .courses {
       .course {
-        width: 33%;
+        width: calc(calc(100% - 48px) / 3);
       }
     }
   }
@@ -167,7 +167,7 @@
 
     .courses {
       .course {
-        width: 50%;
+        width: calc(calc(100% - 24px) / 2);
       }
     }
   }
@@ -178,6 +178,7 @@
     .courses {
       .course {
         width: 100%;
+        margin: 0 0 24px 0;
       }
     }
   }
