@@ -5,5 +5,6 @@ export const environment = {
   base_host: "https://ap-southeast-dm-1.chaien.vn/api",
   hub_url: "https://ap-southeast-dm-1.chaien.vn/socket-message",
   upload_url: "https://content.chaien.vn",
-  default_language: 'vi-VN'
+  default_language: 'vi-VN',
+  isDemo: true
 };

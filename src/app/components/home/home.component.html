@@ -29,8 +29,13 @@
     </div>
 
     <div class="course-wrapper">
-      <div class="course" *ngFor="let course of courses">
-        <app-course [course]="course" [highlightWord]="paginationRequest.query"></app-course>
+
+      <div class="c-row" *ngFor="let row of [].constructor(rows); index as i">
+        <div class="course"
+          *ngFor="let course of courses.slice(i * viewMoreCount, (i + 1) * viewMoreCount)">
+          <app-course [course]="course" [highlightWord]="paginationRequest.query">
+          </app-course>
+        </div>
       </div>
 
       <div class="loading-wrapper" *ngIf="isLoading">

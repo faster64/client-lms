@@ -30,13 +30,22 @@
       flex-wrap: wrap;
       min-height: 280px;
 
-      .course {
-        width: 25%;
-        min-width: 312px;
-        height: 468px;
-        padding: 8px;
-        margin-bottom: 24px;
-        overflow: hidden;
+      .c-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        margin: 0;
+        .course {
+          width: calc(calc(100% - 72px) / 4);
+          height: 468px;
+          padding: 0;
+          margin: 0 24px 24px 0;
+          overflow: hidden;
+
+          &:last-child {
+            margin-right: 0 !important;
+          }
+        }
       }
 
       .loading-wrapper {
@@ -132,62 +141,40 @@
   }
 }
 
-@media screen and (max-width: 1848px) {
+@media screen and (max-width: 1200px) {
   .home-cpn {
     .app-courses {
       .course-wrapper {
         .course {
-          width: 33.33%;
+          width: calc(calc(100% - 48px) / 3);
         }
       }
     }
-  }
-}
-
-@media screen and (max-width: 1103px) {
-  .home-cpn {
-    .app-courses {
-      .course-wrapper {
-        .course {
-          width: 50%;
-        }
-      }
-    }
-
     .app-ticket {
       height: 620px;
     }
   }
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 992px) {
+  .home-cpn {
+    .app-courses {
+      .course-wrapper {
+        .course {
+          width: calc(calc(100% - 24px) / 2);
+        }
+      }
+    }
+  }
+}
 
-  // ::ng-deep {
+@media screen and (max-width: 576px) {
   .home-cpn {
     .app-courses {
       .course-wrapper {
         .course {
           width: 100%;
-          // min-width: 180px;
-          // .course-description {
-          //   max-height: 24px;
-          //   -webkit-line-clamp: 1;
-          // }
-
-          // .course-features {
-          //   flex-wrap: wrap;
-          //   height: 96px;
-          //   base-button {
-          //     width: 100%;
-          //     .base-button {
-          //       width: 100% !important;
-          //       height: 40px !important;
-          //     }
-          //     &.buy-btn {
-          //       margin-left: 0;
-          //     }
-          //   }
-          // }
+          margin: 0 0 24px 0;
         }
 
         .loading-wrapper {
@@ -203,6 +190,4 @@
       }
     }
   }
-
-  // }
 }

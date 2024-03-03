@@ -12,26 +12,27 @@
   <p class="course-name">
     <app-highlight [value]="course.name" [highlightWord]="highlightWord"></app-highlight>
   </p>
-  <p class="course-description max-3-lines">{{course.shortDescription}}
+
+  <p class="course-description max-2-lines">{{course.shortDescription}}
   </p>
 
   <div class="course-features" *ngIf="includeBtn">
-    <base-button text="{{'course.features.add_to_cart' | translate}}" [width]="148" [height]="44"
+    <base-button text="{{'course.features.add_to_cart' | translate}}" [width]="148" [height]="40"
       [buttonType]="ButtonType.STROKED" [color]="ButtonColor.BASIC" [finishImmediately]="true"
       (onClick)="addToCart($event, true)" *ngIf="!course.purchased && course.price > 0">
     </base-button>
 
-    <base-button class="buy-btn" text="{{'course.features.buy_now' | translate}}" [width]="116" [height]="44"
+    <base-button class="buy-btn" text="{{'course.features.buy_now' | translate}}" [width]="116" [height]="40"
       [finishImmediately]="true" (onClick)="buy($event)" *ngIf="!course.purchased && course.price > 0">
     </base-button>
 
-    <base-button class="access-btn" text="Truy cập khóa học" [height]="44" [finishImmediately]="true"
+    <base-button class="access-btn" text="Truy cập khóa học" [height]="40" [finishImmediately]="true"
       (onClick)="access($event)" *ngIf="course.purchased || course.price == 0">
     </base-button>
   </div>
 
   <div class="course-features" *ngIf="!includeBtn">
-    <base-button class="access-btn" text="Vào học" [height]="44" [finishImmediately]="true">
+    <base-button class="access-btn" text="Vào học" [height]="40" [finishImmediately]="true">
     </base-button>
   </div>
 

@@ -4,6 +4,7 @@ import { BaseComponent } from 'src/app/shared/components/base-component';
 import { SortModel } from 'src/app/shared/models/base/sort-model';
 import { PublisherService } from 'src/app/shared/services/base/publisher.service';
 import { CourseClientService } from 'src/app/shared/services/course/course-client.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -18,13 +19,17 @@ export class HomeComponent extends BaseComponent {
 
   total = 0;
 
-  viewMoreCount = 2;
+  viewMoreCount = 0;
 
-  initCount = 4;
+  initCount = 0;
+
+  rows = 0;
 
   isSearchMode = false;
 
   searchKey = '';
+
+  resizeId: any;
 
   constructor(
     injector: Injector,
@@ -49,16 +54,32 @@ export class HomeComponent extends BaseComponent {
         this.paginationRequest.query = key;
         this.loadCourses(true);
       });
+
+    if (environment.isDemo) {
+      window.onresize = (e) => {
+        clearTimeout(this.resizeId);
+        this.resizeId = setTimeout(() => {
+          this.calculateCount();
+          this.paginationRequest.size = this.initCount;
+          this.paginationRequest.sort = new SortModel('created', false);
+          this.loadCourses();
+        }, 500);
+      }
+    }
   }
 
   calculateCount() {
-    if (window.innerWidth > 1600) {
+    if (window.innerWidth > 1200) {
       this.initCount = 8;
       this.viewMoreCount = 4;
     }
-    else if (window.innerWidth > 992 && window.innerWidth <= 1600) {
+    else if (window.innerWidth > 992 && window.innerWidth <= 1200) {
       this.initCount = 6;
       this.viewMoreCount = 3;
+    }
+    else {
+      this.initCount = 4;
+      this.viewMoreCount = 2;
     }
   }
 
@@ -83,6 +104,8 @@ export class HomeComponent extends BaseComponent {
           this.courses = this.courses.concat(resp.data);
           this.current = this.courses.length;
           this.total = resp.total;
+          this.rows = this.courses.length / this.viewMoreCount;
+          console.log(this.rows)
 
           if (searchMode) {
             window.scrollTo(0, 0);
