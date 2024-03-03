@@ -34,7 +34,7 @@ export class CourseComponent extends BaseComponent {
   highlightWord = '';
 
   @Input()
-  showPrice = true;
+  mustShowPrice = true;
 
   @Input()
   showProcess = false;

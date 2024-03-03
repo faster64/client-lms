@@ -1,7 +1,8 @@
 ::ng-deep .student-grid-report-cpn {
   position: absolute;
   inset: 0;
-  padding: 0;
+  height: 100%;
+  padding: var(--cms-content-padding);
 
   .grid-content {
     position: relative;
@@ -16,13 +17,22 @@
       justify-content: space-between;
       height: 80px;
 
+      .left {
+        color: var(--gray-800);
+        font-size: var(--banner-middle-size);
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+      }
+
       .right {
         display: flex;
         align-items: center;
 
-        .sort-btn {
+        .select-type-btn {
           display: flex;
           align-items: center;
+          width: 512px;
           height: 38px;
           padding: 4px 16px;
           margin-right: 12px;
@@ -43,19 +53,6 @@
             background-image: url(~/src/assets/img/grid/dropdown.svg);
           }
         }
-      }
-
-      .unselect-item {
-        color: var(--main-color);
-        cursor: pointer;
-      }
-
-      .delete-multi {
-        display: inline-block;
-        margin-left: 12px;
-        font-weight: 600;
-        color: var(--danger);
-        cursor: pointer;
       }
 
       .dx-placeholder {
@@ -266,6 +263,10 @@
         border-color: var(--greyish) !important;
       }
     }
+
+    .progess-spinner-loading {
+      position: absolute !important;
+    }
   }
 
   .dx-checkbox-icon {
@@ -275,7 +276,11 @@
 }
 
 ::ng-deep {
-  .sort-grid-menu {
+  .type-grid  {
+    width: 512px !important;
+    max-width: 512px !important;
+  }
+  .type-grid-menu {
     padding: 4px;
 
     .sgm-item {
@@ -285,26 +290,8 @@
       border-radius: 4px;
       cursor: pointer;
 
-      .icon {
-        width: 24px;
-        height: 24px;
-        margin-right: 8px;
-      }
-
       .text {
-        width: calc(100% - 32px);
-      }
-
-      &.latest {
-        .icon {
-          background-image: url(~/src/assets/img/grid/latest.svg);
-        }
-      }
-
-      &.oldest {
-        .icon {
-          background-image: url(~/src/assets/img/grid/oldest.svg);
-        }
+        width: 100%;
       }
 
       &:hover {

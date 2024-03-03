@@ -4,9 +4,11 @@
   <div class="course-banner">
     <div class="course-img bg-cover" [ngStyle]="{backgroundImage: 'url(' + course.imageUrl + ')'}"></div>
     <div class="class">{{course.className}}</div>
-    <div class="price" *ngIf="showPrice">{{ course.price == 0 ? 'Miễn phí' : (course.purchased ? 'Đã mua' : course.price
-      |
-      NumberFormatPipe)}}</div>
+    <div class="price" *ngIf="!mustShowPrice">
+      {{ course.price == 0 ? 'Miễn phí' : (course.purchased ? 'Đã mua' : course.price | NumberFormatPipe)}}
+    </div>
+
+    <div class="price must-show-price" *ngIf="mustShowPrice">{{course.price | NumberFormatPipe}}</div>
   </div>
 
   <p class="course-name">

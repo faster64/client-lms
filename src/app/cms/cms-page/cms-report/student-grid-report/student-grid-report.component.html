@@ -5,8 +5,13 @@
 
       <ng-container>
         <div class="left">
+          BÁO CÁO SỐ LƯỢNG HỌC SINH
         </div>
         <div class="right">
+          <div class="select-type-btn" [matMenuTriggerFor]="menu">
+            <div class="text">{{typeValue}}</div>
+            <div class="icon"></div>
+          </div>
         </div>
       </ng-container>
     </div>
@@ -22,6 +27,10 @@
           <div class="column column-header" [ngClass]="[col.column, col.class || '']" [ngStyle]="setWidth(col)"
             *ngFor="let col of displayColumns; index as i">
             <span class="text">{{col.displayText}}</span>
+
+            <span class="filter bg-contain" [matMenuTriggerFor]="filterMenu" (click)="mapFilter(col)"
+              *ngIf="col.filters && col.filters.length">
+            </span>
           </div>
         </div>
 
@@ -81,6 +90,7 @@
                   <span class="empty">-</span>
                 </ng-container>
               </div>
+
             </div>
           </div>
 
@@ -95,5 +105,30 @@
       </div>
 
     </div>
+
+    <progess-spinner-loading *ngIf="isLoading"></progess-spinner-loading>
   </div>
 </div>
+
+
+<mat-menu #filterMenu="matMenu">
+  <div class="filter-grid-menu">
+    <div class="data-item" [ngClass]="i == menuDataIndex ? 'selected' : ''"
+      *ngFor="let item of menuData.filters; index as i" (click)="fieldFilter(menuData.field, item, i)">
+      {{item.text}}
+    </div>
+  </div>
+</mat-menu>
+
+
+<mat-menu #menu="matMenu" class="type-grid">
+  <div class="type-grid-menu">
+    <div class="sgm-item" (click)="typeValue = 'Thống kê số lượng học sinh';">
+      <div class="text">Thống kê số lượng học sinh</div>
+    </div>
+
+    <div class="sgm-item" (click)="typeValue = 'Thống kê số lượng học sinh theo bài học';">
+      <div class="text">Thống kê số lượng học sinh theo bài học</div>
+    </div>
+  </div>
+</mat-menu>

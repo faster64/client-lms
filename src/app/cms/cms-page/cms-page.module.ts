@@ -41,6 +41,7 @@ import { CmsTicketFormComponent } from './cms-ticket/cms-ticket-form/cms-ticket-
 import { CmsTicketComponent } from './cms-ticket/cms-ticket.component';
 import { CmsUserFormComponent } from './cms-user/cms-user-form/cms-user-form.component';
 import { CmsUserComponent } from './cms-user/cms-user.component';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 @NgModule({
@@ -93,6 +94,7 @@ import { CmsUserComponent } from './cms-user/cms-user.component';
     CmsPdfModule,
     PipesModule,
     MatTooltipModule,
+    MatMenuModule,
     PasswordInputModule
   ]
 })

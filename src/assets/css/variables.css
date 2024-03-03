@@ -41,7 +41,7 @@
 
   /* spacing  */
   --app-header-height: 136px;
-  --app-cms-header-height: 80px;
+  --app-cms-header-height: 88px;
   --app-header-padding: 16px 56px;
   --app-header-blue-height: 56px;
   --nav-line-top: 40px;
@@ -54,7 +54,7 @@
   --banner-slide-height: 464px;
   --banner-slide-top-padding: 150px;
   --course-description-distance: 280px;
-  --cms-content-padding: 16px 36px 0 36px;
+  --cms-content-padding: 28px 36px 0 36px;
   --search-input-width: 320px;
   --lesson-item-height: 238px;
   --lesson-image-width: 360px;
