@@ -17,8 +17,15 @@
     </div>
 
     <div class="courses">
-      <div class="course" *ngFor="let course of courses">
+      <!-- <div class="course" *ngFor="let course of courses">
         <app-course [course]="course" [showPrice]="false" [includeBtn]="false" [toLesson]="true"></app-course>
+      </div> -->
+
+      <div class="c-row" *ngFor="let row of [].constructor(rows); index as i">
+        <div class="course" *ngFor="let course of courses.slice(i * count, (i + 1) * count)">
+          <app-course [course]="course" [showPrice]="false" [includeBtn]="false" [toLesson]="true" [showProcess]="true">
+          </app-course>
+        </div>
       </div>
 
       <div class="loading-wrapper" *ngIf="isLoading">

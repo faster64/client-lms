@@ -28,6 +28,8 @@ export class MyCoursesComponent extends BaseComponent {
 
   count = 4;
 
+  rows = 0;
+
   constructor(
     injector: Injector,
     public classService: ClassService,
@@ -47,11 +49,14 @@ export class MyCoursesComponent extends BaseComponent {
   }
 
   calculateCount() {
-    if (window.innerWidth > 1600) {
+    if (window.innerWidth > 1200) {
       this.count = 4;
     }
-    else if (window.innerWidth > 992 && window.innerWidth <= 1600) {
+    else if (window.innerWidth > 992 && window.innerWidth <= 1200) {
       this.count = 3;
+    }
+    else {
+      this.count = 2;
     }
   }
 
@@ -101,6 +106,7 @@ export class MyCoursesComponent extends BaseComponent {
           this.courses = this.courses.concat(resp.data);
           this.current = this.courses.length;
           this.total = resp.total;
+          this.rows = Math.ceil(this.courses.length / this.count);
         }
       });
   }

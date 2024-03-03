@@ -31,9 +31,16 @@
     </base-button>
   </div>
 
-  <div class="course-features" *ngIf="!includeBtn">
+  <div class="course-features" *ngIf="!includeBtn && !showProcess">
     <base-button class="access-btn" text="Vào học" [height]="40" [finishImmediately]="true">
     </base-button>
+  </div>
+
+  <div class="process" *ngIf="showProcess">
+    <div class="line">
+      <div class="inline" [ngStyle]="{right: (100 - processPercent) + '%'}"></div>
+    </div>
+    <div class="percent">{{processPercent}}%</div>
   </div>
 
   <progess-spinner-loading *ngIf="isLoading"></progess-spinner-loading>

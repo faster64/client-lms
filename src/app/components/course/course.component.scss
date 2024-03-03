@@ -17,7 +17,8 @@
 
     .course-img {
       height: calc(100% - 40px);
-      border-radius: 8px;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
     }
 
     .class {
@@ -97,6 +98,33 @@
 
     .access-btn {
       width: 100% !important;
+    }
+  }
+
+  .process {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    .line {
+      position: relative;
+      width: calc(100% - 56px);
+      height: 8px;
+      border-radius: 2px;
+      background-color: var(--gray-200);
+
+      .inline {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        background-color: var(--green-07);
+      }
+    }
+    .percent {
+      width: 35px;
+      margin-left: 21px;
+      color: var(--gray-800);
+      font-weight: 600;
     }
   }
 

@@ -88,7 +88,6 @@ export class CmsGridComponent<T> extends BaseComponent {
           this.dataSource = resp.data;
           this.current = this.dataSource.length;
           this.total = resp.total;
-          console.log(resp)
         }
       });
   }

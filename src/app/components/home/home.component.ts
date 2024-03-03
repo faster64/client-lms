@@ -13,6 +13,8 @@ import { environment } from 'src/environments/environment';
 })
 export class HomeComponent extends BaseComponent {
 
+  Math = Math;
+
   courses = [];
 
   current = 0;
@@ -104,8 +106,7 @@ export class HomeComponent extends BaseComponent {
           this.courses = this.courses.concat(resp.data);
           this.current = this.courses.length;
           this.total = resp.total;
-          this.rows = this.courses.length / this.viewMoreCount;
-          console.log(this.rows)
+          this.rows = Math.ceil(this.courses.length / this.viewMoreCount);
 
           if (searchMode) {
             window.scrollTo(0, 0);

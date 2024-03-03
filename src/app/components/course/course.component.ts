@@ -36,6 +36,12 @@ export class CourseComponent extends BaseComponent {
   @Input()
   showPrice = true;
 
+  @Input()
+  showProcess = false;
+
+  @Input()
+  processPercent = 80;
+
   constructor(
     injector: Injector,
     public publisher: PublisherService,
