@@ -72,7 +72,7 @@ export class CmsLessonFormComponent extends CmsFormComponent implements AfterVie
     for (let i = 0; i < this.data.exercises.length; i++) {
       const ex = this.data.exercises[i] as Exercise;
       if (ex.type == ExerciseType.DIEN_KHUYET || ex.type == ExerciseType.SAP_XEP) {
-        ex.answers = ex.answers.filter(x => !StringHelper.isNullOrEmpty(x));
+        ex.answers = ex.answers.filter(x => !StringHelper.isNullOrEmpty(x)).map(x => x.trim());
       }
       ex.answerJson = JSON.stringify(ex.answers);
     }
@@ -147,19 +147,19 @@ export class CmsLessonFormComponent extends CmsFormComponent implements AfterVie
     this.data.exercises.splice(index, 1);
   }
 
-  addanswer(index) {
-    this.data.exercises[index].answers.push("");
-  }
-
-  addTaganswer(index) {
+  addSapXepOrDienKhuyetanswer(index) {
+    const length = this.data.exercises[index].answers.length;
+    if (StringHelper.isNullOrEmpty(this.data.exercises[index].answers[length - 1])) {
+      return;
+    }
     this.data.exercises[index].answers.push("");
   }
 
   onAnsChanged(exercise: Exercise, index, event) {
     exercise.answers[index] = event.value;
-    setTimeout(() => {
-      exercise.answers.push("");
-    }, 200);
+    // setTimeout(() => {
+    //   exercise.answers.push("");
+    // }, 200);
   }
 
   removeAns(exercise: Exercise, index) {

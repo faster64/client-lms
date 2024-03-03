@@ -211,15 +211,18 @@
             <div class="icon bg-contain"></div>
           </div>
 
-          <!-- <div class="answer-btn" (click)="addanswer(i)" *ngIf="exercise.type == QuestionType.DIEN_KHUYET">
+          <div class="answer-btn" (click)="addSapXepOrDienKhuyetanswer(i)"
+            *ngIf="exercise.type == QuestionType.DIEN_KHUYET">
             <div class="icon bg-contain"></div>
             <div class="text">Thêm Đáp án</div>
           </div>
 
-          <div class="answer-btn" (click)="addTaganswer(i)" *ngIf="exercise.type == QuestionType.SAP_XEP">
+
+          <div class="answer-btn" (click)="addSapXepOrDienKhuyetanswer(i)"
+            *ngIf="exercise.type == QuestionType.SAP_XEP">
             <div class="icon bg-contain"></div>
             <div class="text">Thêm tag</div>
-          </div> -->
+          </div>
         </div>
       </div>
     </div>
