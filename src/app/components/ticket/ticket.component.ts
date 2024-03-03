@@ -63,6 +63,7 @@ export class TicketComponent extends BaseComponent {
         )
         .subscribe(resp => {
           if (resp.code == 'success') {
+            this.userService.user = resp.data;
             this.ticket.fullName = resp.data.fullName;
             this.ticket.phoneNumber = resp.data.phoneNumber;
             this.ticket.email = resp.data.email;

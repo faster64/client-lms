@@ -55,6 +55,7 @@ export class PersonalInformationComponent extends BaseComponent {
       )
       .subscribe(resp => {
         if (resp.code == 'success') {
+          this.userService.user = resp.data;
           this.user = resp.data;
           this.roles = this.user.roles.map(x => x.name).join(', ');
           this.isStudent = this.user.roles && this.user.roles.length == 1 && this.user.roles[0].code == 'student';
@@ -80,7 +81,7 @@ export class PersonalInformationComponent extends BaseComponent {
   save() {
     this.isLoading = true;
     this.userService
-      .updateInformation(this.user)
+      .updateProfile(this.user)
       .pipe(
         takeUntil(this._onDestroySub),
         finalize(() => { this.isLoading = false; this.saveBtn.finish() })
@@ -88,6 +89,7 @@ export class PersonalInformationComponent extends BaseComponent {
       .subscribe(resp => {
         if (resp.code == 'success') {
           this.viewMode = true;
+          this.userService.user = null;
           SnackBar.success(new SnackBarParameter(this, 'Cập nhật thông tin cá nhân thành công!', 'Bạn vừa hoàn tất quá trình cập nhật thông tin cá nhân tại Cánh Buồm Education. Chúng tôi sẵn sàng hỗ trợ bạn trong hành trình học tập của mình.'));
           this.load();
         }

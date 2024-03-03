@@ -4,6 +4,8 @@ import { BaseService } from "../base/base.service";
 import { HttpService } from "../base/http.service";
 import { UserState } from "../../enums/user-state.enum";
 import { ServiceResult } from "../../models/base/service-result";
+import { StringHelper } from "../../helpers/string.helper";
+import { of } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -25,11 +27,19 @@ export class UserService extends BaseService {
   }
 
   getProfile() {
+    if (this.user && !StringHelper.isNullOrEmpty(this.user.id) && this.user.id != '0') {
+      var resp = new ServiceResult();
+      resp.code = 'success';
+      resp.data = this.user;
+
+      return of(resp);
+    }
+
     const url = this.url() + '/profile';
     return this.http.get<ServiceResult>(url);
   }
 
-  updateInformation(entity: any) {
+  updateProfile(entity: any) {
     return this.http.put<ServiceResult>(this.url() + '/update-profile', entity, this._baseOptions);
   }
 }
