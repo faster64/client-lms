@@ -33,7 +33,7 @@ export class CourseLessonLearningComponent extends BaseComponent {
   load() {
     this.isLoading = true;
     this.lessonClientService
-      .getLessonById(this.lesson.id, this.course.id)
+      .getLessonById(this.lesson.id, this.course.id, true)
       .pipe(
         takeUntil(this._onDestroySub),
         finalize(() => this.isLoading = false)

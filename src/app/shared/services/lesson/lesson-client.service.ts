@@ -12,8 +12,8 @@ export class LessonClientService extends BaseService {
     this.controller = 'lessonclient';
   }
 
-  getLessonById(id: string, courseId: string) {
-    const url = `${this.url()}/${id}?courseId=${courseId}`;
+  getLessonById(id: string, courseId: string, hiddenResult: boolean) {
+    const url = `${this.url()}/${id}?courseId=${courseId}&hidden=${hiddenResult}`;
     return this.http.get<ServiceResult>(url, this._baseOptions);
   }
 }

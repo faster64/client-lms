@@ -43,7 +43,7 @@
       </div>
 
       <!-- đáp án  -->
-      <div class="answers">
+      <div class="answers unselectable">
         <ng-container *ngFor="let ewa of formData.exerciseWithAnswers; index as i">
           <div class="wrapper" [ngClass]="'t-' + ewa.exercise.type" *ngIf="i == currentExerciseIndex">
 
@@ -51,32 +51,31 @@
             <ng-container *ngIf="ewa.exercise.type == ExerciseType.DIEN_KHUYET">
               <div class="ans-item" *ngFor="let ans of ewa.exercise.dienKhuyetAnswer; index as j">
                 <dx-text-box placeholder="Nhập đán án" [height]="44" [width]="320"
-                  [(value)]="ewa.answer.dienKhuyetAnswerArray[j]" (onValueChanged)="buildOneAnswer(ewa)">
+                  [(value)]="ewa.answer.dienKhuyetAnswerArray[j]">
                 </dx-text-box>
               </div>
             </ng-container>
 
             <!-- gạch dưới -->
             <ng-container *ngIf="ewa.exercise.type == ExerciseType.GACH_DUOI">
-              <div class="ans-item" *ngFor="let ans of ewa.exercise.gachDuoiAnswer; index as j">
+              <div class="ans-item" *ngFor="let ans of ewa.answer.gachDuoiAnswerArray; index as j">
 
                 <!-- nhiều đáp án -->
                 <ng-container *ngIf="ewa.exercise.multiCorrectAnswers">
                   <div class="checkbox" style="margin-right: 24px;">
-                    <dx-check-box [height]="28" [(value)]="ewa.answer.gachDuoiAnswerArray[j].value"
-                      (onValueChanged)="buildOneAnswer(ewa)">
+                    <dx-check-box [height]="28" [(value)]="ans.value">
                     </dx-check-box>
                   </div>
 
-                  <div class="text" [innerHTML]="ans.text"></div>
+                  <div class="text" [innerHTML]="ewa.exercise.gachDuoiAnswer[j].text"></div>
                 </ng-container>
 
                 <!-- 1 đáp án -->
                 <ng-container *ngIf="!ewa.exercise.multiCorrectAnswers">
                   <input type="radio" style="width: 20px; height: 20px; margin-right: 24px;" name="ans-group"
-                    [checked]="ewa.answer.gachDuoiAnswerArray[j].value" (change)="radioChanged(ewa, j)">
+                    [checked]="ans.value" (change)="radioChanged(ewa, j)">
 
-                  <div class="text" [innerHTML]="ans.text"></div>
+                  <div class="text" [innerHTML]="ewa.exercise.gachDuoiAnswer[j].text"></div>
                 </ng-container>
 
               </div>
@@ -84,25 +83,24 @@
 
             <!-- khoanh tròn  -->
             <ng-container *ngIf="ewa.exercise.type == ExerciseType.KHOANH_TRON">
-              <div class="ans-item" *ngFor="let ans of ewa.exercise.khoanhTronAnswer; index as j">
+              <div class="ans-item" *ngFor="let ans of ewa.answer.khoanhTronAnswerArray; index as j">
 
                 <!-- nhiều đáp án -->
                 <ng-container *ngIf="ewa.exercise.multiCorrectAnswers">
                   <div class="checkbox" style="margin-right: 24px;">
-                    <dx-check-box [height]="28" [(value)]="ewa.answer.khoanhTronAnswerArray[j].value"
-                      (onValueChanged)="buildOneAnswer(ewa)">
+                    <dx-check-box [height]="28" [(value)]="ans.value">
                     </dx-check-box>
                   </div>
 
-                  <div class="text" [innerHTML]="ans.text"></div>
+                  <div class="text" [innerHTML]="ewa.exercise.khoanhTronAnswer[j].text"></div>
                 </ng-container>
 
                 <!-- 1 đáp án -->
                 <ng-container *ngIf="!ewa.exercise.multiCorrectAnswers">
                   <input type="radio" style="width: 20px; height: 20px; margin-right: 24px;" name="ans-group"
-                    [checked]="ewa.answer.khoanhTronAnswerArray[j].value" (change)="radioChanged(ewa, j)">
+                    [checked]="ans.value" (change)="radioChanged(ewa, j)">
 
-                  <div class="text" [innerHTML]="ans.text"></div>
+                  <div class="text" [innerHTML]="ewa.exercise.khoanhTronAnswer[j].text"></div>
                 </ng-container>
 
               </div>

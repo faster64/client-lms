@@ -84,7 +84,7 @@ export class CourseLessonTestComponent extends BaseComponent {
   load() {
     this.isLoading = true;
     this.lessonClientService
-      .getLessonById(this.lesson.id, this.course.id)
+      .getLessonById(this.lesson.id, this.course.id, true)
       .pipe(
         takeUntil(this._onDestroySub),
         finalize(() => this.isLoading = false)
@@ -156,7 +156,11 @@ export class CourseLessonTestComponent extends BaseComponent {
 
       case ExerciseType.GACH_DUOI:
       case ExerciseType.KHOANH_TRON:
-        return Array<KeyValue>(length).fill({ text: '', value: false });
+        const arr = Array<KeyValue>(length);
+        for (let i = 0; i < arr.length; i++) {
+          arr[i] = { text: '', value: false };
+        }
+        return arr;
 
       case ExerciseType.SAP_XEP:
         return Array(length).fill({});
@@ -189,6 +193,9 @@ export class CourseLessonTestComponent extends BaseComponent {
   }
 
   sapxep_choose(ewa: ExerciseWithAnswer, j: number) {
+    if (ewa.answer.sapXepAnswerArray[j].disabled) {
+      return;
+    }
     ewa.answer.sapXepAnswerArray[j].disabled = true;
     ewa.answer.sapXepAnswerArray2.push(ewa.answer.sapXepAnswerArray[j]);
 
@@ -231,7 +238,7 @@ export class CourseLessonTestComponent extends BaseComponent {
         }
         break;
       case ExerciseType.SAP_XEP:
-        ewa.answer.answerJson = ewa.answer.sapXepAnswerArray.map(e => e.value).join('@@@');
+        ewa.answer.answerJson = ewa.answer.sapXepAnswerArray2.map(e => e.value).join('@@@');
         break;
       default:
         ewa.answer.answerJson = '';

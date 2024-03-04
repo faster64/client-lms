@@ -67,7 +67,7 @@ export class CourseLessonCongratulationComponent extends BaseComponent {
   loadLesson() {
     this.isLoadingLesson = true;
     this.lessonClientService
-      .getLessonById(this.lesson.id, this.course.id)
+      .getLessonById(this.lesson.id, this.course.id, false)
       .pipe(
         takeUntil(this._onDestroySub),
         finalize(() => this.isLoadingLesson = false)
