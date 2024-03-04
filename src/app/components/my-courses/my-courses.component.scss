@@ -60,31 +60,15 @@
       display: flex;
       flex-wrap: wrap;
 
-      // .course {
-      //   width: 25%;
-      //   min-width: 312px;
-      //   height: 468px;
-      //   padding: 8px;
-      //   margin-bottom: 24px;
-      //   overflow: hidden;
-      // }
+      .course {
+        width: calc(calc(100% - 72px) / 4);
+        height: 468px;
+        padding: 0;
+        margin: 0 24px 24px 0;
+        overflow: hidden;
 
-      .c-row {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        width: 100%;
-        margin: 0;
-        .course {
-          width: calc(calc(100% - 72px) / 4);
-          height: 468px;
-          padding: 0;
-          margin: 0 24px 24px 0;
-          overflow: hidden;
-
-          &:last-child {
-            margin-right: 0 !important;
-          }
+        &:nth-child(4n) {
+          margin-right: 0 !important;
         }
       }
 
@@ -149,6 +133,10 @@
     .courses {
       .course {
         width: calc(calc(100% - 48px) / 3);
+
+        &:nth-child(3n) {
+          margin-right: 0 !important;
+        }
       }
     }
   }
@@ -168,6 +156,10 @@
     .courses {
       .course {
         width: calc(calc(100% - 24px) / 2);
+
+        &:nth-child(2n) {
+          margin-right: 0 !important;
+        }
       }
     }
   }

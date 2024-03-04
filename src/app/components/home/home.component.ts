@@ -25,8 +25,6 @@ export class HomeComponent extends BaseComponent {
 
   initCount = 0;
 
-  rows = 0;
-
   isSearchMode = false;
 
   searchKey = '';
@@ -56,18 +54,6 @@ export class HomeComponent extends BaseComponent {
         this.paginationRequest.query = key;
         this.loadCourses(true);
       });
-
-    if (environment.isDemo) {
-      window.onresize = (e) => {
-        clearTimeout(this.resizeId);
-        this.resizeId = setTimeout(() => {
-          this.calculateCount();
-          this.paginationRequest.size = this.initCount;
-          this.paginationRequest.sort = new SortModel('created', false);
-          this.loadCourses();
-        }, 500);
-      }
-    }
   }
 
   calculateCount() {
@@ -106,7 +92,6 @@ export class HomeComponent extends BaseComponent {
           this.courses = this.courses.concat(resp.data);
           this.current = this.courses.length;
           this.total = resp.total;
-          this.rows = Math.ceil(this.courses.length / this.viewMoreCount);
 
           if (searchMode) {
             window.scrollTo(0, 0);

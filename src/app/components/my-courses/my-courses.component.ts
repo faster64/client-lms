@@ -28,8 +28,6 @@ export class MyCoursesComponent extends BaseComponent {
 
   count = 4;
 
-  rows = 0;
-
   constructor(
     injector: Injector,
     public classService: ClassService,
@@ -106,7 +104,6 @@ export class MyCoursesComponent extends BaseComponent {
           this.courses = this.courses.concat(resp.data);
           this.current = this.courses.length;
           this.total = resp.total;
-          this.rows = Math.ceil(this.courses.length / this.count);
         }
       });
   }
