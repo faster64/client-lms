@@ -16,6 +16,7 @@
   --gray-500: #6a6e75;
   --gray-800: #1d2939;
   --blue-01: #E8EDFC;
+  --blue-02: #BACAF7;
   --green-01: #E8FCEE;
   --green-07: #17CF4E;
   --red-01: #FCE8E8;
@@ -53,6 +54,7 @@
   --banner-white-height: 228px;
   --banner-slide-height: 464px;
   --banner-slide-top-padding: 150px;
+  --content-margin: 88px 0;
   --course-description-distance: 280px;
   --cms-content-padding: 28px 36px 0 36px;
   --search-input-width: 320px;
@@ -152,6 +154,7 @@
     /* --banner-blue-height: 200px; */
     --large-title-size: 18px;
     --large-sub-title-size: 14px;
+    --content-margin: 24px 0;
     /* --banner-blue-height: 400px; */
     /* --banner-white-height: 200px; */
     /* --banner-slide-height: 364px; */

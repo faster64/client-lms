@@ -68,6 +68,70 @@ export class CmsLessonFormComponent extends CmsFormComponent implements AfterVie
     this.getCourses();
   }
 
+  // override validate = () => {
+  //   this.data.docsInvalid = '';
+  //   if (StringHelper.isNullOrEmpty(this.data.courseId)) {
+  //     this.mode = 'docs';
+  //     this.data.docsInvalid = 'courseId';
+  //     SnackBar.danger(new SnackBarParameter(this, 'Lỗi dữ liệu', 'Bạn chưa chọn khóa học'));
+  //   }
+  //   if (StringHelper.isNullOrEmpty(this.data.image)) {
+  //     this.mode = 'docs';
+  //     SnackBar.danger(new SnackBarParameter(this, 'Lỗi dữ liệu', 'Bạn chưa chọn hình ảnh khóa học'));
+  //   }
+
+  //   return false;
+  // }
+
+  override validate = () => {
+    this.data.testIsValid = true;
+
+    if (StringHelper.isNullOrEmpty(this.data.courseId)) {
+      this.mode = 'docs';
+      SnackBar.danger(new SnackBarParameter(this, 'Lỗi dữ liệu', 'Bạn chưa chọn khóa học'));
+      return false;
+    }
+
+    if (StringHelper.isNullOrEmpty(this.data.image)) {
+      this.mode = 'docs';
+      SnackBar.danger(new SnackBarParameter(this, 'Lỗi dữ liệu', 'Bạn chưa chọn hình ảnh khóa học'));
+      return false;
+    }
+
+    if (StringHelper.isNullOrEmpty(this.data.name)) {
+      this.mode = 'docs';
+      SnackBar.danger(new SnackBarParameter(this, 'Lỗi dữ liệu', 'Bạn chưa nhập tên bài giảng'));
+      return false;
+    }
+
+    if (StringHelper.isNullOrEmpty(this.data.description)) {
+      this.mode = 'docs';
+      SnackBar.danger(new SnackBarParameter(this, 'Lỗi dữ liệu', 'Bạn chưa nhập mô tả bài giảng'));
+      return false;
+    }
+
+    if (StringHelper.isNullOrEmpty(this.data.fileName)) {
+      this.mode = 'docs';
+      SnackBar.danger(new SnackBarParameter(this, 'Lỗi dữ liệu', 'Bạn chưa chọn file đính kèm'));
+      return false;
+    }
+
+    if (StringHelper.isNullOrEmpty(this.data.testName)) {
+      this.mode = 'exercise';
+      // this.data.testIsValid = false;
+      SnackBar.danger(new SnackBarParameter(this, 'Lỗi dữ liệu', 'Bạn chưa nhập tên bài kiểm tra'));
+      return false;
+    }
+
+    if (StringHelper.isNullOrEmpty(this.data.testDescription)) {
+      this.mode = 'exercise';
+      // this.data.testIsValid = false;
+      SnackBar.danger(new SnackBarParameter(this, 'Lỗi dữ liệu', 'Bạn chưa nhập mô tả bài kiểm tra'));
+      return false;
+    }
+    return true;
+  }
+
   override beforeSave(): void {
     for (let i = 0; i < this.data.exercises.length; i++) {
       const ex = this.data.exercises[i] as Exercise;

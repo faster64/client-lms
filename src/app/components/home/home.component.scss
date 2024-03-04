@@ -2,10 +2,10 @@
   max-width: 1320px;
 
   .app-courses {
-    margin: 24px 0;
+    margin: var(--content-margin);
 
     .course-title {
-      margin-bottom: 12px;
+      margin-bottom: 16px;
       text-align: center;
 
       span {
@@ -22,13 +22,14 @@
     .course-sub-title {
       font-size: var(--large-sub-title-size);
       text-align: center;
-      margin-bottom: 24px;
+      margin-bottom: 56px;
     }
 
     .course-wrapper {
       display: flex;
       flex-wrap: wrap;
       min-height: 280px;
+      margin-bottom: 40px;
 
       .course {
         width: calc(calc(100% - 72px) / 4);

@@ -23,6 +23,9 @@ export class ExerciseEditorComponent {
   @Input()
   disable = false;
 
+  @Input()
+  isValid = true;
+
   @Output()
   change = new EventEmitter();
 

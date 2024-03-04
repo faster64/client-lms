@@ -25,6 +25,9 @@ export class SelectorComponent implements OnInit {
   noDataText = "Không có dữ liệu";
 
   @Input()
+  isValid = true;
+
+  @Input()
   disabled = false;
 
   @Input()

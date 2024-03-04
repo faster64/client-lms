@@ -1,7 +1,7 @@
 <div class="base-selector">
   <dx-select-box itemTemplate="item" [dataSource]="dataSource" [displayExpr]="displayExpr" [valueExpr]="valueExpr"
     [placeholder]="isFetching ? '' : placeholder" [value]="value" (valueChange)="value = $event" [searchEnabled]="true"
-    [noDataText]="noDataText" [disabled]="disabled" [readOnly]="readOnly" [width]="width" [height]="height"
+    [noDataText]="noDataText" [disabled]="disabled" [readOnly]="readOnly" [width]="width" [height]="height" [isValid]="isValid"
     [label]="label" [hint]="hint" [name]="name" [showClearButton]="enabledClear" (onOpened)="onOpenedFunc($event)"
     (onValueChanged)="onValueChangedFunc($event)" (onEnterKey)="onEnterKeyFunc($event)" (onBlur)="onBlurFunc($event)">
 

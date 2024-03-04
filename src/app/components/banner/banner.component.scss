@@ -90,6 +90,36 @@
       }
     }
   }
+
+  // .l-03 {
+  //   position: absolute;
+  //   right: -280px;
+  //   bottom: 0;
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+  //   width: 172px;
+  //   height: var(--banner-slide-height);
+  //   background-color: var(--blue-02);
+  //   opacity: 0.08;
+  //   color: var(--blue-01);
+  //   font-size: 64px;
+  //   font-style: normal;
+  //   font-weight: 700;
+  //   line-height: normal;
+  //   letter-spacing: -1.28px;
+  // }
+}
+
+@media screen and (max-width: 1600px) {
+  .banner-cpn {
+    .middle-line {
+      left: -32px;
+    }
+    .l-03 {
+      display: none !important;
+    }
+  }
 }
 
 @media screen and (max-width: 1200px) {

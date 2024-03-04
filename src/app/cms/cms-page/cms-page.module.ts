@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { TranslateModule } from '@ngx-translate/core';
-import { DxCheckBoxModule, DxDateBoxModule, DxNumberBoxModule, DxSelectBoxModule, DxTextAreaModule, DxTextBoxModule } from 'devextreme-angular';
+import { DxCheckBoxModule, DxDateBoxModule, DxNumberBoxModule, DxSelectBoxModule, DxTextAreaModule, DxTextBoxModule, DxValidatorModule } from 'devextreme-angular';
 import { GridModule } from 'src/app/shared/components/element/grid/grid.module';
 import { BaseButtonModule } from 'src/app/shared/components/micro/button/button.module';
 import { ClassSelectorModule } from 'src/app/shared/components/micro/class-selector/class-selector.module';
@@ -78,6 +78,7 @@ import { MatMenuModule } from '@angular/material/menu';
     DxDateBoxModule,
     DxSelectBoxModule,
     DxCheckBoxModule,
+    DxValidatorModule,
     BaseButtonModule,
     BaseLoadingModule,
     BaseUploaderModule,

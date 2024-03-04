@@ -1,5 +1,5 @@
 <div class="base-exercise-editor">
-  <dx-html-editor #editor [readOnly]="readonly" [disabled]="disable" [value]="valueContent"
+  <dx-html-editor #editor [readOnly]="readonly" [disabled]="disable" [value]="valueContent" [isValid]="isValid"
     [placeholder]="disable ? '' : placeholder" [spellcheck]="false" (onValueChanged)="onValueChanged($event)">
 
     <dxo-toolbar [multiline]="false">

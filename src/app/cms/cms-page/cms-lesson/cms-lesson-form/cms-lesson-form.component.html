@@ -79,7 +79,7 @@
     </div>
 
     <div class="exercise-wrapper">
-      <div class="row block">
+      <div class="row block" [ngClass]="data.testIsValid == false ? 'invalid' : ''">
         <div class="col-12 data-item">
           <div class="label">Tên bài kiểm tra <span class="required">*</span> </div>
           <dx-text-box placeholder="Nhập tên bài kiểm tra" [height]="44" [readOnly]="formMode == FormMode.View"
@@ -95,7 +95,8 @@
         </div>
       </div>
 
-      <div class="row block" *ngFor="let exercise of data.exercises; index as i">
+      <div class="row block" *ngFor="let exercise of data.exercises; index as i"
+        [ngClass]="exercise.isValid == false ? 'invalid' : ''">
 
         <!-- Order  -->
         <div class="col-12 question-order">

@@ -19,4 +19,5 @@ export class Exercise extends BaseModel {
   public note = '';
   public hint = '';
   public hasAttachment = false;
+  public isValid = true;
 }
