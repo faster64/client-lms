@@ -1,4 +1,6 @@
 import { Exercise } from "./exercise";
+import { KeyValue } from "./key-value";
+import { SapXep } from "./sap-xep";
 
 export class TestingFormData {
   public lessonId = '';
@@ -15,6 +17,9 @@ export class ExerciseWithAnswer {
 export class Answer {
   public exerciseId = '';
   public answerJson = '';
-  public answerArray = [];
-  public studentAnswerArray = []; // SAP_XEP only
+  public dienKhuyetAnswerArray: string[] = []; // Dien khuyet only
+  public gachDuoiAnswerArray: KeyValue[] = []; // Gach duoi only;
+  public khoanhTronAnswerArray: KeyValue[] = []; // Khoanh tron only;
+  public sapXepAnswerArray: SapXep[] = []; // Sap xep only
+  public sapXepAnswerArray2: SapXep[] = []; // Câu trả lời (Sap xep only)
 }

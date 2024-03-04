@@ -8,7 +8,9 @@ import { StringHelper } from 'src/app/shared/helpers/string.helper';
 import { MessageBox } from 'src/app/shared/message-box/message-box.component';
 import { Message } from 'src/app/shared/message-box/model/message';
 import { Course } from 'src/app/shared/models/course/course';
+import { KeyValue } from 'src/app/shared/models/lesson/key-value';
 import { Lesson } from 'src/app/shared/models/lesson/lesson';
+import { SapXep } from 'src/app/shared/models/lesson/sap-xep';
 import { ExerciseWithAnswer, TestingFormData } from 'src/app/shared/models/lesson/testing-form-data';
 import { LessonClientService } from 'src/app/shared/services/lesson/lesson-client.service';
 import { TestingService } from 'src/app/shared/services/lesson/testing-service';
@@ -102,35 +104,45 @@ export class CourseLessonTestComponent extends BaseComponent {
     if (this.lesson && this.lesson.exercises && this.lesson.exercises.length) {
       for (let i = 0; i < this.lesson.exercises.length; i++) {
         const ex = this.lesson.exercises[i];
+        let length = 0;
+
         switch (ex.type) {
           case ExerciseType.DIEN_KHUYET:
+            length = ex.dienKhuyetAnswer.length;
             break;
           case ExerciseType.GACH_DUOI:
+            length = ex.gachDuoiAnswer.length;
+            break;
           case ExerciseType.KHOANH_TRON:
+            length = ex.khoanhTronAnswer.length;
             break;
           case ExerciseType.SAP_XEP:
+            length = ex.sapXepAnswer.length;
             ex.questionJson = 'Sắp xếp các từ sau thành câu hoàn chỉnh';
             break;
         }
 
-        let array = this.initAnswerArray(ex.type, ex.answers.length);
+        let array = this.initAnswerArray(ex.type, length);
         if (ex.type == ExerciseType.SAP_XEP) {
-          array = Utility.shuffle([...ex.answers]).map((x, index) => {
-            return {
-              index: index,
-              value: x,
-              disabled: false
-            };
+          array = Utility.shuffle([...ex.sapXepAnswer]).map((x, index) => {
+            const item = new SapXep();
+            item.index = index;
+            item.value = x;
+            item.disabled = false;
+            return item;
           });
         }
 
         this.formData.exerciseWithAnswers.push({
           exercise: ex,
           answer: {
+            exerciseId: ex.id,
             answerJson: '',
-            answerArray: array,
-            studentAnswerArray: [],
-            exerciseId: ex.id
+            dienKhuyetAnswerArray: ex.type == ExerciseType.DIEN_KHUYET ? array : [],
+            gachDuoiAnswerArray: ex.type == ExerciseType.GACH_DUOI ? array : [],
+            khoanhTronAnswerArray: ex.type == ExerciseType.KHOANH_TRON ? array : [],
+            sapXepAnswerArray: ex.type == ExerciseType.SAP_XEP ? array : [],
+            sapXepAnswerArray2: []
           },
         });
       }
@@ -144,7 +156,7 @@ export class CourseLessonTestComponent extends BaseComponent {
 
       case ExerciseType.GACH_DUOI:
       case ExerciseType.KHOANH_TRON:
-        return Array(length).fill(false);
+        return Array<KeyValue>(length).fill({ text: '', value: false });
 
       case ExerciseType.SAP_XEP:
         return Array(length).fill({});
@@ -165,24 +177,28 @@ export class CourseLessonTestComponent extends BaseComponent {
   }
 
   radioChanged(ewa: ExerciseWithAnswer, j: number) {
-    if ([ExerciseType.GACH_DUOI, ExerciseType.KHOANH_TRON].includes(ewa.exercise.type) && !ewa.exercise.multiCorrectAnswers) {
-      ewa.answer.answerArray = Array(ewa.exercise.answers.length).fill(false);
-      ewa.answer.answerArray[j] = true;
+    if (ewa.exercise.type == ExerciseType.GACH_DUOI && !ewa.exercise.multiCorrectAnswers) {
+      ewa.answer.gachDuoiAnswerArray = Array<KeyValue>(ewa.exercise.gachDuoiAnswer.length).fill({ text: '', value: false });
+      ewa.answer.gachDuoiAnswerArray[j] = { text: '', value: true };
+
+    } else if (ewa.exercise.type == ExerciseType.KHOANH_TRON && !ewa.exercise.multiCorrectAnswers) {
+      ewa.answer.khoanhTronAnswerArray = Array<KeyValue>(ewa.exercise.khoanhTronAnswer.length).fill({ text: '', value: false });
+      ewa.answer.khoanhTronAnswerArray[j] = { text: '', value: true };
     }
     this.buildOneAnswer(ewa);
   }
 
   sapxep_choose(ewa: ExerciseWithAnswer, j: number) {
-    ewa.answer.answerArray[j].disabled = true;
-    ewa.answer.studentAnswerArray.push(ewa.answer.answerArray[j]);
+    ewa.answer.sapXepAnswerArray[j].disabled = true;
+    ewa.answer.sapXepAnswerArray2.push(ewa.answer.sapXepAnswerArray[j]);
 
     this.buildOneAnswer(ewa);
   }
 
   sapxep_remove(ewa: ExerciseWithAnswer, j: number) {
-    const index = ewa.answer.studentAnswerArray[j].index;
-    ewa.answer.answerArray[index].disabled = false;
-    ewa.answer.studentAnswerArray.splice(j, 1);
+    const index = ewa.answer.sapXepAnswerArray2[j].index;
+    ewa.answer.sapXepAnswerArray[index].disabled = false;
+    ewa.answer.sapXepAnswerArray2.splice(j, 1);
 
     this.buildOneAnswer(ewa);
   }
@@ -190,25 +206,32 @@ export class CourseLessonTestComponent extends BaseComponent {
   buildOneAnswer(ewa: ExerciseWithAnswer) {
     switch (ewa.exercise.type) {
       case ExerciseType.DIEN_KHUYET:
-        if (ewa.answer.answerArray.findIndex(e => !StringHelper.isNullOrEmpty(e)) == -1) {
+        if (ewa.answer.dienKhuyetAnswerArray.findIndex(s => !StringHelper.isNullOrEmpty(s)) == -1) {
           ewa.answer.answerJson = '';
         }
         else {
-          const json = JSON.stringify(ewa.answer.answerArray)
+          const json = JSON.stringify(ewa.answer.dienKhuyetAnswerArray)
           ewa.answer.answerJson = json == '[]' ? '' : json;
         }
         break;
       case ExerciseType.GACH_DUOI:
-      case ExerciseType.KHOANH_TRON:
-        if (ewa.answer.answerArray.findIndex(e => e == true) == -1) {
+        if (ewa.answer.gachDuoiAnswerArray.findIndex(e => e.value == true) == -1) {
           ewa.answer.answerJson = '';
         }
         else {
-          ewa.answer.answerJson = JSON.stringify(ewa.answer.answerArray);
+          ewa.answer.answerJson = JSON.stringify(ewa.answer.gachDuoiAnswerArray);
+        }
+        break;
+      case ExerciseType.KHOANH_TRON:
+        if (ewa.answer.khoanhTronAnswerArray.findIndex(e => e.value == true) == -1) {
+          ewa.answer.answerJson = '';
+        }
+        else {
+          ewa.answer.answerJson = JSON.stringify(ewa.answer.khoanhTronAnswerArray);
         }
         break;
       case ExerciseType.SAP_XEP:
-        ewa.answer.answerJson = ewa.answer.studentAnswerArray.map(e => e.value).join('@@@');
+        ewa.answer.answerJson = ewa.answer.sapXepAnswerArray.map(e => e.value).join('@@@');
         break;
       default:
         ewa.answer.answerJson = '';

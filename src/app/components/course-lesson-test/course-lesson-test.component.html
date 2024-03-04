@@ -49,21 +49,21 @@
 
             <!-- điền khuyết -->
             <ng-container *ngIf="ewa.exercise.type == ExerciseType.DIEN_KHUYET">
-              <div class="ans-item" *ngFor="let ans of ewa.exercise.answers; index as j">
-                <dx-text-box placeholder="Nhập đán án" [height]="44" [width]="320" [(value)]="ewa.answer.answerArray[j]"
-                  (onValueChanged)="buildOneAnswer(ewa)">
+              <div class="ans-item" *ngFor="let ans of ewa.exercise.dienKhuyetAnswer; index as j">
+                <dx-text-box placeholder="Nhập đán án" [height]="44" [width]="320"
+                  [(value)]="ewa.answer.dienKhuyetAnswerArray[j]" (onValueChanged)="buildOneAnswer(ewa)">
                 </dx-text-box>
               </div>
             </ng-container>
 
-            <!-- gạch dưới or khoanh tròn -->
-            <ng-container *ngIf="[ExerciseType.GACH_DUOI, ExerciseType.KHOANH_TRON].includes(ewa.exercise.type)">
-              <div class="ans-item" *ngFor="let ans of ewa.exercise.answers; index as j">
+            <!-- gạch dưới -->
+            <ng-container *ngIf="ewa.exercise.type == ExerciseType.GACH_DUOI">
+              <div class="ans-item" *ngFor="let ans of ewa.exercise.gachDuoiAnswer; index as j">
 
                 <!-- nhiều đáp án -->
                 <ng-container *ngIf="ewa.exercise.multiCorrectAnswers">
-                  <div class="checkbox" style="margin-right: 24px;" *ngIf="!ans.multiCorrectAnswers">
-                    <dx-check-box [height]="28" [(value)]="ewa.answer.answerArray[j]"
+                  <div class="checkbox" style="margin-right: 24px;">
+                    <dx-check-box [height]="28" [(value)]="ewa.answer.gachDuoiAnswerArray[j].value"
                       (onValueChanged)="buildOneAnswer(ewa)">
                     </dx-check-box>
                   </div>
@@ -74,7 +74,33 @@
                 <!-- 1 đáp án -->
                 <ng-container *ngIf="!ewa.exercise.multiCorrectAnswers">
                   <input type="radio" style="width: 20px; height: 20px; margin-right: 24px;" name="ans-group"
-                    [checked]="ewa.answer.answerArray[j]" (change)="radioChanged(ewa, j)">
+                    [checked]="ewa.answer.gachDuoiAnswerArray[j].value" (change)="radioChanged(ewa, j)">
+
+                  <div class="text" [innerHTML]="ans.text"></div>
+                </ng-container>
+
+              </div>
+            </ng-container>
+
+            <!-- khoanh tròn  -->
+            <ng-container *ngIf="ewa.exercise.type == ExerciseType.KHOANH_TRON">
+              <div class="ans-item" *ngFor="let ans of ewa.exercise.khoanhTronAnswer; index as j">
+
+                <!-- nhiều đáp án -->
+                <ng-container *ngIf="ewa.exercise.multiCorrectAnswers">
+                  <div class="checkbox" style="margin-right: 24px;">
+                    <dx-check-box [height]="28" [(value)]="ewa.answer.khoanhTronAnswerArray[j].value"
+                      (onValueChanged)="buildOneAnswer(ewa)">
+                    </dx-check-box>
+                  </div>
+
+                  <div class="text" [innerHTML]="ans.text"></div>
+                </ng-container>
+
+                <!-- 1 đáp án -->
+                <ng-container *ngIf="!ewa.exercise.multiCorrectAnswers">
+                  <input type="radio" style="width: 20px; height: 20px; margin-right: 24px;" name="ans-group"
+                    [checked]="ewa.answer.khoanhTronAnswerArray[j].value" (change)="radioChanged(ewa, j)">
 
                   <div class="text" [innerHTML]="ans.text"></div>
                 </ng-container>
@@ -85,13 +111,13 @@
             <!-- sắp xếp -->
             <ng-container *ngIf="ewa.exercise.type == ExerciseType.SAP_XEP">
               <div class="student-ans-line">
-                <div class="sta-item" *ngFor="let ans of ewa.answer.studentAnswerArray; index as j"
+                <div class="sta-item" *ngFor="let ans of ewa.answer.sapXepAnswerArray2; index as j"
                   (click)="sapxep_remove(ewa, j)">
                   {{ans.value}}
                 </div>
               </div>
               <div class="random-item" [ngClass]="ans.disabled ? 'disabled' : ''"
-                *ngFor="let ans of ewa.answer.answerArray; index as j" (click)="sapxep_choose(ewa, j)">
+                *ngFor="let ans of ewa.answer.sapXepAnswerArray; index as j" (click)="sapxep_choose(ewa, j)">
                 {{ans.value}}
               </div>
             </ng-container>

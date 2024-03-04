@@ -12,6 +12,7 @@ import { LessonService } from 'src/app/shared/services/lesson/lesson.service';
 import { SnackBar } from 'src/app/shared/snackbar/snackbar.component';
 import { SnackBarParameter } from 'src/app/shared/snackbar/snackbar.param';
 import { CmsFormComponent } from '../../cms-page-form.component';
+import { Lesson } from 'src/app/shared/models/lesson/lesson';
 
 @Component({
   selector: 'app-cms-lesson-form',
@@ -20,15 +21,17 @@ import { CmsFormComponent } from '../../cms-page-form.component';
 })
 export class CmsLessonFormComponent extends CmsFormComponent implements AfterViewInit {
 
+  LessonService = LessonService;
+
+  ExerciseType = ExerciseType;
+
   mode = 'docs';
+
+  override data: Lesson;
 
   courses: Course[] = [];
 
   fetchingCourse = false;
-
-  LessonService = LessonService;
-
-  QuestionType = ExerciseType;
 
   @ViewChild("attachmentUploader")
   attachmentUploader: BaseUploaderComponent;
@@ -62,19 +65,24 @@ export class CmsLessonFormComponent extends CmsFormComponent implements AfterVie
   }
 
   override loaded = () => {
-    for (let i = 0; i < this.data.exercises.length; i++) {
-      this.data.exercises[i].answers = JSON.parse(this.data.exercises[i].answerJson);
-    }
     this.getCourses();
   }
 
   override beforeSave(): void {
     for (let i = 0; i < this.data.exercises.length; i++) {
       const ex = this.data.exercises[i] as Exercise;
-      if (ex.type == ExerciseType.DIEN_KHUYET || ex.type == ExerciseType.SAP_XEP) {
-        ex.answers = ex.answers.filter(x => !StringHelper.isNullOrEmpty(x)).map(x => x.trim());
+      if (ex.type == ExerciseType.DIEN_KHUYET) {
+        ex.answerJson = JSON.stringify(ex.dienKhuyetAnswer);
       }
-      ex.answerJson = JSON.stringify(ex.answers);
+      else if (ex.type == ExerciseType.GACH_DUOI) {
+        ex.answerJson = JSON.stringify(ex.gachDuoiAnswer);
+      }
+      else if (ex.type == ExerciseType.KHOANH_TRON) {
+        ex.answerJson = JSON.stringify(ex.khoanhTronAnswer);
+      }
+      else if (ex.type == ExerciseType.SAP_XEP) {
+        ex.answerJson = JSON.stringify(ex.sapXepAnswer);
+      }
     }
   }
 
@@ -121,22 +129,29 @@ export class CmsLessonFormComponent extends CmsFormComponent implements AfterVie
   }
 
   questionTypeChanged(exercise: Exercise) {
-    if (exercise.type == ExerciseType.GACH_DUOI || exercise.type == ExerciseType.KHOANH_TRON) {
-      exercise.answers = [{ text: '', value: false }, { text: '', value: false }, { text: '', value: false }, { text: '', value: false }];
-    } else if (exercise.type == ExerciseType.DIEN_KHUYET) {
-      exercise.answers = [""];
-    } else {
-      exercise.answers = [""];
+    if (exercise.type == ExerciseType.GACH_DUOI) {
+      exercise.gachDuoiAnswer = [{ text: '', value: false }, { text: '', value: false }, { text: '', value: false }, { text: '', value: false }];
+    }
+    else if (exercise.type == ExerciseType.KHOANH_TRON) {
+      exercise.khoanhTronAnswer = [{ text: '', value: false }, { text: '', value: false }, { text: '', value: false }, { text: '', value: false }];
+    }
+    else if (exercise.type == ExerciseType.DIEN_KHUYET) {
+      exercise.dienKhuyetAnswer = [""];
+    }
+    else if (exercise.type == ExerciseType.SAP_XEP) {
+      exercise.sapXepAnswer = [""];
     }
   }
 
   addQuestion() {
-    this.data.exercises.push(
-      {
-        type: ExerciseType.DIEN_KHUYET,
-        answers: [""]
-      },
-    );
+    const ex = new Exercise();
+    ex.type = ExerciseType.DIEN_KHUYET;
+    ex.dienKhuyetAnswer = [""];
+    // ex.gachDuoiAnswer = [];
+    // ex.khoanhTronAnswer = [];
+    // ex.sapXepAnswer = [];
+
+    this.data.exercises.push(ex);
     setTimeout(() => {
       var content = document.querySelector('.cms-content-middle');
       window.scrollTo(0, 0);
@@ -147,27 +162,55 @@ export class CmsLessonFormComponent extends CmsFormComponent implements AfterVie
     this.data.exercises.splice(index, 1);
   }
 
-  addSapXepOrDienKhuyetanswer(index) {
-    const length = this.data.exercises[index].answers.length;
-    if (StringHelper.isNullOrEmpty(this.data.exercises[index].answers[length - 1])) {
+  addDienKhuyetAnswer(index) {
+    const length = this.data.exercises[index].dienKhuyetAnswer.length;
+    if (length > 0 && StringHelper.isNullOrEmpty(this.data.exercises[index].dienKhuyetAnswer[length - 1])) {
       return;
     }
-    this.data.exercises[index].answers.push("");
+    this.data.exercises[index].dienKhuyetAnswer.push("");
   }
 
-  onAnsChanged(exercise: Exercise, index, event) {
-    exercise.answers[index] = event.value;
-    // setTimeout(() => {
-    //   exercise.answers.push("");
-    // }, 200);
+  addSapXepAnswer(index) {
+    const length = this.data.exercises[index].sapXepAnswer.length;
+    if (length > 0 && StringHelper.isNullOrEmpty(this.data.exercises[index].sapXepAnswer[length - 1])) {
+      return;
+    }
+    this.data.exercises[index].sapXepAnswer.push("");
   }
 
   removeAns(exercise: Exercise, index) {
-    if (exercise.answers.length <= 1) {
-      SnackBar.warning(new SnackBarParameter(this, 'Cảnh báo', 'Phải có ít nhất 1 đáp án'));
-      return;
+    if (exercise.type == ExerciseType.GACH_DUOI) {
+      if (exercise.gachDuoiAnswer.length <= 1) {
+        SnackBar.warning(new SnackBarParameter(this, 'Cảnh báo', 'Phải có ít nhất 1 đáp án'));
+      }
+      else {
+        exercise.gachDuoiAnswer.splice(index, 1);
+      }
     }
-    exercise.answers.splice(index, 1);
+    else if (exercise.type == ExerciseType.KHOANH_TRON) {
+      if (exercise.khoanhTronAnswer.length <= 1) {
+        SnackBar.warning(new SnackBarParameter(this, 'Cảnh báo', 'Phải có ít nhất 1 đáp án'));
+      }
+      else {
+        exercise.khoanhTronAnswer.splice(index, 1);
+      }
+    }
+    else if (exercise.type == ExerciseType.DIEN_KHUYET) {
+      if (exercise.dienKhuyetAnswer.length <= 1) {
+        SnackBar.warning(new SnackBarParameter(this, 'Cảnh báo', 'Phải có ít nhất 1 đáp án'));
+      }
+      else {
+        exercise.dienKhuyetAnswer.splice(index, 1);
+      }
+    }
+    else if (exercise.type == ExerciseType.SAP_XEP) {
+      if (exercise.sapXepAnswer.length <= 1) {
+        SnackBar.warning(new SnackBarParameter(this, 'Cảnh báo', 'Phải có ít nhất 1 đáp án'));
+      }
+      else {
+        exercise.sapXepAnswer.splice(index, 1);
+      }
+    }
   }
 
   imageSelected(event, exercise: Exercise) {
