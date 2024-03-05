@@ -6,6 +6,7 @@ import { Routing } from 'src/app/shared/constants/routing.constant';
 import { FieldType } from 'src/app/shared/enums/field-type.enum';
 import { Class } from 'src/app/shared/models/class/class';
 import { ColumnGrid } from 'src/app/shared/models/grid/column-grid';
+import { ReportStudentByLessonModel } from 'src/app/shared/models/report/report-studen-by-lesson-model';
 import { User } from 'src/app/shared/models/user/user';
 import { PublisherService } from 'src/app/shared/services/base/publisher.service';
 import { ClassService } from 'src/app/shared/services/class/class.service';
@@ -30,7 +31,7 @@ export class StudentGridByLessonReportComponent extends BaseComponent implements
 
   total = 0;
 
-  data: User[] = [];
+  data: ReportStudentByLessonModel[] = [];
 
   classes: Class[] = [];
 
@@ -158,7 +159,7 @@ export class StudentGridByLessonReportComponent extends BaseComponent implements
   load() {
     this.isLoading = true;
     this.reportService
-      .getByStudents(this.selectedClass)
+      .getStudentByLesson(this.selectedClass)
       .pipe(
         takeUntil(this._onDestroySub),
         finalize(() => this.isLoading = false),
@@ -167,6 +168,12 @@ export class StudentGridByLessonReportComponent extends BaseComponent implements
         if (resp.code == 'success' && resp.data) {
           this.data = resp.data;
           this.total = resp.total;
+          if (this.data && this.data.length) {
+            this.data[0].collapse = false;
+            for (let i = 1; i < this.data.length; i++) {
+              this.data[i].collapse = true;
+            }
+          }
         }
       })
   }

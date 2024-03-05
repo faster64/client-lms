@@ -98,17 +98,34 @@
         }
 
         .table-body {
-          .total-record {
+          .lesson-name {
             display: flex;
             align-items: center;
+            justify-content: space-between;
             height: 64px;
             padding: 16px;
             background-color: var(--yellow-01);
+            cursor: pointer;
             span {
               font-weight: 600;
               font-size: 20px;
               color: var(--gray-800);
             }
+
+            .icon {
+              width: 16px;
+              height: 16px;
+              background-image: url(~/src/assets/img/common/arrow-up.svg);
+            }
+
+            &:not(:last-child).collapse {
+              border-bottom: 1px solid var(--grey);
+              .icon {
+                background-image: url(~/src/assets/img/common/arrow-down.svg);
+              }
+            }
+
+
           }
 
           .row-item {

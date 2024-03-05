@@ -35,71 +35,75 @@
         </div>
 
         <!-- body -->
-        <div class="table-body">
+        <div class="table-body unselectable">
 
-          <div class="total-record">
-            <span>TỔNG: {{total | NumberFormatPipe}} HỌC SINH</span>
-          </div>
-
-          <div *ngIf="!isLoading && data && data.length">
-            <div class="row-item" *ngFor="let item of data; index as i">
-
-              <div class="column column-body"
-                [ngClass]="[col.column, col.class || '', col.type == FieldType.Password ? 'password-field' : '']"
-                [ngStyle]="setWidth(col)" *ngFor="let col of displayColumns; index as i">
-                <ng-container [ngSwitch]="col.type" *ngIf="item[col.column]">
-
-                  <!-- Nếu là link    -->
-                  <a *ngSwitchCase="FieldType.Link" [href]="col.getLink(item) || item[col.column]"
-                    [target]="col.target ?? '_self'" [matTooltip]="Utility.removeHtml(item[col.column])"
-                    [innerHTML]="item[col.column]" class="over-3-dots">
-                  </a>
-
-                  <img *ngSwitchCase="FieldType.Image" [src]="item[col.column]">
-
-                  <!-- Nếu là số  -->
-                  <p *ngSwitchCase="FieldType.Number"
-                    [matTooltip]="Utility.removeHtml(item[col.column] | NumberFormatPipe)"
-                    [innerHTML]="item[col.column] | NumberFormatPipe" class="over-3-dots">
-                  </p>
-
-                  <!-- Nếu là số không format  -->
-                  <p *ngSwitchCase="FieldType.NumberNoFormat" [matTooltip]="Utility.removeHtml(item[col.column])"
-                    [innerHTML]="item[col.column]" class="over-3-dots">
-                  </p>
-
-                  <!-- Nếu là ngày  -->
-                  <p *ngSwitchCase="FieldType.Date"
-                    [matTooltip]="Utility.removeHtml(item[col.column] | DateVietnamPipe)"
-                    [innerHTML]="item[col.column] | DateVietnamPipe" class="over-3-dots">
-                  </p>
-
-                  <!-- Nếu là ngày giờ -->
-                  <p *ngSwitchCase="FieldType.DateTime"
-                    [matTooltip]="Utility.removeHtml(item[col.column] | DateTimeVietnamPipe)"
-                    [innerHTML]="item[col.column] | DateTimeVietnamPipe" class="over-3-dots">
-                  </p>
-
-                  <!-- Default  -->
-                  <p *ngSwitchDefault [matTooltip]="Utility.removeHtml(item[col.column])"
-                    [innerHTML]="item[col.column] || ''" class="over-3-dots">
-                  </p>
-                </ng-container>
-
-                <ng-container *ngIf="!item[col.column]">
-                  <span class="empty">-</span>
-                </ng-container>
+          <ng-container *ngIf="!isLoading && data && data.length">
+            <ng-container *ngFor="let lesson of data">
+              <div class="lesson-name" [ngClass]="lesson.collapse ? 'collapse' : ''" (click)="lesson.collapse = !lesson.collapse">
+                <span>{{lesson.name}}</span>
+                <span class="icon bg-contain"></span>
               </div>
 
-            </div>
-          </div>
+              <ng-container *ngIf="!lesson.collapse">
+                <div class="row-item" *ngFor="let item of lesson.students; index as i">
 
-          <div class="no-data dis-flex" *ngIf="!isLoading && data && !data.length">
-            <div class="wrapper">
-              <div class="icon bg-contain"></div>
-              <div class="text">{{'base_keys.no_data' | translate}}</div>
-            </div>
-          </div>
+                  <div class="column column-body"
+                    [ngClass]="[col.column, col.class || '', col.type == FieldType.Password ? 'password-field' : '']"
+                    [ngStyle]="setWidth(col)" *ngFor="let col of displayColumns; index as i">
+                    <ng-container [ngSwitch]="col.type" *ngIf="item[col.column]">
+
+                      <!-- Nếu là link    -->
+                      <a *ngSwitchCase="FieldType.Link" [href]="col.getLink(item) || item[col.column]"
+                        [target]="col.target ?? '_self'" [matTooltip]="Utility.removeHtml(item[col.column])"
+                        [innerHTML]="item[col.column]" class="over-3-dots">
+                      </a>
+
+                      <img *ngSwitchCase="FieldType.Image" [src]="item[col.column]">
+
+                      <!-- Nếu là số  -->
+                      <p *ngSwitchCase="FieldType.Number"
+                        [matTooltip]="Utility.removeHtml(item[col.column] | NumberFormatPipe)"
+                        [innerHTML]="item[col.column] | NumberFormatPipe" class="over-3-dots">
+                      </p>
+
+                      <!-- Nếu là số không format  -->
+                      <p *ngSwitchCase="FieldType.NumberNoFormat" [matTooltip]="Utility.removeHtml(item[col.column])"
+                        [innerHTML]="item[col.column]" class="over-3-dots">
+                      </p>
+
+                      <!-- Nếu là ngày  -->
+                      <p *ngSwitchCase="FieldType.Date"
+                        [matTooltip]="Utility.removeHtml(item[col.column] | DateVietnamPipe)"
+                        [innerHTML]="item[col.column] | DateVietnamPipe" class="over-3-dots">
+                      </p>
+
+                      <!-- Nếu là ngày giờ -->
+                      <p *ngSwitchCase="FieldType.DateTime"
+                        [matTooltip]="Utility.removeHtml(item[col.column] | DateTimeVietnamPipe)"
+                        [innerHTML]="item[col.column] | DateTimeVietnamPipe" class="over-3-dots">
+                      </p>
+
+                      <!-- Default  -->
+                      <p *ngSwitchDefault [matTooltip]="Utility.removeHtml(item[col.column])"
+                        [innerHTML]="item[col.column] || ''" class="over-3-dots">
+                      </p>
+                    </ng-container>
+
+                    <ng-container *ngIf="!item[col.column]">
+                      <span class="empty">-</span>
+                    </ng-container>
+                  </div>
+
+                </div>
+              </ng-container>
+
+              <div class="no-data dis-flex" style="height: 120px; min-height: 120px;" *ngIf="!lesson.collapse && (!lesson.students || !lesson.students.length)">
+                {{'base_keys.no_data' | translate}}
+              </div>
+
+            </ng-container>
+          </ng-container>
+
         </div>
 
       </div>

@@ -15,4 +15,9 @@ export class ReportService extends BaseService {
     const url = this.url() + `/students?classId=${classId}`;
     return this.http.get<ServiceResult>(url);
   }
+
+  getStudentByLesson(classId: string = '0') {
+    const url = this.url() + `/student-by-lesson?classId=${classId}`;
+    return this.http.get<ServiceResult>(url);
+  }
 }
