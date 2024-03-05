@@ -178,11 +178,11 @@ const routes: Routes = [
       resolver: BaseResolver,
     }
   },
-  // {
-  //   path: "**",
-  //   redirectTo: `/${Routing.HOME.path}`,
-  //   pathMatch: 'full'
-  // }
+  {
+    path: "**",
+    redirectTo: `/${Routing.HOME.path}`,
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({

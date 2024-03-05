@@ -50,7 +50,7 @@
 
       <div class="right">
         <div class="feature-wrap">
-          <div class="search bg-contain" (click)="openSearch()" *ngIf="SharedService.AtHome && !opened"></div>
+          <div class="search bg-contain" (click)="openSearch()" *ngIf="false && SharedService.AtHome && !opened"></div>
 
           <div class="cart bg-contain" [routerLink]="Routing.CART.path">
             <span class="item-count" *ngIf="SharedService.CartItems.length > 0">

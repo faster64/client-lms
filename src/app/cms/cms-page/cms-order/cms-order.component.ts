@@ -25,11 +25,11 @@ export class CmsOrderComponent extends CmsGridComponent<Order> {
   override initColumns() {
     this.displayColumns = [];
     this.displayColumns.push({ column: 'code', displayText: 'Mã đơn hàng', width: 180 });
-    this.displayColumns.push({ column: 'totalPrice', displayText: 'Đơn giá', width: 160, type: FieldType.Number });
     this.displayColumns.push({ column: 'fullName', displayText: 'Họ và tên', width: 200 });
     this.displayColumns.push({ column: 'phoneNumber', displayText: 'Số điện thoại', width: 160 });
-    this.displayColumns.push({ column: 'email', displayText: 'Email', width: 180 });
     this.displayColumns.push({ column: 'purchasedDate', displayText: 'Ngày mua hàng', width: 160, type: FieldType.Date });
+    this.displayColumns.push({ column: 'totalPrice', displayText: 'Tổng tiền', width: 160, type: FieldType.Number });
+    this.displayColumns.push({ column: 'email', displayText: 'Email', width: 180 });
     this.displayColumns.push({
       column: 'status',
       displayText: 'Trạng thái đơn hàng',

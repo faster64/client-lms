@@ -12,11 +12,11 @@ import { ClassService } from 'src/app/shared/services/class/class.service';
 import { ReportService } from 'src/app/shared/services/report/report.service';
 
 @Component({
-  selector: 'app-student-grid-report',
-  templateUrl: './student-grid-report.component.html',
-  styleUrls: ['./student-grid-report.component.scss']
+  selector: 'app-student-grid-by-lesson-report',
+  templateUrl: './student-grid-by-lesson-report.component.html',
+  styleUrls: ['./student-grid-by-lesson-report.component.scss']
 })
-export class StudentGridReportComponent extends BaseComponent implements AfterViewInit, OnChanges {
+export class StudentGridByLessonReportComponent extends BaseComponent implements AfterViewInit, OnChanges {
 
   FieldType = FieldType;
 
@@ -40,7 +40,7 @@ export class StudentGridReportComponent extends BaseComponent implements AfterVi
 
   menuDataIndex = -1;
 
-  typeValue = 'Thống kê số lượng học sinh';
+  typeValue = 'Thống kê số lượng học sinh theo bài học';
 
   @ViewChild('gridContentBody')
   gridContentBody!: ElementRef;
@@ -192,6 +192,6 @@ export class StudentGridReportComponent extends BaseComponent implements AfterVi
   }
 
   navigate() {
-    this.injector.get(Router).navigateByUrl(`/${Routing.CMS_REPORT_BY_LESSON.path}`);
+    this.injector.get(Router).navigateByUrl(`/${Routing.CMS_REPORT.path}`);
   }
 }

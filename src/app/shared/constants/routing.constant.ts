@@ -4,7 +4,7 @@ import { RoutingConfig } from "../models/routing-config.model";
  * Danh sách routing
 */
 export class Routing {
-  public static readonly CMS = new RoutingConfig('cms', 'cms');
+  public static readonly CMS = new RoutingConfig('quan-tri', 'cms');
   public static readonly CMS_BANNER = new RoutingConfig(`${Routing.CMS.path}/banner`, 'cms_banner');
   public static readonly CMS_COURSE = new RoutingConfig(`${Routing.CMS.path}/khoa-hoc`, 'cms_course');
   public static readonly CMS_TICKET = new RoutingConfig(`${Routing.CMS.path}/lien-he`, 'cms_ticket');
@@ -16,6 +16,7 @@ export class Routing {
   public static readonly CMS_ORDER = new RoutingConfig(`${Routing.CMS.path}/don-mua-hang`, 'cms_order');
   public static readonly CMS_GUIDE = new RoutingConfig(`${Routing.CMS.path}/huong-dan-su-dung`, 'cms_guide');
   public static readonly CMS_REPORT = new RoutingConfig(`${Routing.CMS.path}/bao-cao-thong-ke`, 'cms_report');
+  public static readonly CMS_REPORT_BY_LESSON = new RoutingConfig(`${Routing.CMS.path}/bao-cao-thong-ke-theo-bai-hoc`, 'cms_report_by_lesson');
 
 
   public static readonly LOGIN = new RoutingConfig('dang-nhap', 'login');

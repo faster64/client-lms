@@ -20,6 +20,7 @@ import { CmsTicketComponent } from './cms-ticket/cms-ticket.component';
 import { CmsUserFormComponent } from './cms-user/cms-user-form/cms-user-form.component';
 import { CmsUserComponent } from './cms-user/cms-user.component';
 import { StudentGridReportComponent } from './cms-report/student-grid-report/student-grid-report.component';
+import { StudentGridByLessonReportComponent } from './cms-report/student-grid-by-lesson-report/student-grid-by-lesson-report.component';
 
 const routes: Routes = [
   {
@@ -220,6 +221,10 @@ const routes: Routes = [
   {
     path: 'bao-cao-thong-ke',
     component: StudentGridReportComponent
+  },
+  {
+    path: 'bao-cao-thong-ke-theo-bai-hoc',
+    component: StudentGridByLessonReportComponent
   },
 ];
 

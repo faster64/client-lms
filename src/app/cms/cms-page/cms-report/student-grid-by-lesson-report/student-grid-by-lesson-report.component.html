@@ -1,11 +1,11 @@
-<div class="student-grid-report-cpn">
+<div class="student-grid-by-lesson-report-cpn">
   <div class="grid-content">
 
     <div class="grid-toolbar">
 
       <ng-container>
         <div class="left">
-          BÁO CÁO SỐ LƯỢNG HỌC SINH
+          BÁO CÁO SỐ LƯỢNG HỌC SINH THEO BÀI HỌC
         </div>
         <div class="right">
           <div class="select-type-btn" [matMenuTriggerFor]="menu">
@@ -123,8 +123,8 @@
 
 <mat-menu #menu="matMenu" class="type-grid">
   <div class="type-grid-menu">
-    <div class="sgm-item" (click)="typeValue = 'Thống kê số lượng học sinh theo bài học'; navigate()">
-      <div class="text">Thống kê số lượng học sinh theo bài học</div>
+    <div class="sgm-item" (click)="typeValue = 'Thống kê số lượng học sinh'; navigate()">
+      <div class="text">Thống kê số lượng học sinh</div>
     </div>
   </div>
 </mat-menu>

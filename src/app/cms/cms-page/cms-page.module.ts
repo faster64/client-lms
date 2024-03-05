@@ -42,6 +42,7 @@ import { CmsTicketComponent } from './cms-ticket/cms-ticket.component';
 import { CmsUserFormComponent } from './cms-user/cms-user-form/cms-user-form.component';
 import { CmsUserComponent } from './cms-user/cms-user.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { StudentGridByLessonReportComponent } from './cms-report/student-grid-by-lesson-report/student-grid-by-lesson-report.component';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import { MatMenuModule } from '@angular/material/menu';
     CmsTicketFormComponent,
     CmsLessonFormComponent,
     CmsOrderViewComponent,
-    StudentGridReportComponent
+    StudentGridReportComponent,
+    StudentGridByLessonReportComponent
   ],
   imports: [
     CommonModule,
