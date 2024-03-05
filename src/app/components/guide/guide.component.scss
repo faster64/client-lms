@@ -1,6 +1,7 @@
 ::ng-deep .guide-cpn {
-  height: 800px;
-  padding: 36px 0;
+  min-height: 800px;
+  height: 996px;
+  padding: 40px 0 120px 0;
 
   .guide-title {
     display: flex;
@@ -29,7 +30,7 @@
   .guide-content {
     position: relative;
     width: 100%;
-    height: calc(100% - 104px);
+    height: calc(100% - 136px);
 
     .progess-spinner-loading {
       position: absolute !important;

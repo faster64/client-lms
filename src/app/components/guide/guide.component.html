@@ -10,8 +10,8 @@
 
   <div class="guide-content">
     <div class="pdf" *ngIf="guide.fileName && guide.fileName != '' && (!guide.linkYoutube || guide.linkYoutube == '')">
-      <embed [src]="guide.fileUrl | safe" type="application/pdf" frameBorder="0" scrolling="auto" width="100%"
-        height="660px" />
+      <object [data]="guide.fileUrl | safe" type="application/pdf" width="100%" height="742px">
+      </object>
     </div>
 
     <div class="youtube"

@@ -13,6 +13,7 @@ import { SnackBar } from './shared/snackbar/snackbar.component';
 import { SnackBarParameter } from './shared/snackbar/snackbar.param';
 import { MessageBox } from './shared/message-box/message-box.component';
 import { Message } from './shared/message-box/model/message';
+import { Utility } from './shared/utility/utility';
 
 @Component({
   selector: 'app-root',
@@ -51,6 +52,7 @@ export class AppComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    this.detectDevice();
     this.prepareAuthContext();
     // this.authService.setProperty('access_token', '');
     this.subcribeEvents();
@@ -115,6 +117,10 @@ export class AppComponent implements OnInit, OnDestroy {
     if (AuthService.CurrentStatus == AuthStatus.Unknown) {
       AuthService.CurrentStatus = AuthStatus.LoggedOut;
     }
+  }
+
+  detectDevice() {
+    SharedService.DeviceType = Utility.getDevice();
   }
 
   ngOnDestroy(): void {
