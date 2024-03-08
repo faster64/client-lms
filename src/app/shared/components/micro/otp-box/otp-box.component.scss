@@ -1,12 +1,23 @@
 ::ng-deep .otp-box-cpn {
   display: inline-block;
+
   .enter-otp-field {
     margin-bottom: 8px;
-    .otp-input  {
+
+    .otp-input {
       width: 80px;
       height: 40px;
       border: 1px solid var(--greyish) !important;
       outline: none !important;
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .enter-otp-field {
+    .otp-input {
+      width: 40px !important;
+      height: 32px !important;
     }
   }
 }

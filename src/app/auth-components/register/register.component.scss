@@ -1,15 +1,18 @@
 .register-cpn {
     padding: 24px 0;
+
     .title {
         display: flex;
         align-items: center;
         margin-bottom: 24px;
+
         .icon {
             width: var(--large-title-size);
             height: var(--large-title-size);
             margin-right: 12px;
             background-image: url(~/src/assets/img/auth/icon_login.png);
         }
+
         .text {
             color: var(--gray-800);
             font-size: var(--large-title-size);
@@ -17,11 +20,13 @@
             text-transform: uppercase;
         }
     }
+
     .wrap {
         display: flex;
         height: 616px;
         border-radius: 16px;
         border: 1px solid var(--Gray-200, #e4e7ec);
+
         .left {
             width: 50%;
             height: 100%;
@@ -31,20 +36,24 @@
             background-image: url(~/src/assets/img/auth/register.png);
             background-color: #fcfcfd;
         }
+
         .right {
             width: 50%;
             height: 100%;
             padding: 32px;
+
             .title-system {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
                 margin-bottom: 24px;
+
                 .text {
                     color: var(--gray-800);
                     font-size: var(--auth-sub-title-size);
                     font-weight: 600;
                 }
+
                 .logo {
                     width: 93px;
                     height: 48px;
@@ -52,18 +61,22 @@
                     cursor: pointer;
                 }
             }
+
             .reg-item {
                 display: inline-block;
                 width: 50%;
                 margin-bottom: 24px;
+
                 .label {
                     margin-bottom: 4px;
                     font-weight: 500;
                     font-size: var(--size);
+
                     .required {
                         color: var(--danger);
                     }
                 }
+
                 &.full-name,
                 &.phone,
                 &.password {
@@ -71,9 +84,11 @@
                     margin-right: 16px;
                 }
             }
+
             .have-an-account {
                 margin-top: 24px;
                 text-align: center;
+
                 .login-now {
                     margin-left: 4px;
                     color: var(--main-color);
@@ -88,17 +103,23 @@
 @media screen and (max-width: 768px) {
     .register-cpn {
         .wrap {
+            height: 800px;
             border: none;
+
             .left {
                 display: none;
             }
+
             .right {
                 width: 100%;
+
                 .title-system {
                     display: none;
                 }
+
                 .reg-item {
                     width: 100%;
+
                     &.full-name,
                     &.phone,
                     &.password {
@@ -108,10 +129,12 @@
                 }
             }
         }
+
         .title {
             .icon {
                 display: none !important;
             }
+
             .text {
                 margin-left: 16px;
             }
