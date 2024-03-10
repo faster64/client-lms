@@ -128,11 +128,13 @@ export class HubConnectionService {
   }
 
   sendMessage(message: string) {
-    if (this.connection && this.connection.state === HubConnectionState.Connected) {
-      this.connection.invoke("SendMessage", message);
+    this.connection.invoke("SendMessage", message);
 
-    } else {
-      this.connectHub(() => this.sendMessage(message));
-    }
+    // if (this.connection && this.connection.state === HubConnectionState.Connected) {
+    //   this.connection.invoke("SendMessage", message);
+
+    // } else {
+    //   this.connectHub(() => this.sendMessage(message));
+    // }
   }
 }

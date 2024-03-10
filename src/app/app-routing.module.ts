@@ -179,6 +179,14 @@ const routes: Routes = [
     }
   },
   {
+    path: 'conversation',
+    loadChildren: () => import('./components/conversation/conversation.module').then(m => m.ConversationModule),
+    canActivate: [AuthenticatedOnlyGuard],
+    resolve: {
+      resolver: BaseResolver,
+    }
+  },
+  {
     path: "**",
     redirectTo: `/${Routing.HOME.path}`,
     pathMatch: 'full'
