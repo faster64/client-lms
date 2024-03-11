@@ -7,7 +7,7 @@
         <div class="left">
           <div class="search">
             <dx-text-box mode="search" [matTooltip]="searchPlaceholder" [placeholder]="searchPlaceholder"
-              [disabled]="!searchKeys.length" [width]="searchWidth" [(value)]="searchValue"
+              [disabled]="!searchKeys.length" [width]="searchWidth" [height]="48" [(value)]="searchValue"
               (onValueChanged)="onSearch.emit(searchValue)">
             </dx-text-box>
           </div>
@@ -19,7 +19,7 @@
           </div>
 
           <div class="add-btn" *ngIf="enabledAdd">
-            <base-button text="Thêm dữ liệu" [height]="36" [iconButtonType]="IconButtonType.ADD"
+            <base-button text="Thêm dữ liệu" [height]="48" [iconButtonType]="IconButtonType.ADD"
               [finishImmediately]="true" (onClick)="onAdd.emit()">
             </base-button>
           </div>

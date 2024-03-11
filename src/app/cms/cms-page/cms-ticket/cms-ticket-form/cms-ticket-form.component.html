@@ -67,15 +67,15 @@
 
   <div class="cms-features-bottom">
     <base-button text="{{'base_keys.cancel' | translate}}" [buttonType]="ButtonType.STROKED" [color]="ButtonColor.BASIC"
-      [width]="128" [height]="36" [finishImmediately]="true" (onClick)="cancel()"
+      [width]="148" [height]="48" [finishImmediately]="true" (onClick)="cancel()"
       *ngIf="data.status == TicketStatus.NotResponsed">
     </base-button>
 
-    <base-button #saveBtn text="Gửi" [width]="128" [height]="36" (onClick)="save()"
+    <base-button #saveBtn text="Gửi" [width]="148" [height]="48" (onClick)="save()"
       *ngIf="data.status == TicketStatus.NotResponsed">
     </base-button>
 
-    <base-button text="Quay lại" [width]="128" [height]="36" [finishImmediately]="true"
+    <base-button text="Quay lại" [width]="148" [height]="48" [finishImmediately]="true"
       (onClick)="cancel()" *ngIf="data.status == TicketStatus.Responsed">
     </base-button>
   </div>

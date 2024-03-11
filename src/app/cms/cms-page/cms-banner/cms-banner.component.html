@@ -40,7 +40,7 @@
           Tiêu đề lớn <span class="required">*</span>
         </div>
         <div class="input">
-          <dx-text-box #title placeholder="Nhập nội dung" height="44" [(value)]="data.title"
+          <dx-text-box #title placeholder="Nhập nội dung" height="48" [(value)]="data.title"
             [readOnly]="!updateMode"></dx-text-box>
         </div>
       </div>
@@ -53,7 +53,7 @@
         </div>
         <div class="input">
           <app-exercise-editor #subTitle placeholder="Nhập nội dung" [valueContent]="data.subTitle"
-            [readonly]="!updateMode" [height]="44" (change)="data.subTitle = $event">
+            [readonly]="!updateMode" [height]="48" (change)="data.subTitle = $event">
           </app-exercise-editor>
         </div>
       </div>
@@ -63,14 +63,14 @@
 
   <div class="cms-features-bottom">
     <base-button text="{{'base_keys.cancel' | translate}}" [buttonType]="ButtonType.STROKED" [color]="ButtonColor.BASIC"
-      [width]="128" [height]="36" [finishImmediately]="true" (onClick)="cancel()" *ngIf="updateMode">
+      [width]="148" [height]="48" [finishImmediately]="true" (onClick)="cancel()" *ngIf="updateMode">
     </base-button>
 
-    <base-button text="{{'base_keys.update' | translate}}" [width]="128" [height]="36" [finishImmediately]="true"
+    <base-button text="{{'base_keys.update' | translate}}" [width]="148" [height]="48" [finishImmediately]="true"
       (onClick)="update()" *ngIf="!updateMode">
     </base-button>
 
-    <base-button #saveBtn text="{{'base_keys.save' | translate}}" [width]="128" [height]="36" (onClick)="save()"
+    <base-button #saveBtn text="{{'base_keys.save' | translate}}" [width]="148" [height]="48" (onClick)="save()"
       *ngIf="updateMode">
     </base-button>
   </div>

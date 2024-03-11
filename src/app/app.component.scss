@@ -16,8 +16,22 @@
     position: sticky;
     top: 0;
     padding: 0 !important;
-    background-color: var(--main-color);
+    // background-color: var(--main-color);
     z-index: var(--header-index);
+    .blue {
+      height: 80px;
+      background-color: var(--main-color);
+    }
+    .white {
+      height: 56px;
+      background-color: var(--header-bg);
+    }
+    .header-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
   }
 
   .app-banner {
@@ -139,6 +153,13 @@
 
 @media screen and (max-width: 992px) {
   #app {
+    .app-header {
+      .white {
+        display: none;
+        // background-color: red;
+      }
+    }
+
     .app-footer {
       height: auto;
     }

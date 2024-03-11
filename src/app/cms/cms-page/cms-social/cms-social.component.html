@@ -45,15 +45,15 @@
 
     <div class="cms-features-bottom">
         <base-button text="{{'base_keys.cancel' | translate}}" [buttonType]="ButtonType.STROKED"
-            [color]="ButtonColor.BASIC" [width]="128" [height]="36" [finishImmediately]="true" (onClick)="cancel()"
+            [color]="ButtonColor.BASIC" [width]="148" [height]="48" [finishImmediately]="true" (onClick)="cancel()"
             *ngIf="updateMode">
         </base-button>
 
-        <base-button text="{{'base_keys.update' | translate}}" [width]="128" [height]="36" [finishImmediately]="true"
+        <base-button text="{{'base_keys.update' | translate}}" [width]="148" [height]="48" [finishImmediately]="true"
             (onClick)="update()" *ngIf="!updateMode">
         </base-button>
 
-        <base-button #saveBtn text="{{'base_keys.save' | translate}}" [width]="128" [height]="36" (onClick)="save()"
+        <base-button #saveBtn text="{{'base_keys.save' | translate}}" [width]="148" [height]="48" (onClick)="save()"
             *ngIf="updateMode">
         </base-button>
     </div>

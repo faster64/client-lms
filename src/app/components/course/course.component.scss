@@ -54,7 +54,7 @@
   .course-name {
     display: block;
     height: 58px;
-    margin-bottom: 16px;
+    margin-bottom: 8px;
     color: var(--gray-800);
     line-height: normal;
     font-style: normal;
@@ -86,10 +86,11 @@
     position: absolute;
     left: 0;
     right: 0;
+    bottom: 0;
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    height: calc(100% - 428px);
+    height: 48px;
 
     base-button.buy-btn {
       margin-left: 16px;

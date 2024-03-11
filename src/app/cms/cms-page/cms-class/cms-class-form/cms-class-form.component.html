@@ -7,7 +7,7 @@
           {{'class.label_class' | translate}} <span class="required">*</span>
         </div>
         <dx-text-box #classInput placeholder="{{'class.placeholder_class' | translate}}" [(value)]="data.name"
-          [readOnly]="formMode == FormMode.View" (onEnterKey)="save()">
+          [readOnly]="formMode == FormMode.View" [height]="44" (onEnterKey)="save()">
         </dx-text-box>
       </div>
 
@@ -16,7 +16,7 @@
           Số thứ tự <span class="required">*</span>
         </div>
         <dx-number-box #classInput placeholder="Nhập số thứ tự" [(value)]="data.order" [min]="1"
-          [readOnly]="formMode == FormMode.View" (onEnterKey)="save()">
+          [readOnly]="formMode == FormMode.View" [height]="44" (onEnterKey)="save()">
         </dx-number-box>
       </div>
     </div>

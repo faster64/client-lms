@@ -111,15 +111,15 @@
   </div>
 
   <div class="cms-features-bottom">
-    <base-button #cancelBtn text="Quay lại" [buttonType]="ButtonType.STROKED" [color]="ButtonColor.BASIC" [width]="128"
-      [height]="36" (onClick)="cancel()">
+    <base-button #cancelBtn text="Quay lại" [buttonType]="ButtonType.STROKED" [color]="ButtonColor.BASIC" [width]="148"
+      [height]="48" (onClick)="cancel()">
     </base-button>
 
-    <base-button #confirmBtn text="Xác nhận thanh toán" [color]="ButtonColor.SUCCESS" [width]="208" [height]="36"
+    <base-button #confirmBtn text="Xác nhận thanh toán" [color]="ButtonColor.SUCCESS" [width]="236" [height]="48"
       (onClick)="save()" *ngIf="data.status == OrderStatus.WaitConfirm">
     </base-button>
 
-    <base-button #deleteBtn text="{{'base_keys.delete' | translate}}" [width]="128" [height]="36"
+    <base-button #deleteBtn text="{{'base_keys.delete' | translate}}" [width]="148" [height]="48"
       [color]="ButtonColor.WARN" (onClick)="delete()" [finishImmediately]="true"
       *ngIf="data.status != OrderStatus.Paid">
     </base-button>
