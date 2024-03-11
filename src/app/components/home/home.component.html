@@ -1,9 +1,9 @@
-<div class="home-cpn">
+<div class="home-cpn" [ngClass]="(this.paginationRequest.query && this.paginationRequest.query != '') ? 'searching' : ''">
   <!-- <div class="app-banner" *ngIf="!isSearchMode">
     <app-banner></app-banner>
   </div> -->
 
-  <div class="on-search-mode" *ngIf="isSearchMode">
+  <div class="on-search-mode" *ngIf="this.paginationRequest.query && this.paginationRequest.query != ''">
     <div class="search-title">Kết quả tìm kiếm</div>
     <div class="result-title" *ngIf="!isLoading && courses.length">
       Có <strong>{{total}}</strong> kết quả tìm kiếm với từ khóa <strong>{{this.paginationRequest.query}}</strong>
@@ -20,11 +20,11 @@
   </div>
 
   <div class="app-courses">
-    <div class="course-title" *ngIf="!isSearchMode">
+    <div class="course-title" *ngIf="!this.paginationRequest.query || this.paginationRequest.query == ''">
       <span>KHÓA HỌC TẠI</span> <span class="highlight">CÁNH BUỒM EDUCATION</span>
     </div>
 
-    <div class="course-sub-title" *ngIf="!isSearchMode">
+    <div class="course-sub-title" *ngIf="!this.paginationRequest.query || this.paginationRequest.query == ''">
       Khóa học hữu ích nhất mà Cánh Buồm Education dành tới bạn
     </div>
 
@@ -45,7 +45,7 @@
         </div>
       </div>
 
-      <p class="no-data-message" *ngIf="!isLoading && !courses.length && !isSearchMode">
+      <p class="no-data-message" *ngIf="!isLoading && !courses.length && (!this.paginationRequest.query || this.paginationRequest.query == '')">
         Các khóa học sẽ sớm được cập nhật tại đây!
       </p>
     </div>

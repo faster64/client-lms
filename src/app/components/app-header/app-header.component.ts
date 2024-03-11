@@ -87,9 +87,7 @@ export class AppHeaderComponent implements OnInit {
   search() {
     setTimeout(() => {
       if (SharedService.OpenSearch) {
-        this.publisher.searchCourseEvent.emit(this.searchKey);
-        this.searchKey = '';
-        SharedService.OpenSearch = false;
+        window.location.href = `/tim-kiem-khoa-hoc/${this.searchKey}`
       }
     }, 50);
   }

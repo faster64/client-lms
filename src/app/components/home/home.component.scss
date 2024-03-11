@@ -135,6 +135,12 @@
   .app-ticket {
     height: 640px;
   }
+
+  &.searching {
+    .app-courses {
+      margin: 8px 0 88px 0;
+    }
+  }
 }
 
 @media screen and (max-width: 1200px) {

@@ -17,8 +17,8 @@
       </a>
 
       <div class="wrap">
-        <div class="search" (click)="openSearch()" *ngIf="SharedService.AtHome"></div>
-        <div class="seperate-line" *ngIf="SharedService.AtHome"></div>
+        <div class="search" (click)="openSearch()" *ngIf="true || SharedService.AtHome"></div>
+        <div class="seperate-line" *ngIf="true || SharedService.AtHome"></div>
         <a class="login" [routerLink]="Routing.LOGIN.path">
           {{'header.features.login' | translate}}
         </a>
@@ -32,7 +32,7 @@
 
     <div class="nav-right authenticated" *ngIf="AuthService.CurrentStatus == AuthStatus.LoggedIn"
       (click)="opened = false">
-      <div class="search" (click)="openSearch()" *ngIf="SharedService.AtHome"></div>
+      <div class="search" (click)="openSearch()" *ngIf="true || SharedService.AtHome"></div>
 
       <a class="cart" [routerLink]="Routing.CART.path">
         <span class="item-count" *ngIf="SharedService.CartItems.length > 0">
@@ -87,7 +87,7 @@
 </div>
 
 <ng-template #nav>
-  <a class="nav-item small-item" (click)="openSearch($event)" href="#" *ngIf="SharedService.AtHome">
+  <a class="nav-item small-item" (click)="openSearch($event)" href="#" *ngIf="true || SharedService.AtHome">
     <div class="text">Tìm kiếm</div>
   </a>
 
@@ -97,8 +97,7 @@
     <div class="under-line"></div>
   </a>
 
-  <a class="nav-item" href="#" [ngClass]="Routing.CONTACT.path == path ? 'selected' : ''"
-    (click)="opened = false">
+  <a class="nav-item" href="#" [ngClass]="Routing.CONTACT.path == path ? 'selected' : ''">
     <div class="text">Liên hệ</div>
     <div class="under-line"></div>
   </a>

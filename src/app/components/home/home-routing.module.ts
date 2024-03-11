@@ -6,6 +6,10 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent
+  },
+  {
+    path: 'tim-kiem-khoa-hoc/:q',
+    component: HomeComponent,
   }
 ];
 

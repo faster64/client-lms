@@ -1,10 +1,10 @@
 import { Component, Injector } from '@angular/core';
 import { finalize, takeUntil } from 'rxjs';
 import { BaseComponent } from 'src/app/shared/components/base-component';
+import { StringHelper } from 'src/app/shared/helpers/string.helper';
 import { SortModel } from 'src/app/shared/models/base/sort-model';
 import { PublisherService } from 'src/app/shared/services/base/publisher.service';
 import { CourseClientService } from 'src/app/shared/services/course/course-client.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -25,10 +25,6 @@ export class HomeComponent extends BaseComponent {
 
   initCount = 0;
 
-  isSearchMode = false;
-
-  searchKey = '';
-
   resizeId: any;
 
   constructor(
@@ -45,15 +41,12 @@ export class HomeComponent extends BaseComponent {
     this.calculateCount();
     this.paginationRequest.size = this.initCount;
     this.paginationRequest.sort = new SortModel('created', false);
-    this.loadCourses();
+    this.paginationRequest.query = this.activatedRoute.snapshot.params['q'] || '';
 
-    this.publisher
-      .searchCourseEvent
-      .pipe(takeUntil(this._onDestroySub))
-      .subscribe(key => {
-        this.paginationRequest.query = key;
-        this.loadCourses(true);
-      });
+    if (!StringHelper.isNullOrEmpty(this.paginationRequest.query)) {
+      this.publisher.searchCourseEvent.emit();
+    }
+    this.loadCourses();
   }
 
   calculateCount() {
@@ -71,13 +64,7 @@ export class HomeComponent extends BaseComponent {
     }
   }
 
-  loadCourses(searchMode?: boolean) {
-    if (searchMode) {
-      this.isSearchMode = true;
-      this.courses = [];
-      this.paginationRequest.number = 0;
-    }
-
+  loadCourses() {
     this.isLoading = true;
     this.current = 0;
     this.total = 0;
@@ -92,10 +79,6 @@ export class HomeComponent extends BaseComponent {
           this.courses = this.courses.concat(resp.data);
           this.current = this.courses.length;
           this.total = resp.total;
-
-          if (searchMode) {
-            window.scrollTo(0, 0);
-          }
         }
       })
   }
