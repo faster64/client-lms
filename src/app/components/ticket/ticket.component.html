@@ -10,49 +10,49 @@
         <div class="info-item full-name">
           <div class="label">{{'ticket.full_name' | translate}} <span class="required">*</span> </div>
           <div class="value">
-            <dx-text-box #fullName placeholder="{{'ticket.placeholder_full_name' | translate}}" [height]="44"
+            <dx-text-box #fullName placeholder="{{'ticket.placeholder_full_name' | translate}}" [height]="48"
               [(value)]="ticket.fullName" [disabled]="isLoading"></dx-text-box>
           </div>
         </div>
         <div class="info-item phone">
           <div class="label">{{'ticket.phone' | translate}} <span class="required">*</span> </div>
           <div class="value">
-            <dx-text-box #phoneNumber placeholder="{{'ticket.placeholder_phone' | translate}}" [height]="44"
+            <dx-text-box #phoneNumber placeholder="{{'ticket.placeholder_phone' | translate}}" [height]="48"
               [(value)]="ticket.phoneNumber" [disabled]="isLoading"></dx-text-box>
           </div>
         </div>
         <div class="info-item email">
           <div class="label">{{'ticket.email' | translate}} <span class="required">*</span> </div>
           <div class="value">
-            <dx-text-box #email placeholder="{{'ticket.placeholder_email' | translate}}" [height]="44"
+            <dx-text-box #email placeholder="{{'ticket.placeholder_email' | translate}}" [height]="48"
               [(value)]="ticket.email" [disabled]="isLoading"></dx-text-box>
           </div>
         </div>
         <div class="info-item class">
           <div class="label">{{'ticket.class' | translate}} <span class="required">*</span> </div>
           <div class="value">
-            <app-class-selector #class [height]="44" [disabled]="isLoading"
+            <app-class-selector #class [height]="48" [disabled]="isLoading"
               (onValueChanged)="ticket.classId = $event.current"></app-class-selector>
           </div>
         </div>
         <div class="info-item address">
           <div class="label">{{'ticket.address' | translate}} <span class="required">*</span> </div>
           <div class="value">
-            <dx-text-box #address placeholder="{{'ticket.placeholder_address' | translate}}" [height]="44"
+            <dx-text-box #address placeholder="{{'ticket.placeholder_address' | translate}}" [height]="48"
               [(value)]="ticket.address" [disabled]="isLoading"></dx-text-box>
           </div>
         </div>
         <div class="info-item content-txt">
           <div class="label">{{'ticket.content' | translate}} <span class="required">*</span> </div>
           <div class="value">
-            <dx-text-area #content placeholder="{{'ticket.placeholder_content' | translate}}" [height]="100"
+            <dx-text-area #content placeholder="{{'ticket.placeholder_content' | translate}}" [height]="96"
               [(value)]="ticket.question" [disabled]="isLoading"></dx-text-area>
           </div>
         </div>
       </div>
 
       <div class="send-btn">
-        <base-button #sendBtn text="{{'ticket.send' | translate}}" [disabled]="isLoading" [height]="44"
+        <base-button #sendBtn text="{{'ticket.send' | translate}}" [disabled]="isLoading" [height]="48"
           (onClick)="send()"></base-button>
       </div>
     </div>

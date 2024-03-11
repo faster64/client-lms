@@ -52,8 +52,9 @@
           Tiêu đề nhỏ <span class="required">*</span>
         </div>
         <div class="input">
-          <dx-text-box #subTitle placeholder="Nhập nội dung" height="44" [(value)]="data.subTitle"
-            [readOnly]="!updateMode"></dx-text-box>
+          <app-exercise-editor #subTitle placeholder="Nhập nội dung" [valueContent]="data.subTitle"
+            [readonly]="!updateMode" [height]="44" (change)="data.subTitle = $event">
+          </app-exercise-editor>
         </div>
       </div>
     </div>

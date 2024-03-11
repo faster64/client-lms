@@ -4,6 +4,7 @@ import { finalize, takeUntil } from 'rxjs';
 import { BaseComponent } from 'src/app/shared/components/base-component';
 import { BaseButton } from 'src/app/shared/components/micro/button/button.component';
 import { BaseUploaderComponent } from 'src/app/shared/components/micro/uploader/uploader.component';
+import { StringHelper } from 'src/app/shared/helpers/string.helper';
 import { Banner } from 'src/app/shared/models/banner/banner';
 import { BannerService } from 'src/app/shared/services/banner/banner.service';
 import { PublisherService } from 'src/app/shared/services/base/publisher.service';
@@ -76,6 +77,10 @@ export class CmsBannerComponent extends BaseComponent implements AfterViewInit {
   }
 
   save() {
+    // if (StringHelper.isNullOrEmpty(this.data.title)) {
+    //   SnackBar.da(new SnackBarParameter(this, 'Thông báo', TranslationService.VALUES['data_messages']['save_success_msg']));
+    // }
+
     this.isLoading = true;
     this.bannerService
       .updateInformation(this.data)
