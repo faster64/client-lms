@@ -26,7 +26,7 @@ export class Routing {
   public static readonly PERSONAL_INFORMATION = new RoutingConfig('thong-tin-ca-nhan', 'personal_information');
   public static readonly HOME = new RoutingConfig('', 'home');
   public static readonly GUIDE = new RoutingConfig('huong-dan-su-dung', 'guide');
-  public static readonly CONTACT = new RoutingConfig('#', 'home');
+  public static readonly CONTACT = new RoutingConfig('#appTicket', 'contact');
   public static readonly INTRODUCTION = new RoutingConfig('#', 'introduction');
   public static readonly MY_COURES = new RoutingConfig('khoa-hoc-cua-toi', 'home');
   public static readonly COURSE_DETAIL = new RoutingConfig('chi-tiet-khoa-hoc', 'course_detail');
