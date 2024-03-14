@@ -289,3 +289,15 @@
     }
   }
 }
+
+@media screen and (max-width: 576px) {
+  ::ng-deep .course-lesson-test-cpn {
+    .btns {
+      flex-wrap: wrap;
+
+      base-button {
+        margin-bottom: 16px;
+      }
+    }
+  }
+}

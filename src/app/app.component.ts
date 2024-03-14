@@ -9,10 +9,6 @@ import { PublisherService } from './shared/services/base/publisher.service';
 import { SharedService } from './shared/services/base/shared.service';
 import { HubConnectionService } from './shared/services/socket/hub-connection.service';
 import { TranslationService } from './shared/services/translation/translation.service';
-import { SnackBar } from './shared/snackbar/snackbar.component';
-import { SnackBarParameter } from './shared/snackbar/snackbar.param';
-import { MessageBox } from './shared/message-box/message-box.component';
-import { Message } from './shared/message-box/model/message';
 import { Utility } from './shared/utility/utility';
 
 @Component({
@@ -97,7 +93,7 @@ export class AppComponent implements OnInit, OnDestroy {
           AppComponent.Mode = 'user';
 
           this.publisher.routeChangeEvent.emit();
-          if (event.urlAfterRedirects == `/${Routing.HOME.path}`) {
+          if (event.urlAfterRedirects == `/${Routing.HOME.path}` || event.urlAfterRedirects == `/${Routing.CONTACT.path}`) {
             SharedService.AtHome = true;
             AppComponent.Mode = 'home';
             document.documentElement.style.setProperty("--header-bg", "#305FE8");
@@ -106,7 +102,7 @@ export class AppComponent implements OnInit, OnDestroy {
             document.documentElement.style.setProperty("--header-bg", "#fff");
           }
 
-          if(event.urlAfterRedirects != '/') {
+          if (event.urlAfterRedirects != '/') {
             setTimeout(() => {
               window.scrollTo(0, 0);
             }, 100);

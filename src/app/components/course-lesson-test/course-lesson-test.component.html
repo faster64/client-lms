@@ -51,7 +51,7 @@
             <ng-container *ngIf="ewa.exercise.type == ExerciseType.DIEN_KHUYET">
               <div class="ans-item" *ngFor="let ans of ewa.exercise.dienKhuyetAnswer; index as j">
                 <dx-text-box placeholder="Nhập đán án" [height]="44" [width]="320"
-                  [(value)]="ewa.answer.dienKhuyetAnswerArray[j]">
+                  [(value)]="ewa.answer.dienKhuyetAnswerArray[j]" (onValueChanged)="dienKhuyetChanged(ewa, j)">
                 </dx-text-box>
               </div>
             </ng-container>
@@ -127,15 +127,16 @@
 
       <div class="btns">
         <base-button text="Quay lại" [class]="'back'" [finishImmediately]="true" [color]="ButtonColor.BASIC"
-          [height]="44" (onClick)="changeExercise(currentExerciseIndex - 1)" *ngIf="currentExerciseIndex > 0">
+          [width]="116" [height]="44" (onClick)="changeExercise(currentExerciseIndex - 1)"
+          *ngIf="currentExerciseIndex > 0">
         </base-button>
 
-        <base-button text="Câu hỏi tiếp theo" class="'next'" [finishImmediately]="true" [height]="44"
+        <base-button text="Câu hỏi tiếp theo" class="'next'" [finishImmediately]="true" [width]="190" [height]="44"
           (onClick)="changeExercise(currentExerciseIndex + 1)"
           *ngIf="currentExerciseIndex < (lesson.exercises.length - 1)">
         </base-button>
 
-        <base-button text="Kết thúc bài làm & kiểm tra kết quả" [finishImmediately]="true" [height]="44"
+        <base-button text="Kết thúc bài làm & kiểm tra kết quả" [finishImmediately]="true" [width]="356" [height]="44"
           (onClick)="submit()" *ngIf="currentExerciseIndex == lesson.exercises.length - 1">
         </base-button>
       </div>

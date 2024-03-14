@@ -1,6 +1,7 @@
 import { Component, Injector } from '@angular/core';
 import { finalize, takeUntil } from 'rxjs';
 import { BaseComponent } from 'src/app/shared/components/base-component';
+import { Routing } from 'src/app/shared/constants/routing.constant';
 import { StringHelper } from 'src/app/shared/helpers/string.helper';
 import { SortModel } from 'src/app/shared/models/base/sort-model';
 import { PublisherService } from 'src/app/shared/services/base/publisher.service';
@@ -37,6 +38,12 @@ export class HomeComponent extends BaseComponent {
 
   override initData(): void {
     super.initData();
+    if (this.activatedRoute.snapshot.routeConfig.path == Routing.CONTACT.path) {
+      setTimeout(() => {
+        const ele = document.getElementById('form-lien-he')
+        ele.scrollIntoView()
+      }, 200);
+    }
 
     this.calculateCount();
     this.paginationRequest.size = this.initCount;

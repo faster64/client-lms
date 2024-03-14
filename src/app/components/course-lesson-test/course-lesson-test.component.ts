@@ -180,6 +180,16 @@ export class CourseLessonTestComponent extends BaseComponent {
     }, 100);
   }
 
+  dienKhuyetChanged(ewa: ExerciseWithAnswer, index: number) {
+    if (ewa.answer.dienKhuyetAnswerArray.findIndex(s => !StringHelper.isNullOrEmpty(s)) == -1) {
+      ewa.answer.answerJson = '';
+    }
+    else {
+      const json = JSON.stringify(ewa.answer.dienKhuyetAnswerArray)
+      ewa.answer.answerJson = json == '[]' ? '' : json;
+    }
+  }
+
   radioChanged(ewa: ExerciseWithAnswer, j: number) {
     if (ewa.exercise.type == ExerciseType.GACH_DUOI && !ewa.exercise.multiCorrectAnswers) {
       ewa.answer.gachDuoiAnswerArray = Array<KeyValue>(ewa.exercise.gachDuoiAnswer.length).fill({ text: '', value: false });
