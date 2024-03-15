@@ -1,4 +1,4 @@
-import { Component, Injector } from '@angular/core';
+import { AfterViewInit, Component, Injector } from '@angular/core';
 import { finalize, takeUntil } from 'rxjs';
 import { BaseComponent } from 'src/app/shared/components/base-component';
 import { Routing } from 'src/app/shared/constants/routing.constant';
@@ -12,7 +12,7 @@ import { CourseClientService } from 'src/app/shared/services/course/course-clien
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent extends BaseComponent {
+export class HomeComponent extends BaseComponent implements AfterViewInit {
 
   Math = Math;
 
@@ -38,13 +38,6 @@ export class HomeComponent extends BaseComponent {
 
   override initData(): void {
     super.initData();
-    if (this.activatedRoute.snapshot.routeConfig.path == Routing.CONTACT.path) {
-      setTimeout(() => {
-        const ele = document.getElementById('form-lien-he')
-        ele.scrollIntoView()
-      }, 200);
-    }
-
     this.calculateCount();
     this.paginationRequest.size = this.initCount;
     this.paginationRequest.sort = new SortModel('created', false);
@@ -54,6 +47,15 @@ export class HomeComponent extends BaseComponent {
       this.publisher.searchCourseEvent.emit();
     }
     this.loadCourses();
+  }
+
+  ngAfterViewInit(): void {
+    if (this.activatedRoute.snapshot.routeConfig.path == Routing.CONTACT.path) {
+      setTimeout(() => {
+        const ele = document.getElementById('form-lien-he')
+        ele.scrollIntoView()
+      }, 200);
+    }
   }
 
   calculateCount() {
