@@ -22,16 +22,16 @@
     <div class="course-features">
       <base-button text="{{'course.features.add_to_cart' | translate}}" [width]="148" [height]="44"
         [buttonType]="ButtonType.STROKED" [color]="ButtonColor.BASIC" [finishImmediately]="true"
-        (onClick)="addToCart(true)" *ngIf="!course.purchased">
+        (onClick)="addToCart(true)" *ngIf="!course.purchased && course.price > 0">
       </base-button>
 
       <base-button class="buy-btn" text="{{'course.features.buy_now' | translate}}" [width]="116" [height]="44"
-        [finishImmediately]="true" (onClick)="buy()" *ngIf="!course.purchased">
+        [finishImmediately]="true" (onClick)="buy()" *ngIf="!course.purchased && course.price > 0">
       </base-button>
 
-      <div class="purchased" *ngIf="course.purchased">
-        <base-button class="access-btn" text="Truy cập khóa học" [height]="44" [finishImmediately]="true"
-          (onClick)="access($event)" *ngIf="course.purchased">
+      <div class="purchased" *ngIf="course.purchased || course.price == 0">
+        <base-button class="access-btn" text="Truy cập khóa học" [width]="192" [height]="44" [finishImmediately]="true"
+          (onClick)="access($event)">
         </base-button>
       </div>
     </div>

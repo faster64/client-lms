@@ -79,7 +79,25 @@ export class CourseDetailComponent extends BaseComponent {
   access(event) {
     event?.stopPropagation();
     event?.preventDefault();
-    this.router.navigateByUrl('/' + Routing.COURSE_LESSON_LIST.path + '/' + this.course.id);
+    this.authService.authenticate(() => {
+      if (this.course.purchased) {
+        this.router.navigateByUrl('/' + Routing.COURSE_LESSON_LIST.path + '/' + this.course.id);
+      }
+      else if (this.course.price == 0) {
+        this.isLoading = true;
+        this.courseClientService
+          .takeFreeCourse(this.course.id)
+          .pipe(
+            takeUntil(this._onDestroySub),
+            finalize(() => this.isLoading = false)
+          )
+          .subscribe(resp => {
+            if (resp.code == 'success') {
+              this.router.navigateByUrl('/' + Routing.COURSE_LESSON_LIST.path + '/' + this.course.id);
+            }
+          });
+      }
+    });
   }
 
   loginCallback() {

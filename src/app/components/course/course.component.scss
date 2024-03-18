@@ -21,7 +21,7 @@
       border-top-right-radius: 8px;
     }
 
-    .class {
+    .class-name {
       position: absolute;
       bottom: 0;
       left: 0;
@@ -34,7 +34,7 @@
       border: 1.5px solid var(--main-color);
       background: var(--white);
       color: var(--main-color);
-      font-weight: 600;
+      font-weight: bold;
       text-align: center;
     }
 
@@ -48,6 +48,7 @@
       padding: 4px 10px;
       background-color: var(--yellow-color);
       color: var(--white);
+      font-weight: 600;
     }
   }
 
@@ -80,6 +81,8 @@
     height: 48px;
     line-height: 24px;
     margin-bottom: 16px;
+    font-size: 14px;
+    color: var(--gray-800);
   }
 
   .course-features {
@@ -109,6 +112,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
+
     .line {
       position: relative;
       width: calc(100% - 60px);
@@ -124,6 +128,7 @@
         background-color: var(--green-07);
       }
     }
+
     .percent {
       width: 60px;
       color: var(--gray-800);

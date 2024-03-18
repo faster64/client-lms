@@ -11,6 +11,7 @@
       span {
         font-size: var(--large-title-size);
         font-weight: 700;
+        font-family: "MontserratBold";
 
         &.highlight {
           margin-left: 6px;
@@ -36,7 +37,7 @@
         width: calc(calc(100% - 72px) / 4);
         height: 468px;
         padding: 0;
-        margin: 0 24px 24px 0;
+        margin: 0 24px 56px 0;
         overflow: hidden;
 
         &:nth-child(4n) {

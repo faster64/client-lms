@@ -53,7 +53,7 @@ export class HomeComponent extends BaseComponent implements AfterViewInit {
     if (this.activatedRoute.snapshot.routeConfig.path == Routing.CONTACT.path) {
       setTimeout(() => {
         const ele = document.getElementById('form-lien-he')
-        ele.scrollIntoView()
+        ele.scrollIntoView();
       }, 200);
     }
   }
@@ -61,7 +61,7 @@ export class HomeComponent extends BaseComponent implements AfterViewInit {
   calculateCount() {
     if (window.innerWidth > 1200) {
       this.initCount = 8;
-      this.viewMoreCount = 4;
+      this.viewMoreCount = 8;
     }
     else if (window.innerWidth > 992 && window.innerWidth <= 1200) {
       this.initCount = 6;

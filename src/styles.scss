@@ -16,10 +16,20 @@ body {
   margin: 0;
 }
 
-// @font-face {
-//   font-family: "Montserrat-Medium";
-//   src: url("./assets/css/FontsFree-Net-Montserrat-Medium.ttf");
-// }
+@font-face {
+  font-family: "MontserratBold";
+  src: url('./assets/font/Montserrat-Bold.otf') format('truetype');
+}
+
+@font-face {
+  font-family: "MontserratSemiBold";
+  src: url('./assets/font/Montserrat-SemiBold.otf') format('truetype');
+}
+
+@font-face {
+  font-family: "MontserratMedium";
+  src: url('./assets/font/Montserrat-Medium.otf') format('truetype');
+}
 
 * {
   margin: 0;

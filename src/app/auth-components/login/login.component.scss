@@ -1,29 +1,35 @@
-.login-cpn,
+::ng-deep .login-cpn,
 .login-popup-cpn {
     padding: 24px 0;
+
     .title {
         display: flex;
         align-items: center;
         margin-bottom: 24px;
+
         .icon {
             width: var(--large-title-size);
             height: var(--large-title-size);
             margin-right: 12px;
             background-image: url(~/src/assets/img/auth/icon_login.png);
         }
+
         .text {
             color: var(--gray-800);
             font-size: var(--large-title-size);
             font-weight: 700;
             text-transform: uppercase;
+            font-family: "MontserratBold";
         }
     }
+
     .wrap {
         display: flex;
         height: 616px;
         border-radius: 16px;
         border: 1px solid var(--Gray-200, #e4e7ec);
     }
+
     .left {
         width: 50%;
         height: 100%;
@@ -33,20 +39,25 @@
         background-image: url(~/src/assets/img/auth/login.png);
         background-color: #fcfcfd;
     }
+
     .right {
         width: 50%;
         height: 100%;
         padding: 32px;
+
         .title-system {
             display: flex;
             align-items: center;
             justify-content: space-between;
             margin-bottom: 24px;
+
             .text {
                 color: var(--gray-800);
                 font-size: var(--auth-sub-title-size);
                 font-weight: 600;
+                font-family: "MontserratSemiBold";
             }
+
             .logo {
                 width: 93px;
                 height: 48px;
@@ -54,39 +65,55 @@
                 cursor: pointer;
             }
         }
+
         .email,
         .password {
             margin-bottom: 24px;
+
             .label {
                 margin-bottom: 4px;
                 font-weight: 500;
                 font-size: var(--size);
+                font-family: "MontserratMedium";
+                color: var(--gray-800);
+
                 .required {
                     color: var(--danger);
                 }
             }
+
+            dx-text-box {
+                border-radius: 8px !important;
+            }
         }
+
         .error-message {
             text-align: center;
             margin: 12px;
             color: var(--red-05);
         }
+
         .one-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
             margin-bottom: 24px;
+
             .remember-me {
                 display: flex;
                 align-items: center;
+
                 input {
                     margin-right: 8px;
                 }
+
                 label {
                     margin-bottom: 0;
                     font-size: var(--size);
+                    color: var(--gray-800);
                 }
             }
+
             .forgot-password {
                 color: var(--gray-800);
                 font-family: Montserrat;
@@ -95,11 +122,15 @@
                 cursor: pointer;
             }
         }
+
         .have-no-account {
             margin-top: 24px;
             text-align: center;
+            color: var(--gray-800);
+
             .register-now {
                 margin-left: 4px;
+                font-family: "MontserratSemiBold";
                 color: var(--main-color);
                 text-decoration: underline;
                 cursor: pointer;
@@ -110,6 +141,7 @@
 
 .login-popup-cpn {
     padding: 12px 24px;
+
     .right {
         width: 100%;
         padding: 0;
@@ -120,25 +152,31 @@
     .login-cpn {
         .wrap {
             border: none;
+
             .left {
                 display: none;
             }
+
             .right {
                 width: 100%;
+
                 .title-system {
                     display: none;
                 }
             }
         }
+
         .title {
             .icon {
                 display: none !important;
             }
+
             .text {
                 margin-left: 16px;
             }
         }
     }
+
     .login-popup-cpn {
         .right {
             .title-system {

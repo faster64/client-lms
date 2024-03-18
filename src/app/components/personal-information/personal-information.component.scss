@@ -90,8 +90,10 @@
         cursor: pointer;
       }
 
-      .save-btn {
-        margin-left: 16px;
+      .cancel-x-btn {
+        button {
+          background-color: #E51919;
+        }
       }
 
       dx-text-box {

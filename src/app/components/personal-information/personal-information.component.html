@@ -44,18 +44,16 @@
           </div>
 
           <div class="update-btn" (click)="update()" *ngIf="viewMode">
-            Chỉnh sửa thông tin
+            Chỉnh sử
+            a thông tin
           </div>
+          <base-button *ngIf="!viewMode" #saveBtn text="Lưu thông tin chỉnh sửa" [disabled]="isLoading" [height]="48"
+            [width]="256" (onClick)="save()" style="margin: 0 24px 0 16px;">
+          </base-button>
 
-          <div class="save-btn" style="display: flex; align-items: center;" *ngIf="!viewMode">
-            <base-button #saveBtn text="Lưu thông tin chỉnh sửa" [disabled]="isLoading"
-              [height]="48" [width]="256" (onClick)="save()" style="margin-right: 24px;">
-            </base-button>
-
-            <base-button #cancelBtn text="Hủy bỏ" [color]="ButtonColor.WARN" [height]="48" [width]="100"
-              (onClick)="viewMode = true">
-            </base-button>
-          </div>
+          <base-button *ngIf="!viewMode" #cancelBtn class="cancel-x-btn" text="Hủy bỏ" [color]="ButtonColor.WARN"
+            [height]="48" [width]="100" (onClick)="viewMode = true">
+          </base-button>
         </div>
       </div>
     </div>
