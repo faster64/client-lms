@@ -6,7 +6,7 @@ import { FormMode } from 'src/app/shared/enums/form-mode.enum';
 import { ExerciseType } from 'src/app/shared/enums/exercise.enum';
 import { StringHelper } from 'src/app/shared/helpers/string.helper';
 import { Course } from 'src/app/shared/models/course/course';
-import { Exercise } from 'src/app/shared/models/lesson/exercise';
+import { Exercise, KeoThaAnswerModel } from 'src/app/shared/models/lesson/exercise';
 import { CourseService } from 'src/app/shared/services/course/course.service';
 import { LessonService } from 'src/app/shared/services/lesson/lesson.service';
 import { SnackBar } from 'src/app/shared/snackbar/snackbar.component';
@@ -147,6 +147,9 @@ export class CmsLessonFormComponent extends CmsFormComponent implements AfterVie
       else if (ex.type == ExerciseType.SAP_XEP) {
         ex.answerJson = JSON.stringify(ex.sapXepAnswer);
       }
+      else if (ex.type == ExerciseType.KEO_THA) {
+        ex.answerJson = JSON.stringify(ex.keoThaAnswer);
+      }
     }
   }
 
@@ -205,6 +208,9 @@ export class CmsLessonFormComponent extends CmsFormComponent implements AfterVie
     else if (exercise.type == ExerciseType.SAP_XEP) {
       exercise.sapXepAnswer = [""];
     }
+    else if (exercise.type == ExerciseType.KEO_THA) {
+      exercise.keoThaAnswer = [new KeoThaAnswerModel()];
+    }
   }
 
   addQuestion() {
@@ -217,8 +223,8 @@ export class CmsLessonFormComponent extends CmsFormComponent implements AfterVie
 
     this.data.exercises.push(ex);
     setTimeout(() => {
-      var content = document.querySelector('.cms-content-middle');
-      window.scrollTo(0, 0);
+      var content = document.querySelector('.scroll-hook');
+      content.scrollIntoView();
     }, 100);
   }
 
@@ -240,6 +246,11 @@ export class CmsLessonFormComponent extends CmsFormComponent implements AfterVie
       return;
     }
     this.data.exercises[index].sapXepAnswer.push("");
+  }
+
+  addKeoThaAnswer(index) {
+    const length = this.data.exercises[index].keoThaAnswer.length;
+    this.data.exercises[index].keoThaAnswer.push(new KeoThaAnswerModel());
   }
 
   removeAns(exercise: Exercise, index) {
@@ -273,6 +284,14 @@ export class CmsLessonFormComponent extends CmsFormComponent implements AfterVie
       }
       else {
         exercise.sapXepAnswer.splice(index, 1);
+      }
+    }
+    else if (exercise.type == ExerciseType.KEO_THA) {
+      if (exercise.keoThaAnswer.length <= 1) {
+        SnackBar.warning(new SnackBarParameter(this, 'Cảnh báo', 'Phải có ít nhất 1 đáp án'));
+      }
+      else {
+        exercise.keoThaAnswer.splice(index, 1);
       }
     }
   }

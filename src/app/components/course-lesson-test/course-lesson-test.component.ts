@@ -8,6 +8,7 @@ import { StringHelper } from 'src/app/shared/helpers/string.helper';
 import { MessageBox } from 'src/app/shared/message-box/message-box.component';
 import { Message } from 'src/app/shared/message-box/model/message';
 import { Course } from 'src/app/shared/models/course/course';
+import { KeoThaAnswerModel } from 'src/app/shared/models/lesson/exercise';
 import { KeyValue } from 'src/app/shared/models/lesson/key-value';
 import { Lesson } from 'src/app/shared/models/lesson/lesson';
 import { SapXep } from 'src/app/shared/models/lesson/sap-xep';
@@ -164,6 +165,8 @@ export class CourseLessonTestComponent extends BaseComponent {
 
       case ExerciseType.SAP_XEP:
         return Array(length).fill({});
+      case ExerciseType.KEO_THA:
+        return Array(length).fill(new KeoThaAnswerModel());
     }
   }
 

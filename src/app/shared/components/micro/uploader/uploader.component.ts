@@ -33,7 +33,7 @@ export class BaseUploaderComponent {
   mode = '';
 
   @Input()
-  maxFileSize = 1024 * 1024 * 50;
+  maxFileSize = 1024 * 1024 * 1024 * 50;
 
   @Input()
   maxCount = 0;

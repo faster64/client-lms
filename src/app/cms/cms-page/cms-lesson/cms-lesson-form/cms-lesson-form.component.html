@@ -64,7 +64,7 @@
         <div class="col-12 data-item attachment" *ngIf="formMode != FormMode.View">
           <div class="label">Tải file đính kèm <span class="required">*</span> (định dạng pdf) </div>
           <uploader #attachmentUploader [allowedFileExtensions]="'.pdf'" [multiple]="false" [auto]="true"
-            [maxFileSize]="10 * 1024 * 1024" (onChanged)="uploadedAttachment($event)"
+            [maxFileSize]="10 * 1024 * 1024 * 1024" (onChanged)="uploadedAttachment($event)"
             label="Hoặc click để chọn tệp tải lên tại đây">
           </uploader>
         </div>
@@ -233,6 +233,24 @@
           </div>
         </ng-container>
 
+        <!-- Kéo thả  -->
+        <ng-container *ngIf="exercise.type == ExerciseType.KEO_THA">
+          <div class="col-12 data-item keo-tha" *ngFor="let answer of exercise.keoThaAnswer; index as ii">
+            <div class="label" *ngIf="ii == 0">Đáp án <span class="required">*</span> </div>
+            <dx-text-box [readOnly]="formMode == FormMode.View" [height]="44" [(value)]="answer.left">
+            </dx-text-box>
+
+            <div class="line-between"></div>
+
+            <dx-text-box [readOnly]="formMode == FormMode.View" [height]="44" [(value)]="answer.right">
+            </dx-text-box>
+
+            <div class="remove-ans-btn" (click)="removeAns(exercise, ii)" *ngIf="formMode != FormMode.View">
+              <div class="icon bg-contain"></div>
+            </div>
+          </div>
+        </ng-container>
+
         <!-- Buttons  -->
         <div class="col-12 data-item exercise-feature" *ngIf="formMode != FormMode.View">
           <div class="remove-btn" (click)="removeQuestion(i)">
@@ -244,13 +262,19 @@
             <div class="text">Thêm Đáp án</div>
           </div>
 
-
           <div class="answer-btn" (click)="addSapXepAnswer(i)" *ngIf="exercise.type == ExerciseType.SAP_XEP">
             <div class="icon bg-contain"></div>
             <div class="text">Thêm tag</div>
           </div>
+
+          <div class="answer-btn" (click)="addKeoThaAnswer(i)" *ngIf="exercise.type == ExerciseType.KEO_THA">
+            <div class="icon bg-contain"></div>
+            <div class="text">Thêm Đáp án</div>
+          </div>
         </div>
       </div>
+
+      <div class="scroll-hook"></div>
     </div>
 
   </div>

@@ -23,6 +23,10 @@ export class LessonService extends BaseService {
     {
       id: ExerciseType.SAP_XEP,
       text: 'Mẫu câu sắp xếp từ thành câu'
+    },
+    {
+      id: ExerciseType.KEO_THA,
+      text: 'Mẫu câu kéo thả'
     }
   ]
 

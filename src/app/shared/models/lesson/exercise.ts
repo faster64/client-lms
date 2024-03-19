@@ -11,6 +11,7 @@ export class Exercise extends BaseModel {
   public gachDuoiAnswer: KeyValue[] = [];
   public khoanhTronAnswer: KeyValue[] = [];
   public sapXepAnswer: string[] = [];
+  public keoThaAnswer: KeoThaAnswerModel[] = [];
   public multiCorrectAnswers = false;
   public image = '';
   public imageUrl = '';
@@ -20,4 +21,11 @@ export class Exercise extends BaseModel {
   public hint = '';
   public hasAttachment = false;
   public isValid = true;
+}
+
+
+export class KeoThaAnswerModel {
+  public left = '';
+  public right = '';
+  public index = -1;
 }
