@@ -51,7 +51,7 @@ export class ForgotPasswordComponent extends BaseComponent implements AfterViewI
   login = () => this.router.navigateByUrl(Routing.LOGIN.path);
 
   send() {
-    if(StringHelper.isNullOrEmpty(this.emailValue)) {
+    if (StringHelper.isNullOrEmpty(this.emailValue)) {
 
     }
 

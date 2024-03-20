@@ -102,15 +102,25 @@
     margin-top: 24px;
 
     .search-title {
+      margin-bottom: 12px;
       font-size: var(--medium-title-size);
       font-weight: 700;
-      margin-bottom: 12px;
+      font-family: "MontserratBold";
+      color: var(--gray-800);
+    }
+
+    .result-title {
+      color: var(--gray-800);
+
+      strong {
+        font-family: "MontserratSemiBold";
+      }
     }
 
     .not-found {
       .icon {
-        width: 320px;
-        height: 280px;
+        width: 472px;
+        height: 320px;
         margin: 12px auto;
         background-image: url(~/src/assets/img/common/not-found.png);
       }
@@ -120,15 +130,19 @@
         text-align: center;
         font-weight: 600;
         font-size: var(--medium-title-size);
+        font-family: "MontserratSemiBold";
+        color: var(--gray-800);
       }
 
       .sub-title {
         text-align: center;
         font-size: var(--small-title-size);
+        color: var(--gray-800);
 
         a {
           color: #007bff !important;
           text-decoration: underline !important;
+          font-family: "MontserratSemiBold";
         }
       }
     }
