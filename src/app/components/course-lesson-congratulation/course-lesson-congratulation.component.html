@@ -1,5 +1,5 @@
 <div class="course-lesson-congratulation-cpn">
-  <!-- <div class="test-info" *ngIf="!isLoading">
+  <div class="test-info" *ngIf="!isLoading">
     <a class="back" [routerLink]="'/' + Routing.COURSE_LESSON_LIST.path + '/' + this.course.id ">
       <div class="icon bg-contain"></div>
     </a>
@@ -9,12 +9,12 @@
     <div class="test-note over-3-dots">
       <strong>Ghi chú:</strong> {{lesson ? lesson.testDescription : ''}}
     </div>
-  </div> -->
+  </div>
 
   <div class="test-content">
     <div class="image bg-contain"></div>
     <div class="congratulation">
-      <strong>Chúc mừng đã hoàn thành xong bài kiểm tra: {{lesson.testName}}</strong>
+      Chúc mừng đã hoàn thành xong bài kiểm tra: {{lesson.testName}}
     </div>
     <div class="result">
       Kết quả của bạn đạt được là: <span>{{result.corrects}}/{{result.total}}</span> câu

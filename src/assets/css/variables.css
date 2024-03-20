@@ -40,6 +40,7 @@
   --auth-sub-title-size: 32px;
   --course-name-size: 32px;
   --course-cpn-name-size: 24px;
+  --congratulation-size: 24px;
 
   /* spacing  */
   --app-header-height: 136px;
@@ -156,6 +157,7 @@
     --large-title-size: 18px;
     --large-sub-title-size: 14px;
     --content-margin: 24px 0;
+    --congratulation-size: 16px;
     /* --banner-blue-height: 400px; */
     /* --banner-white-height: 200px; */
     /* --banner-slide-height: 364px; */

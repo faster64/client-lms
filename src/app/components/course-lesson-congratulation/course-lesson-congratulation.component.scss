@@ -49,13 +49,13 @@
   }
 
   .test-content {
-    // height: calc(100% - 72px);
-    height: 100%;
+    height: calc(100% - 72px);
+    // height: 100%;
 
     .image {
       max-width: 100%;
-      width: 400px;
-      height: 320px;
+      width: 472px;
+      height: 423px;
       margin: 12px auto 24px auto;
       background-image: url(~/src/assets/img/lesson/congratulation.png);
     }
@@ -63,15 +63,19 @@
     .congratulation {
       width: 100%;
       text-align: center;
-      font-size: var(--small-title-size);
+      font-size: var(--congratulation-size);
+      font-family: "MontserratSemiBold";
+      color: var(--gray-800);
     }
 
     .result {
       width: 100%;
       margin: 12px 0 24px 0;
       text-align: center;
+      color: var(--gray-800);
 
       span {
+        font-family: "MontserratBold";
         font-weight: 600;
         color: var(--main-color);
       }
