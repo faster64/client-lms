@@ -204,6 +204,20 @@
         }
       }
 
+      .tag {
+        input {
+          padding-right: 24px !important;
+        }
+        .remove-ans-btn {
+          right: 1px;
+          transform: translateY(-50%);
+          .icon {
+            width: 16px;
+            height: 16px;
+          }
+        }
+      }
+
       .data-item.image,
       .data-item.audio {
         .wrapper {

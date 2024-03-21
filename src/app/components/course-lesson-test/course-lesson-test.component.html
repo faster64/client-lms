@@ -50,7 +50,7 @@
             <!-- điền khuyết -->
             <ng-container *ngIf="ewa.exercise.type == ExerciseType.DIEN_KHUYET">
               <div class="ans-item" *ngFor="let ans of ewa.exercise.dienKhuyetAnswer; index as j">
-                <dx-text-box placeholder="Nhập đán án" [height]="44" [width]="320"
+                <dx-text-box placeholder="Nhập đán án" [height]="48" [width]="320"
                   [(value)]="ewa.answer.dienKhuyetAnswerArray[j]" (onValueChanged)="dienKhuyetChanged(ewa, j)">
                 </dx-text-box>
               </div>
@@ -120,6 +120,16 @@
               </div>
             </ng-container>
 
+            <!-- kéo thả -->
+            <ng-container *ngIf="ewa.exercise.type == ExerciseType.KEO_THA">
+              <div class="drag-and-drop-item" *ngFor="let ans of ewa.exercise.keoThaAnswer; index as j">
+
+                <div draggable="true" class="dad-item drag-item" (dragstart)="dragstart($event, ans)" (dragend)="dragend($event)">{{ans.left}}</div>
+
+                <div class="dad-item drop-item" (drop)="dropped($event, ans, ans)" (dragover)="dragover($event)" (dragleave)="dragleave($event)">{{ans.right}}</div>
+
+              </div>
+            </ng-container>
           </div>
         </ng-container>
 
@@ -127,16 +137,16 @@
 
       <div class="btns">
         <base-button text="Quay lại" [class]="'back'" [finishImmediately]="true" [color]="ButtonColor.BASIC"
-          [width]="116" [height]="44" (onClick)="changeExercise(currentExerciseIndex - 1)"
+          [width]="116" [height]="48" (onClick)="changeExercise(currentExerciseIndex - 1)"
           *ngIf="currentExerciseIndex > 0">
         </base-button>
 
-        <base-button text="Câu hỏi tiếp theo" class="'next'" [finishImmediately]="true" [width]="190" [height]="44"
+        <base-button text="Câu hỏi tiếp theo" class="'next'" [finishImmediately]="true" [width]="190" [height]="48"
           (onClick)="changeExercise(currentExerciseIndex + 1)"
           *ngIf="currentExerciseIndex < (lesson.exercises.length - 1)">
         </base-button>
 
-        <base-button text="Kết thúc bài làm & kiểm tra kết quả" [finishImmediately]="true" [width]="356" [height]="44"
+        <base-button text="Kết thúc bài làm & kiểm tra kết quả" [finishImmediately]="true" [width]="356" [height]="48"
           (onClick)="submit()" *ngIf="currentExerciseIndex == lesson.exercises.length - 1">
         </base-button>
       </div>
@@ -150,9 +160,7 @@
     <!-- bảng câu hỏi  -->
     <div class="right table-questions" *ngIf="lesson.exercises && lesson.exercises.length">
 
-      <div class="title">
-        <h3>Bảng câu hỏi</h3>
-      </div>
+      <div class="title">Bảng câu hỏi</div>
 
       <div class="legend">
         <div class="legend-item current">

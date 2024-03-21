@@ -107,7 +107,7 @@
         <div class="col-12 col-md-6 data-item">
           <div class="label">Câu hỏi <span class="required">*</span> </div>
           <app-exercise-editor placeholder="Nhập câu hỏi" [valueContent]="exercise.questionJson"
-            [readonly]="formMode == FormMode.View" [height]="44" [disable]="exercise.type == ExerciseType.SAP_XEP"
+            [readonly]="formMode == FormMode.View" [height]="44"
             (change)="exercise.questionJson = $event">
           </app-exercise-editor>
         </div>

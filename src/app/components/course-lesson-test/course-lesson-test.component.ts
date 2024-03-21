@@ -36,6 +36,8 @@ export class CourseLessonTestComponent extends BaseComponent {
 
   showAudio = true;
 
+  dragItem: any;
+
   constructor(
     injector: Injector,
     public router: Router,
@@ -119,7 +121,6 @@ export class CourseLessonTestComponent extends BaseComponent {
             break;
           case ExerciseType.SAP_XEP:
             length = ex.sapXepAnswer.length;
-            ex.questionJson = 'Sắp xếp các từ sau thành câu hoàn chỉnh';
             break;
         }
 
@@ -291,5 +292,29 @@ export class CourseLessonTestComponent extends BaseComponent {
           this.router.navigateByUrl(`/${Routing.COURSE_LESSON_CONGRATULATION.path}/${this.course.id}/${this.lesson.id}`);
         }
       });
+  }
+
+  dragstart(ev, item) {
+    this.dragItem = item;
+    ev.target.classList.add('dragging');
+  }
+
+  dragend(ev) {
+    ev.target.classList.remove('dragging');
+  }
+
+  dropped(ev, target, item) {
+    console.log(ev);
+    ev.target.classList.remove('on-dragging');
+  }
+
+  dragover(ev) {
+    ev.preventDefault();
+    ev.target.classList.add('on-dragging');
+  }
+
+  dragleave(ev) {
+    console.log(ev);
+    ev.target.classList.remove('on-dragging');
   }
 }
