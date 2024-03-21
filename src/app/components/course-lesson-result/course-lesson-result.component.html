@@ -17,10 +17,10 @@
         <strong>Ghi chú:</strong> {{lesson ? lesson.testDescription : ''}}
       </div>
 
-      <div class="remake">
+      <!-- <div class="remake">
         <div class="icon bg-contain"></div>
         <div class="text" (click)="remake()">Làm lại bài kiểm tra</div>
-      </div>
+      </div> -->
 
       <div class="exercise" [ngClass]="item.isCorrect ? 'correct': 'incorrect'"
         *ngFor="let item of result.items; index as i">
@@ -84,6 +84,12 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="test-footer">
+    <base-button text="Quay lại" [finishImmediately]="true" [width]="116" [height]="48" [color]="ButtonColor.BASIC" (onClick)="back(Routing.HOME.path)"></base-button>
+    <base-button text="Trở về khóa học" [finishImmediately]="true" [width]="178" [height]="48" (onClick)="back(Routing.COURSE_LESSON_LIST.path + '/' + this.course.id)"></base-button>
+    <base-button text="Làm lại bài kiểm tra" [finishImmediately]="true" [width]="216" [height]="48" (onClick)="remake()"></base-button>
   </div>
 
   <progess-spinner-loading *ngIf="isLoading"></progess-spinner-loading>

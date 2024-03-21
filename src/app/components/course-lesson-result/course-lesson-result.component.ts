@@ -81,6 +81,10 @@ export class CourseLessonResultComponent extends BaseComponent {
       })
   }
 
+  back(path) {
+    this.router.navigateByUrl(`/${path}`);
+  }
+
   remake() {
     MessageBox.confirm(new Message(this, {
       content: 'Kết quả kiểm tra này sẽ bị xóa và tạo lại bài kiểm tra mới. Bạn có chắc chắn không?'

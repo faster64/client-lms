@@ -4,9 +4,8 @@
   .title {
     margin-bottom: 24px;
     color: var(--blue-01);
-    -webkit-text-stroke-width: 1.5;
-    -webkit-text-stroke-color: var(--main-color);
-    font-family: Montserrat;
+    -webkit-text-stroke: 1.5px var(--main-color);
+    font-family: "MontserratBold";
     font-style: normal;
     font-size: var(--large-title-size);
     font-weight: 700;
@@ -19,21 +18,51 @@
     align-items: center;
 
     .left {
+      display: flex;
+      align-items: center;
       width: 50%;
+      min-height: 288px;
       padding-right: 8px;
+      background-image: url(~/src/assets/img/about-we/quote.png);
 
-      .label {
-        margin-bottom: 16px;
-        color: var(--gray-800);
-        font-size: var(--large-sub-title-size);
-        font-weight: 700;
+      .content {
+        .label {
+          margin-bottom: 16px;
+          color: var(--gray-800);
+          font-size: var(--large-sub-title-size);
+          font-weight: 700;
+        }
       }
     }
 
     .right {
-      width: 50%;
+      width: calc(50% - 54px);
       height: 344px;
       background-image: url(~/src/assets/img/about-we/background.png);
+      background-position: right;
+    }
+
+    .rectangle-wrap {
+      width: 54px;
+      height: 344px;
+      .rectangle {
+        height: 90px;
+        background-color: var(--main-color);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1320px) {
+
+  .about-we-cpn {
+    .wrap {
+      .right {
+        width: 50%;
+      }
+      .rectangle-wrap {
+        display: none;
+      }
     }
   }
 }

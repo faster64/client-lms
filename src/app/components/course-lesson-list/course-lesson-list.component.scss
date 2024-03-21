@@ -31,8 +31,9 @@
       align-items: center;
       width: calc(100% - 36px);
       height: 100%;
-      font-size: var(--medium-title-size);
+      font-size: var(--course-name-size);
       font-weight: 600;
+      font-family: "MontserratBold";
 
       .skeleton-loading {
         inset: 16px 0;
@@ -65,13 +66,16 @@
         }
 
         .lesson-name {
-          font-size: var(--small-title-size);
-          font-weight: 600;
           height: 40px;
+          font-size: var(--medium-title-size);
+          font-weight: 600;
+          font-family: "MontserratSemiBold";
+          color: var(--gray-800);
         }
 
         .lesson-description {
           height: calc(100% - 112px);
+          color: var(--gray-800);
           overflow: hidden;
         }
 
@@ -163,7 +167,6 @@
     }
   }
 }
-
 
 @media screen and (max-width: 992px) {
   .course-lesson-cpn {

@@ -36,8 +36,9 @@
       display: flex;
       align-items: center;
       width: calc(100% - 36px);
-      font-size: var(--medium-title-size);
+      font-size: var(--course-name-size);
       font-weight: 600;
+      font-family: "MontserratBold";
 
       .skeleton-loading {
         inset: 16px 0;
@@ -46,7 +47,7 @@
   }
 
   .test-content {
-    height: calc(100% - 72px);
+    height: calc(100% - 152px);
 
     .wrapper {
       display: flex;
@@ -132,6 +133,16 @@
     }
   }
 
+  .test-footer {
+    display: flex;
+    align-items: center;
+    height: 80px;
+    border-bottom: 1px solid var(--gray-200);
+    base-button {
+      margin-right: 16px;
+    }
+  }
+
   .progess-spinner-loading {
     position: absolute !important;
   }
@@ -160,8 +171,22 @@
 @media screen and (max-width: 576px) {
   .course-lesson-result-cpn {
     .test-content {
+      height: calc(100% - 232px);
       .exercise {
         width: 100%;
+      }
+    }
+    ::ng-deep .test-footer {
+      height: 180px;
+      justify-content: space-between;
+      flex-direction: column-reverse;
+      flex-wrap: wrap;
+      border: none;
+      base-button {
+        width: 100%;
+        .base-button {
+          width: 100% !important;
+        }
       }
     }
   }

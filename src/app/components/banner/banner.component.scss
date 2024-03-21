@@ -7,12 +7,20 @@
   height: var(--banner-slide-height);
 
   .image-container {
+    position: relative;
     width: 100%;
     height: 100%;
 
     img {
       width: 100%;
       height: 100%;
+    }
+
+    .mark {
+      position: absolute;
+      inset: 0;
+      background-color: #000;
+      opacity: 0.08;
     }
   }
 
@@ -40,6 +48,7 @@
       color: var(--white);
       font-size: var(--banner-middle-size);
       font-weight: 700;
+      font-family: "MontserratBold";
     }
   }
 

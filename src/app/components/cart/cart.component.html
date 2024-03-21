@@ -6,41 +6,42 @@
   <div class="cart-content">
     <div class="row">
       <div class="col-12 col-xl-8 courses">
-        <table *ngIf="SharedService.CartItems.length > 0">
-          <thead>
-            <th>Sản phẩm</th>
-            <th>Giá</th>
-            <th>Chức năng</th>
-          </thead>
+        <div class="table" *ngIf="SharedService.CartItems.length > 0">
+          <div class="head">
+            <div class="column">Sản phẩm</div>
+            <div class="column">Giá</div>
+            <div class="column">Chức năng</div>
+          </div>
 
-          <tbody>
-            <tr class="course" [ngClass]="course.purchased ? 'purchased' : ''"
+          <div class="body">
+            <div class="table-row course" [ngClass]="course.purchased ? 'purchased' : ''"
               *ngFor="let course of SharedService.CartItems; index as i">
-              <td class="information">
+              <div class="column information">
                 <a class="prod" [routerLink]="'/' +  Routing.COURSE_DETAIL.path + '/' + course.id" target="_blank">
                   <img [src]="course.imageUrl">
                   <div class="wrap">
-                    <div class="name">{{course.name}}</div>
-                    <div class="short-description max-3-lines">{{course.shortDescription}}</div>
+                    <div class="name over-3-dots">{{course.name}}</div>
+                    <div class="short-description max-2-lines">{{course.shortDescription}}</div>
                   </div>
                 </a>
-              </td>
-              <td class="price">
+              </div>
+              <div class="column price">
                 {{(!course.purchased ? (course.price | NumberFormatPipe) : 'Đã mua')}}
-              </td>
-              <td class="features">
+              </div>
+              <div class="column features">
                 <div class="remove" (click)="removeItem(i)">
                   <div class="icon bg-contain"></div>
                 </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div class="no-data" style="margin: 48px 0; text-align: center; font-weight: 600;"
           *ngIf="SharedService.CartItems.length == 0">
           Chưa có sản phẩm nào trong giỏ
         </div>
+
       </div>
       <div class="col-12 col-xl-4 payment">
         <div class="payment-wrapper">

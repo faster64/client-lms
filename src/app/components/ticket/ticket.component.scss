@@ -1,107 +1,125 @@
 ::ng-deep .ticket-cpn {
-    position: relative;
+  position: relative;
+  height: 100%;
+  max-width: 1320px;
+
+  .content {
+    display: flex;
+    align-items: center;
     height: 100%;
-    max-width: 1320px;
 
-    .content {
-        display: flex;
-        align-items: center;
-        height: 100%;
+    .left,
+    .right {
+      width: 50%;
+      height: 100%;
+      min-height: 100%;
+    }
 
-        .left,
-        .right {
+    .left {
+      height: 616px;
+      background-image: url(~/src/assets/img/contact/image2.png);
+      background-position: left;
+    }
+
+    .right {
+      padding-left: 16px;
+
+      .title {
+        color: var(--white);
+        font-size: var(--large-title-size);
+        font-weight: 700;
+        text-transform: uppercase;
+        font-family: "MontserratBold";
+      }
+
+      .sub-title {
+        margin-bottom: 16px;
+        color: var(--white);
+        font-size: var(--large-sub-title-size);
+        font-weight: 400;
+        line-height: 36px;
+      }
+
+      .wrap-info {
+        .info-item {
+          margin-bottom: 24px;
+
+          .label {
+            font-weight: 500;
+            margin-bottom: 4px;
+            font-family: "MontserratMedium";
+            color: var(--gray-800);
+
+            .required {
+              color: var(--danger);
+            }
+          }
+
+          &.full-name,
+          &.phone,
+          &.email,
+          &.class {
+            display: inline-block;
             width: 50%;
-            height: 100%;
-            min-height: 100%;
-        }
+          }
 
-        .left {
-            height: 616px;
-            background-image: url(~/src/assets/img/contact/image.png);
-        }
+          &.full-name,
+          &.email {
+            .value {
+              width: calc(100% - 16px);
+            }
+          }
 
-        .right {
-            padding-left: 16px;
+          dx-text-box,
+          dx-select-box {
+            border-radius: 8px !important;
+          }
 
-            .title {
-                color: var(--white);
-                font-size: var(--large-title-size);
-                font-weight: 700;
-                text-transform: uppercase;
+          .dx-placeholder {
+            opacity: 0.48;
+          }
+
+          app-class-selector {
+            .dx-placeholder {
+              opacity: 1;
+            }
+          }
+
+          .dx-texteditor {
+            background: transparent;
+            border-color: var(--gray-25) !important;
+
+            input,
+            textarea {
+              padding: 10px 16px !important;
+              color: var(--gray-25);
             }
 
-            .sub-title {
-                margin-bottom: 16px;
-                color: var(--white);
-                font-size: var(--large-sub-title-size);
-                font-weight: 400;
-                line-height: 36px;
+            .dx-placeholder::before {
+              color: var(--gray-25) !important;
             }
-
-            .wrap-info {
-                .info-item {
-                    margin-bottom: 24px;
-
-                    .label {
-                        font-weight: 500;
-                        margin-bottom: 4px;
-
-                        .required {
-                            color: var(--danger);
-                        }
-                    }
-
-                    &.full-name,
-                    &.phone,
-                    &.email,
-                    &.class {
-                        display: inline-block;
-                        width: 50%;
-                    }
-
-                    &.full-name,
-                    &.email {
-                        .value {
-                            width: calc(100% - 16px);
-                        }
-                    }
-
-                    .dx-texteditor {
-                        background: transparent;
-                        border-color: var(--gray-25) !important;
-
-                        input,
-                        textarea {
-                            padding: 10px 16px !important;
-                            color: var(--gray-25);
-                        }
-
-                        .dx-placeholder::before {
-                            color: var(--gray-25) !important;
-                        }
-                    }
-
-                }
-            }
+          }
         }
+      }
     }
+  }
 
-    .progess-spinner-loading {
-        position: absolute !important;
-    }
+  .progess-spinner-loading {
+    position: absolute !important;
+  }
 }
 
 @media screen and (max-width: 992px) {
-    .ticket-cpn {
-        .content {
-            .left {
-                display: none;
-            }
+  .ticket-cpn {
+    .content {
+      .left {
+        display: none;
+      }
 
-            .right {
-                width: 100%;
-                padding: 0;
-            }
-        }
+      .right {
+        width: 100%;
+        padding: 0;
+      }
     }
+  }
 }

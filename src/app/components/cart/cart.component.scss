@@ -27,34 +27,43 @@
     .courses {
       overflow: auto;
 
-      table {
-        width: 100%;
+      .table {
         margin-top: 24px;
-
-        th {
-          padding-bottom: 4px;
-          border-bottom: 1px solid var(--greyish);
-          color: var(--gray-800);
-          font-family: "MontserratSemiBold";
+        .column {
+          display: inline-block;
+          height: 128px;
+          padding: 16px 0;
+          overflow: hidden;
+          &:first-child {
+            width: calc(100% - 300px);
+          }
+          &:last-child {
+            width: 140px;
+          }
+          &:nth-child(2) {
+            width: 160px;
+          }
         }
 
-        tr {
-          margin-bottom: 24px;
-
-          td {
-            padding: 12px 0;
+        .head {
+          .column {
+            height: 56px;
+            color: var(--gray-800);
+            font-size: var(--medium-title-size);
+            font-family: "MontserratSemiBold";
             border-bottom: 1px solid var(--greyish);
+          }
+        }
 
-            img {
-              width: 120px;
-              height: 92px;
-              border-radius: 8px;
+        .body {
+          .table-row {
+            display: flex;
+            align-items: center;
+            .column {
+              border-bottom: 1px solid var(--greyish);
             }
           }
-
           .information {
-            width: calc(100% - 240px);
-
             .prod {
               display: flex;
               cursor: pointer;
@@ -70,12 +79,23 @@
                   color: var(--gray-800);
                   font-family: "MontserratSemiBold";
                 }
+
+                .short-description {
+                  color: var(--gray-800);
+                }
+              }
+
+              img {
+                width: 120px;
+                height: 92px;
+                border-radius: 8px;
               }
             }
           }
 
           .price {
-            width: 120px;
+            display: flex;
+            align-items: center;
             font-size: var(--medium-title-size);
             font-weight: 600;
             color: var(--main-color);
@@ -83,12 +103,11 @@
           }
 
           .features {
-            width: 100px;
-            padding-left: 16px;
-
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
             .remove {
               display: inline-block;
-              height: 100%;
               padding: 4px;
               margin: 0 auto;
               border: 1px solid var(--greyish);
@@ -103,9 +122,18 @@
             }
           }
         }
+      }
+
+      table {
+        tr {
+          margin-bottom: 24px;
+
+          td {
+            padding: 12px 0;
+          }
+        }
 
         .course.purchased {
-
           .information,
           .price {
             opacity: 0.5;

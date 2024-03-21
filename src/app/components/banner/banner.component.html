@@ -1,6 +1,8 @@
 <div class="banner-cpn container" *ngIf="!isLoading">
   <div class="image-container">
     <img [src]="url" *ngFor="let url of banner.imageUrls">
+
+    <div class="mark"></div>
   </div>
 
   <div class="middle-line">
