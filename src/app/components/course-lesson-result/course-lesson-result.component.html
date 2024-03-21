@@ -52,6 +52,14 @@
             <ng-container *ngIf="item.exercise.type == ExerciseType.SAP_XEP">
               <strong style="margin: 0 6px;">{{item.sapXep.student}}</strong>
             </ng-container>
+
+            <!-- kéo thả  -->
+            <ng-container *ngIf="item.exercise.type == ExerciseType.KEO_THA">
+              <div *ngFor="let c of item.keoTha.student">
+                <strong style="display: block; margin: 8px 6px;">{{ c.left + ' ' + c.right }}</strong>
+              </div>
+            </ng-container>
+
           </div>
 
           <div class="result" *ngIf="!item.isCorrect">
@@ -78,6 +86,13 @@
             <ng-container *ngIf="item.exercise.type == ExerciseType.SAP_XEP">
               <strong style="margin: 0 6px;">{{item.sapXep.correct}}</strong>
             </ng-container>
+
+            <!-- kéo thả  -->
+            <ng-container *ngIf="item.exercise.type == ExerciseType.KEO_THA">
+              <div *ngFor="let c of item.keoTha.correct">
+                <strong style="display: block; margin: 8px 6px;">{{ c.left + ' ' + c.right }}</strong>
+              </div>
+            </ng-container>
           </div>
 
           <div class="icon bg-contain"></div>
@@ -87,9 +102,12 @@
   </div>
 
   <div class="test-footer">
-    <base-button text="Quay lại" [finishImmediately]="true" [width]="116" [height]="48" [color]="ButtonColor.BASIC" (onClick)="back(Routing.HOME.path)"></base-button>
-    <base-button text="Trở về khóa học" [finishImmediately]="true" [width]="178" [height]="48" (onClick)="back(Routing.COURSE_LESSON_LIST.path + '/' + this.course.id)"></base-button>
-    <base-button text="Làm lại bài kiểm tra" [finishImmediately]="true" [width]="216" [height]="48" (onClick)="remake()"></base-button>
+    <base-button text="Quay lại" [finishImmediately]="true" [width]="116" [height]="48" [color]="ButtonColor.BASIC"
+      (onClick)="back(Routing.HOME.path)"></base-button>
+    <base-button text="Trở về khóa học" [finishImmediately]="true" [width]="178" [height]="48"
+      (onClick)="back(Routing.COURSE_LESSON_LIST.path + '/' + this.course.id)"></base-button>
+    <base-button text="Làm lại bài kiểm tra" [finishImmediately]="true" [width]="216" [height]="48"
+      (onClick)="remake()"></base-button>
   </div>
 
   <progess-spinner-loading *ngIf="isLoading"></progess-spinner-loading>

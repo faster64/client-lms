@@ -8,6 +8,7 @@ import { StringHelper } from 'src/app/shared/helpers/string.helper';
 import { MessageBox } from 'src/app/shared/message-box/message-box.component';
 import { Message } from 'src/app/shared/message-box/model/message';
 import { Course } from 'src/app/shared/models/course/course';
+import { DragAndDropItem } from 'src/app/shared/models/lesson/drag-and-drop-item';
 import { KeoThaAnswerModel } from 'src/app/shared/models/lesson/exercise';
 import { KeyValue } from 'src/app/shared/models/lesson/key-value';
 import { Lesson } from 'src/app/shared/models/lesson/lesson';
@@ -64,6 +65,7 @@ export class CourseLessonTestComponent extends BaseComponent {
     window.onbeforeunload = null;
   }
 
+  //#region  Init
   check() {
     this.isLoading = true;
     this.testingService
@@ -122,6 +124,9 @@ export class CourseLessonTestComponent extends BaseComponent {
           case ExerciseType.SAP_XEP:
             length = ex.sapXepAnswer.length;
             break;
+          case ExerciseType.KEO_THA:
+            length = ex.keoThaAnswer.length;
+            break;
         }
 
         let array = this.initAnswerArray(ex.type, length);
@@ -134,6 +139,22 @@ export class CourseLessonTestComponent extends BaseComponent {
             return item;
           });
         }
+        else if (ex.type == ExerciseType.KEO_THA) {
+          const lefts = Utility.shuffle([...ex.keoThaAnswer.map(x => x.left)]);
+          const rights = Utility.shuffle([...ex.keoThaAnswer.map(x => x.right)]);
+
+          array = [];
+          for (let i = 0; i < lefts.length; i++) {
+            const item = new DragAndDropItem();
+            item.left = lefts[i];
+            item.right = rights[i];
+            item.index = i + 1;
+            item.originLeft = lefts[i];
+            item.disabled = false;
+            item.dropped = false;
+            array.push(item);
+          }
+        }
 
         this.formData.exerciseWithAnswers.push({
           exercise: ex,
@@ -144,7 +165,8 @@ export class CourseLessonTestComponent extends BaseComponent {
             gachDuoiAnswerArray: ex.type == ExerciseType.GACH_DUOI ? array : [],
             khoanhTronAnswerArray: ex.type == ExerciseType.KHOANH_TRON ? array : [],
             sapXepAnswerArray: ex.type == ExerciseType.SAP_XEP ? array : [],
-            sapXepAnswerArray2: []
+            sapXepAnswerArray2: [],
+            keoThaAnswerArray: ex.type == ExerciseType.KEO_THA ? array : [],
           },
         });
       }
@@ -170,7 +192,9 @@ export class CourseLessonTestComponent extends BaseComponent {
         return Array(length).fill(new KeoThaAnswerModel());
     }
   }
+  //#endregion
 
+  //#region  Change question
   changeExercise(index) {
     if (index < 0 || index >= this.lesson.exercises.length) {
       return;
@@ -183,7 +207,9 @@ export class CourseLessonTestComponent extends BaseComponent {
       window.scrollTo(0, 0);
     }, 100);
   }
+  //#endregion
 
+  //#region  Choose answer
   dienKhuyetChanged(ewa: ExerciseWithAnswer, index: number) {
     if (ewa.answer.dienKhuyetAnswerArray.findIndex(s => !StringHelper.isNullOrEmpty(s)) == -1) {
       ewa.answer.answerJson = '';
@@ -254,11 +280,16 @@ export class CourseLessonTestComponent extends BaseComponent {
       case ExerciseType.SAP_XEP:
         ewa.answer.answerJson = ewa.answer.sapXepAnswerArray2.map(e => e.value).join('@@@');
         break;
+      case ExerciseType.KEO_THA:
+        ewa.answer.answerJson = JSON.stringify(ewa.answer.keoThaAnswerArray);
+        break;
       default:
         ewa.answer.answerJson = '';
     }
   }
+  //#endregion
 
+  //#region Submit
   buildAllAnswer() {
     for (let i = 0; i < this.formData.exerciseWithAnswers.length; i++) {
       const ewa = this.formData.exerciseWithAnswers[i];
@@ -293,19 +324,28 @@ export class CourseLessonTestComponent extends BaseComponent {
         }
       });
   }
+  //#endregion
 
-  dragstart(ev, item) {
+  //#region  Drag and drop
+  dragstart(ev, item: DragAndDropItem) {
     this.dragItem = item;
     ev.target.classList.add('dragging');
   }
 
   dragend(ev) {
+    this.dragItem = null;
     ev.target.classList.remove('dragging');
   }
 
-  dropped(ev, target, item) {
-    console.log(ev);
+  dropped(ev, item: DragAndDropItem) {
     ev.target.classList.remove('on-dragging');
+    if (item.dropped) {
+      return;
+    }
+
+    item.left = this.dragItem.originLeft;
+    item.dropped = true;
+    this.dragItem.disabled = true;
   }
 
   dragover(ev) {
@@ -314,7 +354,7 @@ export class CourseLessonTestComponent extends BaseComponent {
   }
 
   dragleave(ev) {
-    console.log(ev);
     ev.target.classList.remove('on-dragging');
   }
+  //#endregion
 }

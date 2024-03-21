@@ -1,3 +1,4 @@
+import { DragAndDropItem } from "./drag-and-drop-item";
 import { Exercise } from "./exercise";
 import { KeyValue } from "./key-value";
 import { SapXep } from "./sap-xep";
@@ -22,4 +23,5 @@ export class Answer {
   public khoanhTronAnswerArray: KeyValue[] = []; // Khoanh tron only;
   public sapXepAnswerArray: SapXep[] = []; // Sap xep only
   public sapXepAnswerArray2: SapXep[] = []; // Câu trả lời (Sap xep only)
+  public keoThaAnswerArray: DragAndDropItem[] = []; // Keo tha only
 }
