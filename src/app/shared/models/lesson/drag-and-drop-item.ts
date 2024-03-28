@@ -10,4 +10,6 @@ export class DragAndDropItem {
   public disabled = false;
 
   public dropped = false;
+
+  public leftIndex = -1;
 }

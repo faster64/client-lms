@@ -124,13 +124,13 @@
             <ng-container *ngIf="ewa.exercise.type == ExerciseType.KEO_THA">
               <div class="drag-and-drop-item" *ngFor="let ans of ewa.answer.keoThaAnswerArray; index as j">
 
-                <div [draggable]="!ans.disabled" class="dad-item drag-item" (dragstart)="dragstart($event, ans)"
-                  (dragend)="dragend($event)">
+                <div [draggable]="!ans.disabled" class="dad-item drag-item" [ngClass]="ans.disabled ? 'disabled' : ''"
+                  (dragstart)="dragstart($event, ans)" (dragend)="dragend($event)">
                   {{ans.disabled ? '' : ans.originLeft}}
                 </div>
 
-                <div class="dad-item drop-item" (drop)="dropped($event, ans)" (dragover)="dragover($event)"
-                  (dragleave)="dragleave($event)">{{ans.dropped ? ans.left + ' - ' : ''}}
+                <div class="dad-item drop-item" (click)="undo(ans, ewa)" (drop)="dropped($event, ans)"
+                  (dragover)="dragover($event)" (dragleave)="dragleave($event)">{{ans.dropped ? ans.left + ' - ' : ''}}
                   {{ans.right}}
                 </div>
 

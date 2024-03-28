@@ -78,11 +78,20 @@
         margin-bottom: 24px;
 
         .order {
-          width: 56px;
+          width: 68px;
+
+          strong {
+            font-size: var(--medium-title-size);
+          }
         }
 
         .text {
-          width: calc(100% - 56px);
+          width: calc(100% - 68px);
+
+          p {
+            font-size: var(--medium-title-size);
+            font-family: "MontserratSemiBold";
+          }
         }
       }
 
@@ -90,6 +99,7 @@
         margin-bottom: 24px;
 
         .attachment-item {
+
           img,
           audio {
             // display: block;
@@ -120,7 +130,8 @@
         .wrapper {
           margin-bottom: 24px;
 
-          .ans-item, .drag-and-drop-item {
+          .ans-item,
+          .drag-and-drop-item {
             display: flex;
             align-items: center;
             width: 100%;
@@ -132,6 +143,12 @@
 
             p {
               margin: 0;
+            }
+
+            .drag-item.disabled {
+              border: 1px solid var(--gray-200);
+              background-color: var(--gray-100);
+              cursor: not-allowed;
             }
           }
 
@@ -151,9 +168,18 @@
               &.dragging {
                 background-color: var(--gray-200);
               }
+
               &.on-dragging {
                 background-color: var(--grey);
               }
+            }
+
+            .drag-item {
+              cursor: move;
+            }
+
+            .drop-item {
+              cursor: pointer;
             }
           }
 
@@ -275,7 +301,7 @@
           width: 60px;
           height: 40px;
           margin: 0 8px 16px 0;
-          border-radius: 2px;
+          border-radius: 4px;
           background-color: var(--greyish);
           font-weight: 600;
           cursor: pointer;

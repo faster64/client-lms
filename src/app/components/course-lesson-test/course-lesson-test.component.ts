@@ -37,7 +37,7 @@ export class CourseLessonTestComponent extends BaseComponent {
 
   showAudio = true;
 
-  dragItem: any;
+  dragItem: DragAndDropItem;
 
   constructor(
     injector: Injector,
@@ -281,7 +281,8 @@ export class CourseLessonTestComponent extends BaseComponent {
         ewa.answer.answerJson = ewa.answer.sapXepAnswerArray2.map(e => e.value).join('@@@');
         break;
       case ExerciseType.KEO_THA:
-        ewa.answer.answerJson = JSON.stringify(ewa.answer.keoThaAnswerArray);
+        const array = ewa.answer.keoThaAnswerArray.filter(x => x.dropped);
+        ewa.answer.answerJson = JSON.stringify(array);
         break;
       default:
         ewa.answer.answerJson = '';
@@ -345,6 +346,7 @@ export class CourseLessonTestComponent extends BaseComponent {
 
     item.left = this.dragItem.originLeft;
     item.dropped = true;
+    item.leftIndex = this.dragItem.index;
     this.dragItem.disabled = true;
   }
 
@@ -355,6 +357,19 @@ export class CourseLessonTestComponent extends BaseComponent {
 
   dragleave(ev) {
     ev.target.classList.remove('on-dragging');
+  }
+
+  undo(item: DragAndDropItem, ewa: ExerciseWithAnswer) {
+    if (item.leftIndex < 1) {
+      return;
+    }
+
+    item.dropped = false;
+    item.left = '';
+
+    const p = ewa.answer.keoThaAnswerArray[item.leftIndex - 1];
+    p.left = p.originLeft;
+    p.disabled = false;
   }
   //#endregion
 }
