@@ -29,17 +29,21 @@
 
       .table {
         margin-top: 24px;
+
         .column {
           display: inline-block;
           height: 128px;
           padding: 16px 0;
           overflow: hidden;
+
           &:first-child {
             width: calc(100% - 300px);
           }
+
           &:last-child {
             width: 140px;
           }
+
           &:nth-child(2) {
             width: 160px;
           }
@@ -59,10 +63,18 @@
           .table-row {
             display: flex;
             align-items: center;
+
             .column {
               border-bottom: 1px solid var(--greyish);
             }
+
+            &.purchased {
+              .column:not(.features) {
+                opacity: 0.3;
+              }
+            }
           }
+
           .information {
             .prod {
               display: flex;
@@ -106,6 +118,7 @@
             display: flex;
             align-items: center;
             justify-content: flex-end;
+
             .remove {
               display: inline-block;
               padding: 4px;
@@ -134,6 +147,7 @@
         }
 
         .course.purchased {
+
           .information,
           .price {
             opacity: 0.5;
